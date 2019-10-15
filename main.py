@@ -16,3 +16,10 @@ if __name__ == '__main__':
     errors_ = 'ignore'
     with open(input_file, 'r', errors=errors_) as input_fp:
         raw_text = input_fp.read()
+
+    text = raw_text.lower()  # converts to lowercase
+    nltk.download('punkt')  # first-time use only
+    nltk.download('wordnet')  # first-time use only
+    sent_tokens = nltk.sent_tokenize(text)  # converts to list of sentences
+    word_tokens = nltk.word_tokenize(text)  # converts to list of words
+    print(len(word_tokens))
