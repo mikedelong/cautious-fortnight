@@ -3,7 +3,23 @@ import numpy as np
 import random
 import string
 
+
+
+# WordNet is a semantically-oriented dictionary of English included in NLTK.
+def LemTokens(arg_lemmer, tokens):
+    return [arg_lemmer.lemmatize(token) for token in tokens]
+
+
+
+
+def LemNormalize(text):
+    return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
+
+
 if __name__ == '__main__':
+
+    lemmer = nltk.stem.WordNetLemmatizer()
+    remove_punct_dict = dict((ord(punct), None) for punct in string.punctuation)
 
     do_basic_loop = False
     if do_basic_loop:
