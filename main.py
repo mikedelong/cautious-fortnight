@@ -13,6 +13,12 @@ def get_normalized(arg_text, arg_punctuation, arg_lemmer):
     return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
+def greeting(sentence):
+    for word in sentence.split():
+        if word.lower() in GREETING_INPUTS:
+            return random.choice(GREETING_RESPONSES)
+
+
 GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
 GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'I am glad! You are talking to me']
 
