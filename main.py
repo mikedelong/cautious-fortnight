@@ -4,12 +4,9 @@ import random
 import string
 
 
-
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
 def LemTokens(arg_lemmer, tokens):
     return [arg_lemmer.lemmatize(token) for token in tokens]
-
-
 
 
 def LemNormalize(text):
