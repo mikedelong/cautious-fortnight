@@ -13,6 +13,9 @@ def get_normalized(arg_text, arg_punctuation, arg_lemmer):
     return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
+GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
+GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'I am glad! You are talking to me']
+
 if __name__ == '__main__':
 
     lemmer = nltk.stem.WordNetLemmatizer()
