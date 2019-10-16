@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     do_basic_loop = False
     if do_basic_loop:
-        response = ''
+        response = None
         while response not in {'quit'}:
             response = input('Yes? ')
             print(response)
