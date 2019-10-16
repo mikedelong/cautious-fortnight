@@ -10,7 +10,8 @@ def get_lemma_tokens(arg_lemmer, tokens):
     return [arg_lemmer.lemmatize(token) for token in tokens]
 
 
-def normalize(arg_text, arg_punctuation, arg_lemmer):
+def normalize(arg_text, arg_punctuation=dict((ord(punct), None) for punct in string.punctuation),
+              arg_lemmer=nltk.stem.WordNetLemmatizer()):
     return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
@@ -22,7 +23,7 @@ def greeting(sentence):
 
 def response(user_response, arg_tokens):
     arg_tokens.append(user_response)
-    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english')
+    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english', )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
     index = similarity.argsort()[0][-2]
@@ -39,7 +40,6 @@ GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'hooray!']
 if __name__ == '__main__':
 
     lemmer = nltk.stem.WordNetLemmatizer()
-    remove_punct_dict = dict((ord(punct), None) for punct in string.punctuation)
 
     do_basic_loop = False
     if do_basic_loop:
@@ -59,3 +59,22 @@ if __name__ == '__main__':
     sentences = nltk.sent_tokenize(text)  # converts to list of sentences
     words = nltk.word_tokenize(text)  # converts to list of words
     print('we have {} words'.format(len(words)))
+
+    flag = True
+    print('Yes? ')
+    while flag:
+        user_response = input().lower()
+        if user_response not in {'bye', 'quit'}:
+            if user_response in {'thanks', 'thank you'}:
+                flag = False
+                print(random.choice(['welcome', 'np', 'yw']))
+            else:
+                if greeting(user_response):
+                    print(': ' + greeting(user_response))
+                else:
+                    print(': ', end='')
+                    print(response(user_response, sentences))
+                    sentences.remove(user_response)
+        else:
+            flag = False
+            print(': ' + random.choice(['later', 'see ya', 'cya', 'bye']))
