@@ -5,12 +5,12 @@ import string
 
 
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
-def LemTokens(arg_lemmer, tokens):
+def get_lemma_tokens(arg_lemmer, tokens):
     return [arg_lemmer.lemmatize(token) for token in tokens]
 
 
-def LemNormalize(text):
-    return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
+def get_normalized(arg_text, arg_punctuation, arg_lemmer):
+    return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
 if __name__ == '__main__':
