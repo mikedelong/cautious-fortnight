@@ -1,7 +1,8 @@
 import nltk
-import numpy as np
 import random
 import string
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
@@ -9,7 +10,7 @@ def get_lemma_tokens(arg_lemmer, tokens):
     return [arg_lemmer.lemmatize(token) for token in tokens]
 
 
-def get_normalized(arg_text, arg_punctuation, arg_lemmer):
+def normalize(arg_text, arg_punctuation, arg_lemmer):
     return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
@@ -19,8 +20,21 @@ def greeting(sentence):
             return random.choice(GREETING_RESPONSES)
 
 
+def response(user_response, arg_tokens):
+    arg_tokens.append(user_response)
+    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english')
+    tfidf = vectorizer.fit_transform(arg_tokens)
+    similarity = cosine_similarity(tfidf[-1], tfidf)
+    index = similarity.argsort()[0][-2]
+    flat = similarity.flatten()
+    flat.sort()
+    found = flat[-2]
+    result = arg_tokens[index] if found else 'sorry please try again.'
+    return result
+
+
 GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
-GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'I am glad! You are talking to me']
+GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'hooray!']
 
 if __name__ == '__main__':
 
@@ -42,6 +56,6 @@ if __name__ == '__main__':
     text = raw_text.lower()  # converts to lowercase
     nltk.download('punkt')  # first-time use only
     nltk.download('wordnet')  # first-time use only
-    sent_tokens = nltk.sent_tokenize(text)  # converts to list of sentences
-    word_tokens = nltk.word_tokenize(text)  # converts to list of words
-    print(len(word_tokens))
+    sentences = nltk.sent_tokenize(text)  # converts to list of sentences
+    words = nltk.word_tokenize(text)  # converts to list of words
+    print('we have {} words'.format(len(words)))
