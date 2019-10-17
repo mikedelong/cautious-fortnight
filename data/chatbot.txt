@@ -45,35 +45,25 @@ Chatbots, providing an interface similar to human-to-human interaction, are more
 State-of-the-art banking assistants can, by accessing personal customer's data such as consumer behavior or history of purchases, provide useful information on client's account and use it to develop AI-Based recommendations for better adapted money management.
 A chatbot greeting a bank's website guest can provide some useful and relevant information, helping to exploit the offered products and services in a personalized manner helps to attract the potential client and the he is more likely to end by creation of a new account.
 An instant and always accessible assistant is assumed by the more and more digital consumer of the new era.
-Unlike humans, chatbots once developed and installed don't have a limited workdays, holidays or weekends and are ready to attend queries at any hour of the day. It helps to the customer to avoid waiting of a company's agent to be available. Thus, the customer doesn't have to wait for the company executive to help them. This also lets companies keep an eye on the traffic during the non-working hours and reach out to them later.
+Unlike humans, chatbots once developed and installed don't have a limited workdays, holidays or weekends and are ready to attend queries at any hour of the day.
+It helps to the customer to avoid waiting of a company's agent to be available. Thus, the customer doesn't have to wait for the company executive to help them. This also lets companies keep an eye on the traffic during the non-working hours and reach out to them later.
 Chatbots are also appearing in the healthcare industry.
-A study suggested that physicians in the United States believed that chatbots would be most beneficial for scheduling doctor appointments, locating health clinics, or providing medication information.[51]
-In New Zealand, the chatbot SAM -short for Semantic Analysis Machine-[52] (made by Nick Gerritsen of Touchtech[53]) has been developed. It is designed to share its political thoughts, for example on topics such as climate change, healthcare and education, etc. It talks to people through Facebook Messenger.
-
-Chatbots have also been incorporated into devices not primarily meant for computing such as toys.[58]
-
-Hello Barbie is an Internet-connected version of the doll that uses a chatbot provided by the company ToyTalk,[59] which previously used the chatbot for a range of smartphone-based characters for children.[60] These characters' behaviors are constrained by a set of rules that in effect emulate a particular character and produce a storyline.[61]
-
-IBM's Watson computer has been used as the basis for chatbot-based educational toys for companies such as CogniToys[58] intended to interact with children for educational purposes.[62]
-
-The process of building, testing and deploying chatbots can be done on cloud-based chatbot development platforms[63] offered by cloud Platform as a Service (PaaS) providers such as Oracle Cloud Platform, SnatchBot[65][66][67] and IBM Watson.[68][69][70] These cloud platforms provide Natural Language Processing, Artificial Intelligence and Mobile Backend as a Service for chatbot development.
-
+A study suggested that physicians in the United States believed that chatbots would be most beneficial for scheduling doctor appointments, locating health clinics, or providing medication information.
+In New Zealand, the chatbot SAM - short for Semantic Analysis Machine - (made by Nick Gerritsen of Touchtech) has been developed.
+It is designed to share its political thoughts, for example on topics such as climate change, healthcare and education, etc. It talks to people through Facebook Messenger.
+Chatbots have also been incorporated into devices not primarily meant for computing such as toys.
+Hello Barbie is an Internet-connected version of the doll that uses a chatbot provided by the company ToyTalk, which previously used the chatbot for a range of smartphone-based characters for children.[60] These characters' behaviors are constrained by a set of rules that in effect emulate a particular character and produce a storyline.
+IBM's Watson computer has been used as the basis for chatbot-based educational toys for companies such as CogniToys intended to interact with children for educational purposes.
+The process of building, testing and deploying chatbots can be done on cloud-based chatbot development platforms offered by cloud Platform as a Service (PaaS) providers such as Oracle Cloud Platform, SnatchBot[65][66][67] and IBM Watson.
+These cloud platforms provide Natural Language Processing, Artificial Intelligence and Mobile Backend as a Service for chatbot development.
 Some Companies like Microsoft Azure and AARC are currently providing their Bot Engines through which chatbot Platforms or Software can be developed.
-
 Malicious chatbots are frequently used to fill chat rooms with spam and advertisements, by mimicking human behavior and conversations or to entice people into revealing personal information, such as bank account numbers. They are commonly found on Yahoo! Messenger, Windows Live Messenger, AOL Instant Messenger and other instant messaging protocols. There has also been a published report of a chatbot used in a fake personal ad on a dating service's website.[71]
-
-Tay, an AI chatbot that learns from previous interaction, caused major controversy due to it being targeted by internet trolls on Twitter. The bot was exploited, and after 16 hours began to send extremely offensive Tweets to users. This suggests that although the bot learnt effectively from experience, adequate protection was not put in place to prevent misuse.[72]
-
-If a text-sending algorithm can pass itself off as a human instead of a chatbot, its message would be more credible. Therefore, human-seeming chatbots with well-crafted online identities could start scattering fake news that seem plausible, for instance making false claims during a presidential election. With enough chatbots, it might be even possible to achieve artificial social proof.[73][74]
-
+Tay, an AI chatbot that learns from previous interaction, caused major controversy due to it being targeted by internet trolls on Twitter. The bot was exploited, and after 16 hours began to send extremely offensive Tweets to users. This suggests that although the bot learnt effectively from experience, adequate protection was not put in place to prevent misuse.
+If a text-sending algorithm can pass itself off as a human instead of a chatbot, its message would be more credible. Therefore, human-seeming chatbots with well-crafted online identities could start scattering fake news that seem plausible, for instance making false claims during a presidential election. With enough chatbots, it might be even possible to achieve artificial social proof.
 The creation and implementation of chatbots is still a developing area, heavily related to artificial intelligence and machine learning, so the provided solutions, while possessing obvious advantages, have some important limitations in terms of functionalities and use cases. However this is changing over time.
-
-The most common ones are listed below:[75]
-
-As the database, used for output generation, is fixed and limited, chatbots can fail while dealing with an unsaved query.[46]
-A chatbot's efficiency highly depends on language processing and is limited because of irregularities, such as accents and mistakes that can create an important barrier for international and multi-cultural organisations [76]
-Chatbots are unable to deal with multiple questions at the same time and so conversation opportunities are limited.[75]
-As it happens usually with technology-led changes in existing services, some consumers, more often than not from the old generation, are uncomfortable with chatbots due to their limited understanding, making it obvious that their requests are being dealt machines.[75]
+As the database, used for output generation, is fixed and limited, chatbots can fail while dealing with an unsaved query.
+A chatbot's efficiency highly depends on language processing and is limited because of irregularities, such as accents and mistakes that can create an important barrier for international and multi-cultural organisations.
+Chatbots are unable to deal with multiple questions at the same time and so conversation opportunities are limited.
+As it happens usually with technology-led changes in existing services, some consumers, more often than not from the old generation, are uncomfortable with chatbots due to their limited understanding, making it obvious that their requests are being dealt machines.
 Chatbots are increasingly present in businesses and often are used to automate tasks that do not require skill-based talents. With customer service taking place via messaging apps as well as phone calls, there are growing numbers of use-cases where chatbot deployment gives organisations a clear return on investment. Call centre workers may be particularly at risk from AI-driven chatbots.[77]
-
-A study by Forrester (June 2017) predicts that 25% of today's jobs will most likely be impacted by AI technologies by 2019.[78]
+A study by Forrester (June 2017) predicts that 25% of today's jobs will most likely be impacted by AI technologies by 2019.
