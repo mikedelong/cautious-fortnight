@@ -1,3 +1,5 @@
+# adapted from
+# https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e
 import nltk
 import random
 import string
@@ -53,7 +55,7 @@ if __name__ == '__main__':
     with open(input_file, 'r', errors=errors_) as input_fp:
         raw_text = input_fp.read()
 
-    text = raw_text.lower()  # converts to lowercase
+    text = raw_text.lower()
     nltk.download('punkt')  # first-time use only
     nltk.download('wordnet')  # first-time use only
     sentences = nltk.sent_tokenize(text)  # converts to list of sentences
