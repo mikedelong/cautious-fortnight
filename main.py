@@ -5,6 +5,7 @@ import random
 import string
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
@@ -23,9 +24,12 @@ def greeting(sentence):
             return random.choice(GREETING_RESPONSES)
 
 
+STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)}
+
+
 def response(user_response, arg_tokens):
     arg_tokens.append(user_response)
-    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english', )
+    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words=STOP_WORDS, )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
     index = similarity.argsort()[0][-2]
