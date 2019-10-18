@@ -1,11 +1,13 @@
 # adapted from
 # https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e
-import nltk
 import random
 import string
+
+import nltk
+import numpy as np
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
@@ -36,10 +38,7 @@ def respond(arg_user_response, arg_tokens):
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
     index = similarity.argsort()[0][-2]
-    flat = similarity.flatten()
-    flat.sort()
-    found = flat[-2]
-    result = arg_tokens[index] if found else 'sorry please try again.'
+    result = arg_tokens[index] if np.count_nonzero(similarity.flatten()) > 1 else 'sorry please try again.'
     return result
 
 
