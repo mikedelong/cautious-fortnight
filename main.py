@@ -27,9 +27,12 @@ def greeting(sentence):
 STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)}
 
 
-def response(user_response, arg_tokens):
-    arg_tokens.append(user_response)
-    vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words=STOP_WORDS, )
+def respond(arg_user_response, arg_tokens):
+    arg_tokens.append(arg_user_response)
+    vectorizer = TfidfVectorizer(
+        lowercase=False,
+        tokenizer=normalize,
+        stop_words=STOP_WORDS, )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
     index = similarity.argsort()[0][-2]
@@ -46,7 +49,6 @@ GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'hooray!']
 if __name__ == '__main__':
 
     lemmer = nltk.stem.WordNetLemmatizer()
-
     do_basic_loop = False
     if do_basic_loop:
         response = None
@@ -59,7 +61,8 @@ if __name__ == '__main__':
     with open(input_file, 'r', errors=errors_) as input_fp:
         raw_text = input_fp.read()
 
-    text = raw_text.lower()
+    # text = raw_text.lower()
+    text = raw_text
     nltk.download('punkt')  # first-time use only
     nltk.download('wordnet')  # first-time use only
     sentences = nltk.sent_tokenize(text)  # converts to list of sentences
@@ -79,7 +82,7 @@ if __name__ == '__main__':
                     print(': ' + greeting(user_response))
                 else:
                     print(': ', end='')
-                    print(response(user_response, sentences))
+                    print(respond(user_response, sentences))
                     sentences.remove(user_response)
         else:
             flag = False
