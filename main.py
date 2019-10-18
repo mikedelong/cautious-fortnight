@@ -39,8 +39,8 @@ def respond(arg_user_response, arg_tokens):
     if np.count_nonzero(similarity.flatten()) == 1:
         return 'sorry please try again.'
     else:
-        t = np.random.choice(range(len(similarity[0]) - 1), 1, p=(similarity[0][:-1] / np.sum(similarity[0][:-1])))[0]
-        index = similarity.argsort()[0][-2] if choice_algorithm == 0 else t
+        index = similarity.argsort()[0][-2] if choice_algorithm == 0 else \
+            np.random.choice(range(len(similarity[0]) - 1), 1, p=(similarity[0][:-1] / np.sum(similarity[0][:-1])))[0]
         return arg_tokens[index]
 
 
