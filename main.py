@@ -28,7 +28,7 @@ def greeting(sentence):
 
 STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)}
 
-
+choice_algorithm = {'highest': 0, 'probabilistically': 1}['probabilistically']
 def respond(arg_user_response, arg_tokens):
     arg_tokens.append(arg_user_response)
     vectorizer = TfidfVectorizer(
@@ -37,9 +37,13 @@ def respond(arg_user_response, arg_tokens):
         stop_words=STOP_WORDS, )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
-    index = similarity.argsort()[0][-2]
-    result = arg_tokens[index] if np.count_nonzero(similarity.flatten()) > 1 else 'sorry please try again.'
-    return result
+    if np.count_nonzero(similarity.flatten()) == 1:
+        return 'sorry please try again.'
+    else:
+        t = np.random.choice(range(len(similarity[0]) - 1), 1, p=(similarity[0][:-1] / np.sum(similarity[0][:-1])))[0]
+        index = similarity.argsort()[0][-2] if choice_algorithm == 0 else t
+        result = arg_tokens[index] if np.count_nonzero(similarity.flatten()) > 1 else 'sorry please try again.'
+        return result
 
 
 GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
