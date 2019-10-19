@@ -15,8 +15,7 @@ def get_lemma_tokens(arg_lemmer, tokens):
     return [arg_lemmer.lemmatize(token) for token in tokens]
 
 
-def normalize(arg_text, arg_punctuation=dict((ord(punct), None) for punct in string.punctuation),
-              arg_lemmer=nltk.stem.WordNetLemmatizer()):
+def normalize(arg_text, arg_punctuation, arg_lemmer=nltk.stem.WordNetLemmatizer()):
     return get_lemma_tokens(arg_lemmer, nltk.word_tokenize(arg_text.lower().translate(arg_punctuation)))
 
 
@@ -34,7 +33,8 @@ STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)
 
 def respond(arg_user_response, arg_tokens):
     arg_tokens.append(arg_user_response)
-    vectorizer = TfidfVectorizer(lowercase=False, tokenizer=normalize, stop_words=STOP_WORDS, )
+    vectorizer = TfidfVectorizer(lowercase=False, tokenizer=lambda x: normalize(x, dict(
+        (ord(punct), None) for punct in string.punctuation), nltk.stem.WordNetLemmatizer()), stop_words=STOP_WORDS, )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
     if np.count_nonzero(similarity.flatten()) == 1:
