@@ -4,18 +4,18 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
-small = ['hi there!', 'hi!', 'how do?', 'how you?', 'cool.', 'fine, you?', 'extra cool.', 'okay',
+COSINES = ['law of cosines', 'c**2 = a**2 + b**2 - 2 * a * b * cos(gamma)']
+SMALL = ['hi there!', 'hi!', 'how do?', 'how you?', 'cool.', 'fine, you?', 'extra cool.', 'okay',
          'glad to hear it.', 'awesome', 'excellent', 'not so good', 'sorry to hear that.', 'what\'s your name?',
          'i\'m bot. ask me a math question, please.']
-math0 = ['pythagorean theorem', 'a squared plus b squared equals c squared.']
-math1 = ['law of cosines', 'c**2 = a**2 + b**2 - 2 * a * b * cos(gamma)']
+PYTHAGOREAN = ['pythagorean theorem', 'a squared plus b squared equals c squared.']
 
 if __name__ == '__main__':
     bot = ChatBot(name='bot', read_only=True,
                   logic_adapters=['chatterbot.logic.MathematicalEvaluation', 'chatterbot.logic.BestMatch'])
 
     list_trainer = ListTrainer(chatbot=bot)
-    for item in (small, math0, math1):
+    for item in (SMALL, PYTHAGOREAN, COSINES):
         list_trainer.train(item)
 
     response = None
