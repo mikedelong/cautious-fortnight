@@ -2,6 +2,7 @@
 # https://chatbotslife.com/how-to-create-an-intelligent-chatbot-in-python-c655eb39d6b1
 
 from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 
 COSINES = ['law of cosines', 'c**2 = a**2 + b**2 - 2 * a * b * cos(gamma)']
@@ -17,6 +18,9 @@ if __name__ == '__main__':
     list_trainer = ListTrainer(chatbot=bot)
     for item in (SMALL, PYTHAGOREAN, COSINES):
         list_trainer.train(item)
+
+    corpus_trainer = ChatterBotCorpusTrainer(chatbot=bot)
+    corpus_trainer.train('chatterbot.corpus.english')
 
     response = None
     while response != 'quit':
