@@ -6,8 +6,10 @@ if __name__ == '__main__':
 
     ChatterBotCorpusTrainer(chatbot).train('chatterbot.corpus.english')
 
-    # Get a response to an input statement
-    for _ in range(10):
-        print(chatbot.get_response('hello'))
-
-    print(chatbot.get_response('How do you solve a problem like Maria?'))
+    done = False
+    while not done:
+        user_input = input('?: ')
+        if user_input not in {'quit', 'bye', 'cya'}:
+            print(chatbot.get_response(user_input))
+        else:
+            done = True
