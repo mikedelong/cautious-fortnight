@@ -1,5 +1,6 @@
 chatterbot
-numpy
 nltk
+numpy
 python_aiml
 scikit-learn
+wikipedia
