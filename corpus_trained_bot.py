@@ -11,5 +11,5 @@ if __name__ == '__main__':
     trainer.train('chatterbot.corpus.english')
 
     # Get a response to an input statement
-    response = chatbot.get_response('Hello, how are you today?')
-    print(response)
+    for _ in range(10):
+        print(chatbot.get_response('hello'))
