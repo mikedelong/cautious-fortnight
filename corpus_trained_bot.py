@@ -13,3 +13,5 @@ if __name__ == '__main__':
     # Get a response to an input statement
     for _ in range(10):
         print(chatbot.get_response('hello'))
+
+    print(chatbot.get_response('How do you solve a problem like Maria?'))
