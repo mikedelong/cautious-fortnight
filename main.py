@@ -2,6 +2,7 @@
 # https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e
 import random
 import string
+from time import time
 
 import nltk
 import numpy as np
@@ -27,7 +28,7 @@ def greeting(sentence):
 
 GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
 GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'hooray!']
-INDEX_CHOICE = {'highest': 0, 'probabilistically': 1}['probabilistically']
+INDEX_CHOICE = {'highest': 0, 'probabilistically': 1}['highest']
 STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)}
 
 
@@ -78,7 +79,9 @@ if __name__ == '__main__':
                     print(': ' + greeting(user_response))
                 else:
                     print(': ', end='')
-                    print(respond(user_response, sentences))
+                    time_start = time()
+                    response = respond(user_response, sentences)
+                    print('{:5.2f}s : {} '.format(time() - time_start, response))
                     sentences.remove(user_response)
         else:
             flag = False
