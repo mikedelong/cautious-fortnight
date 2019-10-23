@@ -3,7 +3,6 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 if __name__ == '__main__':
     chatbot = ChatBot(name='house')
-
     ChatterBotCorpusTrainer(chatbot).train('chatterbot.corpus.english')
 
     done = False
