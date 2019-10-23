@@ -28,7 +28,7 @@ def greeting(sentence):
 
 GREETING_INPUTS = ('hello', 'hi', 'greetings', 'sup', 'what\'s up', 'hey',)
 GREETING_RESPONSES = ['hi', 'hey', '*nods*', 'hi there', 'hello', 'hooray!']
-INDEX_CHOICE = {'highest': 0, 'probabilistically': 1}['highest']
+INDEX_CHOICE = {'highest': 0, 'probabilistically': 1}['probabilistically']
 STOP_WORDS = {word for word in {'ha', 'le', 'u', 'wa'}.union(ENGLISH_STOP_WORDS)}
 
 
@@ -38,7 +38,7 @@ def respond(arg_user_response, arg_tokens):
         (ord(punct), None) for punct in string.punctuation), nltk.stem.WordNetLemmatizer()), stop_words=STOP_WORDS, )
     tfidf = vectorizer.fit_transform(arg_tokens)
     similarity = cosine_similarity(tfidf[-1], tfidf)
-    if np.count_nonzero(similarity.flatten()) == 1:
+    if np.count_nonzero(similarity.flatten()) in {0, 1}:
         return 'sorry please try again.'
     else:
         index = similarity.argsort()[0][-2] if INDEX_CHOICE == 0 else \
