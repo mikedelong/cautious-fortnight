@@ -16,6 +16,7 @@ def get_sentences(page_name):
         local_page = wikipedia.page(title=page_name)
     except PageError as page_error:
         return list()
+    # todo find a way to recover by picking one of the available choices
     except DisambiguationError as disambiguation_error:
         return list()
     local_text = ' '.join([item for item in local_page.content.split('\n') if '==' not in item and len(item) > 1])
