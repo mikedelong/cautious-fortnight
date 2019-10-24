@@ -11,6 +11,15 @@ from main import greeting
 from main import respond
 
 
+def fix_period_splice(arg):
+    for index, character in enumerate(arg):
+        if character == '.' and 0 < index < len(arg) - 1:
+            if arg[index - 1].islower() and arg[index + 1].isupper():
+                result = ''.join([arg[:index], '. ', arg[index:]])
+                return fix_period_splice(result)
+    return arg
+
+
 def get_sentences(page_name):
     try:
         local_page = wikipedia.page(title=page_name)
@@ -21,6 +30,7 @@ def get_sentences(page_name):
         return list()
     local_text = ' '.join([item for item in local_page.content.split('\n') if '==' not in item and len(item) > 1])
     # todo fix incorrect period splices before breaking into sentences
+    local_text = fix_period_splice(local_text)
     return sent_tokenize(local_text)
 
 
