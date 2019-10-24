@@ -29,8 +29,7 @@ if __name__ == '__main__':
 
     sentences = get_sentences(random_title)
     new_sentences = get_sentences(random_title)
-    links = wikipedia.page(title=random_title).links
-    for link in links:
+    for link in wikipedia.page(title=random_title).links:
         print(link)
         if not link.startswith('List'):
             sentences = sentences + get_sentences(link)
