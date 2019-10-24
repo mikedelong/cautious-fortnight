@@ -4,13 +4,17 @@ import wikipedia
 from nltk import download
 from nltk import sent_tokenize
 from nltk.stem import WordNetLemmatizer
+from wikipedia.exceptions import PageError
 
 from main import greeting
 from main import respond
 
 
 def get_sentences(page_name):
-    local_page = wikipedia.page(title=page_name)
+    try:
+        local_page = wikipedia.page(title=page_name)
+    except PageError as page_error:
+        return list()
     local_text = ' '.join([item for item in local_page.content.split('\n') if '==' not in item and len(item) > 1])
     return sent_tokenize(local_text)
 
