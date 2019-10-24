@@ -29,7 +29,6 @@ def get_sentences(page_name):
     except DisambiguationError as disambiguation_error:
         return list()
     local_text = ' '.join([item for item in local_page.content.split('\n') if '==' not in item and len(item) > 1])
-    # todo fix incorrect period splices before breaking into sentences
     local_text = fix_period_splice(local_text)
     return sent_tokenize(local_text)
 
