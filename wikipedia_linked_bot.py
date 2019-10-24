@@ -32,7 +32,6 @@ if __name__ == '__main__':
         found_root = not random_title.startswith('List')
 
     sentences = get_sentences(random_title)
-    new_sentences = get_sentences(random_title)
     for link in wikipedia.page(title=random_title).links:
         print(link)
         if not link.startswith('List'):
