@@ -35,7 +35,7 @@ def get_sentences(page_name):
     t = list()
     for index, heading in enumerate(headings[:-1]):
         section = lines[heading:headings[index + 1]]
-        if lines[heading] not in {'== External links ==', '== See also ==', '== References =='}:
+        if lines[heading] not in {'== External links ==', '== References ==', '== See also ==', }:
             for line in section:
                 if not line.startswith('=='):
                     t.append(line)
