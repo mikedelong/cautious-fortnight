@@ -10,6 +10,8 @@ from wikipedia.exceptions import PageError
 from main import greeting
 from main import respond
 
+UNWANTED_HEADINGS = {'== External links ==', '== References ==', '== See also ==', }
+
 
 def fix_period_splice(arg):
     for index, character in enumerate(arg):
@@ -35,7 +37,7 @@ def get_sentences(page_name):
     t = list()
     for index, heading in enumerate(headings[:-1]):
         section = lines[heading:headings[index + 1]]
-        if lines[heading] not in {'== External links ==', '== References ==', '== See also ==', }:
+        if lines[heading] not in UNWANTED_HEADINGS:
             for line in section:
                 if not line.startswith('=='):
                     t.append(line)
