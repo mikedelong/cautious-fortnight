@@ -28,7 +28,6 @@ def get_sentences(page_name):
     # todo find a way to recover by picking one of the available choices
     except DisambiguationError as disambiguation_error:
         return list()
-    # todo split smart and remove the References section
     content = local_page.content
     lines = [line for line in content.split('\n') if len(line) > 0]
     headings = [index for index, line in enumerate(lines) if line.startswith('==') or index == 0]
