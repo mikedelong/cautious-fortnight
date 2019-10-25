@@ -29,7 +29,11 @@ def get_sentences(page_name):
     except DisambiguationError as disambiguation_error:
         return list()
     # todo split smart and remove the References section
-    local_text = ' '.join([item for item in local_page.content.split('\n') if '==' not in item and len(item) > 1])
+    content = local_page.content
+    lines = content.split('\n')
+    lines = [line for line in lines if len(line) > 0]
+    headings = [index for index, line in enumerate(lines) if line.startswith('==')]
+    local_text = ' '.join([item for item in content.split('\n') if '==' not in item and len(item) > 1])
     local_text = fix_period_splice(local_text)
     return sent_tokenize(local_text)
 
