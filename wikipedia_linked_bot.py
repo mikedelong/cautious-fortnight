@@ -38,7 +38,8 @@ def get_sentences(page_name):
         section = lines[heading:headings[index + 1]]
         if lines[heading] not in {'== External links ==', '== See also ==', '== References =='}:
             for line in section:
-                t.append(line)
+                if not line.startswith('=='):
+                    t.append(line)
     local_text = fix_period_splice(' '.join([item for item in t]))
     return sent_tokenize(local_text)
 
