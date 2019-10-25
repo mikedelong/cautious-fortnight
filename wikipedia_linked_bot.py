@@ -30,11 +30,16 @@ def get_sentences(page_name):
         return list()
     # todo split smart and remove the References section
     content = local_page.content
-    lines = content.split('\n')
-    lines = [line for line in lines if len(line) > 0]
-    headings = [index for index, line in enumerate(lines) if line.startswith('==')]
-    local_text = ' '.join([item for item in content.split('\n') if '==' not in item and len(item) > 1])
-    local_text = fix_period_splice(local_text)
+    lines = [line for line in content.split('\n') if len(line) > 0]
+    headings = [index for index, line in enumerate(lines) if line.startswith('==') or index == 0]
+    headings.append(len(lines))
+    t = list()
+    for index, heading in enumerate(headings[:-1]):
+        section = lines[heading:headings[index + 1]]
+        if lines[heading] not in {'== External links ==', '== See also ==', '== References =='}:
+            for line in section:
+                t.append(line)
+    local_text = fix_period_splice(' '.join([item for item in t]))
     return sent_tokenize(local_text)
 
 
