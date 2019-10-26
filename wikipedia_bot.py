@@ -29,7 +29,6 @@ if __name__ == '__main__':
             count += 1
             print('{}'.format(page.content))
             text = ' '.join([item for item in page.content.split('\n') if '==' not in item and len(item) > 1])
-            print(text)
             new_sentences = sent_tokenize(text)
             if 'is' in new_sentences[0] or 'was' in new_sentences[0]:
                 print(new_sentences[0])
