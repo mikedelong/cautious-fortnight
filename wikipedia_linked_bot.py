@@ -36,9 +36,8 @@ def get_sentences(page_name):
     headings.append(len(lines))
     t = list()
     for index, heading in enumerate(headings[:-1]):
-        section = lines[heading:headings[index + 1]]
         if lines[heading] not in UNWANTED_HEADINGS:
-            for line in section:
+            for line in lines[heading:headings[index + 1]]:
                 if not line.startswith('=='):
                     t.append(line)
     local_text = fix_period_splice(' '.join(t))
