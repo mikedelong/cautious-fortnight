@@ -41,7 +41,7 @@ def get_sentences(page_name):
             for line in section:
                 if not line.startswith('=='):
                     t.append(line)
-    local_text = fix_period_splice(' '.join([item for item in t]))
+    local_text = fix_period_splice(' '.join(t))
     return sent_tokenize(local_text)
 
 
