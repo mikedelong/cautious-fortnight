@@ -32,8 +32,7 @@ def get_sentences(page_name):
         return list()
     content = local_page.content
     lines = [line for line in content.split('\n') if len(line) > 0]
-    headings = [index for index, line in enumerate(lines) if line.startswith('==') or index == 0]
-    headings.append(len(lines))
+    headings = [index for index, line in enumerate(lines) if line.startswith('==') or index == 0] + [len(lines)]
     t = list()
     for index, heading in enumerate(headings[:-1]):
         if lines[heading] not in UNWANTED_HEADINGS:
