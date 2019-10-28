@@ -29,6 +29,7 @@ def get_sentences(page_name):
         return list()
     # todo find a way to recover by picking one of the available choices
     except DisambiguationError as disambiguation_error:
+        print('options are {}'.format(disambiguation_error.options))
         return list()
     content = local_page.content
     lines = [line for line in content.split('\n') if len(line) > 0]
