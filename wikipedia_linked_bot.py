@@ -1,4 +1,5 @@
 from random import choice
+from time import time
 
 import wikipedia
 from nltk import download
@@ -76,8 +77,9 @@ if __name__ == '__main__':
                     print(': ' + greeting(user_response))
                 else:
                     print(': ', end='')
+                    time_start = time()
                     response = respond(user_response, sentences)
-                    print(response)
+                    print('{:5.2f}s : {} '.format(time() - time_start, response))
                     sentences.remove(user_response)
         else:
             flag = False
