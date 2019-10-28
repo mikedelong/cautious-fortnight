@@ -63,6 +63,9 @@ if __name__ == '__main__':
             sentences = sentences + get_sentences(link)
 
     print('sentence count: {}'.format(len(sentences)))
+    output_file = './output/' + random_title.replace(' ', '_') + '.txt'
+    with open(output_file, 'w') as output_fp:
+        output_fp.writelines(sentences)
 
     flag = True
     print('Yes? ')
