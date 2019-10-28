@@ -62,6 +62,7 @@ if __name__ == '__main__':
         if not link.startswith('List'):
             sentences = sentences + get_sentences(link)
 
+    # todo figure out encoding situation here
     print('sentence count: {}'.format(len(sentences)))
     output_file = './output/' + random_title.replace(' ', '_') + '.txt'
     with open(output_file, 'w') as output_fp:
