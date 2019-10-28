@@ -27,7 +27,6 @@ def get_sentences(page_name):
         local_page = wikipedia.page(title=page_name)
     except PageError as page_error:
         return list()
-    # todo find a way to recover by picking one of the available choices
     except DisambiguationError as disambiguation_error:
         print('options are {}'.format(disambiguation_error.options))
         return get_sentences(choice(disambiguation_error.options))
