@@ -38,7 +38,10 @@ if __name__ == '__main__':
     try:
         sentences = ''.join([' '.join(get_sentences(item)) for item in
                              [page] + [client.page(link) for link in page.links.keys() if
-                                       not link.startswith('List of')]])
+                                       not any([link.startswith('List of'),
+                                                link.startswith('Template:'),
+                                                link.startswith('Template talk:'),
+                                                link.startswith('Portal:')])]])
         print(sentences)
     except TypeError as type_error:
         print(type_error.args)
