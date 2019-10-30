@@ -36,9 +36,9 @@ if __name__ == '__main__':
         quit(1)
     print(page.links.keys())
     try:
-        sentences = ''.join([get_sentences(item) for item in
+        sentences = ''.join([' '.join(get_sentences(item)) for item in
                              [page] + [client.page(link) for link in page.links.keys() if
                                        not link.startswith('List of')]])
         print(sentences)
     except TypeError as type_error:
-        pass
+        print(type_error.args)
