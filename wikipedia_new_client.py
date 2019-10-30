@@ -34,5 +34,11 @@ if __name__ == '__main__':
     else:
         print('page [{}] does not exist'.format(name))
         quit(1)
-    sentences = get_sentences(page)
-    print(sentences)
+    print(page.links.keys())
+    try:
+        sentences = ''.join([get_sentences(item) for item in
+                             [page] + [client.page(link) for link in page.links.keys() if
+                                       not link.startswith('List of')]])
+        print(sentences)
+    except TypeError as type_error:
+        pass
