@@ -3,7 +3,7 @@ from nltk import sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from wikipediaapi import Wikipedia
 
-UNWANTED_HEADINGS = {'External links', 'References', 'See also', }
+UNWANTED_HEADINGS = {'External links', 'References', 'See also', 'Notes', 'Bibliography', 'Further reading'}
 
 
 def fix_period_splice(arg):
@@ -16,8 +16,13 @@ def fix_period_splice(arg):
 
 
 def get_sentences(arg_page):
-    content = ''.join([section.text for section in arg_page.sections if section.title not in UNWANTED_HEADINGS])
-    local_text = fix_period_splice(content)
+    # content = ''.join([section.text for section in arg_page.sections if section.title not in UNWANTED_HEADINGS])
+    content = [arg_page.summary]
+    for section in arg_page.sections:
+        if section.title not in UNWANTED_HEADINGS:
+            content.append(section.text)
+            print('{}-{}: {}'.format(arg_page.title, section.title, section.text))
+    local_text = fix_period_splice(''.join(content))
     return sent_tokenize(local_text)
 
 
@@ -27,7 +32,8 @@ if __name__ == '__main__':
     lemmer = WordNetLemmatizer()
 
     client = Wikipedia(language='en')
-    name = 'Chatbot'
+    # name = 'Chatbot'
+    name = 'Automated essay scoring'
     page = client.page(name)
     if page.exists():
         print('page [{}] exists'.format(name))
