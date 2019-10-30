@@ -21,7 +21,7 @@ def get_sentences(arg_page):
     for section in arg_page.sections:
         if section.title not in UNWANTED_HEADINGS:
             content.append(section.text)
-            print('{}-{}: {}'.format(arg_page.title, section.title, section.text))
+            # print('{}-{}: {}'.format(arg_page.title, section.title, section.text))
     local_text = fix_period_splice(''.join(content))
     return sent_tokenize(local_text)
 
