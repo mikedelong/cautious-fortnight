@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # todo figure out encoding situation here
     print('sentence count: {}'.format(len(sentences)))
     output_file = './output/' + random_title.replace(' ', '_') + '.txt'
-    with open(output_file, 'w') as output_fp:
+    with open(output_file, 'w', encoding='iso8859-1') as output_fp:
         output_fp.writelines(sentences)
 
     flag = True
