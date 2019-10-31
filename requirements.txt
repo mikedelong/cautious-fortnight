@@ -3,4 +3,5 @@ nltk
 numpy
 python_aiml
 scikit-learn
+textblob
 wikipedia
