@@ -222,30 +222,30 @@ def respond(sentence):
 
     # If we said something about the bot and used some kind of direct noun, construct the
     # sentence around that, discarding the other candidates
-    resp = check_for_comment_about_bot(pronoun, noun, adjective)
+    response = check_for_comment_about_bot(pronoun, noun, adjective)
 
     # If we just greeted the bot, we'll use a return greeting
-    if not resp:
-        resp = check_for_greeting(parsed)
+    if not response:
+        response = check_for_greeting(parsed)
 
-    if not resp:
+    if not response:
         # If we didn't override the final sentence, try to construct a new one:
         if not pronoun:
-            resp = random.choice(NONE_RESPONSES)
+            response = random.choice(NONE_RESPONSES)
         elif pronoun == 'I' and not verb:
-            resp = random.choice(COMMENTS_ABOUT_SELF)
+            response = random.choice(COMMENTS_ABOUT_SELF)
         else:
-            resp = construct_response(pronoun, noun, verb)
+            response = construct_response(pronoun, noun, verb)
 
     # If we got through all that with nothing, use a random response
-    if not resp:
-        resp = random.choice(NONE_RESPONSES)
+    if not response:
+        response = random.choice(NONE_RESPONSES)
 
-    logger.info("Returning phrase '%s'", resp)
+    logger.info('Returning phrase \'{}\''.format(response))
     # Check that we're not going to say anything obviously offensive
-    filter_response(resp)
+    filter_response(response)
 
-    return resp
+    return response
 
 
 def find_candidate_parts_of_speech(parsed):
