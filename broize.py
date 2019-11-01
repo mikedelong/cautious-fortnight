@@ -260,7 +260,7 @@ def find_candidate_parts_of_speech(parsed):
         noun = find_noun(sent)
         adjective = find_adjective(sent)
         verb = find_verb(sent)
-    logger.info("Pronoun=%s, noun=%s, adjective=%s, verb=%s", pronoun, noun, adjective, verb)
+    logger.info('Pronoun={}, noun={}, adjective={}, verb={}'.format(pronoun, noun, adjective, verb))
     return pronoun, noun, adjective, verb
 
 
