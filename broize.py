@@ -11,7 +11,7 @@ from textblob import TextBlob
 # from config import FILTER_WORDS
 FILTER_WORDS = set()
 
-logging.basicConfig()
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
