@@ -2,6 +2,7 @@
 import logging
 import os
 import random
+import sys
 
 os.environ['NLTK_DATA'] = os.getcwd() + '/nltk_data'
 
@@ -280,7 +281,6 @@ def filter_response(resp):
 # end
 
 if __name__ == '__main__':
-    import sys
 
     # Usage:
     # python broize.py "I am an engineer"
