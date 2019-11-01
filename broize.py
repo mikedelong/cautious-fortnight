@@ -110,7 +110,7 @@ def find_noun(sent):
                 noun = w
                 break
     if noun:
-        logger.info("Found noun: %s", noun)
+        logger.info('Found noun: {}'.format(noun))
 
     return noun
 
