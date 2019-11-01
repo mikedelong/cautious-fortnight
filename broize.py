@@ -59,7 +59,7 @@ class UnacceptableUtteranceException(Exception):
 
 
 def starts_with_vowel(word):
-    """Check for pronoun compability -- 'a' vs. 'an'"""
+    """Check for pronoun compatibility -- 'a' vs. 'an'"""
     return True if word[0] in 'aeiou' else False
 
 
