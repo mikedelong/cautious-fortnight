@@ -146,10 +146,10 @@ def construct_response(pronoun, noun, verb):
             else:
                 resp.append(verb_word)
     if noun:
-        pronoun = "an" if starts_with_vowel(noun) else "a"
-        resp.append(pronoun + " " + noun)
+        pronoun = 'an' if starts_with_vowel(noun) else 'a'
+        resp.append(pronoun + ' ' + noun)
 
-    resp.append(random.choice(("tho", "bro", "lol", "bruh", "smh", "")))
+    resp.append(random.choice(('tho', 'bro', 'lol', 'bruh', 'smh', '')))
 
     return " ".join(resp)
 
