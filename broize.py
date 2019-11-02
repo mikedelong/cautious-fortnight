@@ -43,11 +43,8 @@ NONE_RESPONSES = [
 
 # start:example-self.py
 # If the user tries to tell us something about ourselves, use one of these responses
-COMMENTS_ABOUT_SELF = [
-    "You're just jealous",
-    "I worked really hard on that",
-    "My Klout score is {}".format(random.randint(100, 500)),
-]
+COMMENTS_ABOUT_SELF = ['I worked really hard on that', 'My Klout score is {}'.format(random.randint(100, 500)),
+                       'You\'re just jealous', ]
 
 
 # end
@@ -152,6 +149,7 @@ def construct_response(pronoun, noun, verb):
     response.append(random.choice(('tho', 'bro', 'lol', 'bruh', 'smh', '')))
 
     return ' '.join(response)
+
 
 # end
 
