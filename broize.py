@@ -65,7 +65,7 @@ def starts_with_vowel(word):
 
 def broback(sentence):
     """Main program loop: select a response for the input sentence and return it"""
-    logger.info("Broback: respond to %s", sentence)
+    logger.info('Broback: respond to {}'.format(sentence))
     resp = respond(sentence)
     return resp
 
