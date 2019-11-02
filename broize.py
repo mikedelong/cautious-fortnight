@@ -134,7 +134,7 @@ def construct_response(pronoun, noun, verb):
     if pronoun:
         resp.append(pronoun)
 
-    # We always respond in the present tense, and the pronoun will always either be a passthrough
+    # We always respond in the present tense, and the pronoun will always either be a pass-through
     # from the user, or 'you' or 'I', in which case we might need to change the tense for some
     # irregular verbs.
     if verb:
@@ -142,7 +142,7 @@ def construct_response(pronoun, noun, verb):
         if verb_word in ('be', 'am', 'is', "'m"):  # This would be an excellent place to use lemmas!
             if pronoun.lower() == 'you':
                 # The bot will always tell the person they aren't whatever they said they were
-                resp.append("aren't really")
+                resp.append('aren\'t really')
             else:
                 resp.append(verb_word)
     if noun:
