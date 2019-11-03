@@ -31,14 +31,9 @@ def check_for_greeting(sentence):
 
 # start:example-none.py
 # Sentences we'll respond with if we have no idea what the user just said
-NONE_RESPONSES = [
-    'code hard bro',
-    'Have you closed your seed round, dog?',
-    'I\'d like to add you to my professional network on LinkedIn',
-    'meet me at the foosball table, bro?',
-    'uh whatever',
-    'want to bro down and crush code?',
-]
+NONE_RESPONSES = ['code hard bro', 'Have you closed your seed round, dog?',
+                  'I\'d like to add you to my professional network on LinkedIn',
+                  'meet me at the foosball table, bro?', 'uh whatever', 'want to bro down and crush code?', ]
 # end
 
 # start:example-self.py
