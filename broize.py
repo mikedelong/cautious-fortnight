@@ -17,7 +17,7 @@ logger.setLevel(logging.DEBUG)
 
 # start:example-hello.py
 # Sentences we'll respond with if the user greeted us
-GREETING_KEYWORDS = ('greetings', 'hello', 'hi', "sup", "what's up",)
+GREETING_KEYWORDS = ('greetings', 'hello', 'hi', 'sup', 'what\'s up',)
 
 GREETING_RESPONSES = ["'sup bro", "hey", "*nods*", "hey you get my snap?"]
 
