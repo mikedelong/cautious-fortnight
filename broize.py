@@ -19,7 +19,7 @@ logger.setLevel(logging.DEBUG)
 # Sentences we'll respond with if the user greeted us
 GREETING_KEYWORDS = ('greetings', 'hello', 'hi', 'sup', 'what\'s up',)
 
-GREETING_RESPONSES = ['\'sup bro', 'hey', '*nods*', 'hey you get my snap?', ]
+GREETING_RESPONSES = ['hey', 'hey you get my snap?', '*nods*', '\'sup bro', ]
 
 
 def check_for_greeting(sentence):
