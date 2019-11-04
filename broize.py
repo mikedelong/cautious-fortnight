@@ -4,11 +4,10 @@ import os
 import random
 import sys
 
-os.environ['NLTK_DATA'] = os.getcwd() + '/nltk_data'
-
 from textblob import TextBlob
 
-# from config import FILTER_WORDS
+os.environ['NLTK_DATA'] = os.getcwd() + '/nltk_data'
+
 FILTER_WORDS = set()
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
