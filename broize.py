@@ -10,6 +10,12 @@ os.environ['NLTK_DATA'] = os.getcwd() + '/nltk_data'
 
 FILTER_WORDS = set()
 
+# Template for responses that include a direct noun which is indefinite/uncountable
+SELF_VERBS_WITH_NOUN_CAPS_PLURAL = ['I really consider myself an expert on {noun}',
+                                    'My last startup totally crushed the {noun} vertical',
+                                    'My startup is Uber for {noun}',
+                                    'Were you aware I was a serial entrepreneur in the {noun} sector?', ]
+
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -163,14 +169,6 @@ def check_for_comment_about_bot(pronoun, noun, adjective):
             resp = random.choice(SELF_VERBS_WITH_ADJECTIVE).format(**{'adjective': adjective})
     return resp
 
-
-# Template for responses that include a direct noun which is indefinite/uncountable
-SELF_VERBS_WITH_NOUN_CAPS_PLURAL = [
-    "My last startup totally crushed the {noun} vertical",
-    "Were you aware I was a serial entrepreneur in the {noun} sector?",
-    "My startup is Uber for {noun}",
-    "I really consider myself an expert on {noun}",
-]
 
 SELF_VERBS_WITH_NOUN_LOWER = [
     "Yeah but I know a lot about {noun}",
