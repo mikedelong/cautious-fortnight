@@ -284,4 +284,4 @@ if __name__ == '__main__':
             'Do you read the Wall Street Journal?',
             'What can you tell me about the Moon landing in 1969?',
         ]:
-            print(broback(phrase))
+            logger.info('Q: {} A: {}'.format(phrase, broback(phrase)))
