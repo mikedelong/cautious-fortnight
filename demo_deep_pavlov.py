@@ -7,5 +7,6 @@ if __name__ == '__main__':
     hello = PatternMatchingSkill(responses=['Hello world!'], patterns=['good day', 'hello', 'hi'])
     fallback = PatternMatchingSkill(['I\'m sorry; I don\'t understand.'])
     agent = DefaultAgent([hello, bye, fallback], skills_selector=HighestConfidenceSelector())
-    agent(['Hello', 'Bye', 'Or not'])
-    print(agent.history)
+    for query in ['Hello', 'Bye', 'Or not']:
+        response = agent([query])
+        print('Q: {} A: {}'.format(query, response[0]))
