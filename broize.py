@@ -271,10 +271,17 @@ def filter_response(resp):
 
 if __name__ == '__main__':
 
-    # Usage:
-    # python broize.py "I am an engineer"
-    if len(sys.argv) > 0:
-        saying = sys.argv[1]
+    do_legacy_input = False
+    if do_legacy_input:
+        if len(sys.argv) > 0:
+            saying = sys.argv[1]
+        else:
+            saying = "How are you, brobot?"
+        print(broback(saying))
     else:
-        saying = "How are you, brobot?"
-    print(broback(saying))
+        for phrase in [
+            'People who live in glass houses shouldn\'t throw stones.',
+            'Do you read the Wall Street Journal?',
+            'What can you tell me about the Moon landing in 1969?',
+        ]:
+            print(broback(phrase))
