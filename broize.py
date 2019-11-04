@@ -16,6 +16,8 @@ SELF_VERBS_WITH_NOUN_CAPS_PLURAL = ['I really consider myself an expert on {noun
                                     'My startup is Uber for {noun}',
                                     'Were you aware I was a serial entrepreneur in the {noun} sector?', ]
 
+SELF_VERBS_WITH_NOUN_LOWER = ['Yeah but I know a lot about {noun}', 'My bros always ask me about {noun}', ]
+
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -169,11 +171,6 @@ def check_for_comment_about_bot(pronoun, noun, adjective):
             resp = random.choice(SELF_VERBS_WITH_ADJECTIVE).format(**{'adjective': adjective})
     return resp
 
-
-SELF_VERBS_WITH_NOUN_LOWER = [
-    "Yeah but I know a lot about {noun}",
-    "My bros always ask me about {noun}",
-]
 
 SELF_VERBS_WITH_ADJECTIVE = [
     "I'm personally building the {adjective} Economy",
