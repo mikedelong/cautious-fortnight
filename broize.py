@@ -141,7 +141,7 @@ def construct_response(pronoun, noun, verb):
     # irregular verbs.
     if verb:
         verb_word = verb[0]
-        if verb_word in ('be', 'am', 'is', "'m"):  # This would be an excellent place to use lemmas!
+        if verb_word in ('be', 'am', 'is', '\'m'):  # This would be an excellent place to use lemmas!
             if pronoun in {'you', 'You'}:
                 # The bot will always tell the person they aren't whatever they said they were
                 response.append('aren\'t really')
