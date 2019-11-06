@@ -1,4 +1,5 @@
 chatterbot
+deeppavlov
 nltk
 numpy
 python_aiml
