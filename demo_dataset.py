@@ -40,3 +40,4 @@ if __name__ == '__main__':
     for question in ['hi i want some food', 'i would like indian food instead', ]:
         answer = bot([question])
         print('Q: {} A: {}'.format(question, answer))
+    bot.reset()
