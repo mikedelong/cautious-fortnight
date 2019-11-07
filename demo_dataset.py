@@ -37,6 +37,6 @@ if __name__ == '__main__':
     x_dialog, y_dialog = iterator.train[0]
     print('x size: {} y size: {}'.format(len(x_dialog), len(y_dialog)))
     bot = build_model(configs.go_bot.gobot_dstc2, download=True)
-    question = 'hi i want some food'
-    answer = bot([question])
-    print('Q: {} A: {}'.format(question, answer))
+    for question in ['hi i want some food', 'i would like indian food instead', ]:
+        answer = bot([question])
+        print('Q: {} A: {}'.format(question, answer))
