@@ -4,7 +4,9 @@ from deeppavlov.core.common.file import read_json
 
 if __name__ == '__main__':
     configuration = read_json(configs.faq.tfidf_logreg_en_faq)
-    faq = build_model(config=configuration, download=True, )
+    configuration['dataset_reader'] = './data/faq_school_en.csv'
+    configuration['dataset_url'] = None
+    faq = build_model(config=configuration)  # , download=True, )
     question = 'I need help'
     answer = faq([question])[0][0]
     print('Q: {} A: {}'.format(question, answer))
