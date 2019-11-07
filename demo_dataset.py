@@ -164,3 +164,6 @@ if __name__ == '__main__':
     bot.reset()
 
     ner_model = build_model(dslotfill, download=True)
+    for question in ['i want cheap food in chinese reastaurant in the south of town']:
+        slots = ner_model([question])[0]
+        print('Q: {} S: {}'.format(question, slots))
