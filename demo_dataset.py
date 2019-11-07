@@ -23,7 +23,6 @@ class MyDialogDatasetIterator(DataLearningIterator):
             dialogs[-1][1].append(y)
         return dialogs
 
-    # @overrides
     def split(self, *args, **kwargs):
         self.train = self._dialogs(self.train)
         self.valid = self._dialogs(self.valid)
@@ -224,6 +223,6 @@ if __name__ == '__main__':
     bot.reset()
 
     ner_model = build_model(dslotfill, download=True)
-    for question in ['i want cheap food in chinese reastaurant in the south of town']:
+    for question in ['i want cheap food in chinese restaurant in the south of town']:
         slots = ner_model([question])[0]
         print('Q: {} S: {}'.format(question, slots))
