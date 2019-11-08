@@ -1,5 +1,6 @@
 from deeppavlov import build_model
 from deeppavlov import configs
+from deeppavlov import train_model
 from deeppavlov.core.common.registry import register
 from deeppavlov.core.data.data_learning_iterator import DataLearningIterator
 from deeppavlov.dataset_readers.dstc2_reader import DSTC2DatasetReader
@@ -131,7 +132,8 @@ network = {
         'with_counts': True,
         # },
         # 'slot_filler': {
-        'config_path': '{DEEPPAVLOV_PATH}/configs/ner/slotfill_dstc2.json'
+        # 'config_path': '{DEEPPAVLOV_PATH}/configs/ner/slotfill_dstc2.json',
+        'config_path': './slotfill.json',
     },
     'tokenizer': {
         'class_name': 'stream_spacy_tokenizer',
@@ -226,3 +228,5 @@ if __name__ == '__main__':
     for question in ['i want cheap food in chinese restaurant in the south of town']:
         slots = ner_model([question])[0]
         print('Q: {} S: {}'.format(question, slots))
+
+    basic_bot = train_model(basic_config, download=True)
