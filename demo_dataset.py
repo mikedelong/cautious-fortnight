@@ -130,10 +130,10 @@ network = {
         'class_name': 'bow',
         'depth': '#token_vocab.__len__()',
         'with_counts': True,
-        # },
-        # 'slot_filler': {
-        # 'config_path': '{DEEPPAVLOV_PATH}/configs/ner/slotfill_dstc2.json',
-        'config_path': './slotfill.json',
+    },
+    'slot_filler': {
+        'config_path': '{DEEPPAVLOV_PATH}/configs/ner/slotfill_dstc2.json',
+        # 'config_path': './slotfill.json',
     },
     'tokenizer': {
         'class_name': 'stream_spacy_tokenizer',
