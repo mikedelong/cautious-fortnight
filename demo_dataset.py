@@ -231,4 +231,5 @@ if __name__ == '__main__':
 
     basic_bot = train_model(basic_config, download=True)
 
-    basic_bot(['hi, i want some cheap food'])
+    result = basic_bot(['hi, i want some cheap food'])
+    print(result)
