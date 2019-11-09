@@ -231,7 +231,7 @@ if __name__ == '__main__':
 
     basic_bot = train_model(basic_config, download=True)
 
-    for question in ['hello', 'I want some  food', 'what are the areas?'
+    for question in ['hello', 'I want some  food', 'what are the areas?',
 
                                                    'on the north side?', 'or maybe indian?', 'bye']:
         answer = basic_bot([question])
