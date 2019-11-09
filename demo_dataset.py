@@ -230,3 +230,5 @@ if __name__ == '__main__':
         print('Q: {} S: {}'.format(question, slots))
 
     basic_bot = train_model(basic_config, download=True)
+
+    basic_bot(['hi, i want some cheap food'])
