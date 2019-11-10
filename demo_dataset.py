@@ -123,7 +123,7 @@ network = {
         'hidden_size': 128,
         'dense_size': 160
     },
-    'slot_filler': None,
+    # 'slot_filler': None,
     'intent_classifier': None,
     'embedder': None,
     'bow_embedder': {
