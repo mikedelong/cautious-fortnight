@@ -231,10 +231,6 @@ if __name__ == '__main__':
 
     basic_bot = train_model(basic_config, download=True)
 
-    for question in ['hello',
-                     'I want some chinese food',
-                     'on the south side?',
-                     # 'what are the areas?',
-                     'maybe indian?', 'bye']:
+    for question in ['hello', 'I want some chinese food', 'on the south side?', 'maybe indian?', 'bye']:
         answer = basic_bot([question])
         print('Q: {} A: {}'.format(question, answer))
