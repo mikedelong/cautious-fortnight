@@ -103,38 +103,35 @@ dslotfill = {
 }
 
 network = {
-    'in': ['x'],
-    'in_y': ['y'],
-    'out': ['y_predicted'],
-    'main': True,
-    'class_name': 'go_bot',
-    'load_path': '{MODELS_PATH}/my_gobot/model',
-    'save_path': '{MODELS_PATH}/my_gobot/model',
-    'debug': False,
-    'word_vocab': '#token_vocab',
-    'template_path': '{DOWNLOADS_PATH}/dstc2/dstc2-templates.txt',
-    'template_type': 'DualTemplate',
     'api_call_action': 'api_call',
-    'use_action_mask': False,
-    'network_parameters': {
-        'learning_rate': 0.005,
-        'dropout_rate': 0.5,
-        'l2_reg_coef': 7e-4,
-        'hidden_size': 128,
-        'dense_size': 160
-    },
-    # 'slot_filler': None,
-    'intent_classifier': None,
-    'embedder': None,
     'bow_embedder': {
         'class_name': 'bow',
         'depth': '#token_vocab.__len__()',
         'with_counts': True,
     },
+    'class_name': 'go_bot',
+    'debug': False,
+    'embedder': None,
+    'in': ['x'],
+    'intent_classifier': None,
+    'in_y': ['y'],
+    'load_path': '{MODELS_PATH}/my_gobot/model',
+    'main': True,
+    'network_parameters': {
+        'dense_size': 160,
+        'dropout_rate': 0.5,
+        'hidden_size': 128,
+        'l2_reg_coef': 7e-4,
+        'learning_rate': 0.005,
+    },
+    'out': ['y_predicted'],
+    'save_path': '{MODELS_PATH}/my_gobot/model',
     'slot_filler': {
         'config_path': '{DEEPPAVLOV_PATH}/configs/ner/slotfill_dstc2.json',
         # 'config_path': './slotfill.json',
     },
+    'template_path': '{DOWNLOADS_PATH}/dstc2/dstc2-templates.txt',
+    'template_type': 'DualTemplate',
     'tokenizer': {
         'class_name': 'stream_spacy_tokenizer',
         'lowercase': False
@@ -142,7 +139,9 @@ network = {
     'tracker': {
         'class_name': 'featurized_tracker',
         'slot_names': ['pricerange', 'this', 'area', 'food', 'name']
-    }
+    },
+    'use_action_mask': False,
+    'word_vocab': '#token_vocab',
 }
 
 tokenizer = {'class_name': 'deeppavlov.models.go_bot.wrapper:DialogComponentWrapper',
