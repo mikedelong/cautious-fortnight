@@ -63,14 +63,8 @@ dslotfill = {
             'server_utils': 'DstcSlotFillingNetwork'
         },
         'download': [
-            {
-                'url': 'http://files.deeppavlov.ai/deeppavlov_data/dstc_slot_vals.tar.gz',
-                'subdir': '{DATA_PATH}'
-            },
-            {
-                'url': 'http://files.deeppavlov.ai/deeppavlov_data/slotfill_dstc2.tar.gz',
-                'subdir': '{MODELS_PATH}'
-            }
+            {'subdir': '{DATA_PATH}', 'url': 'http://files.deeppavlov.ai/deeppavlov_data/dstc_slot_vals.tar.gz', },
+            {'subdir': '{MODELS_PATH}', 'url': 'http://files.deeppavlov.ai/deeppavlov_data/slotfill_dstc2.tar.gz', }
         ]
     }
 }
