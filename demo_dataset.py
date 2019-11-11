@@ -47,23 +47,29 @@ dslotfill = {
                           'out': ['slots'], 'save_path': '{MODEL_PATH}/model', 'threshold': 0.8, }], },
     'train': {'class_name': 'fit_trainer', 'evaluation_targets': ['valid', 'test'], 'metrics': ['slots_accuracy'], },
     'metadata': {
-        'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt'],
-        'variables': {'DATA_PATH': '{ROOT_PATH}/downloads/dstc2', 'MODEL_PATH': '{MODELS_PATH}/slotfill_dstc2',
-                      'MODELS_PATH': '{ROOT_PATH}/models',
-                      'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
-                      'ROOT_PATH': '~/.deeppavlov', 'SLOT_VALS_PATH': '{DATA_PATH}/dstc_slot_vals.json', },
+        'variables': {
+            'ROOT_PATH': '~/.deeppavlov',
+            'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
+            'DATA_PATH': '{ROOT_PATH}/downloads/dstc2',
+            'SLOT_VALS_PATH': '{DATA_PATH}/dstc_slot_vals.json',
+            'MODELS_PATH': '{ROOT_PATH}/models',
+            'MODEL_PATH': '{MODELS_PATH}/slotfill_dstc2',
+        },
+        'requirements': [
+            '{DEEPPAVLOV_PATH}/requirements/tf.txt'
+        ],
         'labels': {
             'telegram_utils': 'NERModel',
             'server_utils': 'DstcSlotFillingNetwork'
         },
         'download': [
             {
-                'subdir': '{DATA_PATH}',
                 'url': 'http://files.deeppavlov.ai/deeppavlov_data/dstc_slot_vals.tar.gz',
+                'subdir': '{DATA_PATH}'
             },
             {
-                'subdir': '{MODELS_PATH}',
                 'url': 'http://files.deeppavlov.ai/deeppavlov_data/slotfill_dstc2.tar.gz',
+                'subdir': '{MODELS_PATH}'
             }
         ]
     }
@@ -71,7 +77,11 @@ dslotfill = {
 
 network = {
     'api_call_action': 'api_call',
-    'bow_embedder': {'class_name': 'bow', 'depth': '#token_vocab.__len__()', 'with_counts': True, },
+    'bow_embedder': {
+        'class_name': 'bow',
+        'depth': '#token_vocab.__len__()',
+        'with_counts': True,
+    },
     'class_name': 'go_bot',
     'debug': False,
     'embedder': None,
@@ -80,8 +90,13 @@ network = {
     'in_y': ['y'],
     'load_path': '{MODELS_PATH}/my_gobot/model',
     'main': True,
-    'network_parameters': {'dense_size': 160, 'dropout_rate': 0.5, 'hidden_size': 128, 'l2_reg_coef': 7e-4,
-                           'learning_rate': 0.005, },
+    'network_parameters': {
+        'dense_size': 160,
+        'dropout_rate': 0.5,
+        'hidden_size': 128,
+        'l2_reg_coef': 7e-4,
+        'learning_rate': 0.005,
+    },
     'out': ['y_predicted'],
     'save_path': '{MODELS_PATH}/my_gobot/model',
     'slot_filler': {
