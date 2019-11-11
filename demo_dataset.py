@@ -71,11 +71,7 @@ dslotfill = {
 
 network = {
     'api_call_action': 'api_call',
-    'bow_embedder': {
-        'class_name': 'bow',
-        'depth': '#token_vocab.__len__()',
-        'with_counts': True,
-    },
+    'bow_embedder': {'class_name': 'bow', 'depth': '#token_vocab.__len__()', 'with_counts': True, },
     'class_name': 'go_bot',
     'debug': False,
     'embedder': None,
@@ -84,13 +80,8 @@ network = {
     'in_y': ['y'],
     'load_path': '{MODELS_PATH}/my_gobot/model',
     'main': True,
-    'network_parameters': {
-        'dense_size': 160,
-        'dropout_rate': 0.5,
-        'hidden_size': 128,
-        'l2_reg_coef': 7e-4,
-        'learning_rate': 0.005,
-    },
+    'network_parameters': {'dense_size': 160, 'dropout_rate': 0.5, 'hidden_size': 128, 'l2_reg_coef': 7e-4,
+                           'learning_rate': 0.005, },
     'out': ['y_predicted'],
     'save_path': '{MODELS_PATH}/my_gobot/model',
     'slot_filler': {
