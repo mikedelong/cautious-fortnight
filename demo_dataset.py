@@ -45,14 +45,7 @@ dslotfill = {
                          {'class_name': 'dstc_slotfilling', 'in': ['x_tokens', 'tags'],
                           'load_path': '{MODEL_PATH}/model',
                           'out': ['slots'], 'save_path': '{MODEL_PATH}/model', 'threshold': 0.8, }], },
-    'train': {
-        'metrics': ['slots_accuracy'],
-        'class_name': 'fit_trainer',
-        'evaluation_targets': [
-            'valid',
-            'test'
-        ]
-    },
+    'train': {'class_name': 'fit_trainer', 'evaluation_targets': ['valid', 'test'], 'metrics': ['slots_accuracy'], },
     'metadata': {
         'variables': {
             'ROOT_PATH': '~/.deeppavlov',
