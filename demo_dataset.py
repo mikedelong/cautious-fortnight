@@ -39,32 +39,12 @@ dslotfill = {
         'class_name': 'dstc2_ner_iterator',
         'slot_values_path': '{SLOT_VALS_PATH}'
     },
-    'chainer': {
-        'in': ['x'],
-        'in_y': ['y'],
-        'pipe': [
-            {
-                'in': ['x'],
-                'class_name': 'lazy_tokenizer',
-                'out': ['x_tokens']
-            },
-            {
-                'in': ['x_tokens'],
-                'config_path': '{NER_CONFIG_PATH}',
-                'out': ['x_tokens', 'tags']
-            },
-
-            {
-                'in': ['x_tokens', 'tags'],
-                'class_name': 'dstc_slotfilling',
-                'threshold': 0.8,
-                'save_path': '{MODEL_PATH}/model',
-                'load_path': '{MODEL_PATH}/model',
-                'out': ['slots']
-            }
-        ],
-        'out': ['slots']
-    },
+    'chainer': {'in': ['x'], 'in_y': ['y'], 'out': ['slots'],
+                'pipe': [{'class_name': 'lazy_tokenizer', 'in': ['x'], 'out': ['x_tokens'], },
+                         {'config_path': '{NER_CONFIG_PATH}', 'in': ['x_tokens'], 'out': ['x_tokens', 'tags'], },
+                         {'class_name': 'dstc_slotfilling', 'in': ['x_tokens', 'tags'],
+                          'load_path': '{MODEL_PATH}/model',
+                          'out': ['slots'], 'save_path': '{MODEL_PATH}/model', 'threshold': 0.8, }], },
     'train': {
         'metrics': ['slots_accuracy'],
         'class_name': 'fit_trainer',
