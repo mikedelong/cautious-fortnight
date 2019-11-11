@@ -47,29 +47,23 @@ dslotfill = {
                           'out': ['slots'], 'save_path': '{MODEL_PATH}/model', 'threshold': 0.8, }], },
     'train': {'class_name': 'fit_trainer', 'evaluation_targets': ['valid', 'test'], 'metrics': ['slots_accuracy'], },
     'metadata': {
-        'variables': {
-            'ROOT_PATH': '~/.deeppavlov',
-            'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
-            'DATA_PATH': '{ROOT_PATH}/downloads/dstc2',
-            'SLOT_VALS_PATH': '{DATA_PATH}/dstc_slot_vals.json',
-            'MODELS_PATH': '{ROOT_PATH}/models',
-            'MODEL_PATH': '{MODELS_PATH}/slotfill_dstc2'
-        },
-        'requirements': [
-            '{DEEPPAVLOV_PATH}/requirements/tf.txt'
-        ],
+        'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt'],
+        'variables': {'DATA_PATH': '{ROOT_PATH}/downloads/dstc2', 'MODEL_PATH': '{MODELS_PATH}/slotfill_dstc2',
+                      'MODELS_PATH': '{ROOT_PATH}/models',
+                      'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
+                      'ROOT_PATH': '~/.deeppavlov', 'SLOT_VALS_PATH': '{DATA_PATH}/dstc_slot_vals.json', },
         'labels': {
             'telegram_utils': 'NERModel',
             'server_utils': 'DstcSlotFillingNetwork'
         },
         'download': [
             {
+                'subdir': '{DATA_PATH}',
                 'url': 'http://files.deeppavlov.ai/deeppavlov_data/dstc_slot_vals.tar.gz',
-                'subdir': '{DATA_PATH}'
             },
             {
+                'subdir': '{MODELS_PATH}',
                 'url': 'http://files.deeppavlov.ai/deeppavlov_data/slotfill_dstc2.tar.gz',
-                'subdir': '{MODELS_PATH}'
             }
         ]
     }
