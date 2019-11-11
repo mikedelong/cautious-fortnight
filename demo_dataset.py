@@ -10,10 +10,10 @@ from deeppavlov.dataset_readers.dstc2_reader import DSTC2DatasetReader
 class MyDialogDatasetIterator(DataLearningIterator):
 
     @staticmethod
-    def _dialogs(data):
+    def _dialogs(arg_data):
         dialogs = []
         prev_resp_act = None
-        for x, y in data:
+        for x, y in arg_data:
             if x.get('episode_done'):
                 del x['episode_done']
                 prev_resp_act = None
