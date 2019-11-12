@@ -206,7 +206,6 @@ if __name__ == '__main__':
 
     for question in ['hello', 'I want some chinese food', 'on the south side?',
                      'i want cheap food in chinese restaurant in the south of town',
-                     # 'maybe indian?',
                      'bye']:
         answer = basic_bot([question])
         logger.info('Q: {} A: {}'.format(question, answer))
