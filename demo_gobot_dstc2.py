@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     gobot_config = configs.go_bot.gobot_dstc2
     bot = build_model(gobot_config, download=True)
-    for question in ['hi i want some food', 'i would like indian food instead', ]:
+    for question in ['Hello.', 'Hi, I want some food.', 'I would like Indian food instead.', ]:
         answer = bot([question])
         logger.info('Q: {} A: {}'.format(question, answer))
     bot.reset()
