@@ -2,7 +2,6 @@ import logging
 from time import time
 
 from deeppavlov import build_model
-from deeppavlov import configs
 from deeppavlov.core.common.registry import register
 from deeppavlov.core.data.data_learning_iterator import DataLearningIterator
 from deeppavlov.dataset_readers.dstc2_reader import DSTC2DatasetReader
@@ -50,9 +49,14 @@ if __name__ == '__main__':
         for key, value in item[0].items():
             logger.info('{} :: {}'.format(key, value))
 
-    gobot_config = configs.go_bot.gobot_dstc2
+    gobot_config = './gobot_dstc2.json'
+
     bot = build_model(gobot_config, download=True)
-    for question in ['Hello.', 'Hi, I want some food.', 'I would like Indian food instead.', ]:
+    for question in ['Hello.', 'Hi, I want some food.',
+                     # 'I would like Indian food instead.',
+                     'I would like Italian food instead.',
+                     'I would like expensive Italian food instead.',
+                     ]:
         answer = bot([question])
         logger.info('Q: {} A: {}'.format(question, answer))
     bot.reset()
