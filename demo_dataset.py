@@ -1,3 +1,5 @@
+import logging
+
 from deeppavlov import build_model
 from deeppavlov import configs
 from deeppavlov import train_model
@@ -31,10 +33,7 @@ class MyDialogDatasetIterator(DataLearningIterator):
 
 
 dslotfill = {
-    'dataset_reader': {
-        'class_name': 'dstc2_reader',
-        'data_path': '{DATA_PATH}'
-    },
+    'dataset_reader': {'class_name': 'dstc2_reader', 'data_path': '{DATA_PATH}', },
     'dataset_iterator': {
         'class_name': 'dstc2_ner_iterator',
         'slot_values_path': '{SLOT_VALS_PATH}'
@@ -139,13 +138,10 @@ basic_config = {
     'train': {
         'epochs': 200,
         'batch_size': 4,
-
         'metrics': ['per_item_dialog_accuracy'],
         'validation_patience': 10,
-
         'val_every_n_batches': 15,
         'val_every_n_epochs': -1,
-
         'log_every_n_batches': 15,
         'log_every_n_epochs': -1,
         'show_examples': False,
@@ -179,24 +175,38 @@ basic_config = {
 }
 
 if __name__ == '__main__':
+    logger = logging.getLogger(__name__)
+    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+
     data = DSTC2DatasetReader().read('./dstc2')
     iterator = MyDialogDatasetIterator(data)
 
     x_dialog, y_dialog = iterator.train[0]
-    print('x size: {} y size: {}'.format(len(x_dialog), len(y_dialog)))
-    bot = build_model(configs.go_bot.gobot_dstc2, download=True)
+    logger.info('x size: {} y size: {}'.format(len(x_dialog), len(y_dialog)))
+    logger.info('data keys: {}'.format(list(data.keys())))
+    for item in data['train'][:10]:
+        logger.info(item)
+        for key, value in item[0].items():
+            logger.info('{} :: {}'.format(key, value))
+    # quit(2)
+
+    gobot_config = configs.go_bot.gobot_dstc2
+    bot = build_model(gobot_config, download=True)
     for question in ['hi i want some food', 'i would like indian food instead', ]:
         answer = bot([question])
-        print('Q: {} A: {}'.format(question, answer))
+        logger.info('Q: {} A: {}'.format(question, answer))
     bot.reset()
 
     ner_model = build_model(dslotfill, download=True)
     for question in ['i want cheap food in chinese restaurant in the south of town']:
         slots = ner_model([question])[0]
-        print('Q: {} S: {}'.format(question, slots))
+        logger.info('Q: {} S: {}'.format(question, slots))
 
     basic_bot = train_model(basic_config, download=True)
 
-    for question in ['hello', 'I want some chinese food', 'on the south side?', 'maybe indian?', 'bye']:
+    for question in ['hello', 'I want some chinese food', 'on the south side?',
+                     'i want cheap food in chinese restaurant in the south of town',
+                     # 'maybe indian?',
+                     'bye']:
         answer = basic_bot([question])
-        print('Q: {} A: {}'.format(question, answer))
+        logger.info('Q: {} A: {}'.format(question, answer))
