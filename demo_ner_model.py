@@ -43,13 +43,15 @@ dslotfill = {
     'metadata': {
         'variables': {
             'ROOT_PATH': '~/.deeppavlov',
-            'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
+            # 'NER_CONFIG_PATH': '{DEEPPAVLOV_PATH}/configs/ner/ner_dstc2.json',
+            'NER_CONFIG_PATH': './ner_dstc2.json',
             'DATA_PATH': '{ROOT_PATH}/downloads/dstc2',
             'SLOT_VALS_PATH': '{DATA_PATH}/dstc_slot_vals.json',
             'MODELS_PATH': '{ROOT_PATH}/models',
             'MODEL_PATH': '{MODELS_PATH}/slotfill_dstc2',
         },
-        'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt'],
+        # 'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt'],
+        'requirements': ['./tf.txt'],
         'labels': {'telegram_utils': 'NERModel', 'server_utils': 'DstcSlotFillingNetwork'},
         'download': [
             {'subdir': '{DATA_PATH}', 'url': 'http://files.deeppavlov.ai/deeppavlov_data/dstc_slot_vals.tar.gz', },
@@ -71,4 +73,5 @@ if __name__ == '__main__':
         slots = ner_model([question])[0]
         logger.info('Q: {} S: {}'.format(question, slots))
 
+    logger.info(dslotfill)
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
