@@ -188,7 +188,6 @@ if __name__ == '__main__':
         logger.info(item)
         for key, value in item[0].items():
             logger.info('{} :: {}'.format(key, value))
-    # quit(2)
 
     gobot_config = configs.go_bot.gobot_dstc2
     bot = build_model(gobot_config, download=True)
