@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     logger.info('started')
 
-    case = 'arxiv'
+    case = 'plos'  # 'arxiv'
     cases = {
         'arxiv': './SentenceCorpus/unlabeled_articles/arxiv_unlabeled',
         'plos': './SentenceCorpus/unlabeled_articles/plos_unlabeled',
@@ -25,21 +25,19 @@ if __name__ == '__main__':
 
     logger.info(doc_retrieval(['cerebellum']))
 
+    do_squad = False
+
     # Download all the SQuAD models
-    squad = build_model(configs.squad.multi_squad_noans_infer, download=True)
+    if do_squad:
+        squad = build_model(configs.squad.multi_squad_noans_infer, download=True)
     # Do not download the ODQA models, we've just trained it
     model = build_model(configs.odqa.en_odqa_infer_wiki, download=False)
     plos_questions = sorted([
         'What is rubella?',
         'What is whooping cough?',
-        # 'What are yams?',
         'What are yaws?',
-        # 'What are cars?',
-        # 'Where does leather come from?',
-        # 'How many eggs are in a dozen?',
         'What is influenza?',
         'What is measles?',
-        # 'What is arthritis?'
         'What is marginalization?',
         'Who was Bernoulli?',
         'Who is or was Bayes?',
@@ -47,28 +45,23 @@ if __name__ == '__main__':
         'What is phylogenetic?',
         'What is evolution?',
         'What is protein?',
+        'What is halobacterium salinarum?',
+        'What can you tell me about protein?',
     ])
 
     arxiv_questions = sorted([
         'Who was Bernoulli?',
         'Who is or was Bayes?',
-        # 'What is a machine?',
         'What is machine learning?',
-        # 'What is WAIC?',
-        # 'When did it start?',
-        # 'What is a forecast?',
-        # 'What is a strategy?',
-        # 'What is a forecasting strategy?',
-        # 'When was Levin?',
-        # 'When did Levin?',
-        # 'What is symbol?',
-        # 'What is SYMBOL?',
         'What is a realization?',
         'What is a robot?',
         'How soon is now?',
         'What is the inverse problem?',
         'What is a problem?',
         'What is the inverse?',
+        'What can we measure?',
+        'What is K-means?',
+        'What is rotor diffusion?',
     ])
     questions = plos_questions if case == 'plos' else arxiv_questions
     for question in questions:
