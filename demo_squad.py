@@ -50,6 +50,11 @@ if __name__ == '__main__':
         'its aircraft was deployed to the Middle East in September 2014, as part of Australia\'s contribution to the '
         'military coalition against ISIS.': [
             'When was Number 33 Squadron re-established?',
+            'How many planes were in Number 33 Squadron?',
+            'What kind of planes were in Number 33 Squadron?',
+            'Number 33 Squadron was equipped with what kind of planes?',
+            'Number 33 Squadron operated what kind of planes?',
+            'Number 33 Squadron operates what kind of planes?',
         ],
     }
     for text, questions in data.items():
