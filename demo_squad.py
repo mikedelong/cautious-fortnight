@@ -26,6 +26,7 @@ if __name__ == '__main__':
                                      'What was the Apollo 11 landing site named?',
                                      'What was the landing site named?',
                                      'What was the site named?',
+                                     'Who was the Eagle pilot?',
                                      'Who was the lunar module pilot?',
                                      'Who flew the command module?',
                                      'What was the name of the command module?',
