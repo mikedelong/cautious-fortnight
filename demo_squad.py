@@ -55,6 +55,8 @@ if __name__ == '__main__':
             'Number 33 Squadron was equipped with what kind of planes?',
             'Number 33 Squadron operated what kind of planes?',
             'Number 33 Squadron operates what kind of planes?',
+            'When did the squadron lose a plane in a crash?',
+            'When did the squadron retire its 707s?',
         ],
     }
     for text, questions in data.items():
