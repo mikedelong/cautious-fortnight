@@ -21,19 +21,36 @@ if __name__ == '__main__':
         'lunar material to bring back to Earth. Command module pilot Michael Collins flew the command module '
         'Columbia alone in lunar orbit while they were on the Moon\'s surface. Armstrong and Aldrin spent 21 hours, '
         '36 minutes on the lunar surface at a site they named Tranquility Base before lifting off to rejoin '
-        'Columbia in lunar orbit.': ['When was the first moon landing?',
-                                     'When did Eagle land?',
-                                     'What was the Apollo 11 landing site named?',
-                                     'What was the landing site named?',
-                                     'What was the site named?',
-                                     'Who was the Eagle pilot?',
-                                     'Who was the lunar module pilot?',
-                                     'Who flew the command module?',
-                                     'What was the name of the command module?',
-                                     'How much lunar material did Apollo 11 bring back?',
-                                     'How long were Armstrong and Aldrin on the moon?',
-                                     'How long were Armstrong and Aldrin on the lunar surface?',
-                                     ]
+        'Columbia in lunar orbit.': [
+            'When was the first moon landing?',
+            'When did Eagle land?',
+            'What was the Apollo 11 landing site named?',
+            'What was the landing site named?',
+            'What was the site named?',
+            'Who was the Eagle pilot?',
+            'Who was the lunar module pilot?',
+            'Who flew the command module?',
+            'What was the name of the command module?',
+            'How much lunar material did Apollo 11 bring back?',
+            'How long were Armstrong and Aldrin on the moon?',
+            'How long were Armstrong and Aldrin on the lunar surface?',
+        ],
+        'No. 33 Squadron is a Royal Australian Air Force (RAAF) strategic transport and air-to-air refuelling '
+        'squadron. It operates Airbus KC-30A Multi Role Tanker Transports from RAAF Base Amberley, Queensland. '
+        'The squadron was formed in February 1942 for service during World War II, operating Short Empire flying '
+        'boats and a variety of smaller aircraft. By 1944 it had completely re-equipped with Douglas C-47 Dakota '
+        'transports, which it flew in New Guinea prior to disbanding in May 1946. The unit was re-established in '
+        'February 1981 as a flight, equipped with two Boeing 707s for VIP and other long-range transport duties out '
+        'of RAAF Base Richmond, New South Wales. No. 33 Flight was re-formed as a full squadron in July 1983. By 1988 '
+        'it was operating six 707s, four of which were subsequently converted for aerial refuelling. The 707s saw '
+        'active service during operations in Namibia, Somalia, the Persian Gulf, and Afghanistan. One of the '
+        'transport jets was lost in a crash in October 1991. No. 33 Squadron relocated to Amberley and was '
+        'temporarily without aircraft following the retirement of the 707s in June 2008. It began re-equipping '
+        'with KC-30As in June 2011, and achieved initial operating capability with the type in February 2013. One of '
+        'its aircraft was deployed to the Middle East in September 2014, as part of Australia\'s contribution to the '
+        'military coalition against ISIS.': [
+            'When was Number 33 Squadron re-established?',
+        ],
     }
     for text, questions in data.items():
         for question in questions:
