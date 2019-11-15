@@ -27,6 +27,8 @@ if __name__ == '__main__':
                                      'What was the landing site named?',
                                      'What was the site named?',
                                      'Who was the lunar module pilot?',
+                                     'Who flew the command module?',
+                                     'What was the name of the command module?',
                                      'How much lunar material did Apollo 11 bring back?',
                                      'How long were Armstrong and Aldrin on the moon?',
                                      'How long were Armstrong and Aldrin on the lunar surface?',
