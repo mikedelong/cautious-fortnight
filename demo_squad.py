@@ -10,7 +10,8 @@ if __name__ == '__main__':
 
     logger.info('started')
 
-    model = build_model('./squad.json', download=True)
+    configuration = './squad.json'
+    model = build_model(configuration, download=True)
     data = {
         'Apollo 11 was the spaceflight that first landed humans on the Moon. Commander Neil Armstrong and '
         'lunar module pilot Buzz Aldrin formed the American crew that landed the Apollo Lunar Module Eagle on '
