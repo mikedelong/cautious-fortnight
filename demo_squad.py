@@ -2,7 +2,6 @@ import logging
 from time import time
 
 from deeppavlov import build_model
-from deeppavlov import configs
 
 if __name__ == '__main__':
     time_start = time()
@@ -11,7 +10,7 @@ if __name__ == '__main__':
 
     logger.info('started')
 
-    model = build_model(configs.squad.squad, download=True)
+    model = build_model('./squad.json', download=True)
     data = {
         'Apollo 11 was the spaceflight that first landed humans on the Moon. Commander Neil Armstrong and '
         'lunar module pilot Buzz Aldrin formed the American crew that landed the Apollo Lunar Module Eagle on '
