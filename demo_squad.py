@@ -4,14 +4,14 @@ from time import time
 from deeppavlov import build_model
 
 configuration = {
-    'dataset_reader': {
-        'class_name': 'squad_dataset_reader',
-        'data_path': '{DOWNLOADS_PATH}/squad/',
-    },
     'dataset_iterator': {
         'class_name': 'squad_iterator',
         'seed': 1337,
         'shuffle': True,
+    },
+    'dataset_reader': {
+        'class_name': 'squad_dataset_reader',
+        'data_path': '{DOWNLOADS_PATH}/squad/',
     },
     'chainer': {
         'in': ['context_raw', 'question_raw'],
@@ -146,7 +146,7 @@ configuration = {
                 'subdir': '{DOWNLOADS_PATH}/embeddings',
             }
         ]
-    }
+    },
 }
 if __name__ == '__main__':
     time_start = time()
