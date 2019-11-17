@@ -99,26 +99,6 @@ configuration = {
         'class_name': 'squad_dataset_reader',
         'data_path': '{DOWNLOADS_PATH}/squad/',
     },
-    'train': {
-        'show_examples': False,
-        'log_every_n_batches': 250,
-        'val_every_n_epochs': 1,
-        'batch_size': 50,
-        'pytest_max_batches': 2,
-        'validation_patience': 10,
-        'metrics': [
-            {
-                'name': 'squad_v1_f1',
-                'inputs': ['ans_raw', 'ans_predicted'],
-            },
-            {
-                'name': 'squad_v1_em',
-                'inputs': ['ans_raw', 'ans_predicted'],
-            }
-        ],
-        'evaluation_targets': ['valid'],
-        'class_name': 'nn_trainer',
-    },
     'metadata': {
         'variables': {
             'ROOT_PATH': '~/.deeppavlov',
@@ -146,6 +126,26 @@ configuration = {
                 'subdir': '{DOWNLOADS_PATH}/embeddings',
             }
         ]
+    },
+    'train': {
+        'show_examples': False,
+        'log_every_n_batches': 250,
+        'val_every_n_epochs': 1,
+        'batch_size': 50,
+        'pytest_max_batches': 2,
+        'validation_patience': 10,
+        'metrics': [
+            {
+                'name': 'squad_v1_f1',
+                'inputs': ['ans_raw', 'ans_predicted'],
+            },
+            {
+                'name': 'squad_v1_em',
+                'inputs': ['ans_raw', 'ans_predicted'],
+            }
+        ],
+        'evaluation_targets': ['valid'],
+        'class_name': 'nn_trainer',
     },
 }
 if __name__ == '__main__':
