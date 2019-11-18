@@ -76,11 +76,7 @@ configuration = {
                   'out': ['ans_predicted', 'ans_start_predicted', 'ans_end_predicted'], }],
         'out': ['ans_predicted', 'ans_start_predicted', 'logits'],
     },
-    'dataset_iterator': {
-        'class_name': 'squad_iterator',
-        'seed': 1337,
-        'shuffle': True,
-    },
+    'dataset_iterator': {'class_name': 'squad_iterator', 'seed': 1337, 'shuffle': True, },
     'dataset_reader': {
         'class_name': 'squad_dataset_reader',
         'data_path': '{DOWNLOADS_PATH}/squad/',
