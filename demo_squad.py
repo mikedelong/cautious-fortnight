@@ -101,8 +101,8 @@ configuration = {
                 'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M.vec',
             },
             {
-                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec',
                 'subdir': '{DOWNLOADS_PATH}/embeddings',
+                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec',
             }
         ]
     },
