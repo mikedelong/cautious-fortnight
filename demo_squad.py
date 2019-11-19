@@ -97,8 +97,8 @@ configuration = {
                 'url': 'http://files.deeppavlov.ai/deeppavlov_data/squad_model_1.4_cpu_compatible.tar.gz',
             },
             {
-                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M.vec',
                 'subdir': '{DOWNLOADS_PATH}/embeddings',
+                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M.vec',
             },
             {
                 'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec',
