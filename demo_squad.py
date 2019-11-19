@@ -91,20 +91,12 @@ configuration = {
             'telegram_utils': 'SquadModel',
             'server_utils': 'SquadModel',
         },
-        'download': [
-            {
-                'subdir': '{MODELS_PATH}',
-                'url': 'http://files.deeppavlov.ai/deeppavlov_data/squad_model_1.4_cpu_compatible.tar.gz',
-            },
-            {
-                'subdir': '{DOWNLOADS_PATH}/embeddings',
-                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M.vec',
-            },
-            {
-                'subdir': '{DOWNLOADS_PATH}/embeddings',
-                'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec',
-            }
-        ]
+        'download': [{'subdir': '{MODELS_PATH}',
+                      'url': 'http://files.deeppavlov.ai/deeppavlov_data/squad_model_1.4_cpu_compatible.tar.gz', },
+                     {'subdir': '{DOWNLOADS_PATH}/embeddings',
+                      'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M.vec', },
+                     {'subdir': '{DOWNLOADS_PATH}/embeddings',
+                      'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec', }],
     },
     'train': {
         'show_examples': False,
