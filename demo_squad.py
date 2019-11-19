@@ -84,9 +84,7 @@ configuration = {
             'DOWNLOADS_PATH': '{ROOT_PATH}/downloads',
             'MODELS_PATH': '{ROOT_PATH}/models',
         },
-        'requirements': [
-            '{DEEPPAVLOV_PATH}/requirements/tf.txt',
-        ],
+        'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt', ],
         'labels': {
             'telegram_utils': 'SquadModel',
             'server_utils': 'SquadModel',
