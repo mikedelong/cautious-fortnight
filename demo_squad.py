@@ -85,10 +85,7 @@ configuration = {
             'MODELS_PATH': '{ROOT_PATH}/models',
         },
         'requirements': ['{DEEPPAVLOV_PATH}/requirements/tf.txt', ],
-        'labels': {
-            'telegram_utils': 'SquadModel',
-            'server_utils': 'SquadModel',
-        },
+        'labels': {'server_utils': 'SquadModel', 'telegram_utils': 'SquadModel', },
         'download': [{'subdir': '{MODELS_PATH}',
                       'url': 'http://files.deeppavlov.ai/deeppavlov_data/squad_model_1.4_cpu_compatible.tar.gz', },
                      {'subdir': '{DOWNLOADS_PATH}/embeddings',
