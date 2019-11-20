@@ -6,4 +6,5 @@ numpy
 python_aiml
 scikit-learn
 textblob
+torch
 wikipedia
