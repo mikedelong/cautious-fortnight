@@ -102,10 +102,7 @@ configuration = {
         'validation_patience': 10,
         'metrics': [
             {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', },
-            {
-                'name': 'squad_v1_em',
-                'inputs': ['ans_raw', 'ans_predicted'],
-            }
+            {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_em', },
         ],
         'evaluation_targets': ['valid'],
         'class_name': 'nn_trainer',
