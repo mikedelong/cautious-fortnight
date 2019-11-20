@@ -100,10 +100,8 @@ configuration = {
         'batch_size': 50,
         'pytest_max_batches': 2,
         'validation_patience': 10,
-        'metrics': [
-            {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', },
-            {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_em', },
-        ],
+        'metrics': [{'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_em', },
+                    {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ],
         'evaluation_targets': ['valid'],
         'class_name': 'nn_trainer',
     },
