@@ -93,16 +93,10 @@ configuration = {
                      {'subdir': '{DOWNLOADS_PATH}/embeddings',
                       'url': 'http://files.deeppavlov.ai/embeddings/wiki-news-300d-1M-char.vec', }],
     },
-    'train': {'batch_size': 50,
-              'class_name': 'nn_trainer',
-              'evaluation_targets': ['valid'],
-              'log_every_n_batches': 250,
+    'train': {'batch_size': 50, 'class_name': 'nn_trainer', 'evaluation_targets': ['valid'], 'log_every_n_batches': 250,
               'metrics': [{'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_em', },
-                          {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ],
-              'pytest_max_batches': 2,
-              'show_examples': False,
-              'val_every_n_epochs': 1,
-              'validation_patience': 10, },
+                          {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
+              'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 if __name__ == '__main__':
     time_start = time()
