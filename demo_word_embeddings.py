@@ -1,4 +1,3 @@
-# OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
 from time import time
 
@@ -17,8 +16,8 @@ if __name__ == '__main__':
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     logger.info(tokenizer)
 
-    text = "After stealing money from the bank vault, the bank robber was seen fishing on the Mississippi river bank."
-    marked_text = "[CLS] " + text + " [SEP]"
+    text = 'After stealing money from the bank vault, the bank robber was seen fishing on the Mississippi river bank.'
+    marked_text = '[CLS] ' + text + ' [SEP]'
 
     logger.info(marked_text)
 
@@ -40,7 +39,7 @@ if __name__ == '__main__':
     # Load pre-trained model (weights)
     model = BertModel.from_pretrained('bert-base-uncased')
 
-    # Put the model in "evaluation" mode, meaning feed-forward operation.
+    # Put the model in 'evaluation' mode, meaning feed-forward operation.
     logger.info(model.eval())
 
     # Predict hidden states features for each layer
@@ -69,20 +68,10 @@ if __name__ == '__main__':
 
     # Convert the hidden state embeddings into single token vectors
 
-    # Holds the list of 12 layer embeddings for each token
-    # Will have the shape: [# tokens, # layers, # features]
-    token_embeddings = []
-
-    # For each token in the sentence...
-    for token_i in range(len(tokenized_text)):
-        # Holds 12 layers of hidden states for each token 
-        hidden_layers = []
-        # For each of the 12 layers...
-        for layer_i in range(len(encoded_layers)):
-            # Lookup the vector for `token_i` in `layer_i`
-            vec = encoded_layers[layer_i][batch_i][token_i]
-            hidden_layers.append(vec)
-        token_embeddings.append(hidden_layers)
+    batch_0 = 0
+    # for batch 0, for each layer look up the vector for each token in the tokenized text
+    token_embeddings = [[encoded_layers[layer][batch_0][token] for layer in range(len(encoded_layers))] for token in
+                        range(len(tokenized_text))]
 
     # Sanity check the dimensions:
     logger.info('tokens in sequence: {}'.format(len(token_embeddings)))
@@ -109,9 +98,9 @@ if __name__ == '__main__':
             logger.info(token_vecs_sum[index][:8])
 
     # Compare 'bank' as in 'bank robber' to 'bank' as in 'river bank'
-    logger.info('bank robber vs. river bank: {:5.2f}'.format(
+    logger.info('bank robber vs. river bank: {:5.3f}'.format(
         cosine_similarity(token_vecs_sum[10].reshape(1, -1), token_vecs_sum[19].reshape(1, -1))[0][0]))
 
     # Compare 'bank' as in 'bank robber' to 'bank' as in 'bank vault'
-    logger.info('bank robber vs. bank vault: {:5.2f}'.format(cosine_similarity(token_vecs_sum[10].reshape(1, -1),
+    logger.info('bank robber vs. bank vault: {:5.3f}'.format(cosine_similarity(token_vecs_sum[10].reshape(1, -1),
                                                                                token_vecs_sum[6].reshape(1, -1))[0][0]))
