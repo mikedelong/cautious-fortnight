@@ -90,25 +90,14 @@ if __name__ == '__main__':
 
     # For each token in the sentence concatenate the vectors (that is, append them together) from the last four layers.
     # Each layer vector is 768 values, so `cat_vec` is length 3,072.
-    #
-    #     # Use `cat_vec` to represent `token`.
-    #     token_vecs_cat.append(cat_vec)
 
     token_vecs_cat = [torch.cat((token[-1], token[-2], token[-3], token[-4]), 0) for token in token_embeddings]
     logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), token_vecs_cat[0].shape[0]))
 
-    # Stores the token vectors, with shape[22 x 768]
-    token_vecs_sum = []
+    # for each token in the sentence, sum the vectors from the last four layers
+    token_vecs_sum = [torch.sum(torch.stack(token)[-4:], 0) for token in token_embeddings]
 
-    # For each token in the sentence...
-    for token in token_embeddings:
-        # Sum the vectors from the last four layers.
-        sum_vec = torch.sum(torch.stack(token)[-4:], 0)
-
-        # Use `sum_vec` to represent `token`.
-        token_vecs_sum.append(sum_vec)
-
-    logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), token_vecs_cat[0].shape[0]))
+    logger.info('Shape is: {} x {}'.format(len(token_vecs_sum), token_vecs_sum[0].shape[0]))
 
     sentence_embedding = torch.mean(encoded_layers[11], 1)
     logger.debug(sentence_embedding)
