@@ -14,7 +14,6 @@ if __name__ == '__main__':
 
     # Load pre-trained model tokenizer (vocabulary)
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    logger.info(tokenizer)
 
     text = 'After stealing money from the bank vault, the bank robber was seen fishing on the Mississippi river bank.'
     marked_text = '[CLS] ' + text + ' [SEP]'
@@ -24,12 +23,13 @@ if __name__ == '__main__':
     tokenized_text = tokenizer.tokenize(marked_text)
     logger.info(tokenized_text)
 
-    logger.info(list(tokenizer.vocab.keys())[5000:5020])
+    logger.info('the tokenizer vocabulary contains {} items'.format(len(tokenizer.vocab)))
 
+    logger.info(list(tokenizer.vocab.keys())[5000:5020])
     indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
 
-    for tup in zip(tokenized_text, indexed_tokens):
-        logger.info(tup)
+    for index, current_tuple in enumerate(zip(tokenized_text, indexed_tokens)):
+        logger.info('{} : {}'.format(index, current_tuple))
 
     segments_ids = [1] * len(tokenized_text)
     # Convert inputs to PyTorch tensors
