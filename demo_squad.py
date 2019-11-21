@@ -116,6 +116,8 @@ if __name__ == '__main__':
         'Columbia alone in lunar orbit while they were on the Moon\'s surface. Armstrong and Aldrin spent 21 hours, '
         '36 minutes on the lunar surface at a site they named Tranquility Base before lifting off to rejoin '
         'Columbia in lunar orbit.': [
+            'Has anyone been to the moon?',
+            'Who comprised the Apollo 11 crew?',
             'When was the first moon landing?',
             'When did Eagle land?',
             'What was the Apollo 11 landing site named?',
