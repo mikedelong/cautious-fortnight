@@ -88,21 +88,13 @@ if __name__ == '__main__':
     logger.info('tokens in sequence: {}'.format(len(token_embeddings)))
     logger.info('layers/token: {}'.format(len(token_embeddings[0])))
 
-    # Stores the token vectors, with shape [22 x 3,072]
-
-    # For each token in the sentence...
-    # Concatenate the vectors (that is, append them together) from the last
-    # four layers.
+    # For each token in the sentence concatenate the vectors (that is, append them together) from the last four layers.
     # Each layer vector is 768 values, so `cat_vec` is length 3,072.
-    # token_vecs_cat = []
-    # for token in token_embeddings:
-    #     cat_vec = torch.cat((token[-1], token[-2], token[-3], token[-4]), 0)
     #
     #     # Use `cat_vec` to represent `token`.
     #     token_vecs_cat.append(cat_vec)
 
     token_vecs_cat = [torch.cat((token[-1], token[-2], token[-3], token[-4]), 0) for token in token_embeddings]
-
     logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), token_vecs_cat[0].shape[0]))
 
     # Stores the token vectors, with shape[22 x 768]
@@ -116,21 +108,21 @@ if __name__ == '__main__':
         # Use `sum_vec` to represent `token`.
         token_vecs_sum.append(sum_vec)
 
-    logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), len(token_vecs_cat[0])))
+    logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), token_vecs_cat[0].shape[0]))
 
     sentence_embedding = torch.mean(encoded_layers[11], 1)
     logger.debug(sentence_embedding)
 
-    logger.info('First fifteen values of \'bank\' as in \'bank robber\': {}'.format(token_vecs_sum[10][:15]))
+    logger.info('First few values of \'bank\' as in \'bank robber\': {}'.format(token_vecs_sum[10][:8]))
 
     for index, word in enumerate(tokenized_text):
         if word == 'bank':
-            logger.info(token_vecs_sum[index][:10])
+            logger.info(token_vecs_sum[index][:8])
 
-    # Compare "bank" as in "bank robber" to "bank" as in "river bank"
+    # Compare 'bank' as in 'bank robber' to 'bank' as in 'river bank'
     logger.info('bank robber vs. river bank: {:5.2f}'.format(
         cosine_similarity(token_vecs_sum[10].reshape(1, -1), token_vecs_sum[19].reshape(1, -1))[0][0]))
 
-    # Compare "bank" as in "bank robber" to "bank" as in "bank vault"
+    # Compare 'bank' as in 'bank robber' to 'bank' as in 'bank vault'
     logger.info('bank robber vs. bank vault: {:5.2f}'.format(cosine_similarity(token_vecs_sum[10].reshape(1, -1),
                                                                                token_vecs_sum[6].reshape(1, -1))[0][0]))
