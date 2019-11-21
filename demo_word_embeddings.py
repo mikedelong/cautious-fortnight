@@ -17,7 +17,6 @@ if __name__ == '__main__':
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     logger.info(tokenizer)
 
-    # text = "Here is the sentence I want embeddings for."
     text = "After stealing money from the bank vault, the bank robber was seen fishing on the Mississippi river bank."
     marked_text = "[CLS] " + text + " [SEP]"
 
@@ -104,9 +103,7 @@ if __name__ == '__main__':
 
     token_vecs_cat = [torch.cat((token[-1], token[-2], token[-3], token[-4]), 0) for token in token_embeddings]
 
-    logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), len(token_vecs_cat[0])))
-
-    # logger.info(tf.size(token_vecs_cat))
+    logger.info('Shape is: {} x {}'.format(len(token_vecs_cat), token_vecs_cat[0].shape[0]))
 
     # Stores the token vectors, with shape[22 x 768]
     token_vecs_sum = []
