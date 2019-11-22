@@ -117,6 +117,7 @@ if __name__ == '__main__':
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
         pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)]
+        logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         vectorizer = TfidfVectorizer()
         vectorizer.fit(pieces)
         pieces_ = vectorizer.transform(pieces)
