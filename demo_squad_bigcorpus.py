@@ -2,6 +2,8 @@ import logging
 from time import time
 
 from deeppavlov import build_model
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 context_limit_ = 400
 configuration = {
@@ -114,13 +116,22 @@ if __name__ == '__main__':
         text = text[2124:524200]
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
+        pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)]
+        vectorizer = TfidfVectorizer()
+        vectorizer.fit(pieces)
+        pieces_ = vectorizer.transform(pieces)
+
     logger.info('ready.')
 
     done = False
     while not done:
         question = input('?: ')
         if question not in {'bye', 'quit'}:
-            logger.info('Q: {} A: {}'.format(question, model([text], [question])))
+            question_ = vectorizer.transform([question])
+            cosine_similarities = cosine_similarity(question_, pieces_).flatten()
+            related_product_indices = cosine_similarities.argsort()[:-11:-1]
+            for item in related_product_indices:
+                logger.info('Q: {} A: {}'.format(question, model([pieces[item]], [question])))
         else:
             done = True
 
