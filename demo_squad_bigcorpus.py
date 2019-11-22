@@ -3,13 +3,14 @@ from time import time
 
 from deeppavlov import build_model
 
+context_limit_ = 400
 configuration = {
     'chainer': {
         'in': ['context_raw', 'question_raw'],
         'in_y': ['ans_raw', 'ans_raw_start'],
         'pipe': [{'char_limit': 16,
                   'class_name': 'squad_preprocessor',
-                  'context_limit': 800,  # was 400
+                  'context_limit': context_limit_,  # was 400
                   'id': 'squad_prepr',
                   'in': ['context_raw', 'question_raw'],
                   'out': ['context', 'context_tokens', 'context_chars',
