@@ -5,7 +5,7 @@ from deeppavlov import build_model
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-context_limit_ = 400
+context_limit_ = 1000
 configuration = {
     'chainer': {
         'in': ['context_raw', 'question_raw'],
