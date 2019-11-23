@@ -103,6 +103,7 @@ configuration = {
 }
 input_file = './data/35830.txt'
 text_start = 2124
+text_stop = 524200
 
 if __name__ == '__main__':
     time_start = time()
@@ -115,7 +116,7 @@ if __name__ == '__main__':
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
         text = text.split('\n')
-        text = text[text_start:524200]
+        text = text[text_start:text_stop]
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
         pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)]
