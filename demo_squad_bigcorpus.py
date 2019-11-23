@@ -134,10 +134,10 @@ if __name__ == '__main__':
             question_ = vectorizer.transform([question])
             cosine_similarities = cosine_similarity(question_, pieces_).flatten()
             related_product_indices = cosine_similarities.argsort()[:-11:-1]
-            for index, item in enumerate(related_product_indices):
-                logger.info(
-                    'Q: {} cos: {:5.3f} A: {}'.format(question, cosine_similarity(question_, pieces_[item])[0][0],
-                                                      model([pieces[item]], [question])))
+            for index in related_product_indices:
+                logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
+                                                              cosine_similarity(question_, pieces_[index])[0][0],
+                                                              model([pieces[index]], [question])))
         else:
             done = True
 
