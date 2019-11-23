@@ -135,7 +135,9 @@ if __name__ == '__main__':
             cosine_similarities = cosine_similarity(question_, pieces_).flatten()
             related_product_indices = cosine_similarities.argsort()[:-11:-1]
             for index, item in enumerate(related_product_indices):
-                logger.info('Q: {} A: {}'.format(question, model([pieces[item]], [question])))
+                cos_ = cosine_similarity(question_, pieces_[item])
+                logger.info('Q: {} cos: {:5.3f} A: {}'.format(question, cos_[0][0],
+                                                              model([pieces[item]], [question])))
         else:
             done = True
 
