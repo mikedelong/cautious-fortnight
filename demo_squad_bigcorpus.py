@@ -102,6 +102,8 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 input_file = './data/35830.txt'
+text_start = 2124
+
 if __name__ == '__main__':
     time_start = time()
     logger = logging.getLogger(__name__)
@@ -113,7 +115,7 @@ if __name__ == '__main__':
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
         text = text.split('\n')
-        text = text[2124:524200]
+        text = text[text_start:524200]
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
         pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)]
