@@ -119,9 +119,9 @@ if __name__ == '__main__':
         text = text[text_start:text_stop]
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
-        pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)]
-        pieces.extend([text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
-                       range(0, len(text) - context_limit_, context_limit_)])
+        pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)] + [
+            text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
+            range(0, len(text) - context_limit_, context_limit_)]
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         vectorizer = TfidfVectorizer()
         vectorizer.fit(pieces)
