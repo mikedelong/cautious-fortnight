@@ -130,9 +130,10 @@ if __name__ == '__main__':
     logger.info('ready.')
 
     done = False
+    exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
     while not done:
         question = input('?: ')
-        if question.lower() not in {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}:
+        if question.lower() not in exit_questions:
             question_ = vectorizer.transform([question])
             cosine_similarities = cosine_similarity(question_, pieces_).flatten()
             related_product_indices = cosine_similarities.argsort()[:-11:-1]
