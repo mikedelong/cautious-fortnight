@@ -130,7 +130,7 @@ if __name__ == '__main__':
     done = False
     while not done:
         question = input('?: ')
-        if question not in {'bye', 'quit'}:
+        if question.lower() not in {'bye', 'good-bye', 'good-by', 'cya', 'quit'}:
             question_ = vectorizer.transform([question])
             cosine_similarities = cosine_similarity(question_, pieces_).flatten()
             related_product_indices = cosine_similarities.argsort()[:-11:-1]
