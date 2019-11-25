@@ -15,9 +15,8 @@ configuration = {
                   'context_limit': context_limit_,  # was 400
                   'id': 'squad_prepr',
                   'in': ['context_raw', 'question_raw'],
-                  'out': ['context', 'context_tokens', 'context_chars',
-                          'c_r2p', 'c_p2r', 'question',
-                          'question_tokens', 'question_chars', 'spans'],
+                  'out': ['context', 'context_tokens', 'context_chars', 'c_r2p', 'c_p2r', 'question', 'question_tokens',
+                          'question_chars', 'spans'],
                   'question_limit': 150, },
                  {'class_name': 'squad_ans_preprocessor',
                   'id': 'squad_ans_prepr',
