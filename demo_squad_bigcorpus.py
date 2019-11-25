@@ -101,6 +101,7 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 input_file = './data/35830.txt'
+results_to_return = 5
 text_start = 2124
 text_stop = 524200
 
@@ -135,7 +136,7 @@ if __name__ == '__main__':
         if question.lower() not in exit_questions:
             question_ = vectorizer.transform([question])
             cosine_similarities = cosine_similarity(question_, pieces_).flatten()
-            related_product_indices = cosine_similarities.argsort()[:-11:-1]
+            related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
             for index in related_product_indices:
                 logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
                                                               cosine_similarity(question_, pieces_[index])[0][0],
