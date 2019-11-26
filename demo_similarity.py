@@ -47,7 +47,7 @@ if __name__ == '__main__':
         corpus_ = [dictionary.doc2bow(text) for text in texts]
         lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
 
-    index = MatrixSimilarity(lsi[corpus_])
+    index = MatrixSimilarity(lsi[corpus_], num_features=200)
     question = 'What is the CIA'
     q = lsi[dictionary.doc2bow(question.lower().split())]  # convert the query to LSI space
     logger.info('question: {}'.format(q))
