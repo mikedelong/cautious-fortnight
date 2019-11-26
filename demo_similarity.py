@@ -3,7 +3,8 @@ from collections import defaultdict
 from time import time
 
 from gensim import corpora
-from gensim.similarities.docsim import Similarity
+from gensim import models
+from gensim.similarities.docsim import MatrixSimilarity
 
 context_limit_ = 1000
 input_file = './data/35830.txt'
@@ -41,8 +42,18 @@ if __name__ == '__main__':
         texts = [[token for token in text if frequency[token] > 1] for text in texts]
 
         dictionary = corpora.Dictionary(texts)
+        logger.info('dictionary size: {}'.format(len(dictionary)))
         corpus_ = [dictionary.doc2bow(text) for text in texts]
+        lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=100)
 
-    index = Similarity(output_prefix='t_', corpus=corpus_, num_features=1000)
+    index = MatrixSimilarity(lsi[corpus_])
+    question = 'What is the CIA'
+    q = lsi[dictionary.doc2bow(question.lower().split())]  # convert the query to LSI space
+    logger.info('question: {}'.format(q))
+
+    similarities = sorted(enumerate(index[q]), key=lambda item: -item[1])
+    for i, similarity in enumerate(similarities):
+        if similarity[1] > 0.9:
+            logging.info('{} {} : {}'.format(i, similarity, pieces[i][:60]))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
