@@ -8,9 +8,10 @@ from gensim.similarities.docsim import MatrixSimilarity
 
 context_limit_ = 1000
 input_file = './data/35830.txt'
+lsi_topic_count = 200
+similarity_feature_count = 200
 text_start = 2124
 text_stop = 524200
-lsi_topic_count = 200
 
 if __name__ == '__main__':
     time_start = time()
@@ -47,9 +48,10 @@ if __name__ == '__main__':
         corpus_ = [dictionary.doc2bow(text) for text in texts]
         lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
 
-    index = MatrixSimilarity(lsi[corpus_], num_features=200)
+    index = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
     question = 'What is the CIA'
-    q = lsi[dictionary.doc2bow(question.lower().split())]  # convert the query to LSI space
+    q = lsi[dictionary.doc2bow(question.lower().split())]  # con
+    # vert the query to LSI space
     logger.info('question: {}'.format(q))
 
     similarities = sorted(enumerate(index[q]), key=lambda item: -item[1])
