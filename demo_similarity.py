@@ -10,6 +10,7 @@ context_limit_ = 1000
 input_file = './data/35830.txt'
 text_start = 2124
 text_stop = 524200
+lsi_topic_count = 200
 
 if __name__ == '__main__':
     time_start = time()
@@ -44,7 +45,7 @@ if __name__ == '__main__':
         dictionary = corpora.Dictionary(texts)
         logger.info('dictionary size: {}'.format(len(dictionary)))
         corpus_ = [dictionary.doc2bow(text) for text in texts]
-        lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=100)
+        lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
 
     index = MatrixSimilarity(lsi[corpus_])
     question = 'What is the CIA'
@@ -53,7 +54,7 @@ if __name__ == '__main__':
 
     similarities = sorted(enumerate(index[q]), key=lambda item: -item[1])
     for i, similarity in enumerate(similarities):
-        if similarity[1] > 0.9:
+        if similarity[1] > 0.7:
             logging.info('{} {} : {}'.format(i, similarity, pieces[i][:60]))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
