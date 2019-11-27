@@ -149,7 +149,6 @@ if __name__ == '__main__':
         lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
         matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
 
-
     logger.info('ready.')
 
     mode = 'cosine_similarity'
