@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
     logger.info('ready.')
 
-    mode = 'cosine_similarity'
+    mode = 'lsi_similarity'  # 'cosine_similarity'
     done = False
     exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
     while not done:
@@ -167,15 +167,14 @@ if __name__ == '__main__':
                                                                   cosine_similarity(question_, pieces_[index])[0][0],
                                                                   result[0]))
             elif mode == 'lsi_similarity':
-                pass
-            else:
                 q = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[q]), key=lambda item: -item[1])
                 for index, similarity in enumerate(similarities):
                     if similarity[1] > 0.7:
                         result = model([pieces[index]], [question])
-                        logging.info('Q: {} : {}'.format(question, similarity, result[0]))
-
+                        logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
+                    result = model([pieces[index]], [question])
+            else:
                 pass
         else:
             done = True
