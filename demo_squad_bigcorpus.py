@@ -170,7 +170,7 @@ if __name__ == '__main__':
                 q = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[q]), key=lambda item: -item[1])
                 for index, similarity in enumerate(similarities):
-                    if similarity[1] > 0.7:
+                    if similarity[1] > 0.8:
                         result = model([pieces[index]], [question])
                         logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
                     result = model([pieces[index]], [question])
