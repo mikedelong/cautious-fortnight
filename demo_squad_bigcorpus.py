@@ -1,7 +1,11 @@
 import logging
+from collections import defaultdict
 from time import time
 
 from deeppavlov import build_model
+from gensim import corpora
+from gensim import models
+from gensim.similarities.docsim import MatrixSimilarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -102,6 +106,9 @@ configuration = {
 }
 input_file = './data/35830.txt'
 results_to_return = 5
+lsi_topic_count = 200
+similarity_feature_count = 200
+stoplist = set('for a of the and to in'.split())
 text_start = 2124
 text_stop = 524200
 
@@ -126,22 +133,51 @@ if __name__ == '__main__':
         vectorizer = TfidfVectorizer()
         vectorizer.fit(pieces)
         pieces_ = vectorizer.transform(pieces)
+        texts = [[word for word in document.lower().split() if word not in stoplist] for document in pieces]
+
+        # remove words that appear only once
+        frequency = defaultdict(int)
+        for text in texts:
+            for token in text:
+                frequency[token] += 1
+
+        texts = [[token for token in text if frequency[token] > 1] for text in texts]
+
+        dictionary = corpora.Dictionary(texts)
+        logger.info('dictionary size: {}'.format(len(dictionary)))
+        corpus_ = [dictionary.doc2bow(text) for text in texts]
+        lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
+        matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
+
 
     logger.info('ready.')
 
+    mode = 'cosine_similarity'
     done = False
     exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
     while not done:
         question = input('?: ')
         if question.lower() not in exit_questions:
-            question_ = vectorizer.transform([question])
-            cosine_similarities = cosine_similarity(question_, pieces_).flatten()
-            related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
-            for index in related_product_indices:
-                result = model([pieces[index]], [question])
-                logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
-                                                              cosine_similarity(question_, pieces_[index])[0][0],
-                                                              result[0]))
+            if mode == 'cosine_similarity':
+                question_ = vectorizer.transform([question])
+                cosine_similarities = cosine_similarity(question_, pieces_).flatten()
+                related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
+                for index in related_product_indices:
+                    result = model([pieces[index]], [question])
+                    logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
+                                                                  cosine_similarity(question_, pieces_[index])[0][0],
+                                                                  result[0]))
+            elif mode == 'lsi_similarity':
+                pass
+            else:
+                q = lsi[dictionary.doc2bow(question.lower().split())]
+                similarities = sorted(enumerate(matrix_similarity[q]), key=lambda item: -item[1])
+                for index, similarity in enumerate(similarities):
+                    if similarity[1] > 0.7:
+                        result = model([pieces[index]], [question])
+                        logging.info('Q: {} : {}'.format(question, similarity, result[0]))
+
+                pass
         else:
             done = True
 
