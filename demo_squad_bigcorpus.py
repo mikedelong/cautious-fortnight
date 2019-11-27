@@ -106,8 +106,8 @@ configuration = {
 }
 input_file = './data/35830.txt'
 results_to_return = 5
-lsi_topic_count = 200
-similarity_feature_count = 200
+lsi_topic_count = 250
+similarity_feature_count = 250
 stoplist = set('for a of the and to in'.split())
 text_start = 2124
 text_stop = 524200
