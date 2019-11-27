@@ -50,8 +50,7 @@ if __name__ == '__main__':
 
     index = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
     question = 'What is the CIA'
-    q = lsi[dictionary.doc2bow(question.lower().split())]  # con
-    # vert the query to LSI space
+    q = lsi[dictionary.doc2bow(question.lower().split())]  # convert the query to LSI space
     logger.info('question: {}'.format(q))
 
     similarities = sorted(enumerate(index[q]), key=lambda item: -item[1])
