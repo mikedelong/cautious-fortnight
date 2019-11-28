@@ -106,9 +106,9 @@ configuration = {
 }
 input_file = './data/35830.txt'
 results_to_return = 5
-lsi_topic_count = 250
-mode = 'cosine_similarity'  # must be 'lsi_similarity' or 'cosine_similarity'
-similarity_feature_count = 250
+lsi_topic_count = 300
+mode = 'lsi_similarity'  # must be 'lsi_similarity' or 'cosine_similarity'
+similarity_feature_count = 300
 stoplist = set('for a of the and to in'.split())
 text_start = 2124
 text_stop = 524200
@@ -173,8 +173,8 @@ if __name__ == '__main__':
                 for similarity in similarities:
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
-
             else:
+                # todo raise here
                 pass
         else:
             done = True
