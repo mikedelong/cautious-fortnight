@@ -6,6 +6,7 @@ from deeppavlov import build_model
 from gensim import corpora
 from gensim import models
 from gensim.similarities.docsim import MatrixSimilarity
+from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -109,7 +110,7 @@ results_to_return = 5
 lsi_topic_count = 300
 mode = 'lsi_similarity'  # must be 'lsi_similarity' or 'cosine_similarity'
 similarity_feature_count = 300
-stoplist = set('for a of the and to in'.split())
+# stoplist = set('for a of the and to in'.split())
 text_start = 2124
 text_stop = 524200
 
@@ -134,7 +135,7 @@ if __name__ == '__main__':
         vectorizer = TfidfVectorizer()
         vectorizer.fit(pieces)
         pieces_ = vectorizer.transform(pieces)
-        texts = [[word for word in document.lower().split() if word not in stoplist] for document in pieces]
+        texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in pieces]
 
         # remove words that appear only once
         frequency = defaultdict(int)
