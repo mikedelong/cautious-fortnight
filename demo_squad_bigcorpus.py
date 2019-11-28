@@ -110,7 +110,6 @@ results_to_return = 5
 lsi_topic_count = 300
 mode = 'lsi_similarity'  # must be 'lsi_similarity' or 'cosine_similarity'
 similarity_feature_count = 300
-# stoplist = set('for a of the and to in'.split())
 text_start = 2124
 text_stop = 524200
 
