@@ -174,8 +174,7 @@ if __name__ == '__main__':
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
             else:
-                # todo raise here
-                pass
+                raise ValueError('mode can only be cosine_similarity or lsi_similarity but is [{}]'.format(mode))
         else:
             done = True
 
