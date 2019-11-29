@@ -107,7 +107,7 @@ configuration = {
 }
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
-results_to_return = 5
+results_to_return = 7
 lsi_topic_count = 300
 mode = ['cosine_similarity', 'lsi_similarity', ][1]
 similarity_feature_count = 300
@@ -168,7 +168,8 @@ if __name__ == '__main__':
                                                                   result[0]))
             elif mode == 'lsi_similarity':
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
-                similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[:5]
+                similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
+                               :results_to_return]
                 for similarity in similarities:
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
