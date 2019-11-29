@@ -1,5 +1,5 @@
 import logging
-from collections import defaultdict
+from collections import Counter
 from time import time
 
 from deeppavlov import build_model
@@ -139,11 +139,7 @@ if __name__ == '__main__':
         texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in pieces]
 
         # remove words that appear only once
-        frequency = defaultdict(int)
-        for text in texts:
-            for token in text:
-                frequency[token] += 1
-
+        frequency = Counter([token for text in texts for token in text])
         texts = [[token for token in text if frequency[token] > 1] for text in texts]
 
         dictionary = corpora.Dictionary(texts)
