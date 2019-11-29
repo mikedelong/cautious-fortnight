@@ -167,8 +167,8 @@ if __name__ == '__main__':
                                                                   cosine_similarity(question_, pieces_[index])[0][0],
                                                                   result[0]))
             elif mode == 'lsi_similarity':
-                q = lsi[dictionary.doc2bow(question.lower().split())]
-                similarities = sorted(enumerate(matrix_similarity[q]), key=lambda item: -item[1])[:5]
+                question_ = lsi[dictionary.doc2bow(question.lower().split())]
+                similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[:5]
                 for similarity in similarities:
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
