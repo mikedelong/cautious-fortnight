@@ -105,6 +105,7 @@ configuration = {
                           {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
+exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 results_to_return = 5
 lsi_topic_count = 300
@@ -153,7 +154,6 @@ if __name__ == '__main__':
     logger.info('ready.')
 
     done = False
-    exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
     while not done:
         question = input('?: ')
         if question.lower() not in exit_questions:
