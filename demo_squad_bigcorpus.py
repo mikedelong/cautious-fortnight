@@ -132,6 +132,7 @@ if __name__ == '__main__':
             text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
             range(0, len(text) - context_limit_, context_limit_)]
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
+        # todo introduce the mode here and only construct what we need per mode
         vectorizer = TfidfVectorizer()
         vectorizer.fit(pieces)
         pieces_ = vectorizer.transform(pieces)
