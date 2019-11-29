@@ -169,8 +169,6 @@ if __name__ == '__main__':
             elif mode == 'lsi_similarity':
                 q = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[q]), key=lambda item: -item[1])[:5]
-                # todo make this more robust so we always return at least one response
-                # similarities = [similarity for similarity in similarities if similarity[1] > 0.75]
                 for similarity in similarities:
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
