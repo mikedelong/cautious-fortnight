@@ -155,7 +155,7 @@ if __name__ == '__main__':
     while not done:
         question = input('?: ')
         if question.lower() not in exit_questions:
-            if mode == 'cosine_similarity':
+            if mode == modes[0]:
                 question_ = vectorizer.transform([question])
                 cosine_similarities = cosine_similarity(question_, pieces_).flatten()
                 related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
@@ -164,7 +164,7 @@ if __name__ == '__main__':
                     logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
                                                                   cosine_similarity(question_, pieces_[index])[0][0],
                                                                   result[0]))
-            elif mode == 'lsi_similarity':
+            elif mode == modes[1]:
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
                                :results_to_return]
