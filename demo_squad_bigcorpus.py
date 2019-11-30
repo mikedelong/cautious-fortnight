@@ -134,20 +134,25 @@ if __name__ == '__main__':
             range(0, len(text) - context_limit_, context_limit_)]
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         # todo introduce the mode here and only construct what we need per mode
-        vectorizer = TfidfVectorizer()
-        vectorizer.fit(pieces)
-        pieces_ = vectorizer.transform(pieces)
-        texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in pieces]
+        if mode == modes[0]:
+            vectorizer = TfidfVectorizer()
+            vectorizer.fit(pieces)
+            pieces_ = vectorizer.transform(pieces)
+        elif mode == modes[1]:
+            texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
+                     pieces]
 
-        # remove words that appear only once
-        frequency = Counter([token for text in texts for token in text])
-        texts = [[token for token in text if frequency[token] > 1] for text in texts]
+            # remove words that appear only once
+            frequency = Counter([token for text in texts for token in text])
+            texts = [[token for token in text if frequency[token] > 1] for text in texts]
 
-        dictionary = corpora.Dictionary(texts)
-        logger.info('dictionary size: {}'.format(len(dictionary)))
-        corpus_ = [dictionary.doc2bow(text) for text in texts]
-        lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
-        matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
+            dictionary = corpora.Dictionary(texts)
+            logger.info('dictionary size: {}'.format(len(dictionary)))
+            corpus_ = [dictionary.doc2bow(text) for text in texts]
+            lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
+            matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
+        else:
+            raise ValueError('mode can only be cosine_similarity or lsi_similarity but is [{}]'.format(mode))
 
     logger.info('ready.')
 
