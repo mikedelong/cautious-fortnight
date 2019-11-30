@@ -140,18 +140,16 @@ if __name__ == '__main__':
         elif mode == modes[1]:
             texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
                      pieces]
-
             # remove words that appear only once
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
-
             dictionary = corpora.Dictionary(texts)
             logger.info('dictionary size: {}'.format(len(dictionary)))
             corpus_ = [dictionary.doc2bow(text) for text in texts]
             lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
         else:
-            raise ValueError('mode can only be cosine_similarity or lsi_similarity but is [{}]'.format(mode))
+            raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
 
     logger.info('ready.')
 
@@ -176,7 +174,7 @@ if __name__ == '__main__':
                     result = model([pieces[similarity[0]]], [question])
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
             else:
-                raise ValueError('mode can only be cosine_similarity or lsi_similarity but is [{}]'.format(mode))
+                raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
         else:
             done = True
 
