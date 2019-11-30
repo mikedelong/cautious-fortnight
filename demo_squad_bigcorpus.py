@@ -170,9 +170,12 @@ if __name__ == '__main__':
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
                                :results_to_return]
-                for similarity in similarities:
-                    result = model([pieces[similarity[0]]], [question])
-                    logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
+                if similarities[0][1] == 0.0:
+                    logging.info('I don\'t know anything about that')
+                else:
+                    for similarity in similarities:
+                        result = model([pieces[similarity[0]]], [question])
+                        logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
             else:
                 raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
         else:
