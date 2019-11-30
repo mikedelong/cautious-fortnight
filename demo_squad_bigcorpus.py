@@ -106,6 +106,7 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
+miss_responses = {'No clue.'}
 input_file = './data/35830.txt'
 results_to_return = 7
 lsi_topic_count = 300
@@ -171,7 +172,7 @@ if __name__ == '__main__':
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
                                :results_to_return]
                 if similarities[0][1] == 0.0:
-                    logging.info('I don\'t know anything about that')
+                    logging.info('Q: {} : lsi: {} A: {}'.format(question, 0.0, 'I don\'t know anything about that'))
                 else:
                     for similarity in similarities:
                         result = model([pieces[similarity[0]]], [question])
