@@ -107,7 +107,7 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
-miss_responses = ['I don\'t know anything about that', 'No clue.']
+miss_responses = ['I don\'t know anything about that.', 'No clue.']
 input_file = './data/35830.txt'
 results_to_return = 7
 lsi_topic_count = 300
