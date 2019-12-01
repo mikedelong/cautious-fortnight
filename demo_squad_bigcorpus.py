@@ -165,6 +165,7 @@ if __name__ == '__main__':
                 related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
                 for index in related_product_indices:
                     result = model([pieces[index]], [question])
+                    # todo add a cutout if the cosine is zero
                     logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
                                                                   cosine_similarity(question_, pieces_[index])[0][0],
                                                                   result[0]))
