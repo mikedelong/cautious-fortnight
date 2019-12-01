@@ -107,12 +107,12 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
-miss_responses = ['I don\'t know anything about that.', 'No clue.', 'Reply hazy. Please try again.']
 input_file = './data/35830.txt'
-results_to_return = 7
 lsi_topic_count = 300
+miss_responses = ['I don\'t know anything about that.', 'No clue.', 'Reply hazy. Please try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
 mode = modes[0]
+results_to_return = 7
 similarity_feature_count = 300
 text_start = 2124
 text_stop = 524200
