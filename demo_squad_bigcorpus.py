@@ -169,7 +169,7 @@ if __name__ == '__main__':
                         result = model([pieces[index]], [question])
                         logger.info('Q: {} cos: {:5.3f} A: {}'.format(question, current_, result[0]))
                 else:
-                    logging.info('Q: {} : cos: {} A: {}'.format(question, 0.0, choice(miss_responses)))
+                    logging.info('Q: {} : cos: {:5.3f} A: {}'.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[1]:
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
