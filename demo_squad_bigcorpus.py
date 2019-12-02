@@ -163,12 +163,16 @@ if __name__ == '__main__':
                 question_ = vectorizer.transform([question])
                 cosine_similarities = cosine_similarity(question_, pieces_).flatten()
                 related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
-                for index in related_product_indices:
-                    result = model([pieces[index]], [question])
-                    # todo add a cutout if the cosine is zero
-                    logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
-                                                                  cosine_similarity(question_, pieces_[index])[0][0],
-                                                                  result[0]))
+                if cosine_similarity(question_, pieces_[related_product_indices[0]])[0][0] == 0.0:
+                    logging.info('Q: {} : cos: {} A: {}'.format(question, 0.0, choice(miss_responses)))
+                else:
+                    for index in related_product_indices:
+                        result = model([pieces[index]], [question])
+                        # todo add a cutout if the cosine is zero
+                        logger.info('Q: {} cos: {:5.3f} A: {}'.format(question,
+                                                                      cosine_similarity(question_,
+                                                                                        pieces_[index])[0][0],
+                                                                      result[0]))
             elif mode == modes[1]:
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
