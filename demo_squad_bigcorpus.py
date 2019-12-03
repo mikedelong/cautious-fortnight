@@ -109,7 +109,7 @@ configuration = {
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 300
-miss_responses = ['I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
+miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
 mode = modes[1]
 results_to_return = 7
@@ -134,6 +134,7 @@ if __name__ == '__main__':
         pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)] + [
             text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
             range(0, len(text) - context_limit_, context_limit_)]
+        lower_pieces = [piece.lower() for piece in pieces]
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         if mode == modes[0]:
             vectorizer = TfidfVectorizer()
