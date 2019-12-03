@@ -111,7 +111,7 @@ input_file = './data/35830.txt'
 lsi_topic_count = 300
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
-mode = modes[1]
+mode = modes[0]
 results_to_return = 7
 similarity_feature_count = 300
 text_start = 2124
@@ -138,8 +138,8 @@ if __name__ == '__main__':
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         if mode == modes[0]:
             vectorizer = TfidfVectorizer()
-            vectorizer.fit(pieces)
-            pieces_ = vectorizer.transform(pieces)
+            vectorizer.fit(lower_pieces)
+            pieces_ = vectorizer.transform(lower_pieces)
         elif mode == modes[1]:
             texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
                      pieces]
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         question = input('?: ')
         if question.lower() not in exit_questions:
             if mode == modes[0]:
-                question_ = vectorizer.transform([question])
+                question_ = vectorizer.transform([question.lower()])
                 cosine_similarities = cosine_similarity(question_, pieces_).flatten()
                 related_product_indices = cosine_similarities.argsort()[:-results_to_return - 1:-1]
                 cosine_format_ = 'Q: {} cos: {:5.3f} A: {}'
