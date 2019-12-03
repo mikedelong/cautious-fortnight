@@ -111,7 +111,7 @@ input_file = './data/35830.txt'
 lsi_topic_count = 300
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
-mode = modes[0]
+mode = modes[1]
 results_to_return = 7
 similarity_feature_count = 300
 text_start = 2124
@@ -178,7 +178,7 @@ if __name__ == '__main__':
                                :results_to_return]
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
-                        result = model([pieces[similarity[0]]], [question])
+                        result = model([pieces[similarity[0]]], [question.lower()])
                         logging.info('Q: {} : lsi: {} A: {}'.format(question, similarity, result[0]))
                 else:
                     logging.info('Q: {} : lsi: {} A: {}'.format(question, 0.0, choice(miss_responses)))
