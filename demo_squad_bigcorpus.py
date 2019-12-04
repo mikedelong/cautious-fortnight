@@ -140,6 +140,7 @@ if __name__ == '__main__':
             vectorizer = TfidfVectorizer().fit(lower_pieces)
             pieces_ = vectorizer.transform(lower_pieces)
         elif mode == modes[1]:
+            # todo clean up tokens -> clean up topics
             texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
                      pieces]
             # remove words that appear only once
