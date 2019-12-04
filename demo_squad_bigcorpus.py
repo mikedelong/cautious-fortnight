@@ -109,12 +109,12 @@ configuration = {
 }
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
-lsi_topic_count = 300
+lsi_topic_count = 100
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
 mode = modes[1]
 results_to_return = 7
-similarity_feature_count = 300
+similarity_feature_count = 100
 text_start = 2124
 text_stop = 524200
 
@@ -150,6 +150,7 @@ if __name__ == '__main__':
             logger.info('dictionary size: {}'.format(len(dictionary)))
             corpus_ = [dictionary.doc2bow(text) for text in texts]
             lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
+            lsi.show_topics(num_topics=lsi_topic_count, num_words=10, log=True)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
         else:
             raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
