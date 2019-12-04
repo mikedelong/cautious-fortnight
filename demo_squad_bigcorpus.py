@@ -111,7 +111,7 @@ input_file = './data/35830.txt'
 lsi_topic_count = 300
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
-mode = modes[0]
+mode = modes[1]
 results_to_return = 7
 similarity_feature_count = 300
 text_start = 2124
@@ -124,7 +124,6 @@ if __name__ == '__main__':
 
     logger.info('started')
 
-    model = build_model(configuration, download=True)
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
         text = text.split('\n')
@@ -153,6 +152,9 @@ if __name__ == '__main__':
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
         else:
             raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
+
+    logger.info('building DeepPavlov model from configuration')
+    model = build_model(configuration, download=True)
 
     logger.info('ready.')
 
