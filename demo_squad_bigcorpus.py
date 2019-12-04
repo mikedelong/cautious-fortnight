@@ -7,6 +7,7 @@ from deeppavlov import build_model
 from gensim import corpora
 from gensim import models
 from gensim.similarities.docsim import MatrixSimilarity
+from gensim.summarization.textcleaner import tokenize_by_word
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -140,8 +141,12 @@ if __name__ == '__main__':
             pieces_ = vectorizer.transform(lower_pieces)
         elif mode == modes[1]:
             # todo clean up tokens -> clean up topics
-            texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
-                     pieces]
+            # texts = [[word for word in document.lower().split() if word not in ENGLISH_STOP_WORDS] for document in
+            #          pieces]
+
+            texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
+                     document in pieces]
+
             # remove words that appear only once
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
