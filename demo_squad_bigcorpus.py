@@ -163,6 +163,10 @@ if __name__ == '__main__':
     done = False
     while not done:
         question = input('?: ')
+        # preprocess the question to remove trailing punctuation and trim space
+        question = question.strip()
+        while question.endswith('?'):
+            question = question[:-1]
         if question.lower() not in exit_questions:
             if mode == modes[0]:
                 question_ = vectorizer.transform([question.lower()])
