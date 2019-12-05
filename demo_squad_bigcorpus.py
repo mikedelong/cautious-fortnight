@@ -7,6 +7,7 @@ from deeppavlov import build_model
 from gensim import corpora
 from gensim import models
 from gensim.similarities.docsim import MatrixSimilarity
+from gensim.summarization.textcleaner import split_sentences
 from gensim.summarization.textcleaner import tokenize_by_word
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -113,7 +114,11 @@ lsi_topic_count = 100
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
 mode = modes[1]
+# pieces_strategies = ['character', 'sentence',]
+pieces_strategies = ['character', ]
+pieces_strategy = pieces_strategies[0]
 results_to_return = 7
+sentences_per_chunk = 4
 similarity_feature_count = 100
 text_start = 2124
 text_stop = 524200
@@ -131,9 +136,15 @@ if __name__ == '__main__':
         text = text[text_start:text_stop]
         text = ' '.join(text)
         logger.info('text length: {}'.format(len(text)))
-        pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)] + [
-            text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
-            range(0, len(text) - context_limit_, context_limit_)]
+        sentences = split_sentences(text)
+        if pieces_strategy == pieces_strategies[0]:
+            pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)] + [
+                text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
+                range(0, len(text) - context_limit_, context_limit_)]
+        else:
+            raise ValueError(
+                'pieces strategy can only be one of {} but is [{}]'.format(pieces_strategies, pieces_strategy))
+
         lower_pieces = [piece.lower() for piece in pieces]
         logger.info('context size: {} pieces: {}'.format(context_limit_, len(pieces)))
         if mode == modes[0]:
