@@ -153,7 +153,7 @@ if __name__ == '__main__':
             lsi.show_topics(num_topics=lsi_topic_count, num_words=10, log=True)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
         else:
-            raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
+            raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
     logger.info('building DeepPavlov model from configuration')
     model = build_model(configuration, download=True)
@@ -193,7 +193,7 @@ if __name__ == '__main__':
                 else:
                     logging.info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             else:
-                raise ValueError('mode can only be {} but is [{}]'.format(modes, mode))
+                raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
         else:
             done = True
 
