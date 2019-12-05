@@ -167,6 +167,7 @@ if __name__ == '__main__':
         question = question.strip()
         while question.endswith('?'):
             question = question[:-1]
+        question = question.strip()
         if question.lower() not in exit_questions:
             if mode == modes[0]:
                 question_ = vectorizer.transform([question.lower()])
