@@ -114,11 +114,10 @@ lsi_topic_count = 100
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
 modes = ['cosine_similarity', 'lsi_similarity', ]
 mode = modes[1]
-# pieces_strategies = ['character', 'sentence',]
-pieces_strategies = ['character', ]
-pieces_strategy = pieces_strategies[0]
+pieces_strategies = ['character', 'sentence', ]
+pieces_strategy = pieces_strategies[1]
 results_to_return = 7
-sentences_per_chunk = 4
+sentences_per_chunk = 100
 similarity_feature_count = 100
 text_start = 2124
 text_stop = 524200
@@ -141,6 +140,9 @@ if __name__ == '__main__':
             pieces = [text[i:i + context_limit_] for i in range(0, len(text), context_limit_)] + [
                 text[i + context_limit_ // 2: i + 3 * context_limit_ // 2] for i in
                 range(0, len(text) - context_limit_, context_limit_)]
+        elif pieces_strategy == pieces_strategies[1]:
+            pieces = [' '.join(sentences[index:index + sentences_per_chunk]) for index in
+                      range(0, len(sentences), sentences_per_chunk)]
         else:
             raise ValueError(
                 'pieces strategy can only be one of {} but is [{}]'.format(pieces_strategies, pieces_strategy))
