@@ -1,3 +1,4 @@
+# modified from https://radimrehurek.com/gensim/models/doc2vec.html
 import logging
 from time import time
 
