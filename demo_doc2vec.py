@@ -19,5 +19,7 @@ if __name__ == '__main__':
     file_name = get_tmpfile('demo_doc2vec_model.gensim')
     model.save(file_name)
     model = Doc2Vec.load(file_name)
+    # only do this if we're done training (i.e. we are not doing incremental training)
+    model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
