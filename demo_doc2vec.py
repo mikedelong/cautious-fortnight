@@ -6,6 +6,7 @@ from gensim.models.doc2vec import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
 from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
+from sklearn.metrics.pairwise import cosine_similarity
 
 if __name__ == '__main__':
     time_start = time()
@@ -23,6 +24,8 @@ if __name__ == '__main__':
     # only do this if we're done training (i.e. we are not doing incremental training)
     model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
-    logger.info(model.infer_vector('system response'.split()))
-
+    logger.info(cosine_similarity(
+        model.infer_vector('system response'.split()).reshape(1, -1),
+        model.infer_vector('stimulus response'.split()).reshape(1, -1),
+    ))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
