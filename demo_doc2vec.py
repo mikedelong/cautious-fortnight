@@ -23,4 +23,7 @@ if __name__ == '__main__':
     # only do this if we're done training (i.e. we are not doing incremental training)
     model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
+    vector = model.infer_vector(['system', 'response'])
+    logger.info(vector)
+
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
