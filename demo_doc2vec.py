@@ -1,5 +1,7 @@
 # modified from https://radimrehurek.com/gensim/models/doc2vec.html
 import logging
+from math import acos
+from math import pi
 from time import time
 
 from gensim.models.doc2vec import Doc2Vec
@@ -24,7 +26,9 @@ if __name__ == '__main__':
     # only do this if we're done training (i.e. we are not doing incremental training)
     model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
-    simiarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
-                                  model.infer_vector('stimulus response'.split()).reshape(1, -1), )
+    similarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
+                                   model.infer_vector('stimulus response'.split()).reshape(1, -1), )
+
+    logger.info(acos(similarity) / pi)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
