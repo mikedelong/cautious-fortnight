@@ -30,6 +30,6 @@ if __name__ == '__main__':
     similarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
                                    model.infer_vector('stimulus response'.split()).reshape(1, -1), )
 
-    logger.info(1.0 - two_over_pi * acos(similarity))
+    logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
