@@ -10,10 +10,10 @@ from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
-do_build_model = False
+do_build_model = True
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
 fruit_flies = 'Fruit flies like an apple.'
-time_files = 'Time flies like an arrow.'
+time_flies = 'Time flies like an arrow.'
 two_over_pi = 2.0 / pi
 
 if __name__ == '__main__':
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     if do_build_model:
         documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
-        model = Doc2Vec(documents, vector_size=10, window=2, min_count=1, workers=4)
+        model = Doc2Vec(documents, vector_size=2, window=2, min_count=1, workers=4)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
@@ -33,7 +33,9 @@ if __name__ == '__main__':
     model = Doc2Vec.load(file_name)
 
     fruit_flies_ = model.infer_vector(fruit_flies.split())
-    time_flies_ = model.infer_vector(time_files.split())
+    logger.info(fruit_flies_)
+    time_flies_ = model.infer_vector(time_flies.split())
+    logger.info(time_flies_)
     similarity = cosine_similarity(fruit_flies_.reshape(1, -1), time_flies_.reshape(1, -1), )
 
     logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
