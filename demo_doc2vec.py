@@ -12,7 +12,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
+fruit_flies = 'Fruit flies like an apple.'
+time_files = 'Time flies like an arrow.'
 two_over_pi = 2.0 / pi
+
 if __name__ == '__main__':
     time_start = time()
     logger = logging.getLogger(__name__)
@@ -29,8 +32,6 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-    fruit_flies = 'Fruit flies like an apple.'
-    time_files = 'Time flies like an arrow.'
 
     similarity = cosine_similarity(model.infer_vector(fruit_flies.split()).reshape(1, -1),
                                    model.infer_vector(time_files.split()).reshape(1, -1), )
