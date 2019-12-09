@@ -29,8 +29,11 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-    similarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
-                                   model.infer_vector('stimulus response'.split()).reshape(1, -1), )
+    fruit_flies = 'Fruit flies like an apple.'
+    time_files = 'Time flies like an arrow.'
+
+    similarity = cosine_similarity(model.infer_vector(fruit_flies.split()).reshape(1, -1),
+                                   model.infer_vector(time_files.split()).reshape(1, -1), )
 
     logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
 
