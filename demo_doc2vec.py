@@ -10,6 +10,8 @@ from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
+do_build_model = False
+file_name = get_tmpfile('demo_doc2vec_model.gensim')
 two_over_pi = 2.0 / pi
 if __name__ == '__main__':
     time_start = time()
@@ -18,14 +20,14 @@ if __name__ == '__main__':
 
     logger.info('started')
 
-    documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
-    model = Doc2Vec(documents, vector_size=5, window=2, min_count=1, workers=4)
-    # note this goes in our temporary file directory
-    file_name = get_tmpfile('demo_doc2vec_model.gensim')
-    model.save(file_name)
+    if do_build_model:
+        documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
+        model = Doc2Vec(documents, vector_size=5, window=2, min_count=1, workers=4)
+        # note this goes in our temporary file directory
+        model.save(file_name)
+        # only do this if we're done training (i.e. we are not doing incremental training)
+        model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
-    # only do this if we're done training (i.e. we are not doing incremental training)
-    model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
     similarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
                                    model.infer_vector('stimulus response'.split()).reshape(1, -1), )
