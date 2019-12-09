@@ -10,6 +10,7 @@ from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
+two_over_pi = 2.0 / pi
 if __name__ == '__main__':
     time_start = time()
     logger = logging.getLogger(__name__)
@@ -29,6 +30,6 @@ if __name__ == '__main__':
     similarity = cosine_similarity(model.infer_vector('system response'.split()).reshape(1, -1),
                                    model.infer_vector('stimulus response'.split()).reshape(1, -1), )
 
-    logger.info(acos(similarity) / pi)
+    logger.info(1.0 - two_over_pi * acos(similarity))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
