@@ -25,16 +25,16 @@ if __name__ == '__main__':
 
     if do_build_model:
         documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
-        model = Doc2Vec(documents, vector_size=5, window=2, min_count=1, workers=4)
+        model = Doc2Vec(documents, vector_size=10, window=2, min_count=1, workers=4)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-
-    similarity = cosine_similarity(model.infer_vector(fruit_flies.split()).reshape(1, -1),
-                                   model.infer_vector(time_files.split()).reshape(1, -1), )
+    fruit_flies_ = model.infer_vector(fruit_flies.split())
+    time_flies_ = model.infer_vector(time_files.split())
+    similarity = cosine_similarity(fruit_flies_.reshape(1, -1), time_flies_.reshape(1, -1), )
 
     logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
 
