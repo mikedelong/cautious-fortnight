@@ -10,10 +10,10 @@ from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
-do_build_model = True
+do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
-fruit_flies = 'Fruit flies like an apple.'
-time_flies = 'Time flies like an arrow.'
+fruit_flies = 'human interface time'  # 'Fruit flies like an apple.'
+time_flies = 'computer user survey'  # 'Time flies like an arrow.'
 two_over_pi = 2.0 / pi
 
 if __name__ == '__main__':
@@ -25,7 +25,9 @@ if __name__ == '__main__':
 
     if do_build_model:
         documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
-        model = Doc2Vec(documents, vector_size=2, window=2, min_count=1, workers=4)
+        for document in documents:
+            logger.info(document)
+        model = Doc2Vec(documents, vector_size=5, window=3, min_count=1, workers=4, seed=1)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
@@ -39,5 +41,8 @@ if __name__ == '__main__':
     similarity = cosine_similarity(fruit_flies_.reshape(1, -1), time_flies_.reshape(1, -1), )
 
     logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
+
+    for count in range(10):
+        logger.info('{} {}'.format(count, model.infer_vector(fruit_flies.split())))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
