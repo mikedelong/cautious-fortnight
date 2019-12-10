@@ -6,7 +6,6 @@ from time import time
 
 from gensim.models.doc2vec import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
-from gensim.test.utils import common_texts
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -16,6 +15,18 @@ fruit_flies = 'human interface time'  # 'Fruit flies like an apple.'
 time_flies = 'computer user survey'  # 'Time flies like an arrow.'
 two_over_pi = 2.0 / pi
 
+raw_documents = [
+    'human interface computer',
+    'survey user computer system response time',
+    'eps user interface system',
+    'system human system eps',
+    'user response time',
+    'trees',
+    'graph trees',
+    'graph minors trees',
+    'graph minors survey'
+]
+
 if __name__ == '__main__':
     time_start = time()
     logger = logging.getLogger(__name__)
@@ -24,7 +35,7 @@ if __name__ == '__main__':
     logger.info('started')
 
     if do_build_model:
-        documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
+        documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(raw_documents)]
         for document in documents:
             logger.info(document)
         model = Doc2Vec(documents, vector_size=5, window=3, min_count=1, workers=4, seed=1)
