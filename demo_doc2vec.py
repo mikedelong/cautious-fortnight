@@ -9,23 +9,23 @@ from gensim.models.doc2vec import TaggedDocument
 from gensim.test.utils import get_tmpfile
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+def get_angular_similarity(arg_model, arg_left, arg_right):
+    left_ = arg_model.infer_vector(arg_left.split())
+    right_ = arg_model.infer_vector(arg_right.split())
+    similarity_ = cosine_similarity(left_.reshape(1, -1), right_.reshape(1, -1), )
+    return 1.0 - (2.0 / pi) * acos(similarity_)
+
+
 do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
-fruit_flies = 'human interface time'  # 'Fruit flies like an apple.'
-time_flies = 'computer user survey'  # 'Time flies like an arrow.'
+t0 = 'human interface time'  # 'Fruit flies like an apple.'
+t1 = 'computer user survey'  # 'Time flies like an arrow.'
 two_over_pi = 2.0 / pi
 
-raw_documents = [
-    'human interface computer',
-    'survey user computer system response time',
-    'eps user interface system',
-    'system human system eps',
-    'user response time',
-    'trees',
-    'graph trees',
-    'graph minors trees',
-    'graph minors survey'
-]
+raw_documents = ['human interface computer', 'survey user computer system response time', 'eps user interface system',
+                 'system human system eps', 'user response time', 'trees', 'graph trees', 'graph minors trees',
+                 'graph minors survey']
 
 if __name__ == '__main__':
     time_start = time()
@@ -45,15 +45,7 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-    fruit_flies_ = model.infer_vector(fruit_flies.split())
-    logger.info(fruit_flies_)
-    time_flies_ = model.infer_vector(time_flies.split())
-    logger.info(time_flies_)
-    similarity = cosine_similarity(fruit_flies_.reshape(1, -1), time_flies_.reshape(1, -1), )
-
-    logger.info('angular similarity: {:5.3f}'.format(1.0 - two_over_pi * acos(similarity)))
-
     for count in range(10):
-        logger.info('{} {}'.format(count, model.infer_vector(fruit_flies.split())))
+        logger.info('{} {:5.4f}'.format(count, get_angular_similarity(model, t0, t1)))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
