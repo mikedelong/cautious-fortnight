@@ -11,8 +11,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 def get_angular_similarity(arg_model, arg_left, arg_right):
-    left_ = arg_model.infer_vector(arg_left.split())
-    right_ = arg_model.infer_vector(arg_right.split())
+    epochs_ = 100
+    left_ = arg_model.infer_vector(arg_left.split(), epochs=epochs_)
+    right_ = arg_model.infer_vector(arg_right.split(), epochs=epochs_)
     similarity_ = cosine_similarity(left_.reshape(1, -1), right_.reshape(1, -1), )
     return 1.0 - (2.0 / pi) * acos(similarity_)
 
@@ -46,7 +47,7 @@ if __name__ == '__main__':
         documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
         for document in documents:
             logger.info(document)
-        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1)
+        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, negative=0)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
