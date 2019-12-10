@@ -19,13 +19,21 @@ def get_angular_similarity(arg_model, arg_left, arg_right):
 
 do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
-t0 = 'human interface time'  # 'Fruit flies like an apple.'
-t1 = 'computer user survey'  # 'Time flies like an arrow.'
+t0 = 'human interface time'  #
+t1 = 'computer user survey'  #
 two_over_pi = 2.0 / pi
 
 raw_documents = ['human interface computer', 'survey user computer system response time', 'eps user interface system',
                  'system human system eps', 'user response time', 'trees', 'graph trees', 'graph minors trees',
                  'graph minors survey']
+
+other_raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
+                       'you might find both an apple and a banana in the produce section of the grocery store',
+                       'i do this all the time', 'time passes', 'i love her all the time',
+                       'i would like to help you if i can', 'close your mouth you will draw flies',
+                       'you will catch more flies with honey']
+t2 = 'Fruit flies like an apple.'.lower().replace('.', '')
+t3 = 'Time flies like an arrow.'.lower().replace('.', '')
 
 if __name__ == '__main__':
     time_start = time()
@@ -35,10 +43,10 @@ if __name__ == '__main__':
     logger.info('started')
 
     if do_build_model:
-        documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(raw_documents)]
+        documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
         for document in documents:
             logger.info(document)
-        model = Doc2Vec(documents, vector_size=5, window=3, min_count=1, workers=4, seed=1)
+        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
@@ -46,6 +54,6 @@ if __name__ == '__main__':
     model = Doc2Vec.load(file_name)
 
     for count in range(10):
-        logger.info('{} {:5.4f}'.format(count, get_angular_similarity(model, t0, t1)))
+        logger.info('{} {:5.4f}'.format(count, get_angular_similarity(model, t2, t3)))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
