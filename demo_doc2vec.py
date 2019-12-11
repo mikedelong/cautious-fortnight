@@ -46,7 +46,9 @@ if __name__ == '__main__':
         documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
         for document in documents:
             logger.info(document)
-        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, negative=0, epochs=5000)
+        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1,
+                        # negative=0,
+                        epochs=5000)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
