@@ -15,14 +15,13 @@ def get_angular_similarity(arg_model, arg_left, arg_right):
     left_ = arg_model.infer_vector(arg_left.split(), epochs=epochs_)
     right_ = arg_model.infer_vector(arg_right.split(), epochs=epochs_)
     similarity_ = cosine_similarity(left_.reshape(1, -1), right_.reshape(1, -1), )
-    return 1.0 - (2.0 / pi) * acos(similarity_)
+    return 1.0 - acos(similarity_) / pi
 
 
 do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
 t0 = 'human interface time'  #
 t1 = 'computer user survey'  #
-two_over_pi = 2.0 / pi
 
 raw_documents = ['human interface computer', 'survey user computer system response time', 'eps user interface system',
                  'system human system eps', 'user response time', 'trees', 'graph trees', 'graph minors trees',
@@ -47,7 +46,7 @@ if __name__ == '__main__':
         documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
         for document in documents:
             logger.info(document)
-        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, negative=0, epochs=500)
+        model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, negative=0, epochs=5000)
         # note this goes in our temporary file directory
         model.save(file_name)
         # only do this if we're done training (i.e. we are not doing incremental training)
