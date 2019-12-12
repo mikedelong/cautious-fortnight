@@ -29,9 +29,11 @@ raw_documents = ['human interface computer', 'survey user computer system respon
                  'graph minors survey']
 
 other_raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
+                       'the apple never falls far from the tree', 'when life gives you an apple make sauce',
                        'you might find both an apple and a banana in the produce section of the grocery store',
                        'i do this all the time', 'time passes', 'i love her all the time',
                        'please do not waste my time', 'time is money',
+                       'whenever he can he flies his plane', 'whenever he can he flies',
                        'i would like to help you if i can', 'close your mouth you will draw flies',
                        'you will catch more flies with honey', 'the outfielder caught pop flies',
                        'fly is singular, flies is plural', 'i don\'t know why she swallowed those flies']
