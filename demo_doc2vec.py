@@ -7,6 +7,7 @@ from time import time
 from gensim.models.doc2vec import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
 from gensim.test.utils import get_tmpfile
+from numpy import mean
 from sklearn.metrics.pairwise import cosine_similarity
 
 
@@ -56,7 +57,10 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
+    similarities = list()
     for count in range(10):
-        logger.info('{} {:5.4f}'.format(count, get_angular_similarity(model, t2, t3)))
+        current = get_angular_similarity(model, t2, t3)
+        similarities.append(current)
+        logger.info('{} {:5.4f} {:5.4f}'.format(count, current, mean(similarities)))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
