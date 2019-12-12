@@ -7,7 +7,9 @@ from time import time
 from gensim.models.doc2vec import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
 from gensim.test.utils import get_tmpfile
+from numpy import max
 from numpy import mean
+from numpy import min
 from sklearn.metrics.pairwise import cosine_similarity
 
 
@@ -63,6 +65,7 @@ if __name__ == '__main__':
     for count in range(10):
         current = get_angular_similarity(model, t2, t3)
         similarities.append(current)
-        logger.info('{} {:5.4f} {:5.4f}'.format(count, current, mean(similarities)))
+        logger.info('{} {:5.4f} {:5.4f} {:5.4f} {:5.4f}'.format(count, current, min(similarities),
+                                                                mean(similarities), max(similarities)))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
