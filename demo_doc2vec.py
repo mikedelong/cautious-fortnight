@@ -30,8 +30,10 @@ raw_documents = ['human interface computer', 'survey user computer system respon
 other_raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
                        'you might find both an apple and a banana in the produce section of the grocery store',
                        'i do this all the time', 'time passes', 'i love her all the time',
+                       'please do not waste my time', 'time is money',
                        'i would like to help you if i can', 'close your mouth you will draw flies',
-                       'you will catch more flies with honey']
+                       'you will catch more flies with honey', 'the outfielder caught pop flies',
+                       'fly is singular, flies is plural', 'i don\'t know why she swallowed those flies']
 t2 = 'Fruit flies like an apple.'.lower().replace('.', '')
 t3 = 'Time flies like an arrow.'.lower().replace('.', '')
 
@@ -47,7 +49,6 @@ if __name__ == '__main__':
         for document in documents:
             logger.info(document)
         model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1,
-                        # negative=0,
                         epochs=5000)
         # note this goes in our temporary file directory
         model.save(file_name)
