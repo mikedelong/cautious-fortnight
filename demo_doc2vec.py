@@ -26,19 +26,20 @@ file_name = get_tmpfile('demo_doc2vec_model.gensim')
 
 scenario = 0
 
-raw_documents = ['human interface computer', 'survey user computer system response time', 'eps user interface system',
-                 'system human system eps', 'user response time', 'trees', 'graph trees', 'graph minors trees',
-                 'graph minors survey']
+computer_documents = ['human interface computer', 'survey user computer system response time',
+                      'eps user interface system', 'system human system eps', 'user response time', 'trees',
+                      'graph trees', 'graph minors trees', 'graph minors survey']
 
-other_raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
-                       'the apple never falls far from the tree', 'when life gives you an apple make sauce',
-                       'you might find both an apple and a banana in the produce section of the grocery store',
-                       'i do this all the time', 'time passes', 'i love her all the time',
-                       'please do not waste my time', 'time is money',
-                       'whenever he can he flies his plane', 'whenever he can he flies',
-                       'i would like to help you if i can', 'close your mouth you will draw flies',
-                       'you will catch more flies with honey', 'the outfielder caught pop flies',
-                       'fly is singular, flies is plural', 'i don\'t know why she swallowed those flies']
+flies_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
+                   'the apple never falls far from the tree', 'when life gives you an apple make sauce',
+                   'you might find both an apple and a banana in the produce section of the grocery store',
+                   'i do this all the time', 'time passes', 'i love her all the time',
+                   'please do not waste my time', 'time is money', 'whenever he can he flies his plane',
+                   'whenever he can he flies', 'i would like to help you if i can',
+                   'close your mouth you will draw flies', 'you will catch more flies with honey',
+                   'the outfielder caught pop flies', 'fly is singular, flies is plural',
+                   'i don\'t know why she swallowed those flies']
+
 t0 = 'human interface time'
 t1 = 'computer user survey'
 t2 = 'Fruit flies like an apple.'.lower().replace('.', '')
@@ -52,14 +53,14 @@ if __name__ == '__main__':
     logger.info('started')
 
     if scenario == 0:
-        pass
+        raw_documents = computer_documents
     elif scenario == 1:
-        pass
+        raw_documents = flies_documents
     else:
         raise ValueError('scenario must be either 0 or 1 but is instead {}. Quitting.'.format(scenario))
 
     if do_build_model:
-        documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
+        documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(raw_documents)]
         for document in documents:
             logger.info(document)
         model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1,
