@@ -23,8 +23,8 @@ def get_angular_similarity(arg_model, arg_left, arg_right):
 
 do_build_model = False
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
-t0 = 'human interface time'  #
-t1 = 'computer user survey'  #
+
+scenario = 0
 
 raw_documents = ['human interface computer', 'survey user computer system response time', 'eps user interface system',
                  'system human system eps', 'user response time', 'trees', 'graph trees', 'graph minors trees',
@@ -39,6 +39,8 @@ other_raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fru
                        'i would like to help you if i can', 'close your mouth you will draw flies',
                        'you will catch more flies with honey', 'the outfielder caught pop flies',
                        'fly is singular, flies is plural', 'i don\'t know why she swallowed those flies']
+t0 = 'human interface time'
+t1 = 'computer user survey'
 t2 = 'Fruit flies like an apple.'.lower().replace('.', '')
 t3 = 'Time flies like an arrow.'.lower().replace('.', '')
 
