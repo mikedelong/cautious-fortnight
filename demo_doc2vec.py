@@ -26,25 +26,6 @@ file_name = get_tmpfile('demo_doc2vec_model.gensim')
 
 scenario = 0
 
-computer_documents = ['human interface computer', 'survey user computer system response time',
-                      'eps user interface system', 'system human system eps', 'user response time', 'trees',
-                      'graph trees', 'graph minors trees', 'graph minors survey']
-
-flies_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
-                   'the apple never falls far from the tree', 'when life gives you an apple make sauce',
-                   'you might find both an apple and a banana in the produce section of the grocery store',
-                   'i do this all the time', 'time passes', 'i love her all the time',
-                   'please do not waste my time', 'time is money', 'whenever he can he flies his plane',
-                   'whenever he can he flies', 'i would like to help you if i can',
-                   'close your mouth you will draw flies', 'you will catch more flies with honey',
-                   'the outfielder caught pop flies', 'fly is singular, flies is plural',
-                   'i don\'t know why she swallowed those flies']
-
-t0 = 'human interface time'
-t1 = 'computer user survey'
-t2 = 'Fruit flies like an apple.'.lower().replace('.', '')
-t3 = 'Time flies like an arrow.'.lower().replace('.', '')
-
 if __name__ == '__main__':
     time_start = time()
     logger = logging.getLogger(__name__)
@@ -53,9 +34,25 @@ if __name__ == '__main__':
     logger.info('started')
 
     if scenario == 0:
-        raw_documents = computer_documents
+        raw_documents = ['human interface computer', 'survey user computer system response time',
+                         'eps user interface system', 'system human system eps', 'user response time', 'trees',
+                         'graph trees', 'graph minors trees', 'graph minors survey']
+        sentence = ['human interface time', 'computer user survey']
     elif scenario == 1:
-        raw_documents = flies_documents
+        raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
+                         'the apple never falls far from the tree', 'when life gives you an apple make sauce',
+                         'you might find both an apple and a banana in the produce section of the grocery store',
+                         'i do this all the time', 'time passes', 'i love her all the time',
+                         'please do not waste my time', 'time is money', 'whenever he can he flies his plane',
+                         'whenever he can he flies', 'i would like to help you if i can',
+                         'close your mouth you will draw flies', 'you will catch more flies with honey',
+                         'the outfielder caught pop flies', 'fly is singular, flies is plural',
+                         'i don\'t know why she swallowed those flies']
+
+        # todo factor out the processing code
+        sentence = ['Fruit flies like an apple.'.lower().replace('.', ''),
+                    'Time flies like an arrow.'.lower().replace('.', '')]
+
     else:
         raise ValueError('scenario must be either 0 or 1 but is instead {}. Quitting.'.format(scenario))
 
@@ -71,7 +68,7 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-    similarities = [get_angular_similarity(model, t2, t3) for _ in range(10)]
+    similarities = [get_angular_similarity(model, sentence[0], sentence[1]) for _ in range(10)]
     for index, current in enumerate(similarities):
         logger.info('{} {:5.4f} {:5.4f} {:5.4f} {:5.4f}'.format(index, current, min(similarities[:index + 1]),
                                                                 mean(similarities[:index + 1]),
