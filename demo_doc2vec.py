@@ -61,11 +61,10 @@ if __name__ == '__main__':
         model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
     model = Doc2Vec.load(file_name)
 
-    similarities = list()
-    for count in range(10):
-        current = get_angular_similarity(model, t2, t3)
-        similarities.append(current)
-        logger.info('{} {:5.4f} {:5.4f} {:5.4f} {:5.4f}'.format(count, current, min(similarities),
-                                                                mean(similarities), max(similarities)))
+    similarities = [get_angular_similarity(model, t2, t3) for _ in range(10)]
+    for index, current in enumerate(similarities):
+        logger.info('{} {:5.4f} {:5.4f} {:5.4f} {:5.4f}'.format(index, current, min(similarities[:index + 1]),
+                                                                mean(similarities[:index + 1]),
+                                                                max(similarities[:index + 1])))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
