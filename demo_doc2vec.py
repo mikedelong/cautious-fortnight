@@ -1,5 +1,7 @@
 # modified from https://radimrehurek.com/gensim/models/doc2vec.html
-import logging
+from logging import INFO
+from logging import basicConfig
+from logging import getLogger
 from math import acos
 from math import pi
 from time import time
@@ -23,13 +25,12 @@ def get_angular_similarity(arg_model, arg_left, arg_right):
 
 do_build_model = True
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
-
 scenario = 0
 
 if __name__ == '__main__':
     time_start = time()
-    logger = logging.getLogger(__name__)
-    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+    logger = getLogger(__name__)
+    basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
 
     logger.info('started')
 
