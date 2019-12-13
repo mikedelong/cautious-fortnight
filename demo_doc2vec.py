@@ -21,7 +21,7 @@ def get_angular_similarity(arg_model, arg_left, arg_right):
     return 1.0 - acos(similarity_) / pi
 
 
-do_build_model = False
+do_build_model = True
 file_name = get_tmpfile('demo_doc2vec_model.gensim')
 
 scenario = 0
@@ -50,6 +50,13 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
     logger.info('started')
+
+    if scenario == 0:
+        pass
+    elif scenario == 1:
+        pass
+    else:
+        raise ValueError('scenario must be either 0 or 1 but is instead {}. Quitting.'.format(scenario))
 
     if do_build_model:
         documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(other_raw_documents)]
