@@ -49,9 +49,8 @@ if __name__ == '__main__':
                          'the outfielder caught pop flies', 'fly is singular, flies is plural',
                          'i don\'t know why she swallowed those flies']
 
-        # todo factor out the processing code
-        sentence = ['Fruit flies like an apple.'.lower().replace('.', ''),
-                    'Time flies like an arrow.'.lower().replace('.', '')]
+        sentence = ['Fruit flies like an apple.', 'Time flies like an arrow.', ]
+        sentence = [item.lower().replace('.', '') for item in sentence]
 
     else:
         raise ValueError('scenario must be either 0 or 1 but is instead {}. Quitting.'.format(scenario))
