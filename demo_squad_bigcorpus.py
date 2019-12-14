@@ -1,5 +1,8 @@
-import logging
 from collections import Counter
+from logging import INFO
+from logging import basicConfig
+from logging import getLogger
+from logging import info
 from math import acos
 from random import choice
 from time import time
@@ -125,8 +128,8 @@ text_stop = 524200
 
 if __name__ == '__main__':
     time_start = time()
-    logger = logging.getLogger(__name__)
-    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+    logger = getLogger(__name__)
+    basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
 
     logger.info('started')
 
@@ -177,7 +180,7 @@ if __name__ == '__main__':
     done = False
     while not done:
         question = input('?: ')
-        # preprocess the question to remove trailing punctuation and trim space
+        # pre-process the question to remove trailing punctuation and trim space
         question = question.strip()
         while question.endswith('?'):
             question = question[:-1]
@@ -194,7 +197,7 @@ if __name__ == '__main__':
                         result = model([pieces[index]], [question])
                         logger.info(cosine_format_.format(question, acos(current_), result[0]))
                 else:
-                    logging.info(cosine_format_.format(question, 0.0, choice(miss_responses)))
+                    info(cosine_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[1]:
                 question_ = lsi[dictionary.doc2bow(question.lower().split())]
                 similarities = sorted(enumerate(matrix_similarity[question_]), key=lambda item: -item[1])[
@@ -203,9 +206,9 @@ if __name__ == '__main__':
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
                         result = model([pieces[similarity[0]]], [question.lower()])
-                        logging.info(lsi_format_.format(question, similarity, result[0]))
+                        info(lsi_format_.format(question, similarity, result[0]))
                 else:
-                    logging.info(lsi_format_.format(question, 0.0, choice(miss_responses)))
+                    info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             else:
                 raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
         else:
