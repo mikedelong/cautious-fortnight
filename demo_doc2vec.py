@@ -35,9 +35,9 @@ if __name__ == '__main__':
     logger.info('started')
 
     if scenario == 0:
-        raw_documents = ['human interface computer', 'survey user computer system response time',
-                         'eps user interface system', 'system human system eps', 'user response time', 'trees',
-                         'graph trees', 'graph minors trees', 'graph minors survey', ]
+        raw_documents = ['eps user interface system', 'graph minors survey', 'graph minors trees', 'graph trees',
+                         'human interface computer', 'survey user computer system response time',
+                         'system human system eps', 'trees', 'user response time']
         sentence = ['human interface time', 'computer user survey', ]
     elif scenario == 1:
         raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
