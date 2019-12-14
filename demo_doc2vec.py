@@ -38,7 +38,7 @@ if __name__ == '__main__':
         raw_documents = ['eps user interface system', 'graph minors survey', 'graph minors trees', 'graph trees',
                          'human interface computer', 'survey user computer system response time',
                          'system human system eps', 'trees', 'user response time']
-        sentence = ['human interface time', 'computer user survey', ]
+        sentence = ['computer user survey', 'human interface time', ]
     elif scenario == 1:
         raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
                          'the apple never falls far from the tree', 'when life gives you an apple make sauce',
