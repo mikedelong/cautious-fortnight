@@ -37,8 +37,8 @@ if __name__ == '__main__':
     if scenario == 0:
         raw_documents = ['human interface computer', 'survey user computer system response time',
                          'eps user interface system', 'system human system eps', 'user response time', 'trees',
-                         'graph trees', 'graph minors trees', 'graph minors survey']
-        sentence = ['human interface time', 'computer user survey']
+                         'graph trees', 'graph minors trees', 'graph minors survey', ]
+        sentence = ['human interface time', 'computer user survey', ]
     elif scenario == 1:
         raw_documents = ['an apple is a kind of fruit', 'a banana is a kind of fruit',
                          'the apple never falls far from the tree', 'when life gives you an apple make sauce',
@@ -48,7 +48,7 @@ if __name__ == '__main__':
                          'whenever he can he flies', 'i would like to help you if i can',
                          'close your mouth you will draw flies', 'you will catch more flies with honey',
                          'the outfielder caught pop flies', 'fly is singular, flies is plural',
-                         'i don\'t know why she swallowed those flies']
+                         'i don\'t know why she swallowed those flies', ]
 
         sentence = ['Fruit flies like an apple.', 'Time flies like an arrow.', ]
         sentence = [item.lower().replace('.', '') for item in sentence]
