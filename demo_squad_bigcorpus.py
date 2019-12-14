@@ -116,7 +116,7 @@ exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
-modes = ['cosine_similarity', 'lsi_similarity', ]
+modes = ['cosine_similarity', 'lsi_similarity', 'doc2vec_similarity', ]
 mode = modes[1]
 pieces_strategies = ['character', 'sentence', ]
 pieces_strategy = pieces_strategies[1]
@@ -169,6 +169,8 @@ if __name__ == '__main__':
             lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
             lsi.show_topics(num_topics=lsi_topic_count, num_words=100, log=True)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
+        elif mode == modes[2]:
+            raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
@@ -209,6 +211,8 @@ if __name__ == '__main__':
                         info(lsi_format_.format(question, similarity, result[0]))
                 else:
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
+            elif mode == modes[2]:
+                raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
             else:
                 raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
         else:
