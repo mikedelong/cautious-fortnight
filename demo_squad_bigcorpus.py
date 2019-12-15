@@ -4,6 +4,7 @@ from logging import basicConfig
 from logging import getLogger
 from logging import info
 from math import acos
+from math import pi
 from random import choice
 from time import time
 
@@ -197,7 +198,7 @@ if __name__ == '__main__':
                     for index in related_product_indices:
                         current_ = cosine_similarity(question_, pieces_[index])[0][0]
                         result = model([pieces[index]], [question])
-                        logger.info(cosine_format_.format(question, acos(current_), result[0]))
+                        logger.info(cosine_format_.format(question, 1.0 - acos(current_) / pi, result[0]))
                 else:
                     info(cosine_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[1]:
