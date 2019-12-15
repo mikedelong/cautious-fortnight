@@ -11,6 +11,8 @@ from time import time
 from deeppavlov import build_model
 from gensim import corpora
 from gensim import models
+from gensim.models.doc2vec import Doc2Vec
+from gensim.models.doc2vec import TaggedDocument
 from gensim.similarities.docsim import MatrixSimilarity
 from gensim.summarization.textcleaner import split_sentences
 from gensim.summarization.textcleaner import tokenize_by_word
@@ -175,7 +177,9 @@ if __name__ == '__main__':
             # remove words that appear only once
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
-            raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
+            documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(texts)]
+            model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, epochs=5000)
+            model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
