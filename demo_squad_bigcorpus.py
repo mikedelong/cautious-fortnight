@@ -177,7 +177,7 @@ if __name__ == '__main__':
             # remove words that appear only once
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
-            documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(texts)]
+            documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
             model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, epochs=5000)
             model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
         else:
