@@ -179,8 +179,7 @@ if __name__ == '__main__':
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
             documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
             # todo make these model parameters variables
-
-            model = Doc2Vec(documents, vector_size=10, window=3, min_count=1, workers=4, seed=1, epochs=5000)
+            model = Doc2Vec(documents, epochs=5000, min_count=1, seed=1, vector_size=10, window=3, workers=4, )
             model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
