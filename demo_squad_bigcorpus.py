@@ -160,7 +160,6 @@ if __name__ == '__main__':
         elif mode == modes[1]:
             texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
                      document in pieces]
-
             # remove words that appear only once
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
@@ -171,6 +170,11 @@ if __name__ == '__main__':
             lsi.show_topics(num_topics=lsi_topic_count, num_words=100, log=True)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
         elif mode == modes[2]:
+            texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
+                     document in pieces]
+            # remove words that appear only once
+            frequency = Counter([token for text in texts for token in text])
+            texts = [[token for token in text if frequency[token] > 1] for text in texts]
             raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
