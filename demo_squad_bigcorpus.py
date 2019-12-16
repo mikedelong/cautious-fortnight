@@ -20,6 +20,16 @@ from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+def get_angular_similarity(arg_model, arg_left, arg_right):
+    # todo make the infer_vector epochs a parameter
+    epochs_ = 100
+    left_ = arg_model.infer_vector(arg_left.split(), epochs=epochs_)
+    right_ = arg_model.infer_vector(arg_right.split(), epochs=epochs_)
+    similarity_ = cosine_similarity(left_.reshape(1, -1), right_.reshape(1, -1), )
+    return 1.0 - acos(similarity_) / pi
+
+
 context_limit_ = 1000
 configuration = {
     'chainer': {
@@ -180,9 +190,11 @@ if __name__ == '__main__':
             documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
             # todo make these model parameters variables
             doc2vec_epochs = 5000
-            model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=1, seed=1, vector_size=10, window=3,
-                            workers=4, )
-            model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
+            doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=1, seed=1, vector_size=10, window=3,
+                                    workers=4, )
+            doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
+            # pre-compute the vector for all of the pieces
+
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
@@ -224,6 +236,12 @@ if __name__ == '__main__':
                 else:
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
+                question_ = question.lower().split()  # todo do we need to remove punctuation?
+                # we really want to call infer_vector() for all of the pieces
+                similarities = sorted(
+                    enumerate([get_angular_similarity(doc2vec_model, piece, question_) for piece in pieces]),
+                    key=lambda item: -item[1])[
+                               :results_to_return]
                 raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
             else:
                 raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
