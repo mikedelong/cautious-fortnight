@@ -195,6 +195,7 @@ if __name__ == '__main__':
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
             # pre-compute the vector for all of the pieces
             # todo do we need to remove punctuation here?
+            # todo add epochs
             pieces_ = [doc2vec_model.infer_vector(piece.lower().split()) for piece in pieces]
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
@@ -237,13 +238,19 @@ if __name__ == '__main__':
                 else:
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
-                question_ = question.lower().split()  # todo do we need to remove punctuation?
-                # we really want to call infer_vector() for all of the pieces
+                # todo do we need to remove punctuation?
+                # todo add epochs
+                question_ = doc2vec_model.infer_vector(question.lower().split())
                 similarities = sorted(
-                    enumerate([get_angular_similarity(doc2vec_model, piece, question_) for piece in pieces]),
-                    key=lambda item: -item[1])[
-                               :results_to_return]
-                raise NotImplementedError('mode {} is not implemented.'.format(modes[2]))
+                    enumerate([1.0 - cosine_similarity(question_, piece_) for piece_ in pieces_]),
+                    key=lambda item: -item[1])[:results_to_return]
+                d2v_format_ = 'Q: {} : d2v: {} A: {}'
+                if similarities[0][1] != 0.0:
+                    for similarity in similarities:
+                        result = model([pieces[similarity[0]]], [question.lower()])
+                        info(d2v_format_.format(question, similarity, result[0]))
+                else:
+                    info(d2v_format_.format(question, 0.0, choice(miss_responses)))
             else:
                 raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
         else:
