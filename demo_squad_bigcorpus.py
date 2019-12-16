@@ -194,7 +194,8 @@ if __name__ == '__main__':
                                     workers=4, )
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
             # pre-compute the vector for all of the pieces
-
+            # todo do we need to remove punctuation here?
+            pieces_ = [doc2vec_model.infer_vector(piece.lower().split()) for piece in pieces]
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
