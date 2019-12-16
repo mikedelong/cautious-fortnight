@@ -241,9 +241,9 @@ if __name__ == '__main__':
                 # todo do we need to remove punctuation?
                 # todo add epochs
                 question_ = doc2vec_model.infer_vector(question.lower().split())
-                similarities = sorted(
-                    enumerate([1.0 - cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), ) for piece_ in
-                               pieces_]), key=lambda item: -item[1])[:results_to_return]
+                similarities = sorted(enumerate(
+                    [1.0 - cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), ) / pi for piece_ in
+                     pieces_]), key=lambda item: -item[1])[:results_to_return]
                 d2v_format_ = 'Q: {} : d2v: {} A: {}'
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
