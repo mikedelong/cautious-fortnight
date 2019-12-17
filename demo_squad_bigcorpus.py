@@ -248,7 +248,7 @@ if __name__ == '__main__':
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
                         result = model([pieces[similarity[0]]], [question.lower()])
-                        info(d2v_format_.format(question, similarity[0], result[0]))
+                        info(d2v_format_.format(question, similarity[1], result[0]))
                 else:
                     info(d2v_format_.format(question, 0.0, choice(miss_responses)))
             else:
