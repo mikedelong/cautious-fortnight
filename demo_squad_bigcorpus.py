@@ -125,7 +125,7 @@ configuration = {
                           {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
-doc2vec_epochs = 500
+doc2vec_epochs = 100
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
@@ -196,7 +196,7 @@ if __name__ == '__main__':
             # pre-compute the vector for all of the pieces
             # todo do we need to remove punctuation here?
             # todo add epochs
-            pieces_ = [doc2vec_model.infer_vector(piece.lower().split()) for piece in pieces]
+            pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
@@ -240,7 +240,7 @@ if __name__ == '__main__':
             elif mode == modes[2]:
                 # todo do we need to remove punctuation?
                 # todo add epochs
-                question_ = doc2vec_model.infer_vector(question.lower().split())
+                question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=100)
                 similarities = sorted(enumerate(
                     [1.0 - cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), ) / pi for piece_ in
                      pieces_]), key=lambda item: -item[1])[:results_to_return]
