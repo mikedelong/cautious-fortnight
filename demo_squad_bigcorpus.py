@@ -125,7 +125,7 @@ configuration = {
                           {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
-doc2vec_epochs = 200
+doc2vec_epochs = 400
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
