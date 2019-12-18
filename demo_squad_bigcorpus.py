@@ -20,16 +20,6 @@ from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-
-def get_angular_similarity(arg_model, arg_left, arg_right):
-    # todo make the infer_vector epochs a parameter
-    epochs_ = 100
-    left_ = arg_model.infer_vector(arg_left.split(), epochs=epochs_)
-    right_ = arg_model.infer_vector(arg_right.split(), epochs=epochs_)
-    similarity_ = cosine_similarity(left_.reshape(1, -1), right_.reshape(1, -1), )
-    return 1.0 - acos(similarity_) / pi
-
-
 context_limit_ = 1000
 configuration = {
     'chainer': {
