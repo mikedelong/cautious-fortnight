@@ -115,7 +115,7 @@ configuration = {
                           {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
-doc2vec_epochs = 400
+doc2vec_epochs = 800
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
@@ -186,7 +186,8 @@ if __name__ == '__main__':
             # pre-compute the vector for all of the pieces
             # todo do we need to remove punctuation here?
             # todo add epochs
-            pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
+            pieces_ = [doc2vec_model.infer_vector(piece.lower().replace(')', ' ').replace('(', ' ').split(),
+                                                  epochs=100) for piece in pieces]
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
