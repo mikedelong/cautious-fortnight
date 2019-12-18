@@ -185,7 +185,6 @@ if __name__ == '__main__':
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
             # pre-compute the vector for all of the pieces
             # todo do we need to remove punctuation here?
-            # todo add epochs
             pieces_ = [doc2vec_model.infer_vector(piece.lower().replace(')', ' ').replace('(', ' ').split(),
                                                   epochs=100) for piece in pieces]
         else:
@@ -230,7 +229,6 @@ if __name__ == '__main__':
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
                 # todo do we need to remove punctuation?
-                # todo add epochs
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=100)
                 similarities = sorted(enumerate(
                     [1.0 - cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), ) / pi for piece_ in
