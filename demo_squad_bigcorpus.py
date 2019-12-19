@@ -229,11 +229,11 @@ if __name__ == '__main__':
                 else:
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
-                # todo do we need to remove punctuation?
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=100)
-                similarities = sorted(enumerate(
-                    [1.0 - acos(cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi for piece_ in
-                     pieces_]), key=lambda item: -item[1])[:results_to_return]
+                similarities = sorted(enumerate([1.0 -
+                                                 acos(cosine_similarity(question_.reshape(1, -1),
+                                                                        piece_.reshape(1, -1), )) / pi for piece_ in
+                                                 pieces_]), key=lambda item: -item[1])[:results_to_return]
                 d2v_format_ = 'Q: {} : d2v: {:5.3f} A: {}'
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
