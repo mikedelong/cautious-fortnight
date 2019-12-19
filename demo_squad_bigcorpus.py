@@ -116,6 +116,7 @@ configuration = {
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
 doc2vec_epochs = 800
+doc2vec_question_epochs = 100
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
@@ -229,7 +230,7 @@ if __name__ == '__main__':
                 else:
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
-                question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=100)
+                question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
                 similarities = sorted([(piece_index, 1.0 - acos(
                     cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for piece_index, piece_
                                        in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
