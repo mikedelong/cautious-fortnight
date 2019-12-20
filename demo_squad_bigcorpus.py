@@ -231,6 +231,7 @@ if __name__ == '__main__':
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
+                # todo try using model.docvecs.most_similar() here instead of looping through all the pieces
                 similarities = sorted([(piece_index, 1.0 - acos(
                     cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for piece_index, piece_
                                        in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
