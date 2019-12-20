@@ -29,6 +29,9 @@ if __name__ == '__main__':
     token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
     if 'token_count' not in settings.keys():
         logger.warning('token_count not in settings; default value is {}.'.format(token_count))
+    imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
+    if 'imshow_interpolation' not in settings.keys():
+        logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
 
     result = list()
     input_file_count = 0
@@ -50,12 +53,12 @@ if __name__ == '__main__':
             logger.info('item: {} size: {}'.format(item_index, len(item)))
             pieces = item.split()
             pieces = [piece.strip() for piece in pieces]
-            pieces = [piece if piece.endswith(':') else piece[:-1] for piece in pieces]
+            pieces = [piece if not piece.endswith(':') else piece[:-1] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([
-                    piece.lower() not in stop_word,
-                    not piece.isdigit(),
                     len(piece) > 1,
+                    not piece.isdigit(),
+                    piece.lower() not in stop_word,
                 ]) else 0
             tokens_to_show = [token[0] for token in count.most_common(n=token_count)]
             logger.info(tokens_to_show[:20])
@@ -66,9 +69,9 @@ if __name__ == '__main__':
 
     to_show = {count_item[0]: count_item[1] for count_item in count.most_common(n=token_count)}
 
-    word_cloud = WordCloud().generate_from_frequencies(to_show)
+    word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=30)
 
-    plt.imshow(word_cloud, interpolation='bilinear')
+    plt.imshow(word_cloud, interpolation=imshow_interpolation)
     plt.axis('off')
     plt.show()
 
