@@ -19,19 +19,22 @@ if __name__ == '__main__':
     with open('./demo_wordcloud.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
+    imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
+    if 'imshow_interpolation' not in settings.keys():
+        logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder is None:
-        logger.warning('input_folder is None. Quitting.')
+        logger.warning('input folder is None. Quitting.')
         quit(code=1)
+    max_font_size = settings['max_font_size'] if 'max_font_size' in settings.keys() else 20
+    if 'max_font_size' not in settings.keys():
+        logger.warning('max font size not in settings; default value is {}.'.format(max_font_size))
     stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
     if not len(stop_word):
         logger.warning('stop word list not in settings; default is empty.')
     token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
     if 'token_count' not in settings.keys():
-        logger.warning('token_count not in settings; default value is {}.'.format(token_count))
-    imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
-    if 'imshow_interpolation' not in settings.keys():
-        logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
+        logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
     result = list()
     input_file_count = 0
@@ -51,9 +54,11 @@ if __name__ == '__main__':
     for item_index, item in enumerate(result):
         if item is not None:
             logger.info('item: {} size: {}'.format(item_index, len(item)))
-            pieces = item.split()
-            pieces = [piece.strip() for piece in pieces]
+            pieces = [piece.strip() for piece in item.split()]
             pieces = [piece if not piece.endswith(':') else piece[:-1] for piece in pieces]
+            pieces = [piece if not piece.endswith(';') else piece[:-1] for piece in pieces]
+            pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
+            pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([
                     len(piece) > 1,
@@ -69,10 +74,10 @@ if __name__ == '__main__':
 
     to_show = {count_item[0]: count_item[1] for count_item in count.most_common(n=token_count)}
 
-    word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=30)
+    word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
     plt.imshow(word_cloud, interpolation=imshow_interpolation)
     plt.axis('off')
-    plt.show()
+    plt.savefig('./output/demo_wordcloud.png')
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
