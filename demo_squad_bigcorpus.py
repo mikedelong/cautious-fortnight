@@ -117,6 +117,7 @@ configuration = {
 }
 doc2vec_epochs = 200
 doc2vec_question_epochs = 200
+doc2vec_seed = 1
 exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
@@ -181,7 +182,6 @@ if __name__ == '__main__':
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
             documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
             # todo make these model parameters variables
-            doc2vec_seed = 1
             doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=1, seed=doc2vec_seed, vector_size=10,
                                     window=3, workers=4, )
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
