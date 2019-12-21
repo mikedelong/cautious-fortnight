@@ -231,20 +231,10 @@ if __name__ == '__main__':
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
-                # todo try using model.docvecs.most_similar() here instead of looping through all the pieces
-                if False:
-                    similarities = sorted([(piece_index, 1.0 - acos(
-                        cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
-                                           piece_index, piece_
-                                           in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
-                else:
-                    closest = doc2vec_model.docvecs.most_similar(positive=None, negative=None, topn=results_to_return,
-                                                                 clip_start=0, clip_end=None, indexer=None)
-                    closest_vectors = [doc2vec_model.infer_vector(item) for item in closest]
-                    similarities = sorted([(piece_index, 1.0 - acos(
-                        cosine_similarity(question_.reshape(1, -1),
-                                          close_vector.reshape(1, -1), )) / pi) for piece_index, close_vector in
-                                           enumerate(closest_vectors)], key=lambda x: -x[1])
+                similarities = sorted([(piece_index, 1.0 - acos(
+                    cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
+                                       piece_index, piece_
+                                       in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
                 d2v_format_ = 'Q: {} : d2v: {:5.3f} A: {}'
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
