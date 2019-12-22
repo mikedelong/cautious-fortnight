@@ -10,5 +10,7 @@
     "good-bye",
     "good-by",
     "quit"
-  ]
+  ],
+  "input_file": "./data/35830.txt",
+  "lsi_topic_count": 200
 }
