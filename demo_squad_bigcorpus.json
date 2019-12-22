@@ -12,5 +12,16 @@
     "quit"
   ],
   "input_file": "./data/35830.txt",
-  "lsi_topic_count": 200
+  "lsi_topic_count": 200,
+  "miss_responses": [
+    "Ask again later.",
+    "I don't know anything about that.",
+    "No clue.",
+    "Reply hazy, Try again."
+  ],
+  "modes": [
+    "cosine_similarity",
+    "lsi_similarity",
+    "doc2vec_similarity"
+  ]
 }
