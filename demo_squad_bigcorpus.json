@@ -2,5 +2,13 @@
   "context_limit_": 1000,
   "doc2vec_epochs": 200,
   "doc2vec_question_epochs": 200,
-  "doc2vec_seed": 1
+  "doc2vec_seed": 1,
+  "exit_questions": [
+    "bye",
+    "cya",
+    "exit",
+    "good-bye",
+    "good-by",
+    "quit"
+  ]
 }
