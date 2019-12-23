@@ -187,6 +187,8 @@ if __name__ == '__main__':
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
             # pre-compute the vector for all of the pieces
             pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
+        elif mode == modes[3]:
+            raise NotImplementedError(modes[3])
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
