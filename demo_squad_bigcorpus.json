@@ -27,5 +27,10 @@
   "pieces_strategies": [
     "character",
     "sentence"
-  ]
+  ],
+  "results_to_return": 7,
+  "sentences_per_chunk": 10,
+  "similarity_feature_count": 200,
+  "text_start": 2124,
+  "text_stop": 524200
 }
