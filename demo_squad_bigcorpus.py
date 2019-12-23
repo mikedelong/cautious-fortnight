@@ -122,7 +122,7 @@ exit_questions = {'bye', 'cya', 'exit', 'good-bye', 'good-by', 'quit'}
 input_file = './data/35830.txt'
 lsi_topic_count = 200
 miss_responses = ['Ask again later.', 'I don\'t know anything about that.', 'No clue.', 'Reply hazy, Try again.']
-modes = ['cosine_similarity', 'lsi_similarity', 'doc2vec_similarity', ]
+modes = ['cosine_similarity', 'lsi_similarity', 'doc2vec_cosine', 'doc2vec_most_similar']
 mode = modes[2]
 pieces_strategies = ['character', 'sentence', ]
 pieces_strategy = pieces_strategies[1]
@@ -229,17 +229,13 @@ if __name__ == '__main__':
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
-                if False:
+                if True:
                     similarities = sorted([(piece_index, 1.0 - acos(
                         cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
                                            piece_index, piece_
                                            in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
                 else:
-                    most_similar_vectors = doc2vec_model.most_similar([question_], topn=results_to_return)
-                    similarities = sorted([(piece_index, 1.0 - acos(
-                        cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
-                                           piece_index, piece_
-                                           in enumerate(most_similar_vectors)], key=lambda item: -item[1])
+                    similarities = doc2vec_model.docvecs.most_similar([question_], topn=results_to_return)
 
                 d2v_format_ = 'Q: {} : d2v: {:5.3f} A: {}'
                 if similarities[0][1] != 0.0:
