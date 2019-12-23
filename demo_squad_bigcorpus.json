@@ -23,5 +23,9 @@
     "cosine_similarity",
     "lsi_similarity",
     "doc2vec_similarity"
+  ],
+  "pieces_strategies": [
+    "character",
+    "sentence"
   ]
 }
