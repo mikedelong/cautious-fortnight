@@ -3,6 +3,7 @@
   "doc2vec_epochs": 200,
   "doc2vec_question_epochs": 200,
   "doc2vec_seed": 1,
+  "doc2vec_vector_size": 10,
   "exit_questions": [
     "bye",
     "cya",
