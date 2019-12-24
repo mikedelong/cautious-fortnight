@@ -191,6 +191,7 @@ if __name__ == '__main__':
             # pre-compute the vector for all of the pieces
             pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
         elif mode == modes[3]:
+            # todo implement the model
             raise NotImplementedError(modes[3])
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
