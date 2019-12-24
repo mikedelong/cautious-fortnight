@@ -232,14 +232,21 @@ if __name__ == '__main__':
                     info(lsi_format_.format(question, 0.0, choice(miss_responses)))
             elif mode == modes[2]:
                 question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
-                if True:
-                    similarities = sorted([(piece_index, 1.0 - acos(
-                        cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
-                                           piece_index, piece_
-                                           in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
+                similarities = sorted([(piece_index, 1.0 - acos(
+                    cosine_similarity(question_.reshape(1, -1), piece_.reshape(1, -1), )) / pi) for
+                                       piece_index, piece_
+                                       in enumerate(pieces_)], key=lambda item: -item[1])[:results_to_return]
+                d2vcos_format_ = 'Q: {} : d2v/cos: {:5.3f} A: {}'
+                if similarities[0][1] != 0.0:
+                    for similarity in similarities:
+                        result = model([pieces[similarity[0]]], [question.lower()])
+                        info(d2vcos_format_.format(question, similarity[1], result[0][0]))
                 else:
-                    similarities = doc2vec_model.docvecs.most_similar([question_], topn=results_to_return)
-
+                    info(d2vcos_format_.format(question, 0.0, choice(miss_responses)))
+            elif mode == modes[3]:
+                # https://stackoverflow.com/questions/42781292/doc2vec-get-most-similar-documents
+                question_ = doc2vec_model.infer_vector(question.lower().split(), epochs=doc2vec_question_epochs)
+                similarities = doc2vec_model.docvecs.most_similar([question_], topn=results_to_return)
                 d2v_format_ = 'Q: {} : d2v: {:5.3f} A: {}'
                 if similarities[0][1] != 0.0:
                     for similarity in similarities:
