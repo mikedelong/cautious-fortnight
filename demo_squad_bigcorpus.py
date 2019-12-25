@@ -185,8 +185,9 @@ if __name__ == '__main__':
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
             documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
             # todo make these model parameters variables
+            doc2vec_workers = 4
             doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=doc2vec_min_count, seed=doc2vec_seed,
-                                    vector_size=doc2vec_vector_size, window=doc2vec_window, workers=4, )
+                                    vector_size=doc2vec_vector_size, window=doc2vec_window, workers=doc2vec_workers, )
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
             # pre-compute the vector for all of the pieces
             pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
