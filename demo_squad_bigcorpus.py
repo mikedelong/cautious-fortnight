@@ -185,7 +185,6 @@ if __name__ == '__main__':
             frequency = Counter([token for text in texts for token in text])
             texts = [[token for token in text if frequency[token] > 1] for text in texts]
             documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
-            # todo make these model parameters variables
             doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=doc2vec_min_count, seed=doc2vec_seed,
                                     vector_size=doc2vec_vector_size, window=doc2vec_window, workers=doc2vec_workers, )
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
