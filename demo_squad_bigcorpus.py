@@ -142,11 +142,11 @@ if __name__ == '__main__':
     logger = getLogger(__name__)
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
 
-    logger.info('started')
+    logger.info('started.')
 
     with open('./demo_squad_bigcorpus.json', 'r') as settings_fp:
-        settings = load_json(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
-                             parse_constant=None, object_pairs_hook=None)
+        settings = load_json(settings_fp, cls=None, object_hook=None, object_pairs_hook=None, parse_constant=None,
+                             parse_float=None, parse_int=None, )
         logger.info('settings: {}'.format(settings))
 
     with open(input_file, 'r') as input_fp:
