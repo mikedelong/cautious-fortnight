@@ -1,5 +1,5 @@
 {
-  "context_limit_": 1000,
+  "context_limit": 1000,
   "doc2vec_epochs": 200,
   "doc2vec_question_epochs": 200,
   "doc2vec_seed": 1,
