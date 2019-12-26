@@ -191,7 +191,6 @@ if __name__ == '__main__':
             # pre-compute the vector for all of the pieces
             pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
         elif mode == modes[3]:
-            # todo implement the model
             texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
                      document in pieces]
             # remove words that appear only once
