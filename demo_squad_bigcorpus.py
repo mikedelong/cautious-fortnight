@@ -178,7 +178,7 @@ if __name__ == '__main__':
             lsi = models.LsiModel(corpus_, id2word=dictionary, num_topics=lsi_topic_count)
             lsi.show_topics(num_topics=lsi_topic_count, num_words=100, log=True)
             matrix_similarity = MatrixSimilarity(lsi[corpus_], num_features=similarity_feature_count)
-        elif mode == modes[2]:
+        elif mode in {modes[2], modes[3]}:
             texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
                      document in pieces]
             # remove words that appear only once
@@ -188,18 +188,9 @@ if __name__ == '__main__':
             doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=doc2vec_min_count, seed=doc2vec_seed,
                                     vector_size=doc2vec_vector_size, window=doc2vec_window, workers=doc2vec_workers, )
             doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
-            # pre-compute the vector for all of the pieces
-            pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
-        elif mode == modes[3]:
-            texts = [[word for word in tokenize_by_word(document.lower()) if word not in ENGLISH_STOP_WORDS] for
-                     document in pieces]
-            # remove words that appear only once
-            frequency = Counter([token for text in texts for token in text])
-            texts = [[token for token in text if frequency[token] > 1] for text in texts]
-            documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(texts)]
-            doc2vec_model = Doc2Vec(documents, epochs=doc2vec_epochs, min_count=doc2vec_min_count, seed=doc2vec_seed,
-                                    vector_size=doc2vec_vector_size, window=doc2vec_window, workers=doc2vec_workers, )
-            doc2vec_model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
+            if mode == modes[2]:
+                # pre-compute the vector for all of the pieces
+                pieces_ = [doc2vec_model.infer_vector(piece.lower().split(), epochs=100) for piece in pieces]
         else:
             raise ValueError('mode can only be one of {} but is [{}]'.format(modes, mode))
 
