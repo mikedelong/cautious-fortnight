@@ -22,6 +22,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 context_limit_ = 1000
+# todo fix this so it can take the context limit from the settings
 configuration = {
     'chainer': {
         'in': ['context_raw', 'question_raw'],
