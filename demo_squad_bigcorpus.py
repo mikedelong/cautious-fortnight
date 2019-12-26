@@ -148,6 +148,11 @@ if __name__ == '__main__':
         settings = load_json(settings_fp, cls=None, object_hook=None, object_pairs_hook=None, parse_constant=None,
                              parse_float=None, parse_int=None, )
         logger.info('settings: {}'.format(settings))
+        context_limit_ = settings['context_limit'] if 'context_limit' in settings.keys() else 100
+        if 'context_limit' not in settings.keys():
+            logger.warning('context limit not in settings; using default value {}.'.format(context_limit_))
+        else:
+            logger.info('SQuAD context limit: {}'.format(context_limit_))
 
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
