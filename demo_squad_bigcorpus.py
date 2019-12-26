@@ -1,4 +1,5 @@
 from collections import Counter
+from json import load as load_json
 from logging import INFO
 from logging import basicConfig
 from logging import getLogger
@@ -142,6 +143,11 @@ if __name__ == '__main__':
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
 
     logger.info('started')
+
+    with open('./demo_squad_bigcorpus.json', 'r') as settings_fp:
+        settings = load_json(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
+                             parse_constant=None, object_pairs_hook=None)
+        logger.info('settings: {}'.format(settings))
 
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
