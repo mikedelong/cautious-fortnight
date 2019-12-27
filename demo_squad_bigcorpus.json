@@ -1,6 +1,6 @@
 {
-  "context_limit": 1000,
-  "doc2vec_epochs": 200,
+  "context_limit": 400,
+  "doc2vec_epochs": 100,
   "doc2vec_question_epochs": 200,
   "doc2vec_seed": 1,
   "doc2vec_vector_size": 10,
