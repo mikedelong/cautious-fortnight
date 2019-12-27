@@ -115,7 +115,6 @@ configuration = {
                           {'inputs': ['ans_raw', 'ans_predicted'], 'name': 'squad_v1_f1', }, ], 'pytest_max_batches': 2,
               'show_examples': False, 'val_every_n_epochs': 1, 'validation_patience': 10, },
 }
-doc2vec_epochs = 200
 doc2vec_min_count = 1
 doc2vec_question_epochs = 200
 doc2vec_seed = 1
@@ -152,6 +151,11 @@ if __name__ == '__main__':
             logger.warning('context limit not in settings; using default value {}.'.format(context_limit_))
         configuration['chainer']['pipe'][0]['context_limit'] = context_limit_
         logger.info('SQuAD context limit: {}'.format(configuration['chainer']['pipe'][0]['context_limit']))
+        doc2vec_epochs = settings['doc2vec_epochs'] if 'doc2vec_epochs' in settings.keys() else 20
+        if 'doc2vec_epochs' not in settings.keys():
+            logger.warning('doc2vec epochs not in settings; using default value {}.'.format(doc2vec_epochs))
+        else:
+            logger.info('doc2vec epochs: {}'.format(doc2vec_epochs))
 
     with open(input_file, 'r') as input_fp:
         text = input_fp.read()
