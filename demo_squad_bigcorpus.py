@@ -27,7 +27,8 @@ configuration = {
         'in_y': ['ans_raw', 'ans_raw_start'],
         'pipe': [{'char_limit': 16,
                   'class_name': 'squad_preprocessor',
-                  'context_limit': 0,  # was 400
+                  # todo make sure we're using the one from the settings
+                  'context_limit': 1000,  # was 400
                   'id': 'squad_prepr',
                   'in': ['context_raw', 'question_raw'],
                   'out': ['context', 'context_tokens', 'context_chars', 'c_r2p', 'c_p2r', 'question', 'question_tokens',
