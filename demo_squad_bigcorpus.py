@@ -27,8 +27,7 @@ configuration = {
         'in_y': ['ans_raw', 'ans_raw_start'],
         'pipe': [{'char_limit': 16,
                   'class_name': 'squad_preprocessor',
-                  # todo make sure we're using the one from the settings
-                  'context_limit': 1000,  # was 400
+                  'context_limit': 'X',  # was 400
                   'id': 'squad_prepr',
                   'in': ['context_raw', 'question_raw'],
                   'out': ['context', 'context_tokens', 'context_chars', 'c_r2p', 'c_p2r', 'question', 'question_tokens',
@@ -151,8 +150,7 @@ if __name__ == '__main__':
         context_limit_ = settings['context_limit'] if 'context_limit' in settings.keys() else 100
         if 'context_limit' not in settings.keys():
             logger.warning('context limit not in settings; using default value {}.'.format(context_limit_))
-        else:
-            logger.info('SQuAD context limit: {}'.format(context_limit_))
+        configuration['chainer']['pipe'][0]['context_limit'] = context_limit_
         logger.info('SQuAD context limit: {}'.format(configuration['chainer']['pipe'][0]['context_limit']))
 
     with open(input_file, 'r') as input_fp:
