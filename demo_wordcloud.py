@@ -76,6 +76,12 @@ if __name__ == '__main__':
 
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
+    word_cloud_layout = word_cloud.layout_
+    for item in word_cloud_layout[:5]:
+        logger.info('{} {}'.format(item[0][0], item[2]))
+
+    quit(1)
+
     plt.imshow(word_cloud, interpolation=imshow_interpolation)
     plt.axis('off')
     plt.savefig('./output/demo_wordcloud.png')
