@@ -80,7 +80,6 @@ if __name__ == '__main__':
 
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
-    word_cloud_layout = word_cloud.layout_
 
     do_matplotlib = False
     if do_matplotlib:
@@ -89,12 +88,12 @@ if __name__ == '__main__':
         plt.savefig('./output/demo_wordcloud.png')
     else:
         fig = Figure(Scatter(
-            mode='text', text=[item[0][0] for item in word_cloud_layout],
-            x=[item[2][0] for item in word_cloud_layout],
-            y=[item[2][1] for item in word_cloud_layout],
+            mode='text', text=[item[0][0] for item in word_cloud.layout_],
+            x=[item[2][0] for item in word_cloud.layout_],
+            y=[item[2][1] for item in word_cloud.layout_],
             textfont=dict(
                 # family="sans serif",
-                size=[item[1] for item in word_cloud_layout],
+                size=[item[1] for item in word_cloud.layout_],
                 # todo introduce colormap
                 # color="crimson"
             )
