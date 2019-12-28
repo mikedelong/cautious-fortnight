@@ -7,6 +7,9 @@ from logging import getLogger
 from time import time
 
 import matplotlib.pyplot as plt
+from plotly.graph_objects import Figure
+from plotly.graph_objects import Scatter
+from plotly.offline import plot
 from tika import parser
 from wordcloud import WordCloud
 
@@ -80,10 +83,17 @@ if __name__ == '__main__':
     for item in word_cloud_layout[:5]:
         logger.info('{} {}'.format(item[0][0], item[2]))
 
-    quit(1)
+    do_matplotlib = False
+    if do_matplotlib:
+        plt.imshow(word_cloud, interpolation=imshow_interpolation)
+        plt.axis('off')
+        plt.savefig('./output/demo_wordcloud.png')
+    else:
+        fig = Figure(Scatter(x=[item[2][0] for item in word_cloud_layout],
+                             y=[item[2][1] for item in word_cloud_layout],
+                             mode='markers', ))
 
-    plt.imshow(word_cloud, interpolation=imshow_interpolation)
-    plt.axis('off')
-    plt.savefig('./output/demo_wordcloud.png')
+        plot(auto_open=False, auto_play=False, figure_or_data=fig, filename='./output/demo_wordcloud.html',
+             link_text='', output_type='file', show_link=False, validate=True, )
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
