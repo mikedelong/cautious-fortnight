@@ -94,6 +94,7 @@ if __name__ == '__main__':
             textfont=dict(
                 # family="sans serif",
                 size=[item[1] for item in word_cloud_layout],
+                # todo introduce colormap
                 # color="crimson"
             )
         ))
