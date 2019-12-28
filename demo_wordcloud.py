@@ -87,12 +87,9 @@ if __name__ == '__main__':
         plt.axis('off')
         plt.savefig('./output/demo_wordcloud.png')
     else:
-        fig = Figure(Scatter(
-            mode='text',
-            text=[item[0][0] for item in word_cloud_layout],
-            x=[item[2][0] for item in word_cloud_layout],
-            y=[item[2][1] for item in word_cloud_layout],
-        ))
+        fig = Figure(Scatter(mode='text', text=[item[0][0] for item in word_cloud_layout],
+                             x=[item[2][0] for item in word_cloud_layout],
+                             y=[item[2][1] for item in word_cloud_layout], ))
 
         plot(auto_open=False, auto_play=False, figure_or_data=fig, filename='./output/demo_wordcloud.html',
              link_text='', output_type='file', show_link=False, validate=True, )
