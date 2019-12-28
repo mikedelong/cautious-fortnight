@@ -50,6 +50,7 @@ if __name__ == '__main__':
     logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(result)))
 
+    # todo add an input loop here to add/remove tokens and regenerate the picture
     logger.info('stop words: {}'.format(sorted(stop_word)))
     stop_word = set(stop_word)
     count = Counter()
