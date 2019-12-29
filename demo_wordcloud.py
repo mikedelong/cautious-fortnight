@@ -96,6 +96,8 @@ if __name__ == '__main__':
         plt.savefig(output_file)
     else:
         colormap = cm.get_cmap('jet')  # todo
+        max_size = max(item[1] for item in word_cloud.layout_)
+        min_size = min(item[1] for item in word_cloud.layout_)
 
         figure = Figure(Scatter(
             mode='text', text=[item[0][0] for item in word_cloud.layout_],
@@ -105,7 +107,8 @@ if __name__ == '__main__':
                 # family="sans serif",
                 size=[item[1] for item in word_cloud.layout_],
                 # todo introduce colormap
-                color=[float_color_to_hex(item[1], colormap) for item in word_cloud.layout_],
+                color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
+                       word_cloud.layout_],
             )
         ))
 
