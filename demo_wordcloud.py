@@ -80,7 +80,6 @@ if __name__ == '__main__':
 
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
-    # todo extract output file name as a variable
     do_matplotlib = False
     if do_matplotlib:
         plt.imshow(word_cloud, interpolation=imshow_interpolation)
