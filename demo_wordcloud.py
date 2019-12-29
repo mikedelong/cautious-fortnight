@@ -99,18 +99,11 @@ if __name__ == '__main__':
         max_size = max(item[1] for item in word_cloud.layout_)
         min_size = min(item[1] for item in word_cloud.layout_)
 
-        figure = Figure(Scatter(
-            mode='text', text=[item[0][0] for item in word_cloud.layout_],
-            x=[item[2][0] for item in word_cloud.layout_],
-            y=[item[2][1] for item in word_cloud.layout_],
-            textfont=dict(
-                # family="sans serif",
-                size=[item[1] for item in word_cloud.layout_],
-                # todo introduce colormap
+        figure = Figure(Scatter(mode='text', text=[item[0][0] for item in word_cloud.layout_],
+                                x=[item[2][0] for item in word_cloud.layout_],
+                                y=[item[2][1] for item in word_cloud.layout_], textfont=dict(
                 color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
-                       word_cloud.layout_],
-            )
-        ))
+                       word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )))
 
         output_file = './output/demo_wordcloud.html'
         logger.info('saving HTML figure to {}'.format(output_file))
