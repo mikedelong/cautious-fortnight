@@ -80,12 +80,13 @@ if __name__ == '__main__':
 
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
-
+    # todo extract output file name as a variable
     do_matplotlib = False
     if do_matplotlib:
         plt.imshow(word_cloud, interpolation=imshow_interpolation)
         plt.axis('off')
-        plt.savefig('./output/demo_wordcloud.png')
+        output_file = './output/demo_wordcloud.png'
+        plt.savefig(output_file)
     else:
         fig = Figure(Scatter(
             mode='text', text=[item[0][0] for item in word_cloud.layout_],
