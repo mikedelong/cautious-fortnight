@@ -100,7 +100,8 @@ if __name__ == '__main__':
             )
         ))
 
-        plot(auto_open=False, auto_play=False, figure_or_data=fig, filename='./output/demo_wordcloud.html',
+        output_file = './output/demo_wordcloud.html'
+        plot(auto_open=False, auto_play=False, figure_or_data=fig, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
