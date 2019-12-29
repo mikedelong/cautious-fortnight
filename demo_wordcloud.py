@@ -87,7 +87,7 @@ if __name__ == '__main__':
         output_file = './output/demo_wordcloud.png'
         plt.savefig(output_file)
     else:
-        fig = Figure(Scatter(
+        figure = Figure(Scatter(
             mode='text', text=[item[0][0] for item in word_cloud.layout_],
             x=[item[2][0] for item in word_cloud.layout_],
             y=[item[2][1] for item in word_cloud.layout_],
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         ))
 
         output_file = './output/demo_wordcloud.html'
-        plot(auto_open=False, auto_play=False, figure_or_data=fig, filename=output_file,
+        plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
