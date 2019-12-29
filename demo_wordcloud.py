@@ -7,11 +7,18 @@ from logging import getLogger
 from time import time
 
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
 from plotly.graph_objects import Scatter
 from plotly.offline import plot
 from tika import parser
 from wordcloud import WordCloud
+
+
+def float_color_to_hex(arg_float, arg_colormap):
+    color_value = tuple([int(255 * arg_colormap(arg_float)[index]) for index in range(3)])
+    return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
+
 
 if __name__ == '__main__':
     time_start = time()
@@ -85,8 +92,11 @@ if __name__ == '__main__':
         plt.imshow(word_cloud, interpolation=imshow_interpolation)
         plt.axis('off')
         output_file = './output/demo_wordcloud.png'
+        logger.info('saving PNG figure to {}'.format(output_file))
         plt.savefig(output_file)
     else:
+        colormap = cm.get_cmap('jet')  # todo
+
         figure = Figure(Scatter(
             mode='text', text=[item[0][0] for item in word_cloud.layout_],
             x=[item[2][0] for item in word_cloud.layout_],
@@ -95,11 +105,12 @@ if __name__ == '__main__':
                 # family="sans serif",
                 size=[item[1] for item in word_cloud.layout_],
                 # todo introduce colormap
-                # color="crimson"
+                color=[float_color_to_hex(item[1], colormap) for item in word_cloud.layout_],
             )
         ))
 
         output_file = './output/demo_wordcloud.html'
+        logger.info('saving HTML figure to {}'.format(output_file))
         plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
 
