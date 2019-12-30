@@ -39,17 +39,19 @@ if __name__ == '__main__':
     max_font_size = settings['max_font_size'] if 'max_font_size' in settings.keys() else 20
     if 'max_font_size' not in settings.keys():
         logger.warning('max font size not in settings; default value is {}.'.format(max_font_size))
+
+    plotly_colormap = settings['plotly_colormap'] if 'plotly_colormap' in settings.keys() else 'jet'
+    if 'plotly_colormap' in settings.keys():
+        logger.info('plotly/HTML colormap: {}'.format(plotly_colormap))
+    else:
+        logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
+
     stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
     if not len(stop_word):
         logger.warning('stop word list not in settings; default is empty.')
     token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
     if 'token_count' not in settings.keys():
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
-    plotly_colormap = settings['plotly_colormap'] if 'plotly_colormap' in settings.keys() else 'jet'
-    if 'plotly_colormap' in settings.keys():
-        logger.info('plotly/HTML colormap: {}'.format(plotly_colormap))
-    else:
-        logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
 
     result = list()
     input_file_count = 0
