@@ -36,11 +36,13 @@ if __name__ == '__main__':
     if input_folder is None:
         logger.warning('input folder is None. Quitting.')
         quit(code=1)
+    else:
+        logger.info('input folder: {}'.format(input_folder))
     max_font_size = settings['max_font_size'] if 'max_font_size' in settings.keys() else 20
     if 'max_font_size' in settings.keys():
         logger.info('max font size is {}'.format(max_font_size))
     else:
-        logger.warning('max font size not in settings; default value is {}.'.format(max_font_size))
+        logger.warning('max font size not in settings; using default: {}.'.format(max_font_size))
     plotly_colormap = settings['plotly_colormap'] if 'plotly_colormap' in settings.keys() else 'jet'
     if 'plotly_colormap' in settings.keys():
         logger.info('plotly/HTML colormap: {}'.format(plotly_colormap))
