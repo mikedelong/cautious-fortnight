@@ -33,11 +33,11 @@ if __name__ == '__main__':
     if 'imshow_interpolation' not in settings.keys():
         logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
-    if input_folder is None:
+    if input_folder:
+        logger.info('input folder: {}'.format(input_folder))
+    else:
         logger.warning('input folder is None. Quitting.')
         quit(code=1)
-    else:
-        logger.info('input folder: {}'.format(input_folder))
     max_font_size = settings['max_font_size'] if 'max_font_size' in settings.keys() else 20
     if 'max_font_size' in settings.keys():
         logger.info('max font size is {}'.format(max_font_size))
