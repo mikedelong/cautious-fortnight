@@ -45,6 +45,11 @@ if __name__ == '__main__':
     token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
     if 'token_count' not in settings.keys():
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
+    plotly_colormap = settings['plotly_colormap'] if 'plotly_colormap' in settings.keys() else 'jet'
+    if 'plotly_colormap' in settings.keys():
+        logger.info('plotly/HTML colormap: {}'.format(plotly_colormap))
+    else:
+        logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
 
     result = list()
     input_file_count = 0
@@ -95,7 +100,7 @@ if __name__ == '__main__':
         logger.info('saving PNG figure to {}'.format(output_file))
         plt.savefig(output_file)
     else:
-        colormap = cm.get_cmap('jet')  # todo
+        colormap = cm.get_cmap(plotly_colormap)
         max_size = max(item[1] for item in word_cloud.layout_)
         min_size = min(item[1] for item in word_cloud.layout_)
 
