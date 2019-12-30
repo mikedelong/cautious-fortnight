@@ -93,10 +93,11 @@ if __name__ == '__main__':
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
     do_matplotlib = False
+    output_file_root = './output/demo_wordcloud.'
     if do_matplotlib:
         plt.imshow(word_cloud, interpolation=imshow_interpolation)
         plt.axis('off')
-        output_file = './output/demo_wordcloud.png'
+        output_file = output_file_root + 'png'
         logger.info('saving PNG figure to {}'.format(output_file))
         plt.savefig(output_file)
     else:
@@ -110,7 +111,7 @@ if __name__ == '__main__':
                 color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
                        word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )))
 
-        output_file = './output/demo_wordcloud.html'
+        output_file = output_file_root + 'html'
         logger.info('saving HTML figure to {}'.format(output_file))
         plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
