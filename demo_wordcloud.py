@@ -29,7 +29,7 @@ if __name__ == '__main__':
     with open('./demo_wordcloud.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
-    # todo put the likely branch first
+
     imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
     if 'imshow_interpolation' in settings.keys():
         logger.info('imshow interpolation: {}'.format(imshow_interpolation))
