@@ -52,7 +52,9 @@ if __name__ == '__main__':
     else:
         logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
     stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
-    if not len(stop_word):
+    if len(stop_word):
+        logger.info('stop word list: {}'.format(stop_word))
+    else:
         logger.warning('stop word list not in settings; default is empty.')
     token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
     if 'token_count' not in settings.keys():
