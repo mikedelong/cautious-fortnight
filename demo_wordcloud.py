@@ -24,7 +24,7 @@ if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
-    logger.info('started')
+    logger.info('started.')
 
     with open('./demo_wordcloud.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
