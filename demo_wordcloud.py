@@ -31,7 +31,9 @@ if __name__ == '__main__':
                              parse_constant=None, object_pairs_hook=None)
     # todo put the likely branch first
     imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
-    if 'imshow_interpolation' not in settings.keys():
+    if 'imshow_interpolation' in settings.keys():
+        logger.info('imshow interpolation: {}'.format(imshow_interpolation))
+    else:
         logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
