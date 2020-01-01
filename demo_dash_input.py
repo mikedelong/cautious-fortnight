@@ -1,22 +1,27 @@
-# https://dash.plot.ly/dash-core-components/input
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input
-from dash.dependencies import Output
 
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-ALLOWED_TYPES = ('text', 'number', 'password', 'email', 'search', 'tel', 'url', 'range', 'hidden',)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app.layout = html.Div([
+    html.Div(dcc.Input(id='input-box', type='text')),
+    html.Button('Submit', id='button'),
+    html.Div(id='output-container-button',
+             children='Enter a value and press submit')
+])
 
-app.layout = html.Div(
-    [dcc.Input(id='input_{}'.format(_), placeholder='input type {}'.format(_), type=_, ) for _ in ALLOWED_TYPES] + [
-        html.Div(id='out-all-types')])
 
-
-@app.callback(Output('out-all-types', 'children'), [Input('input_{}'.format(_), 'value') for _ in ALLOWED_TYPES], )
-def cb_render(*vals):
-    return ' | '.join((str(val) for val in vals if val))
+@app.callback(
+    dash.dependencies.Output('output-container-button', 'children'),
+    [dash.dependencies.Input('button', 'n_clicks')],
+    [dash.dependencies.State('input-box', 'value')])
+def update_output(n_clicks, value):
+    return 'The input value was "{}" and the button has been clicked {} times'.format(
+        value,
+        n_clicks
+    )
 
 
 if __name__ == '__main__':
