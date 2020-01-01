@@ -12,16 +12,20 @@ app.layout = html.Div([
              children='Enter a value and press submit')
 ])
 
+result = list()
+
 
 @app.callback(
     dash.dependencies.Output('output-container-button', 'children'),
     [dash.dependencies.Input('button', 'n_clicks')],
     [dash.dependencies.State('input-box', 'value')])
 def update_output(n_clicks, value):
-    return 'The input value was "{}" and the button has been clicked {} times'.format(
-        value,
-        n_clicks
-    )
+    if value:
+        result.append(value)
+    if n_clicks and int(n_clicks) > 0:
+        return '{}'.format(result)
+    else:
+        return ''
 
 
 if __name__ == '__main__':
