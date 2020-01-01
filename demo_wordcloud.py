@@ -87,11 +87,7 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             for piece in pieces:
-                count[piece] += 1 if all([
-                    len(piece) > 1,
-                    not piece.isdigit(),
-                    piece.lower() not in stop_word,
-                ]) else 0
+                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), piece.lower() not in stop_word, ]) else 0
             tokens_to_show = [token[0] for token in count.most_common(n=token_count)]
             logger.info(tokens_to_show[:20])
             logger.info(tokens_to_show[20:40])
