@@ -4,12 +4,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
-app.layout = html.Div([
-    html.Div(dcc.Input(id='input-box', type='text')),
-    html.Button('Submit', id='button'),
-    html.Div(id='output-container-button',
-             children='Enter a value and press submit')
-])
+app.layout = html.Div([html.Div(dcc.Input(id='input-box', type='text')), html.Button('Submit', id='button'),
+                       html.Div(id='output-container-button', children='Enter a value and press submit'), ])
 
 result = list()
 
