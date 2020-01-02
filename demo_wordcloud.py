@@ -84,9 +84,7 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             for piece in pieces:
-                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(),
-                                          # piece.lower() not in stop_word,
-                                          ]) else 0
+                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
     # todo add an input loop here to add/remove tokens and regenerate the picture
     logger.info('stop words: {}'.format(sorted(stop_word)))
