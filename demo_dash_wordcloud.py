@@ -21,6 +21,7 @@ def float_color_to_hex(arg_float, arg_colormap):
     return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
 
 
+
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
@@ -112,5 +113,18 @@ if __name__ == '__main__':
                            html.Div(dcc.Input(id='input-box', type='text')), html.Button('Submit', id='button'),
                            html.Div(id='output-container-button', children='Enter a value and press submit'),
                            ])
+
+
+    @app.callback(
+        dash.dependencies.Output('output-container-button', 'children'),
+        [dash.dependencies.Input('button', 'n_clicks')],
+        [dash.dependencies.State('input-box', 'value')])
+    def update_output(n_clicks, value):
+        if value:
+            stop_word.append(value)
+
+        if n_clicks and int(n_clicks) > 0:
+            logger.info('new stopword is {}'.format(value))
+
 
     app.run_server(debug=True)
