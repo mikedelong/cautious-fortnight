@@ -6,6 +6,7 @@ from logging import basicConfig
 from logging import getLogger
 from time import time
 
+import dash
 from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
 from plotly.graph_objects import Scatter
@@ -84,6 +85,8 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
+
+    app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'], )
 
     # todo add an input loop here to add/remove tokens and regenerate the picture
     logger.info('stop words: {}'.format(sorted(stop_word)))
