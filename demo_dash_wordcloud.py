@@ -108,6 +108,9 @@ if __name__ == '__main__':
             color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
                    word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )))
 
-    app.layout = html.Div([dcc.Graph(id='basic-interactions', figure=figure, ), ])
+    app.layout = html.Div([dcc.Graph(id='basic-interactions', figure=figure, ),
+                           html.Div(dcc.Input(id='input-box', type='text')), html.Button('Submit', id='button'),
+                           html.Div(id='output-container-button', children='Enter a value and press submit'),
+                           ])
 
     app.run_server(debug=True)
