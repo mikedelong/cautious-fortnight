@@ -72,11 +72,8 @@ if __name__ == '__main__':
     logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(result)))
 
-    # todo add an input loop here to add/remove tokens and regenerate the picture
-    logger.info('stop words: {}'.format(sorted(stop_word)))
-    stop_word = set(stop_word)
+    # first get all the counts
     count = Counter()
-    tokens_to_show = list()
     for item_index, item in enumerate(result):
         if item is not None:
             logger.info('item: {} size: {}'.format(item_index, len(item)))
@@ -86,15 +83,13 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             for piece in pieces:
-                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), piece.lower() not in stop_word, ]) else 0
-            tokens_to_show = [token[0] for token in count.most_common(n=token_count)]
-            logger.info(tokens_to_show[:20])
-            logger.info(tokens_to_show[20:40])
-            logger.info(tokens_to_show[40:])
-        else:
-            logger.info('item: {} size: 0 '.format(item_index))
+                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
-    to_show = {count_item[0]: count_item[1] for count_item in count.most_common(n=token_count)}
+    # todo add an input loop here to add/remove tokens and regenerate the picture
+    logger.info('stop words: {}'.format(sorted(stop_word)))
+    tokens_to_show = list()
+    count_list = [item for item in list(count.items()) if item[0].lower() not in set(stop_word)]
+    to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
 
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
 
