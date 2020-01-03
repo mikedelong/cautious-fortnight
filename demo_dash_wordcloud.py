@@ -108,16 +108,6 @@ if __name__ == '__main__':
             color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
                    word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )))
 
-    app.layout = html.Div(figure)
-
     app.layout = html.Div([dcc.Graph(id='basic-interactions', figure=figure, ), ])
 
-    if False:
-        output_file = output_file_root + 'html'
-        logger.info('saving HTML figure to {}'.format(output_file))
-        plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
-             link_text='', output_type='file', show_link=False, validate=True, )
-
-        logger.info('total time: {:5.2f}s'.format(time() - time_start))
-    else:
-        app.run_server(debug=True)
+    app.run_server(debug=True)
