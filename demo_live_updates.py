@@ -4,8 +4,9 @@ import datetime
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly
-from dash.dependencies import Input, Output
+from dash.dependencies import Input
+from dash.dependencies import Output
+from plotly.subplots import make_subplots
 from pyorbital.orbital import Orbital
 
 satellite = Orbital('TERRA')
@@ -63,7 +64,7 @@ def update_graph_live(n):
         data['time'].append(time)
 
     # Create the graph with subplots
-    fig = plotly.tools.make_subplots(rows=2, cols=1, vertical_spacing=0.2)
+    fig = make_subplots(rows=2, cols=1, vertical_spacing=0.2)
     fig['layout']['margin'] = {
         'l': 30, 'r': 10, 'b': 30, 't': 10
     }
