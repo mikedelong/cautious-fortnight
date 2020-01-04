@@ -90,7 +90,6 @@ if __name__ == '__main__':
 
     app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'], )
 
-    # todo add an input loop here to add/remove tokens and regenerate the picture
     logger.info('stop words: {}'.format(sorted(stop_word)))
     tokens_to_show = list()
     count_list = [item for item in list(count.items()) if item[0].lower() not in set(stop_word)]
