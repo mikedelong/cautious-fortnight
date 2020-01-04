@@ -11,9 +11,7 @@ from pyorbital.orbital import Orbital
 
 satellite = Orbital('TERRA')
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 app.layout = html.Div(
     html.Div([
         html.H4('TERRA Satellite Live Feed'),
@@ -40,7 +38,7 @@ def update_metrics(n):
     ]
 
 
-# Multiple components can update everytime interval gets fired.
+# Multiple components can updated every time interval gets fired.
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
