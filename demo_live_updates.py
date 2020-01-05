@@ -12,18 +12,9 @@ from pyorbital.orbital import Orbital
 satellite = Orbital('TERRA')
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
-app.layout = html.Div(
-    html.Div([
-        html.H4('TERRA Satellite Live Feed'),
-        html.Div(id='live-update-text'),
-        dcc.Graph(id='live-update-graph'),
-        dcc.Interval(
-            id='interval-component',
-            interval=1 * 1000,  # in milliseconds
-            n_intervals=0
-        )
-    ])
-)
+app.layout = html.Div(html.Div(
+    [html.H4('TERRA Satellite Live Feed'), html.Div(id='live-update-text'), dcc.Graph(id='live-update-graph'),
+     dcc.Interval(id='interval-component', interval=1 * 1000, n_intervals=0)]))
 
 
 @app.callback(Output('live-update-text', 'children'),
