@@ -36,9 +36,7 @@ def update_graph_live(n):
     # Collect some data
     for i in range(180):
         time = datetime.datetime.now() - datetime.timedelta(seconds=i * 20)
-        lon, lat, alt = Orbital('TERRA').get_lonlatalt(
-            time
-        )
+        lon, lat, alt = Orbital('TERRA').get_lonlatalt(time)
         data['Longitude'].append(lon)
         data['Latitude'].append(lat)
         data['Altitude'].append(alt)
