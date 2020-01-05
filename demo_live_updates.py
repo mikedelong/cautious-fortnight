@@ -31,7 +31,6 @@ def update_metrics(n):
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
-    satellite = Orbital('TERRA')
     data = {
         'time': [],
         'Latitude': [],
@@ -42,7 +41,7 @@ def update_graph_live(n):
     # Collect some data
     for i in range(180):
         time = datetime.datetime.now() - datetime.timedelta(seconds=i * 20)
-        lon, lat, alt = satellite.get_lonlatalt(
+        lon, lat, alt = Orbital('TERRA').get_lonlatalt(
             time
         )
         data['Longitude'].append(lon)
