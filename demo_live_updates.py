@@ -9,8 +9,6 @@ from dash.dependencies import Output
 from plotly.subplots import make_subplots
 from pyorbital.orbital import Orbital
 
-satellite = Orbital('TERRA')
-
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 app.layout = html.Div(html.Div(
     [html.H4('TERRA Satellite Live Feed'), html.Div(id='live-update-text'), dcc.Graph(id='live-update-graph'),
@@ -20,7 +18,7 @@ app.layout = html.Div(html.Div(
 @app.callback(Output('live-update-text', 'children'),
               [Input('interval-component', 'n_intervals')])
 def update_metrics(n):
-    lon, lat, alt = satellite.get_lonlatalt(datetime.datetime.now())
+    lon, lat, alt = Orbital('TERRA').get_lonlatalt(datetime.datetime.now())
     style = {'padding': '5px', 'fontSize': '16px'}
     return [
         html.Span('Longitude: {0:.2f}'.format(lon), style=style),
