@@ -31,12 +31,7 @@ def update_metrics(n):
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
-    data = {
-        'time': [],
-        'Latitude': [],
-        'Longitude': [],
-        'Altitude': []
-    }
+    data = {'time': [], 'Latitude': [], 'Longitude': [], 'Altitude': []}
 
     # Collect some data
     for i in range(180):
