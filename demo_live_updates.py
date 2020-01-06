@@ -47,15 +47,15 @@ def update_graph_live(n):
     result['layout']['margin'] = {'b': 30, 'l': 30, 'r': 10, 't': 10, }
     result['layout']['legend'] = {'x': 0, 'xanchor': 'left', 'y': 1, }
 
-    result.append_trace({'name': 'Altitude', 'mode': 'lines+markers', 'type': 'scatter', 'x': data['time'],
+    result.append_trace({'mode': 'lines+markers', 'name': 'Altitude', 'type': 'scatter', 'x': data['time'],
                          'y': data['Altitude'], }, 1, 1)
     result.append_trace({
+        'mode': 'lines+markers',
+        'name': 'Longitude vs Latitude',
+        'text': data['time'],
+        'type': 'scatter',
         'x': data['Longitude'],
         'y': data['Latitude'],
-        'text': data['time'],
-        'name': 'Longitude vs Latitude',
-        'mode': 'lines+markers',
-        'type': 'scatter'
     }, 2, 1)
 
     return result
