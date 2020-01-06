@@ -43,20 +43,20 @@ def update_graph_live(n):
         data['time'].append(time)
 
     # Create the graph with subplots
-    fig = make_subplots(rows=2, cols=1, vertical_spacing=0.2)
-    fig['layout']['margin'] = {
+    result = make_subplots(rows=2, cols=1, vertical_spacing=0.2)
+    result['layout']['margin'] = {
         'l': 30, 'r': 10, 'b': 30, 't': 10
     }
-    fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
+    result['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
-    fig.append_trace({
+    result.append_trace({
         'x': data['time'],
         'y': data['Altitude'],
         'name': 'Altitude',
         'mode': 'lines+markers',
         'type': 'scatter'
     }, 1, 1)
-    fig.append_trace({
+    result.append_trace({
         'x': data['Longitude'],
         'y': data['Latitude'],
         'text': data['time'],
@@ -65,7 +65,7 @@ def update_graph_live(n):
         'type': 'scatter'
     }, 2, 1)
 
-    return fig
+    return result
 
 
 if __name__ == '__main__':
