@@ -43,7 +43,7 @@ def update_graph_live(n):
         data['time'].append(time)
 
     # Create the graph with subplots
-    result = make_subplots(rows=2, cols=1, vertical_spacing=0.2)
+    result = make_subplots(cols=1, rows=2, vertical_spacing=0.2, )
     result['layout']['margin'] = {
         'l': 30, 'r': 10, 'b': 30, 't': 10
     }
