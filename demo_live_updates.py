@@ -45,7 +45,7 @@ def update_graph_live(n):
     # Create the graph with subplots
     result = make_subplots(cols=1, rows=2, vertical_spacing=0.2, )
     result['layout']['margin'] = {'b': 30, 'l': 30, 'r': 10, 't': 10, }
-    result['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
+    result['layout']['legend'] = {'x': 0, 'xanchor': 'left', 'y': 1, }
 
     result.append_trace({
         'x': data['time'],
