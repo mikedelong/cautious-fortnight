@@ -28,8 +28,7 @@ def update_metrics(n):
 
 
 # Multiple components can updated every time interval gets fired.
-@app.callback(Output('live-update-graph', 'figure'),
-              [Input('interval-component', 'n_intervals')])
+@app.callback(Output('live-update-graph', 'figure'), [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
     data = {'time': [], 'Latitude': [], 'Longitude': [], 'Altitude': []}
 
