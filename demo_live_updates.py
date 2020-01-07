@@ -34,8 +34,8 @@ def update_graph_live(n):
     sat = Orbital('TERRA')
 
     # Collect some data
-    for i in range(0, 20 * 180, 20):
-        time = datetime.datetime.now() - datetime.timedelta(seconds=i)
+    for seconds in range(0, 3600, 20):
+        time = datetime.datetime.now() - datetime.timedelta(seconds=seconds)
         data['time'].append(time)
         lon, lat, alt = sat.get_lonlatalt(time)
         data['Longitude'].append(lon)
