@@ -33,13 +33,13 @@ def update_graph_live(n):
     data = {'time': [], 'Latitude': [], 'Longitude': [], 'Altitude': []}
 
     # Collect some data
-    for i in range(180):
-        time = datetime.datetime.now() - datetime.timedelta(seconds=i * 20)
+    for i in range(0, 20 * 180, 20):
+        time = datetime.datetime.now() - datetime.timedelta(seconds=i)
+        data['time'].append(time)
         lon, lat, alt = Orbital('TERRA').get_lonlatalt(time)
         data['Longitude'].append(lon)
         data['Latitude'].append(lat)
         data['Altitude'].append(alt)
-        data['time'].append(time)
 
     # Create the graph with subplots
     result = make_subplots(cols=1, rows=2, vertical_spacing=0.2, )
