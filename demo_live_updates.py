@@ -18,11 +18,11 @@ app.layout = html.Div(html.Div(
 @app.callback(Output('live-update-text', 'children'),
               [Input('interval-component', 'n_intervals')])
 def update_metrics(n):
-    longitude, lat, alt = Orbital('TERRA').get_lonlatalt(datetime.datetime.now())
+    longitude, latitude, alt = Orbital('TERRA').get_lonlatalt(datetime.datetime.now())
     style = {'fontSize': '16px', 'padding': '5px', }
     return [
         html.Span('Longitude: {0:.2f}'.format(longitude), style=style),
-        html.Span('Latitude: {0:.2f}'.format(lat), style=style),
+        html.Span('Latitude: {0:.2f}'.format(latitude), style=style),
         html.Span('Altitude: {0:0.2f}'.format(alt), style=style)
     ]
 
