@@ -19,7 +19,7 @@ app.layout = html.Div(html.Div(
               [Input('interval-component', 'n_intervals')])
 def update_metrics(n):
     lon, lat, alt = Orbital('TERRA').get_lonlatalt(datetime.datetime.now())
-    style = {'padding': '5px', 'fontSize': '16px'}
+    style = {'fontSize': '16px', 'padding': '5px', }
     return [
         html.Span('Longitude: {0:.2f}'.format(lon), style=style),
         html.Span('Latitude: {0:.2f}'.format(lat), style=style),
