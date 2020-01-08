@@ -15,8 +15,7 @@ app.layout = html.Div(html.Div(
      dcc.Interval(id='interval-component', interval=1 * 1000, n_intervals=0)]))
 
 
-@app.callback(Output('live-update-text', 'children'),
-              [Input('interval-component', 'n_intervals')])
+@app.callback(Output('live-update-text', 'children'), [Input('interval-component', 'n_intervals')])
 def update_metrics(n):
     longitude, latitude, altitude = Orbital('TERRA').get_lonlatalt(datetime.datetime.now())
     style = {'fontSize': '16px', 'padding': '5px', }
