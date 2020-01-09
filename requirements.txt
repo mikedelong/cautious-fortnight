@@ -1,4 +1,3 @@
-tika
 chatterbot
 dash
 deeppavlov
@@ -10,5 +9,6 @@ plotly
 python_aiml
 scikit-learn
 textblob
+tika
 torch
 wikipedia
