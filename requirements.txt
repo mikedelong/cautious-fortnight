@@ -1,4 +1,3 @@
-plotly
 chatterbot
 dash
 deeppavlov
@@ -6,6 +5,7 @@ gensim
 matplotlib
 nltk
 numpy
+plotly
 python_aiml
 scikit-learn
 textblob
