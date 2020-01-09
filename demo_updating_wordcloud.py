@@ -41,9 +41,12 @@ app.layout = html.Div(html.Div(
     [dash.dependencies.State('input-box', 'value')])
 def update_output(n_clicks, value):
     if value:
-        stop_word.append(value)
+        value = str(value)
+        value = value.strip()
+        if len(value) > 0:
+            stop_word.append(value)
     if n_clicks and int(n_clicks) > 0:
-        logger.info('new stopword is {}'.format(value))
+        logger.info('new stop word is [{}]; stop word count is {}'.format(value, len(stop_word)))
 
 
 @app.callback(Output('live-update-graph', 'figure'), [Input('input-box', 'value')], )
