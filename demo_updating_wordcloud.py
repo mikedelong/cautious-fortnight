@@ -134,6 +134,8 @@ if __name__ == '__main__':
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
+    # filter out all the tokens that appear only once
+    count = Counter({item: count[item] for item in count if count[item] > 1})
     logger.info('stop words: {}'.format(sorted(stop_word)))
 
     app.run_server(debug=True)
