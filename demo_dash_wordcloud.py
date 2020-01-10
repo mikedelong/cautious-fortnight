@@ -21,7 +21,6 @@ def float_color_to_hex(arg_float, arg_colormap):
     return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
 
 
-
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
