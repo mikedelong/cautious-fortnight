@@ -51,20 +51,19 @@ def update_output(n_clicks, value):
 
 @app.callback(Output('live-update-graph', 'figure'), [Input('input-box', 'value')], )
 def update_graph_live(n):
-    count_list = [item for item in list(count.items()) if item[0].lower() not in set(stop_word)]
+    count_list = [this for this in list(count.items()) if this[0].lower() not in set(stop_word)]
+    logger.info(count_list)
     to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
-
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
-
     colormap = cm.get_cmap(plotly_colormap)
-    max_size = max(item[1] for item in word_cloud.layout_)
-    min_size = min(item[1] for item in word_cloud.layout_)
+    max_size = max(this[1] for this in word_cloud.layout_)
+    min_size = min(this[1] for this in word_cloud.layout_)
 
-    result = Figure(Scatter(mode='text', text=[item[0][0] for item in word_cloud.layout_],
-                            x=[item[2][0] for item in word_cloud.layout_],
-                            y=[item[2][1] for item in word_cloud.layout_], textfont=dict(
-            color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
-                   word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )))
+    result = Figure(Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
+                            x=[this[2][0] for this in word_cloud.layout_],
+                            y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
+            color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
+                   word_cloud.layout_], size=[this[1] for this in word_cloud.layout_], )))
 
     return result
 
@@ -111,20 +110,20 @@ if __name__ == '__main__':
     else:
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
-    result = list()
+    items = list()
     input_file_count = 0
     for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
         logger.info(input_file)
         input_file_count += 1
         parse_result = parser.from_file(input_file)
-        result.append(parse_result['content'])
+        items.append(parse_result['content'])
 
     logger.info('file count: {}'.format(input_file_count))
-    logger.info('result size: {}'.format(len(result)))
+    logger.info('result size: {}'.format(len(items)))
 
     # first get all the counts
     count = Counter()
-    for item_index, item in enumerate(result):
+    for item_index, item in enumerate(items):
         if item is not None:
             logger.info('item: {} size: {}'.format(item_index, len(item)))
             pieces = [piece.strip() for piece in item.split()]
