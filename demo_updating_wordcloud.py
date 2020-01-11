@@ -62,13 +62,13 @@ def update_graph_live(n):
     to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
     colormap = cm.get_cmap(plotly_colormap)
-    max_size = 2 * max(this[1] for this in word_cloud.layout_)
-    min_size = 2 * min(this[1] for this in word_cloud.layout_)
+    max_size = max(this[1] for this in word_cloud.layout_)
+    min_size = min(this[1] for this in word_cloud.layout_)
     return Figure(Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
                           x=[this[2][0] for this in word_cloud.layout_],
                           y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
-                   word_cloud.layout_], size=[this[1] for this in word_cloud.layout_], )))
+                   word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], )))
 
 
 if __name__ == '__main__':
