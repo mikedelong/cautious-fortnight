@@ -64,14 +64,11 @@ def update_graph_live(n):
     colormap = cm.get_cmap(plotly_colormap)
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
-
-    result = Figure(Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
-                            x=[this[2][0] for this in word_cloud.layout_],
-                            y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
+    return Figure(Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
+                          x=[this[2][0] for this in word_cloud.layout_],
+                          y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
                    word_cloud.layout_], size=[this[1] for this in word_cloud.layout_], )))
-
-    return result
 
 
 if __name__ == '__main__':
