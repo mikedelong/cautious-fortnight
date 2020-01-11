@@ -32,6 +32,7 @@ app.layout = html.Div(html.Div(
         html.Button('Submit', id='button'),
         html.Div(id='output-container-button',
                  children='Enter a value and press submit'),
+        html.Div(id='intermediate-value', style={'display': 'none'})
     ]))
 
 
