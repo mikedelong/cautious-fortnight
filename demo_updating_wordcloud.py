@@ -1,5 +1,6 @@
 from collections import Counter
 from glob import glob
+from json import dumps as json_dumps
 from json import load as json_load
 from logging import INFO
 from logging import basicConfig
@@ -36,21 +37,26 @@ app.layout = html.Div(html.Div(
     ]))
 
 
-@app.callback(
-    dash.dependencies.Output('output-container-button', 'children'),
-    [dash.dependencies.Input('button', 'n_clicks')],
-    [dash.dependencies.State('input-box', 'value')])
-def update_output(n_clicks, value):
+@app.callback(Output('intermediate-value', 'children'), [Input('input-box', 'value')])
+def process_value(value):
     if value:
         value = str(value)
         value = value.strip()
         if len(value) > 0:
             stop_word.append(value)
+        return json_dumps(stop_word)
+
+
+@app.callback(
+    dash.dependencies.Output('output-container-button', 'children'),
+    [dash.dependencies.Input('button', 'n_clicks')],
+    [dash.dependencies.State('input-box', 'value')])
+def update_output(n_clicks, value):
     if n_clicks and int(n_clicks) > 0:
-        logger.info('new stop word is [{}]; stop word count is {}'.format(value, len(stop_word)))
+        logger.info('new stop word is [{}]'.format(value))
 
 
-@app.callback(Output('live-update-graph', 'figure'), [Input('input-box', 'value')], )
+@app.callback(Output('live-update-graph', 'figure'), [Input('intermediate-value', 'children')], )
 def update_graph_live(n):
     count_list = [this for this in list(count.items()) if this[0].lower() not in set(stop_word)]
     logger.info(count_list)
