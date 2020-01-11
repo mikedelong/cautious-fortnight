@@ -59,7 +59,6 @@ def update_output(n_clicks, value):
 @app.callback(Output('live-update-graph', 'figure'), [Input('intermediate-value', 'children')], )
 def update_graph_live(n):
     count_list = [this for this in list(count.items()) if this[0].lower() not in set(stop_word)]
-    logger.info(count_list)
     to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
     colormap = cm.get_cmap(plotly_colormap)
