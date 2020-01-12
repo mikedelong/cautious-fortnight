@@ -1,4 +1,3 @@
-unidecode
 chatterbot
 dash
 deeppavlov
@@ -12,5 +11,6 @@ scikit-learn
 textblob
 tika
 torch
+unidecode
 wikipedia
 wordcloud
