@@ -52,7 +52,7 @@ def process_value(value):
     [dash.dependencies.Input('button', 'n_clicks')],
     [dash.dependencies.State('input-box', 'value')])
 def update_output(n_clicks, value):
-    if n_clicks and int(n_clicks) > 0:
+    if n_clicks and int(n_clicks) > 0 and len(str(value).strip()):
         logger.info('new stop word is [{}]'.format(value))
 
 
