@@ -134,6 +134,7 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith(';') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
+            pieces = [piece if not piece.endswith('?') else piece[:-1] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
