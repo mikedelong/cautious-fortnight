@@ -16,6 +16,7 @@ from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
 from plotly.graph_objects import Scatter
 from tika import parser
+from unidecode import unidecode
 from wordcloud import WordCloud
 
 
@@ -119,7 +120,8 @@ if __name__ == '__main__':
         logger.info(input_file)
         input_file_count += 1
         parse_result = parser.from_file(input_file)
-        items.append(parse_result['content'])
+        if parse_result['content']:
+            items.append(unidecode(parse_result['content']))
 
     logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(items)))
