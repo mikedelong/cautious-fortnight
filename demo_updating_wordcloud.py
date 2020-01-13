@@ -71,6 +71,7 @@ def update_graph_live(n):
                                 x=[this[2][0] for this in word_cloud.layout_],
                                 y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
+                   # todo make the sizes less disparate
                    word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], ))],
                   layout=Layout(autosize=True, height=800, width=1800, ))
 
