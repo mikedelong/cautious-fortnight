@@ -72,7 +72,7 @@ def update_graph_live(n):
                                 y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
                    word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], ))],
-                  layout=Layout(autosize=True, height=800, width=800, ))
+                  layout=Layout(autosize=True, height=800, width=1800, ))
 
 
 if __name__ == '__main__':
