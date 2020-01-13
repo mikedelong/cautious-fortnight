@@ -14,6 +14,7 @@ from dash.dependencies import Input
 from dash.dependencies import Output
 from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
+from plotly.graph_objects import Layout
 from plotly.graph_objects import Scatter
 from tika import parser
 from unidecode import unidecode
@@ -65,11 +66,13 @@ def update_graph_live(n):
     colormap = cm.get_cmap(plotly_colormap)
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
-    return Figure(Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
-                          x=[this[2][0] for this in word_cloud.layout_],
-                          y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
+
+    return Figure(data=[Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
+                                x=[this[2][0] for this in word_cloud.layout_],
+                                y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
-                   word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], )))
+                   word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], ))],
+                  layout=Layout(autosize=True, ))
 
 
 if __name__ == '__main__':
