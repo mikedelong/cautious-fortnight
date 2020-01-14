@@ -76,6 +76,8 @@ def update_graph_live(n):
                    word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], ))],
                     layout=Layout(autosize=True, height=800, width=1800, ))
 
+    result.update_xaxes(showticklabels=False)
+    result.update_yaxes(showticklabels=False)
     return result
 
 
