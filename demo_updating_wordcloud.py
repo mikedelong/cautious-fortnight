@@ -67,7 +67,6 @@ def update_graph_live(n):
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
 
-    # todo turn off the axes tick marks
     result = Figure(data=[Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_],
                                   x=[this[2][0] for this in word_cloud.layout_],
                                   y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
