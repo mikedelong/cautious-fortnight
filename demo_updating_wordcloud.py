@@ -74,10 +74,8 @@ def update_graph_live(n):
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
                    # todo make the sizes less disparate
                    word_cloud.layout_], size=[2 * this[1] for this in word_cloud.layout_], ))],
-                    layout=Layout(autosize=True, height=800, width=1800, xaxis=dict(showticklabels=False)))
-
-    # result.update_xaxes(showticklabels=False)
-    result.update_yaxes(showticklabels=False)
+                    layout=Layout(autosize=True, height=800, width=1800, xaxis=dict(showticklabels=False),
+                                  yaxis=dict(showticklabels=False), ))
     return result
 
 
