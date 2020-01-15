@@ -42,8 +42,7 @@ app.layout = html.Div(html.Div(
 @app.callback(Output('intermediate-value', 'children'), [Input('input-box', 'value')])
 def process_value(value):
     if value:
-        value = str(value)
-        value = value.strip()
+        value = str(value).strip()
         if len(value) > 0:
             stop_word.append(value)
         return json_dumps(stop_word)
