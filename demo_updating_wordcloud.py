@@ -72,6 +72,8 @@ def update_graph_live(n):
                                 yaxis=dict(showticklabels=False), ))
 
 
+plurals = {'Afghans': 'Afghan'}
+
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
@@ -137,6 +139,7 @@ if __name__ == '__main__':
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith('?') else piece[:-1] for piece in pieces]
+            pieces = [piece if piece not in plurals.keys() else plurals[piece] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
