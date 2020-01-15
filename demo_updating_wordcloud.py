@@ -134,6 +134,7 @@ if __name__ == '__main__':
         if item is not None:
             logger.info('item: {} size: {}'.format(item_index, len(item)))
             pieces = [piece.strip() for piece in item.split()]
+            # todo introduce a loop/list here and consolidate this code
             pieces = [piece if not piece.endswith(':') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith(';') else piece[:-1] for piece in pieces]
             pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
