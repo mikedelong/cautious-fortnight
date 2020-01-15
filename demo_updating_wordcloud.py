@@ -72,7 +72,7 @@ def update_graph_live(n):
                                 yaxis=dict(showticklabels=False), ))
 
 
-plurals = {'Afghans': 'Afghan'}
+plurals = {'Afghans': 'Afghan', 'lists': 'list'}
 
 if __name__ == '__main__':
     time_start = time()
