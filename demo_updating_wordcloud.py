@@ -139,12 +139,8 @@ if __name__ == '__main__':
             logger.info('item: {} size: {}'.format(item_index, len(item)))
             pieces = [piece.strip() for piece in item.split()]
             # todo introduce a loop/list here and consolidate this code
-            pieces = [piece if not piece.endswith(':') else piece[:-1] for piece in pieces]
-            pieces = [piece if not piece.endswith(';') else piece[:-1] for piece in pieces]
-            pieces = [piece if not piece.endswith('.') else piece[:-1] for piece in pieces]
-            pieces = [piece if not piece.endswith(',') else piece[:-1] for piece in pieces]
-            pieces = [piece if not piece.endswith('?') else piece[:-1] for piece in pieces]
-            pieces = [piece if not piece.endswith(')') else piece[:-1] for piece in pieces]
+            for punctuation in [':', ';', '.', ',', '?', ')']:
+                pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece if piece not in plurals.keys() else plurals[piece] for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
