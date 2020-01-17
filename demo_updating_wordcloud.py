@@ -66,7 +66,6 @@ def update_graph_live(n):
                                 hovertext=[this[1] for this in word_cloud.layout_],
                                 x=[this[2][0] for this in word_cloud.layout_],
                                 y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
-            # todo add the count for each token to the hover text
             # todo make the sizes less disparate
             color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
                    word_cloud.layout_],
