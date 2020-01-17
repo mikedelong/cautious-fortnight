@@ -77,8 +77,8 @@ plurals = {'Afghans': 'Afghan', 'advantages': 'advantage', 'areas': 'area', 'att
            'challenges': 'challenge', 'changes': 'change', 'circumstances': 'circumstance',
            'conversations': 'conversation', 'directors': 'director', 'disadvantages': 'disadvantage',
            'districts': 'district', 'effects': 'effect', 'governors': 'governor', 'letters': 'letter', 'lists': 'list',
-           'officials': 'official', 'ones': 'one', 'others': 'other', 'programs': 'program', 'projects': 'project',
-           'quotes': 'quote', 'responses': 'response', 'sources': 'source'}
+           'officials': 'official', 'ones': 'one', 'operations': 'operation', 'others': 'other', 'programs': 'program',
+           'projects': 'project', 'quotes': 'quote', 'responses': 'response', 'sources': 'source'}
 
 if __name__ == '__main__':
     time_start = time()
