@@ -76,10 +76,9 @@ def update_graph_live(n):
 plurals = {'Afghans': 'Afghan', 'advantages': 'advantage', 'areas': 'area', 'attacks': 'attack',
            'challenges': 'challenge', 'changes': 'change', 'circumstances': 'circumstance',
            'conversations': 'conversation', 'directors': 'director', 'disadvantages': 'disadvantage',
-           'districts': 'district', 'effects': 'effect',
-           'governors': 'governor', 'letters': 'letter', 'lists': 'list', 'officials': 'official',
-           'ones': 'one', 'programs': 'program', 'projects': 'project', 'quotes': 'quote', 'responses': 'response',
-           'sources': 'source'}
+           'districts': 'district', 'effects': 'effect', 'governors': 'governor', 'letters': 'letter', 'lists': 'list',
+           'officials': 'official', 'ones': 'one', 'others': 'other', 'programs': 'program', 'projects': 'project',
+           'quotes': 'quote', 'responses': 'response', 'sources': 'source'}
 
 if __name__ == '__main__':
     time_start = time()
