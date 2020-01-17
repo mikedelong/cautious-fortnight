@@ -74,6 +74,7 @@ def update_graph_live(n):
                                 yaxis=dict(showticklabels=False), ))
 
 
+# todo move this from code to data
 plurals = {'Afghans': 'Afghan', 'advantages': 'advantage', 'areas': 'area', 'attacks': 'attack',
            'challenges': 'challenge', 'changes': 'change', 'circumstances': 'circumstance',
            'conversations': 'conversation', 'directors': 'director', 'disadvantages': 'disadvantage',
