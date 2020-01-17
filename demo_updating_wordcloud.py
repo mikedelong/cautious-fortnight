@@ -77,7 +77,7 @@ plurals = {'Afghans': 'Afghan', 'advantages': 'advantage', 'areas': 'area', 'att
            'challenges': 'challenge', 'changes': 'change', 'circumstances': 'circumstance',
            'conversations': 'conversation', 'directors': 'director', 'disadvantages': 'disadvantage',
            'districts': 'district', 'effects': 'effect', 'letters': 'letter', 'lists': 'list', 'officials': 'official',
-           'programs': 'program', 'projects': 'project', 'quotes': 'quote', 'responses': 'response',
+           'ones': 'one', 'programs': 'program', 'projects': 'project', 'quotes': 'quote', 'responses': 'response',
            'sources': 'source'}
 
 if __name__ == '__main__':
