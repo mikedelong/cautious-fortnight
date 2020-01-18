@@ -75,12 +75,6 @@ def update_graph_live(n):
 
 
 # todo move this from code to data
-plurals = {'Afghans': 'Afghan', 'advantages': 'advantage', 'areas': 'area', 'attacks': 'attack',
-           'challenges': 'challenge', 'changes': 'change', 'circumstances': 'circumstance',
-           'conversations': 'conversation', 'directors': 'director', 'disadvantages': 'disadvantage',
-           'districts': 'district', 'effects': 'effect', 'governors': 'governor', 'letters': 'letter', 'lists': 'list',
-           'officials': 'official', 'ones': 'one', 'operations': 'operation', 'others': 'other', 'programs': 'program',
-           'projects': 'project', 'quotes': 'quote', 'responses': 'response', 'sources': 'source'}
 
 if __name__ == '__main__':
     time_start = time()
@@ -114,7 +108,7 @@ if __name__ == '__main__':
     else:
         logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
     plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
-    if plurals in settings.keys():
+    if len(plurals):
         logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
