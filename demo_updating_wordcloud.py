@@ -140,7 +140,6 @@ if __name__ == '__main__':
     count = Counter()
     for item_index, item in enumerate(items):
         if item is not None:
-            logger.info('item: {} size: {}'.format(item_index, len(item)))
             pieces = [piece.strip() for piece in item.split()]
             for punctuation in ['(']:
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
