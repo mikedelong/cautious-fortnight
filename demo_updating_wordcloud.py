@@ -113,6 +113,11 @@ if __name__ == '__main__':
         logger.info('plotly/HTML colormap: {}'.format(plotly_colormap))
     else:
         logger.warning('plotly/HTML colormap not in settings; using default: {}'.format(plotly_colormap))
+    plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
+    if plurals in settings.keys():
+        logger.info('plurals: {}'.format(plurals))
+    else:
+        logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
     stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
     if len(stop_word):
         logger.info('stop word list: {}'.format(stop_word))
