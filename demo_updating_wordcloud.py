@@ -74,7 +74,6 @@ def update_graph_live(n):
                                 yaxis=dict(showticklabels=False), ))
 
 
-# todo move this from code to data
 
 if __name__ == '__main__':
     time_start = time()
