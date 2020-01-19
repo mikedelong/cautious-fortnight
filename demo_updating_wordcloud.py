@@ -121,6 +121,7 @@ if __name__ == '__main__':
     else:
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
+    # todo separate getting the counts from filtering/displaying them
     items = list()
     input_file_count = 0
     for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
