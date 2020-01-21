@@ -84,6 +84,11 @@ if __name__ == '__main__':
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
+    dash_debug = settings['dash_debug'] if 'dash_debug' in settings.keys() else True
+    if 'dash_debug' in settings.keys():
+        logger.info('dash debug: {}'.format(dash_debug))
+    else:
+        logger.warning('dash debug not in settings; default value is {}'.format(dash_debug))
     imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
     if 'imshow_interpolation' in settings.keys():
         logger.info('imshow interpolation: {}'.format(imshow_interpolation))
@@ -153,5 +158,4 @@ if __name__ == '__main__':
     count = Counter({item: count[item] for item in count if count[item] > 1})
     logger.info('stop words: {}'.format(sorted(stop_word)))
 
-    debug = False
-    app.run_server(debug=debug)
+    app.run_server(debug=dash_debug)
