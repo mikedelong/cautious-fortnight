@@ -153,4 +153,5 @@ if __name__ == '__main__':
     count = Counter({item: count[item] for item in count if count[item] > 1})
     logger.info('stop words: {}'.format(sorted(stop_word)))
 
-    app.run_server(debug=True)
+    debug = False
+    app.run_server(debug=debug)
