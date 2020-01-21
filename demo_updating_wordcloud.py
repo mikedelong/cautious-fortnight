@@ -26,10 +26,9 @@ def float_color_to_hex(arg_float, arg_colormap):
     return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
 
 
-figure = Figure()
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'], )
 app.layout = html.Div(html.Div(
-    [dcc.Graph(id='live-update-graph', figure=figure), html.Div(dcc.Input(id='input-box', type='text')),
+    [dcc.Graph(id='live-update-graph', figure=Figure()), html.Div(dcc.Input(id='input-box', type='text')),
      html.Button('Submit', id='button'),
      html.Div(id='output-container-button', children='Enter a value and press submit'),
      html.Div(id='intermediate-value', style={'display': 'none'})]))
