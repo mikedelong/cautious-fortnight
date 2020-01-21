@@ -88,11 +88,6 @@ if __name__ == '__main__':
         logger.info('dash debug: {}'.format(dash_debug))
     else:
         logger.warning('dash debug not in settings; default value is {}'.format(dash_debug))
-    imshow_interpolation = settings['imshow_interpolation'] if 'imshow_interpolation' in settings.keys() else 20
-    if 'imshow_interpolation' in settings.keys():
-        logger.info('imshow interpolation: {}'.format(imshow_interpolation))
-    else:
-        logger.warning('imshow interpolation not in settings; default value is {}'.format(imshow_interpolation))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
