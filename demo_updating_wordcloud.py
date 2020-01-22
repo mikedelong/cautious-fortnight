@@ -118,9 +118,6 @@ if __name__ == '__main__':
     else:
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
-    # todo separate getting the counts from filtering/displaying them
-    input_file_count = 0
-
     with open(input_file, 'r') as input_fp:
         count = json_load(input_fp)
     logger.info('stop words: {}'.format(sorted(stop_word)))
