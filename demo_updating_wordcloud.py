@@ -50,7 +50,8 @@ def update_output(n_clicks, value):
 
 @app.callback(Output('live-update-graph', 'figure'), [Input('intermediate-value', 'children')], )
 def update_graph_live(n):
-    count_list = [this for this in list(count.items()) if this[0].lower() not in set(stop_word)]
+    count_list = sorted([this for this in list(count.items()) if this[0].lower() not in set(stop_word)],
+                        key=lambda x: x[1], reverse=True)
     to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
     colormap = cm.get_cmap(plotly_colormap)
@@ -120,6 +121,10 @@ if __name__ == '__main__':
 
     with open(input_file, 'r') as input_fp:
         count = json_load(input_fp)
+
     logger.info('stop words: {}'.format(sorted(stop_word)))
+    logger.info('counts: {}'.format(count))
+    # count = sorted([(item[0], item[1]) for item in count.items()], key=lambda x: x[1], reverse=True)
+    # logger.info('counts: {}'.format(count))
 
     app.run_server(debug=dash_debug)
