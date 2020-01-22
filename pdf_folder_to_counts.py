@@ -26,6 +26,13 @@ if __name__ == '__main__':
     else:
         logger.warning('input folder is None. Quitting.')
         quit(code=1)
+    output_file = settings['output_file'] if 'output_file' in settings.keys() else None
+    if output_file:
+        logger.info('output file: {}'.format(output_file))
+    else:
+        logger.warning('output file is missing from the settings. Quitting.')
+        quit(code=2)
+
     plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
     if len(plurals):
         with open(settings['plurals'], 'r') as plurals_fp:
