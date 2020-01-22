@@ -80,6 +80,5 @@ if __name__ == '__main__':
     count = Counter({item: count[item] for item in count if count[item] > 1})
     logger.info('stop words: {}'.format(sorted(stop_word)))
 
-    # todo make the output file a setting
-    with open('output_tokens.json', 'w') as output_fp:
+    with open(output_file, 'w') as output_fp:
         json_dump(dict(count), output_fp, sort_keys=True)
