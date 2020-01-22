@@ -124,7 +124,5 @@ if __name__ == '__main__':
 
     logger.info('stop words: {}'.format(sorted(stop_word)))
     logger.info('counts: {}'.format(count))
-    # count = sorted([(item[0], item[1]) for item in count.items()], key=lambda x: x[1], reverse=True)
-    # logger.info('counts: {}'.format(count))
 
     app.run_server(debug=dash_debug)
