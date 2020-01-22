@@ -1,5 +1,3 @@
-from collections import Counter
-from glob import glob
 from json import dumps as json_dumps
 from json import load as json_load
 from logging import INFO
@@ -16,8 +14,6 @@ from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
 from plotly.graph_objects import Layout
 from plotly.graph_objects import Scatter
-from tika import parser
-from unidecode import unidecode
 from wordcloud import WordCloud
 
 
@@ -88,11 +84,11 @@ if __name__ == '__main__':
         logger.info('dash debug: {}'.format(dash_debug))
     else:
         logger.warning('dash debug not in settings; default value is {}'.format(dash_debug))
-    input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
-    if input_folder:
-        logger.info('input folder: {}'.format(input_folder))
+    input_file = settings['input_file'] if 'input_file' in settings.keys() else None
+    if input_file:
+        logger.info('input file: {}'.format(input_file))
     else:
-        logger.warning('input folder is None. Quitting.')
+        logger.warning('input file is missing from the settings. Quitting.')
         quit(code=1)
     max_font_size = settings['max_font_size'] if 'max_font_size' in settings.keys() else 20
     if 'max_font_size' in settings.keys():
@@ -123,33 +119,10 @@ if __name__ == '__main__':
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
     # todo separate getting the counts from filtering/displaying them
-    items = list()
     input_file_count = 0
-    for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
-        logger.info(input_file)
-        input_file_count += 1
-        parse_result = parser.from_file(input_file)
-        if parse_result['content']:
-            items.append(unidecode(parse_result['content']))
 
-    logger.info('file count: {}'.format(input_file_count))
-    logger.info('result size: {}'.format(len(items)))
-
-    # first get all the counts
-    count = Counter()
-    for item_index, item in enumerate(items):
-        if item is not None:
-            pieces = [piece.strip() for piece in item.split()]
-            for punctuation in ['(']:
-                pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
-            for punctuation in [':', ';', '.', ',', '?', ')']:
-                pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
-            pieces = [piece if piece not in plurals.keys() else plurals[piece] for piece in pieces]
-            for piece in pieces:
-                count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
-
-    # filter out all the tokens that appear only once
-    count = Counter({item: count[item] for item in count if count[item] > 1})
+    with open(input_file, 'r') as input_fp:
+        count = json_load(input_fp)
     logger.info('stop words: {}'.format(sorted(stop_word)))
 
     app.run_server(debug=dash_debug)
