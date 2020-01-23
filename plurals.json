@@ -21,9 +21,12 @@
   "ones": "one",
   "operations": "operation",
   "others": "other",
+  "places": "place",
+  "problems": "problem",
   "programs": "program",
   "projects": "project",
   "quotes": "quote",
+  "resources": "resource",
   "responses": "response",
   "sources": "source"
 }
