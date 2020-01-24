@@ -63,6 +63,7 @@ if __name__ == '__main__':
     logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(items)))
 
+    # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
     # first get all the counts
@@ -71,15 +72,18 @@ if __name__ == '__main__':
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
             pieces = [piece if piece not in {'U.S.'} else 'US' for piece in pieces]
-            for punctuation in ['(', '\'', '\"', '[', ]:
-                pieces = [piece if not piece.startswith(punctuation) or ')(' in piece else piece[1:]
-                          for piece in pieces]
-            for punctuation in [':', ';', '.', ',', '?', ')', '\'', '\"', ']', ]:
+            pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
+            for punctuation in ['\'', '\"', '[', ]:
+                pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
+            piece = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
+            for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', ]:
                 pieces = [piece if not piece.endswith(punctuation) or ')(' in piece else piece[:-1] for piece in pieces]
             pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(piece, plurals[piece])
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
+            pieces = [piece if piece not in {'Meeting', 'Please', 'RECORD', 'Record', 'SUBJECT', 'Title',
+                                             'Yes', } else piece.lower() for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
