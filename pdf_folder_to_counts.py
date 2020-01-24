@@ -63,6 +63,8 @@ if __name__ == '__main__':
     logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(items)))
 
+    singulars = {plurals[key]: key for key in plurals.keys()}
+
     # first get all the counts
     count = Counter()
     for item_index, item in enumerate(items):
@@ -73,6 +75,8 @@ if __name__ == '__main__':
             for punctuation in [':', ';', '.', ',', '?', ')', '\'', '\"', ]:
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(piece, plurals[piece])
+                      for piece in pieces]
+            pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
