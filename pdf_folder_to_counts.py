@@ -50,8 +50,6 @@ if __name__ == '__main__':
     else:
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
-    input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
-    logger.info('file count: {}'.format(len(input_files)))
     items = list()
     for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
         logger.info(input_file)
@@ -60,6 +58,7 @@ if __name__ == '__main__':
             items.append(unidecode(parse_result['content']))
 
     logger.info('result size: {}'.format(len(items)))
+    logger.info('file count: {}'.format(len([input_file for input_file in glob(input_folder + '*.pdf')])))
 
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
