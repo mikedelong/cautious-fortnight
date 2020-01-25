@@ -32,7 +32,6 @@ if __name__ == '__main__':
     else:
         logger.warning('output file is missing from the settings. Quitting.')
         quit(code=2)
-
     plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
     if len(plurals):
         with open(settings['plurals'], 'r') as plurals_fp:
@@ -51,16 +50,15 @@ if __name__ == '__main__':
     else:
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
+    input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
+    logger.info('file count: {}'.format(len(input_files)))
     items = list()
-    input_file_count = 0
     for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
         logger.info(input_file)
-        input_file_count += 1
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
             items.append(unidecode(parse_result['content']))
 
-    logger.info('file count: {}'.format(input_file_count))
     logger.info('result size: {}'.format(len(items)))
 
     # add a map of singulars to plurals to complement our plurals to singulars map
