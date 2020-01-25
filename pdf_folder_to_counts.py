@@ -51,7 +51,7 @@ if __name__ == '__main__':
         logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
     items = list()
-    for input_file_index, input_file in enumerate(glob(input_folder + '*.pdf')):
+    for input_file in glob(input_folder + '*.pdf'):
         logger.info(input_file)
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
