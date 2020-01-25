@@ -82,8 +82,8 @@ if __name__ == '__main__':
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
-            pieces = [piece if piece not in {'Meeting', 'Please', 'RECORD', 'Record', 'SUBJECT', 'Title',
-                                             'Yes', } else piece.lower() for piece in pieces]
+            pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'RECORD', 'Record', 'SUBJECT',
+                                             'Title', 'Yes', } else piece.lower() for piece in pieces]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
