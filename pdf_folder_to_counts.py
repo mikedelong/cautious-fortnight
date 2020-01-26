@@ -5,10 +5,19 @@ from json import load as json_load
 from logging import INFO
 from logging import basicConfig
 from logging import getLogger
+from string import punctuation
 from time import time
 
 from tika import parser
 from unidecode import unidecode
+
+
+def ispunct(arg):
+    for character in arg:
+        if character not in punctuation:
+            return False
+    return True
+
 
 if __name__ == '__main__':
     time_start = time()
@@ -83,6 +92,7 @@ if __name__ == '__main__':
             pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'Project', 'RECORD', 'Record',
                                              'SUBJECT', 'Title', 'Yes', } else piece.lower() for piece in pieces]
             # todo add a rule to remove all-punctuation tokens
+            pieces = [piece for piece in pieces if not ispunct(piece)]
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
 
