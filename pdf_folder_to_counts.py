@@ -80,8 +80,8 @@ if __name__ == '__main__':
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
-            pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'RECORD', 'Record', 'SUBJECT',
-                                             'Title', 'Yes', } else piece.lower() for piece in pieces]
+            pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'Project', 'RECORD', 'Record',
+                                             'SUBJECT', 'Title', 'Yes', } else piece.lower() for piece in pieces]
             # todo add a rule to remove all-punctuation tokens
             for piece in pieces:
                 count[piece] += 1 if all([len(piece) > 1, not piece.isdigit(), ]) else 0
