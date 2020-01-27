@@ -77,7 +77,7 @@ if __name__ == '__main__':
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
     logger.info('started.')
 
-    with open('./demo_wordcloud.json', 'r') as settings_fp:
+    with open('./afghanistan_papers.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
