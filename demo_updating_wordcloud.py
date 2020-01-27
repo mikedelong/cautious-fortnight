@@ -78,8 +78,8 @@ if __name__ == '__main__':
     logger.info('started.')
 
     with open('./afghanistan_papers.json', 'r') as settings_fp:
-        settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
-                             parse_constant=None, object_pairs_hook=None)
+        settings = json_load(settings_fp, cls=None, object_hook=None, object_pairs_hook=None, parse_constant=None,
+                             parse_float=None, parse_int=None, )
 
     dash_debug = settings['dash_debug'] if 'dash_debug' in settings.keys() else True
     if 'dash_debug' in settings.keys():
