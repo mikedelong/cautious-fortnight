@@ -50,6 +50,13 @@ if __name__ == '__main__':
             logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
+    verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
+    if len(verbs):
+        with open(settings['verbs'], 'r') as verbs_fp:
+            verbs = json_load(verbs_fp)
+            logger.info('verbs: {}'.format(verbs))
+    else:
+        logger.warning('verbs not in settings; we will not be doing any verbal-form consolidation')
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
@@ -64,6 +71,7 @@ if __name__ == '__main__':
 
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
+    roots = {verbs[key]: key for key in verbs.keys()}
 
     # first get all the counts
     count = Counter()
@@ -81,6 +89,11 @@ if __name__ == '__main__':
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
+            pieces = [piece if piece not in verbs.keys() else '{}/{}'.format(verbs[piece], piece)
+                      for piece in pieces]
+            pieces = [piece if piece not in roots.keys() else '{}/{}'.format(piece, roots[piece])
+                      for piece in pieces]
+
             pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'Project', 'RECORD', 'Record',
                                              'SUBJECT', 'Title', 'Yes', } else piece.lower() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
