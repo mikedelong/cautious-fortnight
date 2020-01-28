@@ -1,5 +1,5 @@
 {
   "input_folder": "./afghanistan-papers-documents/",
   "output_file": "./output_tokens.json",
-  "plurals": "./plurals.json",
+  "plurals": "./plurals.json"
 }
