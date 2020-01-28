@@ -50,11 +50,6 @@ if __name__ == '__main__':
             logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
-    stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
-    if len(stop_word):
-        logger.info('stop word list: {}'.format(stop_word))
-    else:
-        logger.warning('stop word list not in settings; default is empty.')
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
@@ -94,7 +89,6 @@ if __name__ == '__main__':
 
     # filter out all the tokens that appear only once
     count = Counter({item: count[item] for item in count if count[item] > 1})
-    logger.info('stop words: {}'.format(sorted(stop_word)))
 
     with open(output_file, 'w') as output_fp:
         json_dump(dict(count), output_fp, sort_keys=True)
