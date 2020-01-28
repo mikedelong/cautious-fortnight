@@ -2,5 +2,4 @@
   "input_folder": "./afghanistan-papers-documents/",
   "output_file": "./output_tokens.json",
   "plurals": "./plurals.json",
-  "token_count": "150"
 }
