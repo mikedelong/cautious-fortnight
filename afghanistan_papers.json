@@ -3,7 +3,6 @@
   "input_file": "./output_tokens.json",
   "max_font_size": 40,
   "plotly_colormap": "viridis",
-  "plurals": "./plurals.json",
   "stop_word": [
     "r.",
     "a",
@@ -217,5 +216,5 @@
     "important",
     ".."
   ],
-  "token_count": 200
+  "token_count": 250
 }
