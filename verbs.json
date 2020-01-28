@@ -1,2 +1,5 @@
 {
+  "based": "base",
+  "building": "build",
+  "funding": "fund"
 }
