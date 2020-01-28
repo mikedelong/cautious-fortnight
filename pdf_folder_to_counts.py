@@ -55,11 +55,6 @@ if __name__ == '__main__':
         logger.info('stop word list: {}'.format(stop_word))
     else:
         logger.warning('stop word list not in settings; default is empty.')
-    token_count = settings['token_count'] if 'token_count' in settings.keys() else 10
-    if 'token_count' in settings.keys():
-        logger.info('token count: {}'.format(token_count))
-    else:
-        logger.warning('token count not in settings; default value is {}.'.format(token_count))
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
