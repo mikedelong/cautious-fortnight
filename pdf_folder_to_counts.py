@@ -71,7 +71,6 @@ if __name__ == '__main__':
 
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
-    roots = {verbs[key]: key for key in verbs.keys()}
 
     # first get all the counts
     count = Counter()
@@ -89,10 +88,7 @@ if __name__ == '__main__':
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
                       for piece in pieces]
-            pieces = [piece if piece not in verbs.keys() else '{}/{}'.format(verbs[piece], piece)
-                      for piece in pieces]
-            pieces = [piece if piece not in roots.keys() else '{}/{}'.format(piece, roots[piece])
-                      for piece in pieces]
+            pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
 
             pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Meeting', 'Please', 'Project', 'RECORD', 'Record',
                                              'SUBJECT', 'Title', 'Yes', } else piece.lower() for piece in pieces]
