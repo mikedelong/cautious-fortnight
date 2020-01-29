@@ -71,6 +71,11 @@ if __name__ == '__main__':
 
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
+    # do a sanity check on our plurals and verbs
+    collisions = set(plurals.keys()).intersection(set(verbs.keys()))
+    if len(collisions):
+        logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
+        quit(code=3)
 
     # first get all the counts
     count = Counter()
