@@ -58,6 +58,12 @@ if __name__ == '__main__':
     else:
         logger.warning('verbs not in settings; we will not be doing any verbal-form consolidation')
 
+    # do a sanity check on our plurals and verbs
+    collisions = set(plurals.keys()).intersection(set(verbs.keys()))
+    if len(collisions):
+        logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
+        quit(code=3)
+
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
     for input_file in input_files:
@@ -71,11 +77,6 @@ if __name__ == '__main__':
 
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
-    # do a sanity check on our plurals and verbs
-    collisions = set(plurals.keys()).intersection(set(verbs.keys()))
-    if len(collisions):
-        logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
-        quit(code=3)
 
     # first get all the counts
     count = Counter()
