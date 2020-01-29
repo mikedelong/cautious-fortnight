@@ -1,5 +1,10 @@
 {
-  "based": "base",
-  "building": "build",
-  "funding": "fund"
+  "base": "base/based",
+  "based": "base/based",
+  "build": "build/builds/building",
+  "builds": "build/builds/building",
+  "building": "build/builds/building",
+  "fund": "fund/funds/funding",
+  "funds": "fund/funds/funding",
+  "funding": "fund/funds/funding"
 }
