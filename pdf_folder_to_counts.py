@@ -83,7 +83,6 @@ if __name__ == '__main__':
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
-            pieces = [piece for piece in pieces if len(piece) > 1 and not piece.isdigit()]
             pieces = [piece if piece not in {'U.S.'} else 'US' for piece in pieces]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
@@ -91,6 +90,8 @@ if __name__ == '__main__':
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
             for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', ]:
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
+            pieces = [piece for piece in pieces if len(piece) > 1]
+            pieces = [piece for piece in pieces if not piece.isdigit()]
             pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(piece, plurals[piece])
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
