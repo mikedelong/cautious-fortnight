@@ -6,5 +6,8 @@
   "building": "build/builds/building",
   "fund": "fund/funds/funding",
   "funds": "fund/funds/funding",
-  "funding": "fund/funds/funding"
+  "funding": "fund/funds/funding",
+  "plan": "plan/plans/planning",
+  "plans": "plan/plans/planning",
+  "planning": "plan/plans/planning"
 }
