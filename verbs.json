@@ -5,6 +5,8 @@
   "building": "build/building/builds/built",
   "builds": "build/building/builds/built",
   "built": "build/building/builds/built",
+  "focus": "focus/focused",
+  "focused": "focus/focused",
   "fund": "fund/funding/funds",
   "funds": "fund/funding/funds",
   "funding": "fund/funding/funds",
