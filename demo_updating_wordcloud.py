@@ -53,8 +53,7 @@ def update_graph_live(n):
     count_list = sorted([this for this in list(count.items()) if this[0].lower() not in set(stop_word)],
                         key=lambda x: x[1], reverse=True)
     to_show = {count_item[0]: count_item[1] for count_item in count_list[:token_count]}
-    word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size)
-    colormap = cm.get_cmap(plotly_colormap)
+    word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size, )
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
 
@@ -64,8 +63,8 @@ def update_graph_live(n):
                                 x=[this[2][0] for this in word_cloud.layout_],
                                 y=[this[2][1] for this in word_cloud.layout_], textfont=dict(
             # todo make the sizes less disparate
-            color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), colormap) for this in
-                   word_cloud.layout_],
+            color=[float_color_to_hex(int((this[1] - min_size) * 255 / max_size), cm.get_cmap(plotly_colormap))
+                   for this in word_cloud.layout_],
             size=[2 * this[1] for this in word_cloud.layout_], ))],
                   layout=Layout(autosize=True, height=800, width=1800, xaxis=dict(showticklabels=False),
                                 yaxis=dict(showticklabels=False), ))
