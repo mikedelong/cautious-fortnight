@@ -92,9 +92,9 @@ if __name__ == '__main__':
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
-            pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(piece, plurals[piece])
+            pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(plurals[piece], piece)
                       for piece in pieces]
-            pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(singulars[piece], piece)
+            pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(piece, singulars[piece])
                       for piece in pieces]
             pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
 
