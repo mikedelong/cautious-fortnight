@@ -23,7 +23,11 @@ def ispunct(arg):
 def pdf_to_text(arg):
     parse_result = parser.from_file(arg)
     if parse_result['content']:
-        return unidecode(parse_result['content'])
+        result = unidecode(parse_result['content'])
+        if len(result):
+            return result
+        else:
+            print('\'{}\','.format(arg))
     else:
         print('\'{}\','.format(arg))
         return ' '
@@ -72,13 +76,16 @@ if __name__ == '__main__':
         logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
         quit(code=3)
 
-    vectorizer = TfidfVectorizer(input='files', encoding='utf-8',
-                                 decode_error='strict', strip_accents=None, lowercase=True, preprocessor=pdf_to_text,
-                                 tokenizer=None, analyzer='word', stop_words=None, token_pattern='(?u)\b\w\w+\b',
-                                 ngram_range=(1, 1), max_df=1.0, min_df=1, max_features=None, vocabulary=None,
-                                 binary=False,
-                                 # dtype=<class 'numpy.float64'>,
-                                 norm='l2', use_idf=True, smooth_idf=True, sublinear_tf=False)
+    vectorizer = TfidfVectorizer(
+        # input='files',
+        input='content',
+        encoding='utf-8',
+        decode_error='strict', strip_accents=None, lowercase=True, preprocessor=pdf_to_text,
+        tokenizer=None, analyzer='word', stop_words=None, token_pattern='(?u)\b\w\w+\b',
+        ngram_range=(1, 1), max_df=1.0, min_df=1, max_features=None, vocabulary=None,
+        binary=False,
+        # dtype=<class 'numpy.float64'>,
+        norm='l2', use_idf=True, smooth_idf=True, sublinear_tf=False)
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf') if input_file.replace('\\', '/') not in {
         './afghanistan-papers-documents/background_ll_01_xx2_dc_07102015.pdf',
@@ -124,8 +131,8 @@ if __name__ == '__main__':
         './afghanistan-papers-documents/johnson_thomas_ll_01072016.pdf',
         './afghanistan-papers-documents/khalilzad_zalma_ll_12072016.pdf',
         './afghanistan-papers-documents/williams_mike_ll_07_74_02272018.pdf',
-
+        './afghanistan-papers-documents/zia_ehsan_ll001302017.pdf',
     }]
-    t = [pdf_to_text(item) for item in input_files[:2]]
+    # t = [pdf_to_text(item) for item in input_files[:2]]
     model = vectorizer.fit_transform(input_files)
     logger.info('model shape: {}'.format(len(model)))
