@@ -132,6 +132,8 @@ if __name__ == '__main__':
         './afghanistan-papers-documents/khalilzad_zalma_ll_12072016.pdf',
         './afghanistan-papers-documents/williams_mike_ll_07_74_02272018.pdf',
         './afghanistan-papers-documents/zia_ehsan_ll001302017.pdf',
+        './afghanistan-papers-documents/yamashita_ken_ll_05_a7_12152015.pdf',
+        './afghanistan-papers-documents/yamashita_ken_ll_03_51_03292016.pdf',
     }]
     # t = [pdf_to_text(item) for item in input_files[:2]]
     model = vectorizer.fit_transform(input_files)
