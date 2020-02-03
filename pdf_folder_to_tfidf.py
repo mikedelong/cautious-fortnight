@@ -78,26 +78,30 @@ if __name__ == '__main__':
 
     vectorizer = TfidfVectorizer(
         # input='files',
-        input='content',
+        # input='content',
+        input='filename',
         encoding='utf-8',
-        decode_error='strict', strip_accents=None, lowercase=True, preprocessor=pdf_to_text,
+        decode_error='strict', strip_accents=None, lowercase=True,
+        # preprocessor=pdf_to_text,
+        preprocessor=None,
         tokenizer=None, analyzer='word', stop_words=None, token_pattern='(?u)\b\w\w+\b',
         ngram_range=(1, 1), max_df=1.0, min_df=1, max_features=None, vocabulary=None,
         binary=False,
         # dtype=<class 'numpy.float64'>,
         norm='l2', use_idf=True, smooth_idf=True, sublinear_tf=False)
 
-    input_files = [input_file for input_file in glob(input_folder + '*.pdf') if input_file.replace('\\', '/') not in {
-        './afghanistan-papers-documents/background_ll_01_xx2_dc_07102015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_dc_05052015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_dc_08252015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_nyc_01202015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_phone_08042015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_phone_08252014.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_xx2_06252015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_xx_04092015.pdf',
-        './afghanistan-papers-documents/background_ll_01_xx_xx_08202015.pdf',
-        './afghanistan-papers-documents/background_ll_02_xx_mainstate_06092015.pdf',
+    input_files = [input_file.replace('\\', '/') for input_file in glob(input_folder + '*.pdf')
+                   if input_file.replace('\\', '/') not in {
+                       './afghanistan-papers-documents/background_ll_01_xx2_dc_07102015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_dc_05052015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_dc_08252015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_nyc_01202015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_phone_08042015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_phone_08252014.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_xx2_06252015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_xx_04092015.pdf',
+                       './afghanistan-papers-documents/background_ll_01_xx_xx_08202015.pdf',
+                       './afghanistan-papers-documents/background_ll_02_xx_mainstate_06092015.pdf',
         './afghanistan-papers-documents/background_ll_03_xx2_dc_12162015.pdf',
         './afghanistan-papers-documents/background_ll_03_xx_dc_04072016.pdf',
         './afghanistan-papers-documents/background_ll_03_xx_dc_09112015.pdf',
