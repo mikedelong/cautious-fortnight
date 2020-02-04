@@ -4,21 +4,10 @@ from json import load as json_load
 from logging import INFO
 from logging import basicConfig
 from logging import getLogger
-from string import punctuation
 from time import time
 
 from tika import parser
 from unidecode import unidecode
-
-PUNCTUATION = set(punctuation)
-
-
-def ispunct(arg):
-    for character in arg:
-        if character not in PUNCTUATION:
-            return False
-    return True
-
 
 if __name__ == '__main__':
     time_start = time()
