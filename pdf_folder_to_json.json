@@ -1,4 +1,4 @@
 {
-  "input_folder": "./afghanistan-papers-documents/",
+  "input_folder": "./afghanistan-papers-documents/text/",
   "output_file": "./output_text.json"
 }
