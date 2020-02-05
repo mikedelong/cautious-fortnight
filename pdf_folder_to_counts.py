@@ -67,10 +67,12 @@ if __name__ == '__main__':
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
     for input_file in input_files:
-        logger.info(input_file)
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
             items.append(unidecode(parse_result['content']))
+            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
+        else:
+            logger.warning('length: 0 name: {}'.format(input_file))
 
     logger.info('result size: {}'.format(len(items)))
     logger.info('file count: {}'.format(len(input_files)))
