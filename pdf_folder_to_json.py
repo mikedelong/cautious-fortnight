@@ -39,7 +39,11 @@ if __name__ == '__main__':
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
             key = input_file.replace('//', '/')
-            items[key] = unidecode(parse_result['content'])
+            value = unidecode(parse_result['content'])
+            if len(value):
+                items[key] = value
+            else:
+                logger.warning('{} content is empty.'.format(key))
 
     logger.info('result size: {}'.format(len(items)))
     logger.info('file count: {}'.format(len(input_files)))
