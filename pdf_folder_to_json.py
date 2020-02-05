@@ -35,13 +35,13 @@ if __name__ == '__main__':
     items = dict()
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     for input_file in input_files:
-        logger.info(input_file)
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
             key = input_file.replace('//', '/')
             value = unidecode(parse_result['content'])
-            if len(value):
+            if len(value) > 0:
                 items[key] = value
+                logger.info('size: {} name: {}'.format(len(value), key))
             else:
                 logger.warning('{} content is empty.'.format(key))
 
