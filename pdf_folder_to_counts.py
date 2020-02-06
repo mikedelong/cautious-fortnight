@@ -80,11 +80,14 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    # first get all the counts
+    splits = {'Recordof': 'Record of', 'wasa': 'was a', }
+
     count = Counter()
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
+            # todo figure out how to split tokens with embedded space
+            pieces = [piece if piece not in splits.keys() else splits[piece] for piece in pieces]
             pieces = [piece if piece not in {'U.S.'} else 'US' for piece in pieces]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
