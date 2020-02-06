@@ -90,7 +90,7 @@ if __name__ == '__main__':
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
             for punctuation in ['\'', '\"', '[', ]:
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
-            for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', ]:
+            for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', '|', ]:
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
