@@ -2,7 +2,6 @@
   "stop_word": [
     "(202)",
     "234-4433",
-    "I'm",
     "able",
     "about",
     "actually",
@@ -87,6 +86,7 @@
     "him",
     "his",
     "how",
+    "i'm",
     "if",
     "important",
     "in",
