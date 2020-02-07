@@ -80,7 +80,7 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    splits = {'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
+    splits = {'(Name,title': ['name', 'title'], 'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
 
     count = Counter()
     for item_index, item in enumerate(items):
