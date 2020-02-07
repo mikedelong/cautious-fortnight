@@ -80,7 +80,7 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    splits = {'Recordof': ['Record', 'of'], 'wasa': ['was', 'a'], }
+    splits = {'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
 
     count = Counter()
     for item_index, item in enumerate(items):
@@ -88,7 +88,6 @@ if __name__ == '__main__':
             pieces = [piece.strip() for piece in item.split()]
             pieces = [[piece] if piece not in splits.keys() else splits[piece] for piece in pieces]
             pieces = [item for piece in pieces for item in piece]
-            pieces = [piece if piece not in {'U.S.'} else 'US' for piece in pieces]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
             for punctuation in ['\'', '\"', '[', ]:
