@@ -80,13 +80,15 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    splits = {'(Name,title': ['name', 'title'], 'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
+    capitalization = {'AID', 'AMBASSADOR', 'Code', 'File', 'Location', 'Meeting', 'Please', 'Project', 'Prepared',
+                      'RECORD', 'Record', 'Recording', 'SUBJECT', 'Title', 'Yes', }
+    split = {'(Name,title': ['name', 'title'], 'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
 
     count = Counter()
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
-            pieces = [[piece] if piece not in splits.keys() else splits[piece] for piece in pieces]
+            pieces = [[piece] if piece not in split.keys() else split[piece] for piece in pieces]
             pieces = [item for piece in pieces for item in piece]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
@@ -101,11 +103,7 @@ if __name__ == '__main__':
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(piece, singulars[piece])
                       for piece in pieces]
             pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
-
-            pieces = [piece if piece not in {'AID', 'AMBASSADOR', 'Code', 'Meeting', 'Please', 'Project', 'Prepared',
-                                             'RECORD', 'Record', 'Recording', 'SUBJECT', 'Title',
-                                             'Yes', } else piece.lower()
-                      for piece in pieces]
+            pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
             for piece in pieces:
                 count[piece] += 1
