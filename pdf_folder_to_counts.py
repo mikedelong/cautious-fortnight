@@ -86,7 +86,6 @@ if __name__ == '__main__':
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
-            # todo figure out how to split tokens with embedded space
             pieces = [[piece] if piece not in splits.keys() else splits[piece] for piece in pieces]
             pieces = [item for piece in pieces for item in piece]
             pieces = [piece if piece not in {'U.S.'} else 'US' for piece in pieces]
