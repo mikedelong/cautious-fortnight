@@ -103,8 +103,8 @@ if __name__ == '__main__':
                       for piece in pieces]
             pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(piece, singulars[piece])
                       for piece in pieces]
-            pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
+            pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
             for piece in pieces:
                 count[piece] += 1
