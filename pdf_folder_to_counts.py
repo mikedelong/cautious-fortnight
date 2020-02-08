@@ -82,7 +82,8 @@ if __name__ == '__main__':
 
     capitalization = {'AID', 'AMBASSADOR', 'Code', 'File', 'Location', 'Meeting', 'Please', 'Project', 'Prepared',
                       'RECORD', 'Record', 'Recording', 'SUBJECT', 'Title', 'Yes', }
-    split = {'(Name,title': ['name', 'title'], 'Recordof': ['Record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
+    split = {'ofthe': ['of', 'the'], '(Name,title': ['name', 'title'], 'Recordof': ['Record', 'of'], 'U.S.': ['US'],
+             'wasa': ['was', 'a'], }
 
     count = Counter()
     for item_index, item in enumerate(items):
