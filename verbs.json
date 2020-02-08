@@ -20,5 +20,8 @@
   "planning": "plan/planned/planning/plans",
   "plans": "plan/planned/planning/plans",
   "provide": "provide/provided",
-  "provided": "provide/provided"
+  "provided": "provide/provided",
+  "record": "record/recorded/recording",
+  "recorded": "record/recorded/recording",
+  "recording": "record/recorded/recording"
 }
