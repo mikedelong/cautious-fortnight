@@ -81,8 +81,8 @@ if __name__ == '__main__':
     singulars = {plurals[key]: key for key in plurals.keys()}
 
     capitalization = {'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location', 'Meeting', 'Please',
-                      'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT', 'Title',
-                      'Yes', }
+                      'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
+                      'Thanks', 'Title', 'Yes', }
     split = {'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
 
