@@ -80,8 +80,8 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    capitalization = {'AID', 'AMBASSADOR', 'Code', 'File', 'Location', 'Meeting', 'Please', 'Project', 'Prepared',
-                      'RECORD', 'Record', 'Recording', 'SUBJECT', 'Title', 'Yes', }
+    capitalization = {'AID', 'AMBASSADOR', 'Code', 'Coordination', 'File', 'Location', 'Meeting', 'Please', 'Project',
+                      'Prepared', 'RECORD', 'Record', 'Recording', 'SUBJECT', 'Title', 'Yes', }
     split = {'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wasa': ['was', 'a'], }
 
