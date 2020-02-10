@@ -80,6 +80,7 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
+    # todo: factor these out as data
     capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location',
                       'Meeting', 'Please',
                       'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
