@@ -1,5 +1,5 @@
 {
-  "filter_threshold": 2,
+  "dash_debug": true,
   "input_file": "./output_tokens.json",
   "max_font_size": 40,
   "plotly_colormap": "viridis",
