@@ -80,10 +80,13 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    capitalization = {'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location', 'Meeting', 'Please',
+    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location',
+                      'Meeting', 'Please',
                       'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
                       'Thanks', 'Title', 'Topics', 'Yes', }
-    split = {'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
+    split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
+             'AMERICA1:1': ['America'],
+             'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
 
     count = Counter()
