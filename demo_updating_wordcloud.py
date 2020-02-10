@@ -57,7 +57,8 @@ def update_graph_live(n):
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
 
-    return Figure(data=[Scatter(mode='text', text=[this[0][0] for this in word_cloud.layout_], hoverinfo='text',
+    return Figure(data=[Scatter(mode='text', text=[this[0][0] if '/' not in this[0][0] else this[0][0].split('/')[0]
+                                                   for this in word_cloud.layout_], hoverinfo='text',
                                 hovertext=['{}: {}'.format(this[0][0], count[this[0][0]], ) for this in
                                            word_cloud.layout_],
                                 x=[this[2][0] for this in word_cloud.layout_],
