@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
     capitalization = {'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location', 'Meeting', 'Please',
                       'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
-                      'Thanks', 'Title', 'Yes', }
+                      'Thanks', 'Title', 'Topics', 'Yes', }
     split = {'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
 
