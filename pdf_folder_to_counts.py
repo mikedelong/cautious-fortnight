@@ -31,6 +31,11 @@ if __name__ == '__main__':
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
+    filter_threshold = settings['filter_threshold'] if 'filter_threshold' in settings.keys() else 1
+    if 'filter_threshold' in settings.keys():
+        logger.info('filter threshold: {}'.format(filter_threshold))
+    else:
+        logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
@@ -115,7 +120,7 @@ if __name__ == '__main__':
                 count[piece] += 1
 
     # filter out all the tokens that appear only once
-    count = Counter({item: count[item] for item in count if count[item] > 1})
+    count = Counter({item: count[item] for item in count if count[item] > filter_threshold})
 
     with open(output_file, 'w') as output_fp:
         json_dump(dict(count), output_fp, sort_keys=True)
