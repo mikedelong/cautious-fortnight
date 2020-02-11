@@ -1,4 +1,3 @@
-from collections import Counter
 from glob import glob
 from json import dump as json_dump
 from json import load as json_load
@@ -8,6 +7,7 @@ from logging import getLogger
 from string import punctuation
 from time import time
 
+from sklearn.feature_extraction.text import CountVectorizer
 from tika import parser
 from unidecode import unidecode
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
              'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
 
-    count = Counter()
+    text = ''
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -116,11 +116,10 @@ if __name__ == '__main__':
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
-            for piece in pieces:
-                count[piece] += 1
+            text += ' '.join(pieces)
 
-    # filter out all the tokens that appear only once
-    count = Counter({item: count[item] for item in count if count[item] > filter_threshold})
-
+    vectorizer = CountVectorizer()
+    fit_result = vectorizer.fit_transform([text])
+    result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     with open(output_file, 'w') as output_fp:
-        json_dump(dict(count), output_fp, sort_keys=True)
+        json_dump(result, output_fp, sort_keys=True)
