@@ -56,6 +56,7 @@ def update_graph_live(n):
     word_cloud = WordCloud().generate_from_frequencies(frequencies=to_show, max_font_size=max_font_size, )
     max_size = max(this[1] for this in word_cloud.layout_)
     min_size = min(this[1] for this in word_cloud.layout_)
+    logger.info('cloud min count: {}'.format(min([count[this[0][0]] for this in word_cloud.layout_])))
 
     return Figure(data=[Scatter(mode='text', text=[this[0][0] if '/' not in this[0][0] else this[0][0].split('/')[0]
                                                    for this in word_cloud.layout_], hoverinfo='text',
