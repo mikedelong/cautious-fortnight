@@ -119,6 +119,7 @@ if __name__ == '__main__':
             text += ' '.join(pieces)
 
     # todo tune this so it captures 2-grams
+    # todo tune this so it drops low-frequency tokens
     vectorizer = CountVectorizer()
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
