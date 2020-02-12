@@ -1,5 +1,5 @@
 {
-  "filter_threshold": 2,
+  "filter_threshold": 10,
   "input_folder": "./afghanistan-papers-documents/text/",
   "output_file": "./output_tokens.json",
   "plurals": "./plurals.json",
