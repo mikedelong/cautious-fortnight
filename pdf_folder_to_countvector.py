@@ -119,10 +119,9 @@ if __name__ == '__main__':
             text += ' '.join(pieces)
 
     # todo tune this so it captures 2-grams
-    # todo tune this so it drops low-frequency tokens
     vectorizer = CountVectorizer()
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
-    result = {key: int(result[key]) for key in result.keys()}
+    result = {key: int(result[key]) for key in result.keys() if result[key] > filter_threshold}
     with open(output_file, 'w') as output_fp:
         json_dump(result, output_fp, sort_keys=True)
