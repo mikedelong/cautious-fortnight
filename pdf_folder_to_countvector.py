@@ -109,16 +109,11 @@ if __name__ == '__main__':
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
-            pieces = [piece if piece not in plurals.keys() else '{}/{}'.format(plurals[piece], piece)
-                      for piece in pieces]
-            pieces = [piece if piece not in singulars.keys() else '{}/{}'.format(piece, singulars[piece])
-                      for piece in pieces]
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
-            pieces = [piece if piece not in verbs.keys() else '{}'.format(verbs[piece]) for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text += ' '.join(pieces)
 
-    vectorizer = CountVectorizer(ngram_range=(1, 2))
+    vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 2))
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     result = {key: int(result[key]) for key in result.keys() if result[key] > filter_threshold}
