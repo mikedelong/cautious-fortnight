@@ -118,8 +118,7 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text += ' '.join(pieces)
 
-    # todo tune this so it captures 2-grams
-    vectorizer = CountVectorizer()
+    vectorizer = CountVectorizer(ngram_range=(1, 2))
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     result = {key: int(result[key]) for key in result.keys() if result[key] > filter_threshold}
