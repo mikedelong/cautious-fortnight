@@ -123,6 +123,7 @@ if __name__ == '__main__':
     vectorizer = CountVectorizer()
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
+    result = {key: int(result[key]) for key in result.keys()}
     with open(output_file, 'w') as output_fp:
         # todo sort by value, highest to lowest
         json_dump(result, output_fp, sort_keys=True)
