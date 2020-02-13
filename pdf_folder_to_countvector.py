@@ -55,6 +55,19 @@ if __name__ == '__main__':
             logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
+    stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
+    if len(stop_word):
+        with open(stop_word, 'r') as stop_word_fp:
+            stop_words = json_load(stop_word_fp)
+        if 'stop_word' in stop_words.keys():
+            stop_word = stop_words['stop_word']
+        else:
+            logger.warning('stop word list malformed; check {}.'.format(settings['stop_word']))
+            quit(code=4)
+        logger.info('stop word list: {}'.format(stop_word))
+    else:
+        logger.warning('stop word list not in settings; default is empty.')
+
     verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
     if len(verbs):
         with open(settings['verbs'], 'r') as verbs_fp:
@@ -113,7 +126,7 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text += ' '.join(pieces)
 
-    vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 3))
+    vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 3), )
     fit_result = vectorizer.fit_transform([text])
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     result = {key: int(result[key]) for key in result.keys() if
