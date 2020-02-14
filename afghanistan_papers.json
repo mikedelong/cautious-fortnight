@@ -1,8 +1,8 @@
 {
   "dash_debug": true,
   "input_file": "./output_tokens.json",
-  "max_font_size": 40,
+  "max_font_size": 50,
   "plotly_colormap": "viridis",
   "stop_word": "./stop_word.json",
-  "token_count": 1000
+  "token_count": 2000
 }
