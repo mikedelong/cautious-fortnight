@@ -1,5 +1,9 @@
 {
   "stop_word": [
+    "0559",
+    "11",
+    "234",
+    "4433",
     "able",
     "about",
     "actually",
@@ -135,8 +139,13 @@
     "never",
     "new",
     "no",
+    "No",
+    "NO",
     "not",
     "now",
+    "number",
+    "Number",
+    "NUMBER",
     "of",
     "Of",
     "OF",
@@ -231,7 +240,9 @@
     "Yes",
     "YES",
     "you",
-    "your"
+    "your",
+    "www",
+    "WWW"
   ]
 }
 
