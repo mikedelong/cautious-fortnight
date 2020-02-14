@@ -4,5 +4,5 @@
   "max_font_size": 40,
   "plotly_colormap": "viridis",
   "stop_word": "./stop_word.json",
-  "token_count": 500
+  "token_count": 1000
 }
