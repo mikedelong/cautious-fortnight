@@ -108,7 +108,7 @@ if __name__ == '__main__':
              'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
              'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
 
-    text = ''
+    text = list()
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -124,10 +124,10 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if not piece.isdigit()]
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
-            text += ' '.join(pieces)
+            text.append(' '.join(pieces))
 
     vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 3), stop_words=stop_word, )
-    fit_result = vectorizer.fit_transform([text])
+    fit_result = vectorizer.fit_transform(text)
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     result = {key: int(result[key]) for key in result.keys() if
               result[key] > filter_threshold and not key.isdigit()}
