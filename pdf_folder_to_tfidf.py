@@ -1,4 +1,5 @@
 from glob import glob
+from json import dump as json_dump
 from json import load as json_load
 from logging import INFO
 from logging import basicConfig
@@ -6,7 +7,7 @@ from logging import getLogger
 from string import punctuation
 from time import time
 
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from tika import parser
 from unidecode import unidecode
 
@@ -20,29 +21,21 @@ def ispunct(arg):
     return True
 
 
-def pdf_to_text(arg):
-    parse_result = parser.from_file(arg)
-    if parse_result['content']:
-        result = unidecode(parse_result['content'])
-        if len(result):
-            return result
-        else:
-            print('\'{}\','.format(arg))
-    else:
-        print('\'{}\','.format(arg))
-        return ' '
-
-
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
     logger.info('started.')
 
-    with open('./pdf_folder_to_counts.json', 'r') as settings_fp:
+    with open('./pdf_folder_to_countvector.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
+    filter_threshold = settings['filter_threshold'] if 'filter_threshold' in settings.keys() else 1
+    if 'filter_threshold' in settings.keys():
+        logger.info('filter threshold: {}'.format(filter_threshold))
+    else:
+        logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
@@ -62,6 +55,19 @@ if __name__ == '__main__':
             logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
+    stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
+    if len(stop_word):
+        with open(stop_word, 'r') as stop_word_fp:
+            stop_words = json_load(stop_word_fp)
+        if 'stop_word' in stop_words.keys():
+            stop_word = stop_words['stop_word']
+        else:
+            logger.warning('stop word list malformed; check {}.'.format(settings['stop_word']))
+            quit(code=4)
+        logger.info('stop word list: {}'.format(stop_word))
+    else:
+        logger.warning('stop word list not in settings; default is empty.')
+
     verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
     if len(verbs):
         with open(settings['verbs'], 'r') as verbs_fp:
@@ -76,25 +82,54 @@ if __name__ == '__main__':
         logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
         quit(code=3)
 
-    # todo split PDF parsing and TFIDF into separate loops
+    input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
+    items = list()
+    for input_file in input_files:
+        parse_result = parser.from_file(input_file)
+        if parse_result['content']:
+            items.append(unidecode(parse_result['content']))
+            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
+        else:
+            logger.warning('length: 0 name: {}'.format(input_file))
 
-    vectorizer = TfidfVectorizer(
-        # input='files',
-        # input='content',
-        input='filename',
-        encoding='utf-8',
-        decode_error='strict', strip_accents=None, lowercase=True,
-        preprocessor=pdf_to_text,
-        # preprocessor=None,
-        tokenizer=None, analyzer='word', stop_words=None, token_pattern='(?u)\b\w\w+\b',
-        ngram_range=(1, 1), max_df=1.0, min_df=1, max_features=None, vocabulary=None,
-        binary=False,
-        # dtype=<class 'numpy.float64'>,
-        norm='l2', use_idf=True, smooth_idf=True, sublinear_tf=False)
+    logger.info('result size: {}'.format(len(items)))
+    logger.info('file count: {}'.format(len(input_files)))
 
-    input_files = [input_file.replace('\\', '/') for input_file in glob(input_folder + '*.pdf')
-                   if input_file.replace('\\', '/') not in {
-                   }]
-    # t = [pdf_to_text(item) for item in input_files[:2]]
-    model = vectorizer.fit_transform(input_files)
-    logger.info('model shape: {}'.format(len(model)))
+    # add a map of singulars to plurals to complement our plurals to singulars map
+    singulars = {plurals[key]: key for key in plurals.keys()}
+
+    # todo: factor these out as data
+    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location',
+                      'Meeting', 'Please',
+                      'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
+                      'Thanks', 'Title', 'Topics', 'Yes', }
+    split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
+             'AMERICA1:1': ['America'],
+             'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
+             'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
+
+    text = list()
+    for item_index, item in enumerate(items):
+        if item is not None:
+            pieces = [piece.strip() for piece in item.split()]
+            pieces = [[piece] if piece not in split.keys() else split[piece] for piece in pieces]
+            pieces = [item for piece in pieces for item in piece]
+            pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
+            pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
+            for punctuation in ['\'', '\"', '[', ]:
+                pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
+            for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', '|', '/']:
+                pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
+            pieces = [piece for piece in pieces if len(piece) > 1]
+            pieces = [piece for piece in pieces if not piece.isdigit()]
+            pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
+            pieces = [piece for piece in pieces if not ispunct(piece)]
+            text.append(' '.join(pieces))
+
+    vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 3), stop_words=stop_word, )
+    fit_result = vectorizer.fit_transform(text)
+    result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
+    result = {key: int(result[key]) for key in result.keys() if
+              result[key] > filter_threshold and not key.isdigit()}
+    with open(output_file, 'w') as output_fp:
+        json_dump(result, output_fp, sort_keys=True)
