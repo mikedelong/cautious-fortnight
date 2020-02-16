@@ -36,6 +36,7 @@ if __name__ == '__main__':
         logger.info('filter threshold: {}'.format(filter_threshold))
     else:
         logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
+    filter_threshold = 3
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
