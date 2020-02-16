@@ -7,7 +7,7 @@ from logging import getLogger
 from string import punctuation
 from time import time
 
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from tika import parser
 from unidecode import unidecode
 
@@ -126,7 +126,7 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text.append(' '.join(pieces))
 
-    vectorizer = CountVectorizer(lowercase=False, ngram_range=(1, 3), stop_words=stop_word, )
+    vectorizer = TfidfVectorizer(lowercase=False, ngram_range=(1, 3), stop_words=stop_word, )
     fit_result = vectorizer.fit_transform(text)
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
     result = {key: int(result[key]) for key in result.keys() if
