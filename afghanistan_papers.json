@@ -1,6 +1,6 @@
 {
   "dash_debug": true,
-  "input_file": "./output_tokens.json",
+  "input_file": "./tfidf_tokens.json",
   "max_font_size": 50,
   "plotly_colormap": "viridis",
   "stop_word": "./stop_word.json",
