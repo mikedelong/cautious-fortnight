@@ -27,7 +27,7 @@ if __name__ == '__main__':
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
     logger.info('started.')
 
-    with open('./pdf_folder_to_countvector.json', 'r') as settings_fp:
+    with open('./pdf_folder_to_tfidf.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
@@ -36,7 +36,6 @@ if __name__ == '__main__':
         logger.info('filter threshold: {}'.format(filter_threshold))
     else:
         logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
-    filter_threshold = 3
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
