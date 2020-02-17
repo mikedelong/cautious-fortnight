@@ -129,7 +129,7 @@ if __name__ == '__main__':
     vectorizer = TfidfVectorizer(lowercase=False, ngram_range=(1, 3), stop_words=stop_word, )
     fit_result = vectorizer.fit_transform(text)
     result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
-    result = {key: int(result[key]) for key in result.keys() if
+    result = {key: int(10 * result[key]) for key in result.keys() if
               result[key] > filter_threshold and not key.isdigit()}
     with open(output_file, 'w') as output_fp:
         json_dump(result, output_fp, sort_keys=True)
