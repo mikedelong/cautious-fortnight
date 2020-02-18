@@ -5,6 +5,8 @@ from logging import basicConfig
 from logging import getLogger
 from time import time
 
+from bs4 import BeautifulSoup
+
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
@@ -15,18 +17,30 @@ if __name__ == '__main__':
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
+    file_pattern = settings['file_pattern'] if 'file_pattern' in settings.keys() else None
+    if file_pattern:
+        logger.info('file pattern: {}'.format(file_pattern))
+    else:
+        logger.warning('file pattern is None. Quitting.')
+        quit(code=1)
+
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
     else:
         logger.warning('input folder is None. Quitting.')
-        quit(code=1)
+        quit(code=2)
 
-    input_files = [input_file for input_file in glob(input_folder + '*')]
+    input_files = [input_file for input_file in glob(input_folder + file_pattern)]
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
-            content = input_fp.read()
-            logger.info('file: {} size: {}'.format(input_file, len(content)))
+            soup = BeautifulSoup(input_fp.read(), 'html.parser')
+            h1 = soup.find_all('h1')
+            logger.info('file: {} size: {} p count: {}'.format(input_file, len(soup.text), len(h1)))
+            for item in h1:
+                content = item.contents[0]
+                if not str(content).startswith('<a'):
+                    logger.info('{}'.format(content))
 
     logger.info('input file count: {}'.format(len(input_files)))
