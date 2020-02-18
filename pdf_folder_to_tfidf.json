@@ -1,7 +1,7 @@
 {
   "filter_threshold": 2,
   "input_folder": "./afghanistan-papers-documents/text/",
-  "output_file": "./output_tokens.json",
+  "output_file": "./tfidf_tokens.json",
   "plurals": "./plurals.json",
   "stop_word": "./stop_word.json",
   "verbs": "./verbs.json"
