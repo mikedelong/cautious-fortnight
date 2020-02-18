@@ -32,6 +32,8 @@ if __name__ == '__main__':
         quit(code=2)
 
     input_files = [input_file for input_file in glob(input_folder + file_pattern)]
+    missing = 0
+    found = 0
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
@@ -42,8 +44,6 @@ if __name__ == '__main__':
             logger.info('file: {} size: {} h1: {} h3: {} p: {}'.format(input_file, len(soup.text), len(h1), len(h3),
                                                                        len(p)))
             name = h1[1].contents[0].strip()
-            missing = 0
-            found = 0
             t = p[1].find('h3')
             if hasattr(t, 'contents') and len(t.contents):
                 logger.info('{} : {}'.format(name, t.contents[0]))
