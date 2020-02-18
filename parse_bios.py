@@ -39,10 +39,8 @@ if __name__ == '__main__':
         with open(input_file, 'r') as input_fp:
             soup = BeautifulSoup(input_fp.read(), 'html.parser')
             h1 = soup.find_all('h1')
-            h3 = soup.find_all('h3')
             p = soup.find_all('p')
-            logger.info('file: {} size: {} h1: {} h3: {} p: {}'.format(input_file, len(soup.text), len(h1), len(h3),
-                                                                       len(p)))
+            logger.info('file: {} size: {} h1: {} p: {}'.format(input_file, len(soup.text), len(h1), len(p), ))
             name = h1[1].contents[0].strip()
             t = p[1].find('h3')
             if hasattr(t, 'contents') and len(t.contents):
