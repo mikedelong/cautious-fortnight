@@ -37,10 +37,19 @@ if __name__ == '__main__':
         with open(input_file, 'r') as input_fp:
             soup = BeautifulSoup(input_fp.read(), 'html.parser')
             h1 = soup.find_all('h1')
-            logger.info('file: {} size: {} p count: {}'.format(input_file, len(soup.text), len(h1)))
-            for item in h1:
-                content = item.contents[0]
-                if not str(content).startswith('<a'):
-                    logger.info('{}'.format(content))
+            h3 = soup.find_all('h3')
+            p = soup.find_all('p')
+            logger.info('file: {} size: {} h1: {} h3: {} p: {}'.format(input_file, len(soup.text), len(h1), len(h3),
+                                                                       len(p)))
+            name = h1[1].contents[0].strip()
+            missing = 0
+            found = 0
+            t = p[1].find('h3')
+            if hasattr(t, 'contents') and len(t.contents):
+                logger.info('{} : {}'.format(name, t.contents[0]))
+                found += 1
+            else:
+                missing += 1
 
+    logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
