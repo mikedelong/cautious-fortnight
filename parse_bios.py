@@ -8,6 +8,15 @@ from time import time
 
 from bs4 import BeautifulSoup
 
+
+class ThisParser(HTMLParser):
+    def error(self, message):
+        pass
+
+    def handle_data(self, data):
+        return data
+
+
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
@@ -36,7 +45,7 @@ if __name__ == '__main__':
     input_files = [input_file for input_file in glob(input_folder + file_pattern)]
     missing = 0
     found = 0
-    parser = HTMLParser()
+    parser = ThisParser()
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
