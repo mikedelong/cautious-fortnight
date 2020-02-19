@@ -1,2 +1,4 @@
 {
+  "file_pattern": "navybio.asp?bioID=*",
+  "input_folder": "../../data/navy/www.navy.mil/navydata/bios/"
 }
