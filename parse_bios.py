@@ -31,13 +31,16 @@ if __name__ == '__main__':
         logger.warning('input folder is None. Quitting.')
         quit(code=2)
 
+    all_text = list()
     input_files = [input_file for input_file in glob(input_folder + file_pattern)]
     missing = 0
     found = 0
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
-            soup = BeautifulSoup(input_fp.read(), 'html.parser')
+            input_read = input_fp.read()
+            all_text.append(input_read)
+            soup = BeautifulSoup(input_read, 'html.parser')
             h1 = soup.find_all('h1')
             p = soup.find_all('p')
             logger.info('file: {} size: {} h1: {} p: {}'.format(input_file, len(soup.text), len(h1), len(p), ))
@@ -49,6 +52,13 @@ if __name__ == '__main__':
             else:
                 logger.info('{} : no office'.format(name, ))
                 missing += 1
+
+    # let's implement our bespoke approach here
+    # first split on newline to get lines within each file
+    all_text = [item.split('\n') for item in all_text]
+    # next get the set of distinct tokens by flattening
+    tokens = set([item for sublist in all_text for item in sublist])
+    common = {item for item in tokens if all([item in piece for piece in all_text])}
 
     logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
