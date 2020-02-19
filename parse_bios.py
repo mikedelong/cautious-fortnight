@@ -47,6 +47,7 @@ if __name__ == '__main__':
                 logger.info('{} : {}'.format(name, t.contents[0]))
                 found += 1
             else:
+                logger.info('{} : no office'.format(name, ))
                 missing += 1
 
     logger.info('found/missing: {}/{}'.format(found, missing))
