@@ -17,6 +17,8 @@ def process(arg):
     attributes = this.attrib
     if 'alt' in attributes.keys():
         return attributes['alt']
+    elif str(this.text).startswith('Download'):
+        return ''
     else:
         return this.text
 
