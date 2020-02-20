@@ -18,8 +18,7 @@ def process(arg):
     if 'alt' in attributes.keys():
         return attributes['alt']
     else:
-        pass
-    return this
+        return this.text
 
 
 if __name__ == '__main__':
