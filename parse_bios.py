@@ -6,6 +6,21 @@ from logging import getLogger
 from time import time
 
 from bs4 import BeautifulSoup
+from lxml import html
+
+
+def process(arg):
+    print(arg)
+    if arg.startswith('</') or arg.startswith('<!'):
+        return ''
+    this = html.fromstring(arg)
+    attributes = this.attrib
+    if 'alt' in attributes.keys():
+        return attributes['alt']
+    else:
+        pass
+    return this
+
 
 if __name__ == '__main__':
     time_start = time()
@@ -60,7 +75,8 @@ if __name__ == '__main__':
     # next get the set of distinct tokens by flattening
     tokens = set([item for sublist in all_text for item in sublist])
     common = {item for item in tokens if all([item in piece for piece in all_text])}
-    net = [[item + '>' for item in sublist if item not in common] for sublist in all_text]
+    net = [[(item + '>').strip() for item in sublist if item not in common] for sublist in all_text]
+    net = [[process(item) for item in sublist] for sublist in net]
 
     logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
