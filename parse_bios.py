@@ -1,5 +1,4 @@
 from glob import glob
-from html.parser import HTMLParser
 from json import load as json_load
 from logging import INFO
 from logging import basicConfig
@@ -7,15 +6,6 @@ from logging import getLogger
 from time import time
 
 from bs4 import BeautifulSoup
-
-
-class ThisParser(HTMLParser):
-    def error(self, message):
-        pass
-
-    def handle_data(self, data):
-        return data
-
 
 if __name__ == '__main__':
     time_start = time()
@@ -45,7 +35,7 @@ if __name__ == '__main__':
     input_files = [input_file for input_file in glob(input_folder + file_pattern)]
     missing = 0
     found = 0
-    parser = ThisParser()
+    # parser = ThisParser()
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
@@ -71,7 +61,6 @@ if __name__ == '__main__':
     tokens = set([item for sublist in all_text for item in sublist])
     common = {item for item in tokens if all([item in piece for piece in all_text])}
     net = [[item for item in sublist if item not in common] for sublist in all_text]
-    processed = [[parser.feed(item) for item in sublist] for sublist in net]
 
     logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
