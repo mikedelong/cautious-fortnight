@@ -18,10 +18,8 @@ def process(arg):
     if 'alt' in attributes.keys():
         result = attributes['alt']
         return result if result != 'Navy Biography' else None
-    elif str(this.text) == 'Download Official Photo' or str(this.text).startswith('Updated'):
-        return None
-    else:
-        return this.text
+
+    return None if str(this.text) == 'Download Official Photo' or str(this.text).startswith('Updated') else this.text
 
 
 if __name__ == '__main__':
