@@ -12,13 +12,13 @@ from lxml import html
 def process(arg):
     print(arg)
     if arg.startswith('</') or arg.startswith('<!'):
-        return ''
+        return None
     this = html.fromstring(arg)
     attributes = this.attrib
     if 'alt' in attributes.keys():
         return attributes['alt']
-    elif str(this.text).startswith('Download'):
-        return ''
+    elif str(this.text) == 'Download Official Photo':
+        return None
     else:
         return this.text
 
