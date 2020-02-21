@@ -78,6 +78,7 @@ if __name__ == '__main__':
     common = {item for item in tokens if all([item in piece for piece in all_text])}
     net = [[(item + '>').strip() for item in sublist if item not in common] for sublist in all_text]
     net = [[process(item) for item in sublist] for sublist in net]
+    net = [[item for item in sublist if item is not None] for sublist in net]
 
     logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
