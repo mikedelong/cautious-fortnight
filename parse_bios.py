@@ -16,7 +16,8 @@ def process(arg):
     this = html.fromstring(arg)
     attributes = this.attrib
     if 'alt' in attributes.keys():
-        return attributes['alt']
+        result = attributes['alt']
+        return result if result != 'Navy Biography' else None
     elif str(this.text) == 'Download Official Photo':
         return None
     else:
