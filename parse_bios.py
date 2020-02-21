@@ -18,7 +18,7 @@ def process(arg):
     if 'alt' in attributes.keys():
         result = attributes['alt']
         return result if result != 'Navy Biography' else None
-    elif str(this.text) == 'Download Official Photo':
+    elif str(this.text) == 'Download Official Photo' or str(this.text).startswith('Updated'):
         return None
     else:
         return this.text
@@ -80,6 +80,7 @@ if __name__ == '__main__':
     net = [[(item + '>').strip() for item in sublist if item not in common] for sublist in all_text]
     net = [[process(item) for item in sublist] for sublist in net]
     net = [[item for item in sublist if item is not None] for sublist in net]
+    lengths = [len(item) for item in net]
 
     logger.info('found/missing: {}/{}'.format(found, missing))
     logger.info('input file count: {}'.format(len(input_files)))
