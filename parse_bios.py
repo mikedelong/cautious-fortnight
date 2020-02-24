@@ -84,10 +84,17 @@ if __name__ == '__main__':
     net = [[item for item in sublist if item is not None] for sublist in net]
     lengths = [len(item) for item in net]
     corpus = [' '.join(
-        [item.replace('U.S.', 'US').replace('.', ' ').replace(',', ' ').replace(')', '') for item in sublist]).split()
-              for sublist in net]
+        [item.replace('U.S.', 'US').replace('.', ' ').replace(',', ' ').replace(')', '').replace('(', '')
+         for item in sublist]).split() for sublist in net]
+    stop_word = {'a', 'the', }
+    stop_word = {'at', 'also', 'of', 'and', 'on', 'with', 'from', 'in', 'In', }
+    stop_word = {'is', 'has', 'was', }
+    stop_word = {'he', 'He', 'his', 'His', }
+    stop_word = {'a', 'at', 'also', 'of', 'is', 'his', 'His', 'he', 'He', 'was', 'has', 'and', 'on', 'to', 'for', 'the',
+                 'with', 'as', 'in', 'In', 'from', 'where', }
+    corpus = [[item for item in sublist if item not in stop_word] for sublist in corpus]
 
-    model = Word2Vec(corpus, size=100, window=20, min_count=200, workers=4, )
+    model = Word2Vec(corpus, size=1000, window=20, min_count=75, workers=4, )
     logger.info(model.wv['officer'])
 
     labels = [word for word in model.wv.vocab]
