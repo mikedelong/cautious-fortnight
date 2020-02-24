@@ -92,7 +92,7 @@ if __name__ == '__main__':
     stop_word = {'he', 'He', 'his', 'His', }
     stop_word = {'a', 'at', 'also', 'of', 'is', 'his', 'His', 'he', 'He', 'was', 'has', 'and', 'on', 'to', 'for', 'the',
                  'with', 'as', 'in', 'In', 'from', 'where', }
-    corpus = [[item for item in sublist if item not in stop_word] for sublist in corpus]
+    corpus = [[item for item in sublist if item not in stop_word and len(item) > 1] for sublist in corpus]
 
     model = Word2Vec(corpus, size=1000, window=20, min_count=75, workers=4, )
     logger.info(model.wv['officer'])
