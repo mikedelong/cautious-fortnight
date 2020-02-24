@@ -83,7 +83,9 @@ if __name__ == '__main__':
     net = [[process(item) for item in sublist] for sublist in net]
     net = [[item for item in sublist if item is not None] for sublist in net]
     lengths = [len(item) for item in net]
-    corpus = [' '.join([item for item in sublist]).split() for sublist in net]
+    corpus = [' '.join(
+        [item.replace('U.S.', 'US').replace('.', ' ').replace(',', ' ').replace(')', '') for item in sublist]).split()
+              for sublist in net]
 
     model = Word2Vec(corpus, size=100, window=20, min_count=200, workers=4, )
     logger.info(model.wv['officer'])
