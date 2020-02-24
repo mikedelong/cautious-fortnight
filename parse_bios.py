@@ -92,23 +92,15 @@ if __name__ == '__main__':
     tokens = [model[word] for word in model.wv.vocab]
 
     tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
-    new_values = tsne_model.fit_transform(tokens)
+    tsne_values = tsne_model.fit_transform(tokens)
 
-    x = []
-    y = []
-    for value in new_values:
-        x.append(value[0])
-        y.append(value[1])
+    xs = [value[0] for value in tsne_values]
+    ys = [value[1] for value in tsne_values]
 
     plt.figure(figsize=(16, 16))
-    for i in range(len(x)):
-        plt.scatter(x[i], y[i])
-        plt.annotate(labels[i],
-                     xy=(x[i], y[i]),
-                     xytext=(5, 2),
-                     textcoords='offset points',
-                     ha='right',
-                     va='bottom', )
+    for i in range(len(tsne_values)):
+        plt.scatter(xs[i], ys[i])
+        plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
     plt.show()
 
     logger.info('found/missing: {}/{}'.format(found, missing))
