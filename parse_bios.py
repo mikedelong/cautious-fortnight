@@ -89,7 +89,7 @@ if __name__ == '__main__':
     logger.info(model.wv['officer'])
 
     labels = [word for word in model.wv.vocab]
-    tokens = [model[word] for word in model.wv.vocab]
+    tokens = [model.wv[word] for word in model.wv.vocab]
 
     tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
     tsne_values = tsne_model.fit_transform(tokens)
