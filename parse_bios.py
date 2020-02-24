@@ -26,9 +26,8 @@ def process(arg):
     return None if str(this.text) == 'Download Official Photo' or str(this.text).startswith('Updated') else this.text
 
 
-
-
 if __name__ == '__main__':
+    random_state = 1
     time_start = time()
     logger = getLogger(__name__)
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
@@ -56,7 +55,6 @@ if __name__ == '__main__':
     input_files = [input_file for input_file in glob(input_folder + file_pattern)]
     missing = 0
     found = 0
-    # parser = ThisParser()
     for input_file in input_files:
         input_file = input_file.replace('\\', '/')
         with open(input_file, 'r') as input_fp:
@@ -89,14 +87,11 @@ if __name__ == '__main__':
 
     model = Word2Vec(corpus, size=100, window=20, min_count=200, workers=4, )
     logger.info(model.wv['officer'])
-    labels = []
-    tokens = []
 
-    for word in model.wv.vocab:
-        tokens.append(model[word])
-        labels.append(word)
+    labels = [word for word in model.wv.vocab]
+    tokens = [model[word] for word in model.wv.vocab]
 
-    tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=23)
+    tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
     new_values = tsne_model.fit_transform(tokens)
 
     x = []
