@@ -101,9 +101,11 @@ if __name__ == '__main__':
 
     # todo: factor these out as data
     capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption', 'File',
-                      'Location', 'Meeting', 'People', 'Please', 'Project', 'Prepared', 'Purpose', 'RECORD', 'Record',
-                      'Recorded', 'Recording', 'Research', 'So', 'SUBJECT', 'Thanks', 'The', 'These', 'They', 'Title',
-                      'Topics', 'Yes', }
+                      'For', 'Key', 'Location', 'Meeting', 'No', 'Number', 'OF', 'On', 'People', 'Please', 'Project',
+                      'Prepared', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Reviewed', 'Research', 'So',
+                      'SUBJECT', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled', 'Yes',
+                      'INTERVIEW', 'LESSONS', 'LEARNED', 'Page', 'Lessons', 'Learned', 'Interview', 'Our', 'With',
+                      'Also', }
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
              'AMERICA1:1': ['America'], 'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'],
              '(Name,title': ['name', 'title'], 'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'],
@@ -148,10 +150,6 @@ if __name__ == '__main__':
     for i in range(len(tsne_values)):
         plt.scatter(xs[i], ys[i])
         plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
-        plt.tick_params(
-            axis='x',  # changes apply to the x-axis
-            which='both',  # both major and minor ticks are affected
-            bottom=False,  # ticks along the bottom edge are off
-            top=False,  # ticks along the top edge are off
-            labelbottom=False)  # labels along the bottom edge are off
+    plt.tick_params(axis='both', bottom='off', labelbottom='off', labelleft='off', left='off', right='off', top='off',
+                    which='both', )
     plt.show()
