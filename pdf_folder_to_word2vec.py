@@ -127,19 +127,18 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text.append(' '.join(pieces))
 
-    corpus = [' '.join([item for item in sublist]).split() for sublist in text]
-    model = Word2Vec(corpus, size=100, window=20, min_count=70, workers=4, batch_words=True, )
+    corpus = [item.split() for item in text]
+    model = Word2Vec(corpus, size=100, window=20, min_count=300, workers=4, batch_words=True, )
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
 
     random_state = 1
-    # tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
     tsne_model = TSNE(n_components=2, perplexity=40.0, early_exaggeration=12.0, learning_rate=100.0, n_iter=2500,
                       n_iter_without_progress=300, min_grad_norm=1e-07, metric='euclidean', init='pca', verbose=1,
                       random_state=random_state,
-                      # method='barnes_hut',
-                      method='exact',
+                      method='barnes_hut',
+                      # method='exact',
                       angle=0.5, )
     tsne_values = tsne_model.fit_transform(tokens)
 
