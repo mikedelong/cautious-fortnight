@@ -106,12 +106,15 @@ if __name__ == '__main__':
                       'Project', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Research', 'Reviewed',
                       'SUBJECT', 'So', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled',
                       'With', 'Yes', 'He', 'In', 'There', 'FROM', 'TO', 'At', 'Not', 'What', 'If', 'How', 'And', 'It',
-                      'We', 'By', 'That', 'When', 'As', 'Basis', 'You', 'Then', 'It\'s', 'One', 'I\'m', }
+                      'We', 'By', 'That', 'When', 'As', 'Basis', 'You', 'Then', 'It\'s', 'One', 'I\'m', 'But', 'By',
+                      'Some', 'Well', 'That\'s', 'Subject', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
              'AMERICA1:1': ['America'], 'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'],
              '(Name,title': ['name', 'title'], 'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'],
-             'wasa': ['was', 'a'], 'Interviewees:(Eitherlist': ['interviewees', 'either', 'list'], }
+             'wasa': ['was', 'a'], 'Interviewees:(Eitherlist': ['interviewees', 'either', 'list'],
+             'DoD': ['DOD'], 'Gen': ['General'], 'MMDDYY': ['MM', 'DD', 'YY'], 'MM/DD/YY': ['MM', 'DD', 'YY'],
+             'SIGARAttendees': ['SIGAR', 'attendees']}
 
     text = list()
     for item_index, item in enumerate(items):
@@ -132,7 +135,7 @@ if __name__ == '__main__':
             text.append(' '.join(pieces))
 
     corpus = [item.split() for item in text]
-    model = Word2Vec(corpus, size=100, window=20, min_count=110, workers=4, batch_words=True, )
+    model = Word2Vec(corpus, batch_words=True, min_count=110, size=100, window=20, workers=4, )
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
