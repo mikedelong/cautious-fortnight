@@ -100,12 +100,13 @@ if __name__ == '__main__':
     singulars = {plurals[key]: key for key in plurals.keys()}
 
     # todo: factor these out as data
-    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption', 'File',
-                      'For', 'Key', 'Location', 'Meeting', 'No', 'Number', 'OF', 'On', 'People', 'Please', 'Project',
-                      'Prepared', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Reviewed', 'Research', 'So',
-                      'SUBJECT', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled', 'Yes',
-                      'INTERVIEW', 'LESSONS', 'LEARNED', 'Page', 'Lessons', 'Learned', 'Interview', 'Our', 'With',
-                      'Also', }
+    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Also', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption',
+                      'File', 'For', 'INTERVIEW', 'Interview', 'Key', 'LEARNED', 'LESSONS', 'Learned', 'Lessons',
+                      'Location', 'Meeting', 'No', 'Number', 'OF', 'On', 'Our', 'Page', 'People', 'Please', 'Prepared',
+                      'Project', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Research', 'Reviewed',
+                      'SUBJECT', 'So', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled',
+                      'With', 'Yes', 'He', 'In', 'There', 'FROM', 'TO', 'At', 'Not', }
+    logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
              'AMERICA1:1': ['America'], 'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'],
              '(Name,title': ['name', 'title'], 'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'],
@@ -134,6 +135,7 @@ if __name__ == '__main__':
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
+    logger.info('tokens with capitals: {}'.format([item for item in labels if str(item) != str(item).lower()]))
 
     random_state = 1
     tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=100.0,
