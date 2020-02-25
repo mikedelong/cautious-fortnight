@@ -100,14 +100,14 @@ if __name__ == '__main__':
     singulars = {plurals[key]: key for key in plurals.keys()}
 
     # todo: factor these out as data
-    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'Code', 'Coordination', 'File', 'Location',
-                      'Meeting', 'Please',
-                      'Project', 'Prepared', 'Purpose', 'RECORD', 'Record', 'Recording', 'Research', 'SUBJECT',
-                      'Thanks', 'Title', 'Topics', 'Yes', }
+    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption', 'File',
+                      'Location', 'Meeting', 'People', 'Please', 'Project', 'Prepared', 'Purpose', 'RECORD', 'Record',
+                      'Recorded', 'Recording', 'Research', 'So', 'SUBJECT', 'Thanks', 'The', 'These', 'They', 'Title',
+                      'Topics', 'Yes', }
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
-             'AMERICA1:1': ['America'],
-             'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
-             'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'], 'wasa': ['was', 'a'], }
+             'AMERICA1:1': ['America'], 'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'],
+             '(Name,title': ['name', 'title'], 'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'],
+             'wasa': ['was', 'a'], }
 
     text = list()
     for item_index, item in enumerate(items):
@@ -148,4 +148,10 @@ if __name__ == '__main__':
     for i in range(len(tsne_values)):
         plt.scatter(xs[i], ys[i])
         plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
+        plt.tick_params(
+            axis='x',  # changes apply to the x-axis
+            which='both',  # both major and minor ticks are affected
+            bottom=False,  # ticks along the bottom edge are off
+            top=False,  # ticks along the top edge are off
+            labelbottom=False)  # labels along the bottom edge are off
     plt.show()
