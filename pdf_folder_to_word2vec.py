@@ -6,6 +6,9 @@ from logging import getLogger
 from string import punctuation
 from time import time
 
+import matplotlib.pyplot as plt
+from gensim.models import Word2Vec
+from sklearn.manifold import TSNE
 from tika import parser
 from unidecode import unidecode
 
@@ -123,3 +126,28 @@ if __name__ == '__main__':
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text.append(' '.join(pieces))
+
+    corpus = [' '.join([item for item in sublist]).split() for sublist in text]
+    model = Word2Vec(corpus, size=100, window=20, min_count=70, workers=4, batch_words=True, )
+
+    labels = [word for word in model.wv.vocab]
+    tokens = [model.wv[word] for word in model.wv.vocab]
+
+    random_state = 1
+    # tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
+    tsne_model = TSNE(n_components=2, perplexity=40.0, early_exaggeration=12.0, learning_rate=100.0, n_iter=2500,
+                      n_iter_without_progress=300, min_grad_norm=1e-07, metric='euclidean', init='pca', verbose=1,
+                      random_state=random_state,
+                      # method='barnes_hut',
+                      method='exact',
+                      angle=0.5, )
+    tsne_values = tsne_model.fit_transform(tokens)
+
+    xs = [value[0] for value in tsne_values]
+    ys = [value[1] for value in tsne_values]
+
+    plt.figure(figsize=(16, 16))
+    for i in range(len(tsne_values)):
+        plt.scatter(xs[i], ys[i])
+        plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
+    plt.show()
