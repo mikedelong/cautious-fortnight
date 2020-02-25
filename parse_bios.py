@@ -83,24 +83,30 @@ if __name__ == '__main__':
     net = [[process(item) for item in sublist] for sublist in net]
     net = [[item for item in sublist if item is not None] for sublist in net]
     lengths = [len(item) for item in net]
-    corpus = [' '.join(
-        [item.replace('U.S.', 'US').replace('.', ' ').replace(',', ' ').replace(')', '').replace('(', '')
-         for item in sublist]).split() for sublist in net]
+    corpus = [' '.join([item.replace('U.S.', 'US').replace('.', ' ').replace(',', ' ').replace(')', '').replace('(',
+                                                                                                                '').replace(
+        ';', ' ') for item in sublist]).split() for sublist in net]
     # stop_word = {'a', 'the', }
     # stop_word = {'at', 'also', 'of', 'and', 'on', 'with', 'from', 'in', 'In', }
     # stop_word = {'is', 'has', 'was', }
     # stop_word = {'he', 'He', 'his', 'His', }
-    stop_word = {'a', 'at', 'also', 'of', 'is', 'his', 'His', 'he', 'He', 'was', 'has', 'and', 'on', 'to', 'for', 'the',
-                 'with', 'as', 'in', 'In', 'from', 'where', }
-    corpus = [[item for item in sublist if item not in stop_word and len(item) > 1] for sublist in corpus]
+    stop_word = {'a', 'also', 'an', 'and', 'as', 'at', 'for', 'from', 'has', 'he', 'his', 'in', 'is', 'of',
+                 'on', 'she', 'the', 'to', 'was', 'where', 'with', }
+    logger.info('stop word: {}'.format(sorted(list(stop_word), key=lambda x: x.lower())))
+    corpus = [[item for item in sublist if item.lower() not in stop_word and len(item) > 1] for sublist in corpus]
 
-    model = Word2Vec(corpus, size=1000, window=20, min_count=75, workers=4, )
-    logger.info(model.wv['officer'])
+    model = Word2Vec(corpus, size=100, window=20, min_count=70, workers=4, batch_words=True, )
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
 
-    tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
+    # tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
+    tsne_model = TSNE(n_components=2, perplexity=40.0, early_exaggeration=12.0, learning_rate=200.0, n_iter=2500,
+                      n_iter_without_progress=300, min_grad_norm=1e-07, metric='euclidean', init='pca', verbose=1,
+                      random_state=random_state,
+                      # method='barnes_hut',
+                      method='exact',
+                      angle=0.5, )
     tsne_values = tsne_model.fit_transform(tokens)
 
     xs = [value[0] for value in tsne_values]
