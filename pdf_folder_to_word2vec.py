@@ -153,6 +153,6 @@ if __name__ == '__main__':
     for i in range(len(tsne_values)):
         plt.scatter(xs[i], ys[i])
         plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
-    plt.tick_params(axis='both', bottom='off', labelbottom='off', labelleft='off', left='off', right='off', top='off',
+    plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False, top=False,
                     which='both', )
     plt.show()
