@@ -101,7 +101,7 @@ if __name__ == '__main__':
     tokens = [model.wv[word] for word in model.wv.vocab]
 
     # tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=random_state)
-    tsne_model = TSNE(n_components=2, perplexity=40.0, early_exaggeration=12.0, learning_rate=200.0, n_iter=2500,
+    tsne_model = TSNE(n_components=2, perplexity=40.0, early_exaggeration=12.0, learning_rate=100.0, n_iter=2500,
                       n_iter_without_progress=300, min_grad_norm=1e-07, metric='euclidean', init='pca', verbose=1,
                       random_state=random_state,
                       # method='barnes_hut',
