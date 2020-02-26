@@ -80,7 +80,7 @@ if __name__ == '__main__':
     # do a sanity check on our plurals and verbs
     collisions = set(plurals.keys()).intersection(set(verbs.keys()))
     if len(collisions):
-        logger.warning('we have plural/verb collisions: {}. Qutting.'.format(collisions))
+        logger.warning('we have plural/verb collisions: {}. Quitting.'.format(collisions))
         quit(code=3)
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
-    logger.info('tokens with capitals: {}'.format([item for item in labels if str(item) != str(item).lower()]))
+    logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
 
     random_state = 1
     tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=100.0,
