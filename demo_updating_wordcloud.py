@@ -127,4 +127,4 @@ if __name__ == '__main__':
     logger.info('stop words: {}'.format(sorted(stop_word)))
     logger.info('counts: {}'.format(count))
 
-    app.run_server(debug=dash_debug)
+    app.run_server(debug=dash_debug, host='127.0.0.1', port=8050)
