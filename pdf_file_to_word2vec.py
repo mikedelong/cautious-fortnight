@@ -63,14 +63,6 @@ if __name__ == '__main__':
     else:
         logger.warning('output file is missing from the settings. Quitting.')
         quit(code=2)
-    plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
-    if len(plurals):
-        with open(settings['plurals'], 'r') as plurals_fp:
-            plurals = json_load(plurals_fp)
-            logger.info('plurals: {}'.format(plurals))
-    else:
-        logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
-
 
     items = list()
     parse_result = parser.from_file(input_file)
@@ -79,9 +71,6 @@ if __name__ == '__main__':
         logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
     else:
         logger.warning('length: 0 name: {}'.format(input_file))
-
-    # add a map of singulars to plurals to complement our plurals to singulars map
-    singulars = {plurals[key]: key for key in plurals.keys()}
 
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'], 'AMERICA1:1': ['America'],
