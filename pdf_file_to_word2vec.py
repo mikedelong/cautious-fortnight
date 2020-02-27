@@ -71,19 +71,6 @@ if __name__ == '__main__':
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
 
-    verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
-    if len(verbs):
-        with open(settings['verbs'], 'r') as verbs_fp:
-            verbs = json_load(verbs_fp)
-            logger.info('verbs: {}'.format(verbs))
-    else:
-        logger.warning('verbs not in settings; we will not be doing any verbal-form consolidation')
-
-    # do a sanity check on our plurals and verbs
-    collisions = set(plurals.keys()).intersection(set(verbs.keys()))
-    if len(collisions):
-        logger.warning('we have plural/verb collisions: {}. Quitting.'.format(collisions))
-        quit(code=3)
 
     items = list()
     parse_result = parser.from_file(input_file)
