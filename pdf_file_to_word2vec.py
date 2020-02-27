@@ -70,18 +70,6 @@ if __name__ == '__main__':
             logger.info('plurals: {}'.format(plurals))
     else:
         logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
-    stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
-    if len(stop_word):
-        with open(stop_word, 'r') as stop_word_fp:
-            stop_words = json_load(stop_word_fp)
-        if 'stop_word' in stop_words.keys():
-            stop_word = stop_words['stop_word']
-        else:
-            logger.warning('stop word list malformed; check {}.'.format(settings['stop_word']))
-            quit(code=4)
-        logger.info('stop word list: {}'.format(stop_word))
-    else:
-        logger.warning('stop word list not in settings; default is empty.')
 
     verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
     if len(verbs):
