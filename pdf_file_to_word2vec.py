@@ -124,7 +124,7 @@ if __name__ == '__main__':
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
 
-    approach = 'matplotlib'
+    approach = 'plotly'
     if approach == 'matplotlib':
         plt.figure(figsize=(16, 16))
         for i in range(len(tsne_values)):
