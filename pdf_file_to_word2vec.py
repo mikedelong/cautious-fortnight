@@ -7,6 +7,9 @@ from time import time
 
 import matplotlib.pyplot as plt
 from gensim.models import Word2Vec
+from plotly.graph_objects import Figure
+from plotly.graph_objects import Scatter
+from plotly.offline import plot
 from sklearn.manifold import TSNE
 from tika import parser
 from unidecode import unidecode
@@ -121,10 +124,29 @@ if __name__ == '__main__':
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
 
-    plt.figure(figsize=(16, 16))
-    for i in range(len(tsne_values)):
-        plt.scatter(xs[i], ys[i])
-        plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
-    plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False, top=False,
-                    which='both', )
-    plt.show()
+    approach = 'matplotlib'
+    if approach == 'matplotlib':
+        plt.figure(figsize=(16, 16))
+        for i in range(len(tsne_values)):
+            plt.scatter(xs[i], ys[i])
+            plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]),
+                         xytext=(5, 2), )
+        plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False,
+                        top=False,
+                        which='both', )
+        plt.show()
+    elif approach == 'plotly':
+        figure = Figure(Scatter(mode='text', text=labels,
+                                x=xs,
+                                y=ys,
+                                #                 textfont=dict(
+                                # color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
+                                #        word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )
+                                ))
+
+        output_file = input_file.replace('.pdf', '_word2vec.') + 'html'
+        logger.info('saving HTML figure to {}'.format(output_file))
+        plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
+             link_text='', output_type='file', show_link=False, validate=True, )
+    else:
+        raise ValueError('plotting approach is {}. Quitting.'.format(approach))
