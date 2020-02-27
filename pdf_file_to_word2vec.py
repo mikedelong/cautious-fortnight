@@ -31,6 +31,21 @@ if __name__ == '__main__':
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
+    capitalization = list()
+    capitalization_file = settings['capitalization'] if 'capitalization' in settings.keys() else list()
+    if len(capitalization_file):
+        with open(capitalization_file, 'r') as capitalization_fp:
+            capitalization_data = json_load(capitalization_fp)
+        if 'data' in capitalization_data.keys():
+            capitalization = capitalization_data['data']
+        else:
+            logger.warning('capitalization fix list malformed; check {}.'.format(settings['capitalization']))
+            quit(code=5)
+        logger.info('capitalization fix list: {}'.format(capitalization))
+    else:
+        logger.warning('capitalization fix list not in settings; default is empty.')
+    capitalization = set(capitalization)
+
     filter_threshold = settings['filter_threshold'] if 'filter_threshold' in settings.keys() else 1
     if 'filter_threshold' in settings.keys():
         logger.info('filter threshold: {}'.format(filter_threshold))
@@ -93,17 +108,6 @@ if __name__ == '__main__':
     # add a map of singulars to plurals to complement our plurals to singulars map
     singulars = {plurals[key]: key for key in plurals.keys()}
 
-    # todo: factor these out as data
-    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Also', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption',
-                      'File', 'For', 'INTERVIEW', 'Interview', 'Key', 'LEARNED', 'LESSONS', 'Learned', 'Lessons',
-                      'Location', 'Meeting', 'No', 'Number', 'OF', 'On', 'Our', 'Page', 'People', 'Please', 'Prepared',
-                      'Project', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Research', 'Reviewed',
-                      'SUBJECT', 'So', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled',
-                      'With', 'Yes', 'He', 'In', 'There', 'FROM', 'TO', 'At', 'Not', 'What', 'If', 'How', 'And', 'It',
-                      'We', 'By', 'That', 'When', 'As', 'Basis', 'You', 'Then', 'It\'s', 'One', 'I\'m', 'But', 'By',
-                      'Some', 'Well', 'That\'s', 'Subject', 'FOr', 'BUDGeT', 'FISCAL', 'YeAr', 'DePArTMeNT',
-                      'GOVerNMeNT', 'THe', 'Think', 'Effects', 'Assessing', 'Missiles', 'Question', 'Missile',
-                      'Figure', 'Sorties', 'While', 'Balance', 'War', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'], 'AMERICA1:1': ['America'],
              'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
