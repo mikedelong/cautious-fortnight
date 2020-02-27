@@ -103,7 +103,7 @@ if __name__ == '__main__':
                       'We', 'By', 'That', 'When', 'As', 'Basis', 'You', 'Then', 'It\'s', 'One', 'I\'m', 'But', 'By',
                       'Some', 'Well', 'That\'s', 'Subject', 'FOr', 'BUDGeT', 'FISCAL', 'YeAr', 'DePArTMeNT',
                       'GOVerNMeNT', 'THe', 'Think', 'Effects', 'Assessing', 'Missiles', 'Question', 'Missile',
-                      'Figure', 'Sorties', 'While', }
+                      'Figure', 'Sorties', 'While', 'Balance', 'War', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'], 'AMERICA1:1': ['America'],
              'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'], '(Name,title': ['name', 'title'],
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     corpus = [item.split() for item in text]
     model = Word2Vec(corpus,
                      # batch_words=20,
-                     batch_words=True,
+                     batch_words=True, compute_loss=True,
                      min_count=24, size=30, sorted_vocab=1,
                      window=36, workers=4, )
 
@@ -147,7 +147,7 @@ if __name__ == '__main__':
                       # method='barnes_hut',
                       method='exact',
                       metric='euclidean', min_grad_norm=1e-07, n_components=2, n_iter=2500, n_iter_without_progress=300,
-                      perplexity=40.0, random_state=random_state, verbose=1, )
+                      perplexity=8.0, random_state=random_state, verbose=1, )
     tsne_values = tsne_model.fit_transform(tokens)
 
     xs = [value[0] for value in tsne_values]
