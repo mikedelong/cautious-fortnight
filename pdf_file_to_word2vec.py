@@ -9,8 +9,10 @@ from time import time
 import matplotlib.pyplot as plt
 from gensim.models import Word2Vec
 from plotly.graph_objects import Figure
+from plotly.graph_objects import Layout
 from plotly.graph_objects import Scatter
 from plotly.offline import plot
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.manifold import TSNE
 from tika import parser
 from unidecode import unidecode
@@ -105,8 +107,9 @@ if __name__ == '__main__':
 
     corpus = [item.split() for item in text]
     model = Word2Vec(corpus,
-                     # batch_words=20,
-                     batch_words=True, compute_loss=True,
+                     batch_words=20,
+                     # batch_words=True,
+                     compute_loss=True,
                      min_count=24, size=30, sorted_vocab=1,
                      window=36, workers=4, )
 
@@ -136,8 +139,15 @@ if __name__ == '__main__':
                         top=False, which='both', )
         plt.show()
     elif approach == 'plotly':
+        vectorizer = CountVectorizer(lowercase=False, )
+        fit_result = vectorizer.fit_transform(text)
+        result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
+        result = {key: int(result[key]) for key in result.keys()}
+
         # todo introduce colors
-        figure = Figure(Scatter(mode='text', text=labels, x=xs, y=ys, ))
+        figure = Figure(Scatter(mode='text', text=labels, x=xs, y=ys, ),
+                        layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
+                                      yaxis=dict(showticklabels=False), ))
 
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
         logger.info('saving HTML figure to {}'.format(output_file))
