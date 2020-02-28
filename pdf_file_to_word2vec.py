@@ -137,13 +137,7 @@ if __name__ == '__main__':
         plt.show()
     elif approach == 'plotly':
         # todo introduce colors
-        figure = Figure(Scatter(mode='text', text=labels,
-                                x=xs,
-                                y=ys,
-                                #                 textfont=dict(
-                                # color=[float_color_to_hex(int((item[1] - min_size) * 255 / max_size), colormap) for item in
-                                #        word_cloud.layout_], size=[item[1] for item in word_cloud.layout_], )
-                                ))
+        figure = Figure(Scatter(mode='text', text=labels, x=xs, y=ys, ))
 
         # todo make this get the original file short name so we can write the output to the local folder
         output_file = input_file.replace('.pdf', '_word2vec.') + 'html'
