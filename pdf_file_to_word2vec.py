@@ -133,8 +133,7 @@ if __name__ == '__main__':
             plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]),
                          xytext=(5, 2), )
         plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False,
-                        top=False,
-                        which='both', )
+                        top=False, which='both', )
         plt.show()
     elif approach == 'plotly':
         # todo introduce colors
