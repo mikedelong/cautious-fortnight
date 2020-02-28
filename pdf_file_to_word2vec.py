@@ -152,6 +152,8 @@ if __name__ == '__main__':
         result = {key: int(result[key]) for key in result.keys() if str(key) in labels}
         min_count = min(result.values())
         max_count = max(result.values())
+        misses = [item for item in labels if item not in result.keys()]
+        logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
 
         figure = Figure(Scatter(mode='text', text=labels, textfont=dict(
