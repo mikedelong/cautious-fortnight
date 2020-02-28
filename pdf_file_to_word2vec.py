@@ -2,6 +2,7 @@ from json import load as json_load
 from logging import INFO
 from logging import basicConfig
 from logging import getLogger
+from ntpath import basename
 from string import punctuation
 from time import time
 
@@ -139,8 +140,7 @@ if __name__ == '__main__':
         # todo introduce colors
         figure = Figure(Scatter(mode='text', text=labels, x=xs, y=ys, ))
 
-        # todo make this get the original file short name so we can write the output to the local folder
-        output_file = input_file.replace('.pdf', '_word2vec.') + 'html'
+        output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
         logger.info('saving HTML figure to {}'.format(output_file))
         plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
