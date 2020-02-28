@@ -8,6 +8,7 @@ from time import time
 
 import matplotlib.pyplot as plt
 from gensim.models import Word2Vec
+from matplotlib.pyplot import cm
 from plotly.graph_objects import Figure
 from plotly.graph_objects import Layout
 from plotly.graph_objects import Scatter
@@ -18,6 +19,11 @@ from tika import parser
 from unidecode import unidecode
 
 PUNCTUATION = set(punctuation)
+
+
+def float_color_to_hex(arg_float, arg_colormap):
+    color_value = tuple([int(255 * arg_colormap(arg_float)[index]) for index in range(3)])
+    return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
 
 
 def ispunct(arg):
@@ -139,15 +145,20 @@ if __name__ == '__main__':
                         top=False, which='both', )
         plt.show()
     elif approach == 'plotly':
-        vectorizer = CountVectorizer(lowercase=False, )
+        plotly_colormap = 'jet'
+        vectorizer = CountVectorizer(lowercase=False)
         fit_result = vectorizer.fit_transform(text)
         result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
-        result = {key: int(result[key]) for key in result.keys()}
+        result = {key: int(result[key]) for key in result.keys() if str(key) in labels}
+        min_count = min(result.values())
+        max_count = max(result.values())
+        labels = [item for item in labels if item in result.keys()]
 
-        # todo introduce colors
-        figure = Figure(Scatter(mode='text', text=labels, x=xs, y=ys, ),
-                        layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
-                                      yaxis=dict(showticklabels=False), ))
+        figure = Figure(Scatter(mode='text', text=labels, textfont=dict(
+            color=[float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
+                                      cm.get_cmap(plotly_colormap)) for
+                   this in labels], ), x=xs, y=ys, ), layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
+                                                                    yaxis=dict(showticklabels=False), ))
 
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
         logger.info('saving HTML figure to {}'.format(output_file))
