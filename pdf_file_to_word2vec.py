@@ -156,9 +156,10 @@ if __name__ == '__main__':
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
 
-        figure = Figure(Scatter(hoverinfo='text', mode='text', text=labels, textfont=dict(
-            color=[float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
-                                      cm.get_cmap(plotly_colormap)) for this in labels], ), x=xs, y=ys, ),
+        figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
+                                mode='text', text=labels, textfont=dict(
+                color=[float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
+                                          cm.get_cmap(plotly_colormap)) for this in labels], ), x=xs, y=ys, ),
                         layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
                                       yaxis=dict(showticklabels=False), ))
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
