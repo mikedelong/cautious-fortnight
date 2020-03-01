@@ -135,6 +135,7 @@ if __name__ == '__main__':
                         top=False, which='both', )
         plt.show()
     elif approach == 'plotly':
+        # todo move this to a setting
         plotly_colormap = 'viridis'
         vectorizer = CountVectorizer(lowercase=False)
         fit_result = vectorizer.fit_transform(text)
