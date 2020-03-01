@@ -58,11 +58,6 @@ if __name__ == '__main__':
         logger.warning('capitalization fix list not in settings; default is empty.')
     capitalization = set(capitalization)
 
-    filter_threshold = settings['filter_threshold'] if 'filter_threshold' in settings.keys() else 1
-    if 'filter_threshold' in settings.keys():
-        logger.info('filter threshold: {}'.format(filter_threshold))
-    else:
-        logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
     input_file = settings['input_file'] if 'input_file' in settings.keys() else None
     if input_file:
         logger.info('input folder: {}'.format(input_file))
