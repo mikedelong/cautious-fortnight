@@ -123,6 +123,7 @@ if __name__ == '__main__':
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
 
+    # todo move this to settings
     approach = 'plotly'
     if approach == 'matplotlib':
         plt.figure(figsize=(16, 16))
