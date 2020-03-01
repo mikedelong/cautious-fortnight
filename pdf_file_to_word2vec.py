@@ -64,12 +64,6 @@ if __name__ == '__main__':
     else:
         logger.warning('input file is None. Quitting.')
         quit(code=1)
-    output_file = settings['output_file'] if 'output_file' in settings.keys() else None
-    if output_file:
-        logger.info('output file: {}'.format(output_file))
-    else:
-        logger.warning('output file is missing from the settings. Quitting.')
-        quit(code=2)
 
     items = list()
     parse_result = parser.from_file(input_file)
