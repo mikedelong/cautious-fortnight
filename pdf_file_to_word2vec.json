@@ -3,5 +3,6 @@
   "input_file_1": "../../Downloads/budget_fy21.pdf",
   "input_file_2": "../../Downloads/chineseinfluence_americaninterests_fullreport_web.pdf",
   "input_file_3": "../../Downloads/foundations-of-data-science-book.pdf",
-  "input_file": "../../Downloads/RAND_MG888.pdf"
+  "input_file": "../../Downloads/RAND_MG888.pdf",
+  "plot_approach": "plotly"
 }
