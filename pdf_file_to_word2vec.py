@@ -151,6 +151,7 @@ if __name__ == '__main__':
         misses = [item for item in labels if item not in result.keys()]
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
+        # todo what we really want to do is translate the ordinal number of the color to the range 0..255
         colors = [
             float_color_to_hex(int(255 * log(1.0 + float(result[this] - min_count) / float(max_count - min_count))),
                                cm.get_cmap(colormap)) for this in labels]
