@@ -2,7 +2,6 @@ from json import load as json_load
 from logging import INFO
 from logging import basicConfig
 from logging import getLogger
-from math import log
 from ntpath import basename
 from string import punctuation
 from time import time
@@ -152,9 +151,14 @@ if __name__ == '__main__':
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
         # todo what we really want to do is translate the ordinal number of the color to the range 0..255
+        color_index_map = {item: index for index, item in enumerate(sorted(result.values()))}
+        logger.info(color_index_map)
         colors = [
-            float_color_to_hex(int(255 * log(1.0 + float(result[this] - min_count) / float(max_count - min_count))),
+            float_color_to_hex(int(255.0 * float(color_index_map[result[this]]) / float(len(color_index_map))),
                                cm.get_cmap(colormap)) for this in labels]
+        # colors = [
+        #     float_color_to_hex(int(255 * log(1.0 + float(result[this] - min_count) / float(max_count - min_count))),
+        #                        cm.get_cmap(colormap)) for this in labels]
 
         figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
                                 mode='text', text=labels, textfont=dict(color=colors, ), x=xs, y=ys, ),
