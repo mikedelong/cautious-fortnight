@@ -152,7 +152,7 @@ if __name__ == '__main__':
                                      cm.get_cmap(colormap)) for this in labels]
 
         figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
-                                mode='text', text=labels, textfont=dict(color=colors, ), x=xs, y=ys, ),
+                                mode='text', text=labels, textfont=dict(color=colors, size=16, ), x=xs, y=ys, ),
                         layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
                                       yaxis=dict(showticklabels=False), ))
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
