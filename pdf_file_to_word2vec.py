@@ -150,15 +150,9 @@ if __name__ == '__main__':
         misses = [item for item in labels if item not in result.keys()]
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
-        # todo what we really want to do is translate the ordinal number of the color to the range 0..255
-        color_index_map = {item: index for index, item in enumerate(sorted(result.values()))}
-        logger.info(color_index_map)
-        colors = [
-            float_color_to_hex(int(255.0 * float(color_index_map[result[this]]) / float(len(color_index_map))),
-                               cm.get_cmap(colormap)) for this in labels]
-        # colors = [
-        #     float_color_to_hex(int(255 * log(1.0 + float(result[this] - min_count) / float(max_count - min_count))),
-        #                        cm.get_cmap(colormap)) for this in labels]
+        color_index_map = {item: index for index, item in enumerate(sorted(set(result.values())))}
+        colors = [float_color_to_hex(int(255.0 * float(color_index_map[result[this]]) / float(len(color_index_map))),
+                                     cm.get_cmap(colormap)) for this in labels]
 
         figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
                                 mode='text', text=labels, textfont=dict(color=colors, ), x=xs, y=ys, ),
