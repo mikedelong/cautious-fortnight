@@ -147,15 +147,15 @@ if __name__ == '__main__':
         result = {key: int(result[key]) for key in result.keys() if str(key) in labels}
         min_count = min(result.values())
         max_count = max(result.values())
+        colors = [float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
+                                     cm.get_cmap(colormap)) for this in labels]
         logger.info('count: min: {} max: {}'.format(min_count, max_count))
         misses = [item for item in labels if item not in result.keys()]
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
 
         figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
-                                mode='text', text=labels, textfont=dict(
-                color=[float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
-                                          cm.get_cmap(colormap)) for this in labels], ), x=xs, y=ys, ),
+                                mode='text', text=labels, textfont=dict(color=colors, ), x=xs, y=ys, ),
                         layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
                                       yaxis=dict(showticklabels=False), ))
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
