@@ -64,6 +64,11 @@ if __name__ == '__main__':
     else:
         logger.warning('input file is None. Quitting.')
         quit(code=1)
+    colormap = settings['colormap'] if 'colormap' in settings.keys() else 'jet'
+    if 'colormap' in settings.keys():
+        logger.info('plotly colormap: {}'.format(colormap))
+    else:
+        logger.warning('colormap not in settings; using default {}'.format(colormap))
 
     items = list()
     parse_result = parser.from_file(input_file)
@@ -136,7 +141,6 @@ if __name__ == '__main__':
         plt.show()
     elif approach == 'plotly':
         # todo move this to a setting
-        plotly_colormap = 'viridis'
         vectorizer = CountVectorizer(lowercase=False)
         fit_result = vectorizer.fit_transform(text)
         result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
@@ -151,7 +155,7 @@ if __name__ == '__main__':
         figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
                                 mode='text', text=labels, textfont=dict(
                 color=[float_color_to_hex(int((result[this] - min_count) * 255 / max_count),
-                                          cm.get_cmap(plotly_colormap)) for this in labels], ), x=xs, y=ys, ),
+                                          cm.get_cmap(colormap)) for this in labels], ), x=xs, y=ys, ),
                         layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
                                       yaxis=dict(showticklabels=False), ))
         output_file = './' + basename(input_file).replace('.pdf', '_word2vec.') + 'html'
