@@ -144,9 +144,6 @@ if __name__ == '__main__':
         fit_result = vectorizer.fit_transform(text)
         result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
         result = {key: int(result[key]) for key in result.keys() if str(key) in labels}
-        min_count = min(result.values())
-        max_count = max(result.values())
-        logger.info('count: min: {} max: {}'.format(min_count, max_count))
         misses = [item for item in labels if item not in result.keys()]
         logger.warning('label misses: {}'.format(misses))
         labels = [item for item in labels if item in result.keys()]
