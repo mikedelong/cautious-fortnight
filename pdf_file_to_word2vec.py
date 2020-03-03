@@ -129,8 +129,8 @@ if __name__ == '__main__':
     ys = [value[1] for value in tsne_values]
 
     # todo move this to settings
-    approach = 'plotly'
-    if approach == 'matplotlib':
+    plot_approach = 'plotly'
+    if plot_approach == 'matplotlib':
         plt.figure(figsize=(16, 16))
         for i in range(len(tsne_values)):
             plt.scatter(xs[i], ys[i])
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False,
                         top=False, which='both', )
         plt.show()
-    elif approach == 'plotly':
+    elif plot_approach == 'plotly':
         vectorizer = CountVectorizer(lowercase=False)
         fit_result = vectorizer.fit_transform(text)
         result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
@@ -160,4 +160,4 @@ if __name__ == '__main__':
         plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
              link_text='', output_type='file', show_link=False, validate=True, )
     else:
-        raise ValueError('plotting approach is {}. Quitting.'.format(approach))
+        raise ValueError('plotting approach is {}. Quitting.'.format(plot_approach))
