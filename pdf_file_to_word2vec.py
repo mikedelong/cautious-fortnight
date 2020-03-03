@@ -64,6 +64,12 @@ if __name__ == '__main__':
     else:
         logger.warning('input file is None. Quitting.')
         quit(code=1)
+    plot_approach = settings['plot_approach'] if 'plot_approach' in settings.keys() else 'plotly'
+    if 'plot_approach' in settings.keys():
+        logger.info('plot using: {}'.format(plot_approach))
+    else:
+        logger.warning('using default plotting: {}'.format(plot_approach))
+
     colormap = settings['colormap'] if 'colormap' in settings.keys() else 'jet'
     if 'colormap' in settings.keys():
         logger.info('plotly colormap: {}'.format(colormap))
@@ -128,8 +134,6 @@ if __name__ == '__main__':
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
 
-    # todo move this to settings
-    plot_approach = 'plotly'
     if plot_approach == 'matplotlib':
         plt.figure(figsize=(16, 16))
         for i in range(len(tsne_values)):
