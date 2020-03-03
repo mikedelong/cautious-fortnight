@@ -57,7 +57,11 @@ if __name__ == '__main__':
     else:
         logger.warning('capitalization fix list not in settings; default is empty.')
     capitalization = set(capitalization)
-
+    colormap = settings['colormap'] if 'colormap' in settings.keys() else 'jet'
+    if 'colormap' in settings.keys():
+        logger.info('plotly colormap: {}'.format(colormap))
+    else:
+        logger.warning('colormap not in settings; using default {}'.format(colormap))
     input_file = settings['input_file'] if 'input_file' in settings.keys() else None
     if input_file:
         logger.info('input folder: {}'.format(input_file))
@@ -70,11 +74,6 @@ if __name__ == '__main__':
     else:
         logger.warning('using default plotting: {}'.format(plot_approach))
 
-    colormap = settings['colormap'] if 'colormap' in settings.keys() else 'jet'
-    if 'colormap' in settings.keys():
-        logger.info('plotly colormap: {}'.format(colormap))
-    else:
-        logger.warning('colormap not in settings; using default {}'.format(colormap))
 
     items = list()
     parse_result = parser.from_file(input_file)
