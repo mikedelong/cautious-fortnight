@@ -74,14 +74,13 @@ if __name__ == '__main__':
     else:
         logger.warning('using default plotting: {}'.format(plot_approach))
 
-
-    items = list()
     parse_result = parser.from_file(input_file)
     if parse_result['content']:
-        items.append(unidecode(parse_result['content']))
+        items = [unidecode(parse_result['content'])]
         logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
     else:
         logger.warning('length: 0 name: {}'.format(input_file))
+        items = list()
 
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'], 'AMERICA1:1': ['America'],
