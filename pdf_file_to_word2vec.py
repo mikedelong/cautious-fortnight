@@ -80,6 +80,7 @@ if __name__ == '__main__':
         logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
     else:
         logger.warning('length: 0 name: {}. Quitting.'.format(input_file))
+        items = list()
         quit(code=6)
 
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
