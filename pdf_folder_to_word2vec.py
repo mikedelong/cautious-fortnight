@@ -8,11 +8,22 @@ from time import time
 
 import matplotlib.pyplot as plt
 from gensim.models import Word2Vec
+from matplotlib.pyplot import cm
+from plotly.graph_objects import Figure
+from plotly.graph_objects import Layout
+from plotly.graph_objects import Scatter
+from plotly.offline import plot
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.manifold import TSNE
 from tika import parser
 from unidecode import unidecode
 
 PUNCTUATION = set(punctuation)
+
+
+def float_color_to_hex(arg_float, arg_colormap):
+    color_value = tuple([int(255 * arg_colormap(arg_float)[index]) for index in range(3)])
+    return '#{:02x}{:02x}{:02x}'.format(color_value[0], color_value[1], color_value[2])
 
 
 def ispunct(arg):
@@ -28,15 +39,10 @@ if __name__ == '__main__':
     basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=INFO)
     logger.info('started.')
 
-    with open('./pdf_folder_to_tfidf.json', 'r') as settings_fp:
+    with open('./pdf_folder_to_word2vec.json', 'r') as settings_fp:
         settings = json_load(settings_fp, cls=None, object_hook=None, parse_float=None, parse_int=None,
                              parse_constant=None, object_pairs_hook=None)
 
-    filter_threshold = settings['filter_threshold'] if 'filter_threshold' in settings.keys() else 1
-    if 'filter_threshold' in settings.keys():
-        logger.info('filter threshold: {}'.format(filter_threshold))
-    else:
-        logger.warning('filter threshold not in settings; using default {}'.format(filter_threshold))
     input_folder = settings['input_folder'] if 'input_folder' in settings.keys() else None
     if input_folder:
         logger.info('input folder: {}'.format(input_folder))
@@ -49,39 +55,6 @@ if __name__ == '__main__':
     else:
         logger.warning('output file is missing from the settings. Quitting.')
         quit(code=2)
-    plurals = settings['plurals'] if 'plurals' in settings.keys() else dict()
-    if len(plurals):
-        with open(settings['plurals'], 'r') as plurals_fp:
-            plurals = json_load(plurals_fp)
-            logger.info('plurals: {}'.format(plurals))
-    else:
-        logger.warning('plurals not in settings; we will not be doing any singular/plural reconciliation')
-    stop_word = settings['stop_word'] if 'stop_word' in settings.keys() else list()
-    if len(stop_word):
-        with open(stop_word, 'r') as stop_word_fp:
-            stop_words = json_load(stop_word_fp)
-        if 'stop_word' in stop_words.keys():
-            stop_word = stop_words['stop_word']
-        else:
-            logger.warning('stop word list malformed; check {}.'.format(settings['stop_word']))
-            quit(code=4)
-        logger.info('stop word list: {}'.format(stop_word))
-    else:
-        logger.warning('stop word list not in settings; default is empty.')
-
-    verbs = settings['verbs'] if 'verbs' in settings.keys() else dict()
-    if len(verbs):
-        with open(settings['verbs'], 'r') as verbs_fp:
-            verbs = json_load(verbs_fp)
-            logger.info('verbs: {}'.format(verbs))
-    else:
-        logger.warning('verbs not in settings; we will not be doing any verbal-form consolidation')
-
-    # do a sanity check on our plurals and verbs
-    collisions = set(plurals.keys()).intersection(set(verbs.keys()))
-    if len(collisions):
-        logger.warning('we have plural/verb collisions: {}. Quitting.'.format(collisions))
-        quit(code=3)
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
@@ -93,28 +66,10 @@ if __name__ == '__main__':
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
 
-    logger.info('result size: {}'.format(len(items)))
-    logger.info('file count: {}'.format(len(input_files)))
-
-    # add a map of singulars to plurals to complement our plurals to singulars map
-    singulars = {plurals[key]: key for key in plurals.keys()}
-
     # todo: factor these out as data
-    capitalization = {'AFFAIRS', 'AID', 'AMBASSADOR', 'Also', 'Attendees', 'But', 'Code', 'Coordination', 'Corruption',
-                      'File', 'For', 'INTERVIEW', 'Interview', 'Key', 'LEARNED', 'LESSONS', 'Learned', 'Lessons',
-                      'Location', 'Meeting', 'No', 'Number', 'OF', 'On', 'Our', 'Page', 'People', 'Please', 'Prepared',
-                      'Project', 'Purpose', 'RECORD', 'Record', 'Recorded', 'Recording', 'Research', 'Reviewed',
-                      'SUBJECT', 'So', 'Thanks', 'The', 'These', 'They', 'This', 'Title', 'To', 'Topics', 'Untitled',
-                      'With', 'Yes', 'He', 'In', 'There', 'FROM', 'TO', 'At', 'Not', 'What', 'If', 'How', 'And', 'It',
-                      'We', 'By', 'That', 'When', 'As', 'Basis', 'You', 'Then', 'It\'s', 'One', 'I\'m', 'But', 'By',
-                      'Some', 'Well', 'That\'s', 'Subject', }
+    capitalization = {}
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-    split = {'AFGHAN': ['Afghan'], 'AFGHANISTAN': ['Afghanistan'], 'AMERICA': ['America'],
-             'AMERICA1:1': ['America'], 'ofthe': ['of', 'the'], 'Date/Time': ['date', 'time'],
-             '(Name,title': ['name', 'title'], 'Recordof': ['record', 'of'], 'U.S.': ['US'], 'wantto': ['want', 'to'],
-             'wasa': ['was', 'a'], 'Interviewees:(Eitherlist': ['interviewees', 'either', 'list'],
-             'DoD': ['DOD'], 'Gen': ['General'], 'MMDDYY': ['MM', 'DD', 'YY'], 'MM/DD/YY': ['MM', 'DD', 'YY'],
-             'SIGARAttendees': ['SIGAR', 'attendees']}
+    split = {}
 
     text = list()
     for item_index, item in enumerate(items):
@@ -142,20 +97,46 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
 
     random_state = 1
-    tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=100.0,
+    tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=200.0,
                       method='barnes_hut',
                       # method='exact',
-                      metric='euclidean', min_grad_norm=1e-07, n_components=2, n_iter=2500, n_iter_without_progress=300,
+                      metric='euclidean', min_grad_norm=1e-07, n_components=2, n_iter=10000,
+                      n_iter_without_progress=300,
                       perplexity=40.0, random_state=random_state, verbose=1, )
     tsne_values = tsne_model.fit_transform(tokens)
 
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
 
-    plt.figure(figsize=(16, 16))
-    for i in range(len(tsne_values)):
-        plt.scatter(xs[i], ys[i])
-        plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]), xytext=(5, 2), )
-    plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False, top=False,
-                    which='both', )
-    plt.show()
+    plot_approach = 'plotly'
+    if plot_approach == 'matplotlib':
+        plt.figure(figsize=(16, 16))
+        for i in range(len(tsne_values)):
+            plt.scatter(xs[i], ys[i])
+            plt.annotate(labels[i], ha='right', textcoords='offset points', va='bottom', xy=(xs[i], ys[i]),
+                         xytext=(5, 2), )
+        plt.tick_params(axis='both', bottom=False, labelbottom=False, labelleft=False, left=False, right=False,
+                        top=False, which='both', )
+        plt.show()
+    elif plot_approach == 'plotly':
+        colormap = 'jet'
+        vectorizer = CountVectorizer(lowercase=False)
+        fit_result = vectorizer.fit_transform(text)
+        result = dict(zip(vectorizer.get_feature_names(), fit_result.toarray().sum(axis=0)))
+        result = {key: int(result[key]) for key in result.keys() if str(key) in labels}
+        misses = [item for item in labels if item not in result.keys()]
+        logger.warning('label misses: {}'.format(misses))
+        labels = [item for item in labels if item in result.keys()]
+        color_index_map = {item: index for index, item in enumerate(sorted(set(result.values())))}
+        colors = [float_color_to_hex(int(255.0 * float(color_index_map[result[this]]) / float(len(color_index_map))),
+                                     cm.get_cmap(colormap)) for this in labels]
+
+        figure = Figure(Scatter(hoverinfo='text', hovertext=['{}: {}'.format(item, result[item], ) for item in labels],
+                                mode='text', text=labels, textfont=dict(color=colors, size=16, ), x=xs, y=ys, ),
+                        layout=Layout(autosize=True, xaxis=dict(showticklabels=False),
+                                      yaxis=dict(showticklabels=False), ))
+        logger.info('saving HTML figure to {}'.format(output_file))
+        plot(auto_open=False, auto_play=False, figure_or_data=figure, filename=output_file,
+             link_text='', output_type='file', show_link=False, validate=True, )
+    else:
+        raise ValueError('plotting approach is {}. Quitting.'.format(plot_approach))
