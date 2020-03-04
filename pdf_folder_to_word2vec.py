@@ -67,12 +67,20 @@ if __name__ == '__main__':
             logger.warning('length: 0 name: {}'.format(input_file))
 
     # todo: factor these out as data
-    capitalization = {'ACTION', 'AID', 'AND', 'ARE', 'According', 'Accordingly', 'Accords', 'Acting', 'Action',
-                      'Administration', 'Advisory', 'Affairs', 'After', 'Agency', 'Agreement', 'Agreements', 'Air',
-                      'All', 'Also', 'Although', 'An', 'Analysis', 'And', 'Any', 'MEMORANDUM'}
+    capitalization = {'ACTION', 'AID', 'AND', 'ARE', 'According', 'Accordingly', 'Acting', 'Action',
+                      'Administration', 'Advisory', 'Affairs', 'After', 'Agency', 'Agreement', 'Agreements',
+                      'All', 'Also', 'Although', 'An', 'Analysis', 'And', 'Any', 'MEMORANDUM', 'SECRET',
+                      'AN', 'AS', 'AT', 'BE', 'BUT', 'BY', 'DATE', 'DOCUMENT', 'EVENT', 'FOR', 'FROM', 'GOVERNMENT',
+                      'HAD', 'HAVE', 'HE', 'HIS', 'IF', 'II', 'III', 'IN', 'INFORMATION', 'IS', 'IT', 'IV', 'MAP',
+                      'MILITARY', 'NATIONAL', 'NO', 'NOT', 'OF', 'ON', 'ONLY', 'OR', 'PRESIDENT', 'ROLLING', 'SEA',
+                      'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
+                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', }
+    proper = {}
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
-             'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], }
+             'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
+             'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
+             'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], }
 
     text = list()
     for item_index, item in enumerate(items):
@@ -98,6 +106,7 @@ if __name__ == '__main__':
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
+    logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
     random_state = 1
     tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=200.0,
