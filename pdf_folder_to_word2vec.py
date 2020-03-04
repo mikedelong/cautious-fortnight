@@ -75,9 +75,11 @@ if __name__ == '__main__':
                       'MILITARY', 'NATIONAL', 'NO', 'NOT', 'OF', 'ON', 'ONLY', 'OR', 'PRESIDENT', 'ROLLING', 'SEA',
                       'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
                       'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
-                      'Sent', 'Special', 'Information', }
-    proper = {'RUSK', 'GENERAL', }
+                      'Sent', 'Special', 'Information', 'Now', 'Not', 'Yet', 'Two', 'Vols', 'Tab', 'This',
+                      'Do', 'Even', 'Be', 'In', 'Some', 'Study', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
+    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', }
+    logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
