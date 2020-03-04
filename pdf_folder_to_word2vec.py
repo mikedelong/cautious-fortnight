@@ -76,15 +76,17 @@ if __name__ == '__main__':
                       'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
                       'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
                       'Sent', 'Special', 'Information', 'Now', 'Not', 'Yet', 'Two', 'Vols', 'Tab', 'This',
-                      'Do', 'Even', 'Be', 'In', 'Some', 'Study', }
+                      'Do', 'Even', 'Be', 'In', 'Some', 'Study', 'Of', 'Therefore', 'The', 'They', 'Since',
+                      'Working', 'You', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', }
+    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH', }
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
-                 ['budget', 'consultation'], 'Msg': ['message']}
+                 ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
+             'Viet-Nam': ['Vietnam'], }
 
     text = list()
     for item_index, item in enumerate(items):
@@ -106,7 +108,16 @@ if __name__ == '__main__':
             text.append(' '.join(pieces))
 
     corpus = [item.split() for item in text]
-    model = Word2Vec(corpus, batch_words=True, min_count=110, size=100, window=20, workers=4, )
+    min_count = 110
+    min_count = 175
+    size_word2vec = 400
+    iter_word2vec = 1000
+    model = Word2Vec(corpus,
+                     # batch_words=20,
+                     iter=iter_word2vec,
+                     min_count=min_count, size=size_word2vec, window=20,
+                     workers=2,
+                     )
 
     labels = [word for word in model.wv.vocab]
     tokens = [model.wv[word] for word in model.wv.vocab]
