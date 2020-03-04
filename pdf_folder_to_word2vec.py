@@ -74,13 +74,15 @@ if __name__ == '__main__':
                       'HAD', 'HAVE', 'HE', 'HIS', 'IF', 'II', 'III', 'IN', 'INFORMATION', 'IS', 'IT', 'IV', 'MAP',
                       'MILITARY', 'NATIONAL', 'NO', 'NOT', 'OF', 'ON', 'ONLY', 'OR', 'PRESIDENT', 'ROLLING', 'SEA',
                       'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
-                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', }
-    proper = {'RUSK', }
+                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
+                      'Sent', 'Special', 'Information', }
+    proper = {'RUSK', 'GENERAL', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
-             'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], }
+             'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
+                 ['budget', 'consultation'], 'Msg': ['message']}
 
     text = list()
     for item_index, item in enumerate(items):
