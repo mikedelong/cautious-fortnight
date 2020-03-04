@@ -67,9 +67,12 @@ if __name__ == '__main__':
             logger.warning('length: 0 name: {}'.format(input_file))
 
     # todo: factor these out as data
-    capitalization = {}
+    capitalization = {'ACTION', 'AID', 'AND', 'ARE', 'According', 'Accordingly', 'Accords', 'Acting', 'Action',
+                      'Administration', 'Advisory', 'Affairs', 'After', 'Agency', 'Agreement', 'Agreements', 'Air',
+                      'All', 'Also', 'Although', 'An', 'Analysis', 'And', 'Any', 'MEMORANDUM'}
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-    split = {}
+    split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
+             'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], }
 
     text = list()
     for item_index, item in enumerate(items):
