@@ -74,8 +74,8 @@ if __name__ == '__main__':
                       'HAD', 'HAVE', 'HE', 'HIS', 'IF', 'II', 'III', 'IN', 'INFORMATION', 'IS', 'IT', 'IV', 'MAP',
                       'MILITARY', 'NATIONAL', 'NO', 'NOT', 'OF', 'ON', 'ONLY', 'OR', 'PRESIDENT', 'ROLLING', 'SEA',
                       'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
-                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', }
-    proper = {}
+                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', }
+    proper = {'RUSK', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
@@ -97,6 +97,7 @@ if __name__ == '__main__':
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
+            pieces = [piece if piece not in proper else piece.capitalize() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
             text.append(' '.join(pieces))
 
