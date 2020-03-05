@@ -77,7 +77,7 @@ if __name__ == '__main__':
                       'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
                       'Sent', 'Special', 'Information', 'Now', 'Not', 'Yet', 'Two', 'Vols', 'Tab', 'This',
                       'Do', 'Even', 'Be', 'In', 'Some', 'Study', 'Of', 'Therefore', 'The', 'They', 'Since',
-                      'Working', 'You', 'Both', }
+                      'Working', 'You', 'Both', 'What', 'Such', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH',
               'VIETNAMESE', }
@@ -110,8 +110,8 @@ if __name__ == '__main__':
 
     corpus = [item.split() for item in text]
     min_count = 175
-    size_word2vec = 400
-    iter_word2vec = 3000
+    size_word2vec = 1000
+    iter_word2vec = 2
     model = Word2Vec(corpus,
                      # batch_words=20,
                      iter=iter_word2vec,
