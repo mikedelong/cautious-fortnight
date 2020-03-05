@@ -88,6 +88,12 @@ if __name__ == '__main__':
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
              'Viet-Nam': ['Vietnam'], }
+    join = {'bomb-', 'bomb', 'bind-', 'group-', 'command-', 'liv-', 'follow-', 'boil-', 'belong-',
+            'belong-', 'hear-', 'issu-', 'arm-', 'follow-', 'contemplat-', 'accord-', 'imprison-',
+            'attack-'}
+    joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
+              'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
+              'attacking', }
     # todo add a token consolidation loop
 
     text = list()
@@ -107,8 +113,18 @@ if __name__ == '__main__':
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece if piece not in proper else piece.capitalize() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
+            pieces = [(piece + pieces[index + 1]).replace('-', '') if piece in join else piece for index, piece in
+                      enumerate(pieces)]
+            clean = list()
             for index, piece in enumerate(pieces):
-                if piece == 'ing':
+                if piece in {'ing', '-ing'}:
+                    if pieces[index - 1] not in joined:
+                        clean.append(piece)
+                else:
+                    clean.append(piece)
+            pieces = clean
+            for index, piece in enumerate(pieces):
+                if piece in {'ing', '-ing'}:
                     logger.warning('word split: {} {}'.format(pieces[index - 1], piece))
             text.append(' '.join(pieces))
 
