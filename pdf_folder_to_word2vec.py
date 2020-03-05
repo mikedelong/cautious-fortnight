@@ -107,16 +107,22 @@ if __name__ == '__main__':
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
             pieces = [piece if piece not in proper else piece.capitalize() for piece in pieces]
             pieces = [piece for piece in pieces if not ispunct(piece)]
+            for index, piece in enumerate(pieces):
+                if piece == 'ing':
+                    logger.warning('word split: {} {}'.format(pieces[index - 1], piece))
             text.append(' '.join(pieces))
 
     corpus = [item.split() for item in text]
     min_count = 175
     size_word2vec = 1000
     iter_word2vec = 2
+    random_state = 1
     model = Word2Vec(corpus,
                      # batch_words=20,
                      iter=iter_word2vec,
-                     min_count=min_count, size=size_word2vec, window=40,
+                     min_count=min_count,
+                     seed=random_state,
+                     size=size_word2vec, window=40,
                      workers=4,
                      )
 
@@ -125,7 +131,6 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    random_state = 1
     tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=200.0,
                       method='barnes_hut',
                       # method='exact',
