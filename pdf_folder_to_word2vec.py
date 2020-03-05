@@ -88,6 +88,7 @@ if __name__ == '__main__':
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
              'Viet-Nam': ['Vietnam'], }
+    # todo add a token consolidation loop
 
     text = list()
     for item_index, item in enumerate(items):
