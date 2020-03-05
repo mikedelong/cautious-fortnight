@@ -111,7 +111,7 @@ if __name__ == '__main__':
     corpus = [item.split() for item in text]
     min_count = 175
     size_word2vec = 400
-    iter_word2vec = 2000
+    iter_word2vec = 3000
     model = Word2Vec(corpus,
                      # batch_words=20,
                      iter=iter_word2vec,
@@ -168,3 +168,4 @@ if __name__ == '__main__':
              link_text='', output_type='file', show_link=False, validate=True, )
     else:
         raise ValueError('plotting approach is {}. Quitting.'.format(plot_approach))
+    logger.info('total time: {:5.2f}s'.format(time() - time_start))
