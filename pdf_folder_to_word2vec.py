@@ -109,7 +109,6 @@ if __name__ == '__main__':
             text.append(' '.join(pieces))
 
     corpus = [item.split() for item in text]
-    min_count = 110
     min_count = 175
     size_word2vec = 400
     iter_word2vec = 2000
