@@ -77,9 +77,10 @@ if __name__ == '__main__':
                       'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
                       'Sent', 'Special', 'Information', 'Now', 'Not', 'Yet', 'Two', 'Vols', 'Tab', 'This',
                       'Do', 'Even', 'Be', 'In', 'Some', 'Study', 'Of', 'Therefore', 'The', 'They', 'Since',
-                      'Working', 'You', }
+                      'Working', 'You', 'Both', }
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH', }
+    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH',
+              'VIETNAMESE', }
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
@@ -111,12 +112,12 @@ if __name__ == '__main__':
     min_count = 110
     min_count = 175
     size_word2vec = 400
-    iter_word2vec = 1000
+    iter_word2vec = 2000
     model = Word2Vec(corpus,
                      # batch_words=20,
                      iter=iter_word2vec,
-                     min_count=min_count, size=size_word2vec, window=20,
-                     workers=2,
+                     min_count=min_count, size=size_word2vec, window=40,
+                     workers=4,
                      )
 
     labels = [word for word in model.wv.vocab]
