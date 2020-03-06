@@ -90,10 +90,10 @@ if __name__ == '__main__':
              'Viet-Nam': ['Vietnam'], }
     join = {'bomb-', 'bomb', 'bind-', 'group-', 'command-', 'liv-', 'follow-', 'boil-', 'belong-',
             'belong-', 'hear-', 'issu-', 'arm-', 'follow-', 'contemplat-', 'accord-', 'imprison-',
-            'attack-'}
+            'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', }
     joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
               'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
-              'attacking', }
+              'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking', }
     # todo add a token consolidation loop
 
     text = list()
