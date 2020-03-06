@@ -90,10 +90,14 @@ if __name__ == '__main__':
              'Viet-Nam': ['Vietnam'], }
     join = {'bomb-', 'bomb', 'bind-', 'group-', 'command-', 'liv-', 'follow-', 'boil-', 'belong-',
             'belong-', 'hear-', 'issu-', 'arm-', 'follow-', 'contemplat-', 'accord-', 'imprison-',
-            'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', }
+            'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', 'express-', 'secur-',
+            'choos-', 'emerg-', 'reach-', 'mean-', 'Act-', 'declin-', 'Accord-', 'interest-', 'start-', 'inject-',
+            'prevail-', 'establish-'}
     joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
               'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
-              'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking', }
+              'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking',
+              'expressing', 'reaching', 'emerging', 'choosing', 'securing', 'meaning', 'Acting', 'declining',
+              'According', 'interesting', 'starting', 'injecting', 'prevailing', 'establishing', }
     # todo add a token consolidation loop
 
     text = list()
