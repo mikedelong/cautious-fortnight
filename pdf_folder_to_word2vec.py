@@ -106,7 +106,6 @@ if __name__ == '__main__':
               'reconvening', 'seeking', 'backing', 'accepting', 'proposing', 'morning', 'visiting', 'stressing',
               'developing', 'evening', 'attaching', 'increasing', 'concerning', 'continuing', 'carrying',
               'maintaining', 'supporting', 'growing', 'providing', 'understanding', 'working', 'improving', }
-    # todo add a token consolidation loop
 
     ing_counts = Counter()
     text = list()
