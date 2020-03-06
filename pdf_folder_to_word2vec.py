@@ -92,12 +92,15 @@ if __name__ == '__main__':
             'belong-', 'hear-', 'issu-', 'arm-', 'follow-', 'contemplat-', 'accord-', 'imprison-',
             'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', 'express-', 'secur-',
             'choos-', 'emerg-', 'reach-', 'mean-', 'Act-', 'declin-', 'Accord-', 'interest-', 'start-', 'inject-',
-            'prevail-', 'establish-'}
+            'prevail-', 'establish-', 'will-', 'negotiat-', 'bowl', 'question-', 'includ-', 'demand-', 'act-',
+            'bargain-', 'reconven-', 'seek-', 'back-', 'accept-', 'propos-', }
     joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
               'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
               'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking',
               'expressing', 'reaching', 'emerging', 'choosing', 'securing', 'meaning', 'Acting', 'declining',
-              'According', 'interesting', 'starting', 'injecting', 'prevailing', 'establishing', }
+              'According', 'interesting', 'starting', 'injecting', 'prevailing', 'establishing', 'willing',
+              'negotiating', 'bowling', 'questioning', 'including', 'demanding', 'acting', 'bargaining',
+              'reconvening', 'seeking', 'backing', 'accepting', 'proposing', }
     # todo add a token consolidation loop
 
     text = list()
