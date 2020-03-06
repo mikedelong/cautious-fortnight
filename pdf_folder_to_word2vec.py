@@ -1,3 +1,4 @@
+from collections import Counter
 from glob import glob
 from json import load as json_load
 from logging import INFO
@@ -93,16 +94,21 @@ if __name__ == '__main__':
             'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', 'express-', 'secur-',
             'choos-', 'emerg-', 'reach-', 'mean-', 'Act-', 'declin-', 'Accord-', 'interest-', 'start-', 'inject-',
             'prevail-', 'establish-', 'will-', 'negotiat-', 'bowl', 'question-', 'includ-', 'demand-', 'act-',
-            'bargain-', 'reconven-', 'seek-', 'back-', 'accept-', 'propos-', }
+            'bargain-', 'reconven-', 'seek-', 'back-', 'accept-', 'propos-', 'morn-', 'visit-', 'stress-',
+            'develop-', 'even-', 'attach-', 'increas-', 'concern-', 'continu-', 'carry-', 'maintain-',
+            'support-', 'grow-', 'provid-', 'understand-', 'work-', 'improv-'}
     joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
               'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
               'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking',
               'expressing', 'reaching', 'emerging', 'choosing', 'securing', 'meaning', 'Acting', 'declining',
               'According', 'interesting', 'starting', 'injecting', 'prevailing', 'establishing', 'willing',
               'negotiating', 'bowling', 'questioning', 'including', 'demanding', 'acting', 'bargaining',
-              'reconvening', 'seeking', 'backing', 'accepting', 'proposing', }
+              'reconvening', 'seeking', 'backing', 'accepting', 'proposing', 'morning', 'visiting', 'stressing',
+              'developing', 'evening', 'attaching', 'increasing', 'concerning', 'continuing', 'carrying',
+              'maintaining', 'supporting', 'growing', 'providing', 'understanding', 'working', 'improving', }
     # todo add a token consolidation loop
 
+    ing_counts = Counter()
     text = list()
     for item_index, item in enumerate(items):
         if item is not None:
@@ -133,8 +139,10 @@ if __name__ == '__main__':
             for index, piece in enumerate(pieces):
                 if piece in {'ing', '-ing'}:
                     logger.warning('word split: {} {}'.format(pieces[index - 1], piece))
+                    ing_counts.update({pieces[index - 1]: 1})
             text.append(' '.join(pieces))
 
+    logger.info(ing_counts.most_common(n=10))
     corpus = [item.split() for item in text]
     min_count = 175
     size_word2vec = 1000
