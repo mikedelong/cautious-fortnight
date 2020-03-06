@@ -89,23 +89,24 @@ if __name__ == '__main__':
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
              'Viet-Nam': ['Vietnam'], }
-    join = {'bomb-', 'bomb', 'bind-', 'group-', 'command-', 'liv-', 'follow-', 'boil-', 'belong-',
-            'belong-', 'hear-', 'issu-', 'arm-', 'follow-', 'contemplat-', 'accord-', 'imprison-',
-            'attack-', 'meet-', 'dur-', 'emanat-', 'mak-', 'report-', 'train-', 'tak-', 'express-', 'secur-',
-            'choos-', 'emerg-', 'reach-', 'mean-', 'Act-', 'declin-', 'Accord-', 'interest-', 'start-', 'inject-',
-            'prevail-', 'establish-', 'will-', 'negotiat-', 'bowl', 'question-', 'includ-', 'demand-', 'act-',
-            'bargain-', 'reconven-', 'seek-', 'back-', 'accept-', 'propos-', 'morn-', 'visit-', 'stress-',
-            'develop-', 'even-', 'attach-', 'increas-', 'concern-', 'continu-', 'carry-', 'maintain-',
-            'support-', 'grow-', 'provid-', 'understand-', 'work-', 'improv-'}
-    joined = {'bombing', 'binding', 'grouping', 'commanding', 'living', 'following', 'boiling', 'belonging',
-              'hearing', 'issuing', 'arming', 'following', 'contemplating', 'according', 'imprisoning',
-              'attacking', 'meeting', 'during', 'emanating', 'making', 'reporting', 'training', 'taking',
-              'expressing', 'reaching', 'emerging', 'choosing', 'securing', 'meaning', 'Acting', 'declining',
-              'According', 'interesting', 'starting', 'injecting', 'prevailing', 'establishing', 'willing',
-              'negotiating', 'bowling', 'questioning', 'including', 'demanding', 'acting', 'bargaining',
-              'reconvening', 'seeking', 'backing', 'accepting', 'proposing', 'morning', 'visiting', 'stressing',
-              'developing', 'evening', 'attaching', 'increasing', 'concerning', 'continuing', 'carrying',
-              'maintaining', 'supporting', 'growing', 'providing', 'understanding', 'working', 'improving', }
+    join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
+            'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'concern-',
+            'contemplat-', 'continu-', 'declin-', 'demand-', 'develop-', 'dur-', 'emanat-', 'emerg-', 'establish-',
+            'even-', 'express-', 'follow-', 'group-', 'grow-', 'hear-', 'imprison-', 'improv-', 'includ-', 'increas-',
+            'inject-', 'interest-', 'issu-', 'liv-', 'maintain-', 'mak-', 'mean-', 'meet-', 'morn-', 'negotiat-',
+            'prevail-', 'propos-', 'provid-', 'question-', 'reach-', 'reconven-', 'report-', 'secur-', 'seek-',
+            'start-', 'stress-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'will-', 'work-', }
+    logger.info('join data: {}'.format(sorted(list(join))))
+    joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
+              'bargaining', 'belonging', 'binding', 'boiling', 'bombing', 'bowling', 'carrying', 'choosing',
+              'commanding', 'concerning', 'contemplating', 'continuing', 'declining', 'demanding', 'developing',
+              'during', 'emanating', 'emerging', 'establishing', 'evening', 'expressing', 'following', 'grouping',
+              'growing', 'hearing', 'imprisoning', 'improving', 'including', 'increasing', 'injecting', 'interesting',
+              'issuing', 'living', 'maintaining', 'making', 'meaning', 'meeting', 'morning', 'negotiating',
+              'prevailing', 'proposing', 'providing', 'questioning', 'reaching', 'reconvening', 'reporting', 'securing',
+              'seeking', 'starting', 'stressing', 'supporting', 'taking', 'training', 'understanding', 'visiting',
+              'willing', 'working', }
+    logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
     text = list()
