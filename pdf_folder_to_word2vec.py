@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     if lowercase_fixes:
         with open(lowercase_fixes, 'r') as lowercase_fp:
-            lowercase_data = json_load(lowercase_fixes)
+            lowercase_data = json_load(lowercase_fp)
             capitalization = set(lowercase_data['data'])
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     # todo factor these out as data
