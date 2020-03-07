@@ -101,6 +101,7 @@ if __name__ == '__main__':
             'start-', 'stress-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'will-', 'work-',
             'fight-', 'cover-', 'organiz-', 'warn-', 'proceed-', 'exist-', 'return-', }
     logger.info('join data: {}'.format(sorted(list(join))))
+    # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
               'bargaining', 'belonging', 'binding', 'boiling', 'bombing', 'bowling', 'carrying', 'choosing',
               'commanding', 'concerning', 'contemplating', 'continuing', 'declining', 'demanding', 'developing',
