@@ -50,6 +50,11 @@ if __name__ == '__main__':
     else:
         logger.warning('input folder is None. Quitting.')
         quit(code=1)
+    lowercase_fixes = settings['lowercase_fixes'] if 'lowercase_fixes' in settings.keys() else None
+    if lowercase_fixes:
+        logger.info('lowercase fix file: {}'.format(lowercase_fixes))
+    else:
+        logger.warning('input folder is missing.')
     output_file = settings['output_file'] if 'output_file' in settings.keys() else None
     if output_file:
         logger.info('output file: {}'.format(output_file))
@@ -67,18 +72,10 @@ if __name__ == '__main__':
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
 
-    # todo: factor these out as data
-    capitalization = {'ACTION', 'AID', 'AND', 'ARE', 'According', 'Accordingly', 'Acting', 'Action',
-                      'Administration', 'Advisory', 'Affairs', 'After', 'Agency', 'Agreement', 'Agreements',
-                      'All', 'Also', 'Although', 'An', 'Analysis', 'And', 'Any', 'MEMORANDUM', 'SECRET',
-                      'AN', 'AS', 'AT', 'BE', 'BUT', 'BY', 'DATE', 'DOCUMENT', 'EVENT', 'FOR', 'FROM', 'GOVERNMENT',
-                      'HAD', 'HAVE', 'HE', 'HIS', 'IF', 'II', 'III', 'IN', 'INFORMATION', 'IS', 'IT', 'IV', 'MAP',
-                      'MILITARY', 'NATIONAL', 'NO', 'NOT', 'OF', 'ON', 'ONLY', 'OR', 'PRESIDENT', 'ROLLING', 'SEA',
-                      'SECURITY', 'SENSITIVE', 'SHOULD', 'SOUTH', 'STATE', 'THAT', 'THE', 'THEY', 'THIS', 'THUNDER',
-                      'TO', 'TOP', 'WAS', 'WE', 'WERE', 'WHICH', 'WITH', 'WOULD', 'Finally', 'During',
-                      'Sent', 'Special', 'Information', 'Now', 'Not', 'Yet', 'Two', 'Vols', 'Tab', 'This',
-                      'Do', 'Even', 'Be', 'In', 'Some', 'Study', 'Of', 'Therefore', 'The', 'They', 'Since',
-                      'Working', 'You', 'Both', 'What', 'Such', }
+    if lowercase_fixes:
+        with open(lowercase_fixes, 'r') as lowercase_fp:
+            lowercase_data = json_load(lowercase_fixes)
+            capitalization = set(lowercase_data['data'])
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     # todo factor these out as data
     proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH',
