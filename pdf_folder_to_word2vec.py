@@ -91,6 +91,7 @@ if __name__ == '__main__':
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
              'Viet-Nam': ['Vietnam'], }
+    # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
             'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'concern-',
             'contemplat-', 'continu-', 'declin-', 'demand-', 'develop-', 'dur-', 'emanat-', 'emerg-', 'establish-',
