@@ -84,6 +84,7 @@ if __name__ == '__main__':
     proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH',
               'VIETNAMESE', }
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
+    # todo factor these out as data
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
              'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
