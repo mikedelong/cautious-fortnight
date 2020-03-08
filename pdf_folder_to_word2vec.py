@@ -88,26 +88,25 @@ if __name__ == '__main__':
              'Viet-Nam': ['Vietnam'], }
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
-            'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'concern-',
-            'contemplat-', 'continu-', 'declin-', 'demand-', 'develop-', 'dur-', 'emanat-', 'emerg-', 'establish-',
-            'even-', 'express-', 'follow-', 'group-', 'grow-', 'hear-', 'imprison-', 'improv-', 'includ-', 'increas-',
-            'inject-', 'interest-', 'issu-', 'liv-', 'maintain-', 'mak-', 'mean-', 'meet-', 'morn-', 'negotiat-',
-            'prevail-', 'propos-', 'provid-', 'question-', 'reach-', 'reconven-', 'report-', 'secur-', 'seek-',
-            'start-', 'stress-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'will-', 'work-',
-            'fight-', 'cover-', 'organiz-', 'warn-', 'proceed-', 'exist-', 'return-', 'compromis-', 'exclud-',
-            'strik-', 'regard-', }
+            'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'compromis-',
+            'concern-', 'contemplat-', 'continu-', 'cover-', 'declin-', 'demand-', 'develop-', 'dur-', 'emanat-',
+            'emerg-', 'establish-', 'even-', 'exclud-', 'exist-', 'express-', 'fight-', 'follow-', 'group-', 'grow-',
+            'hear-', 'imprison-', 'improv-', 'includ-', 'increas-', 'inject-', 'interest-', 'issu-', 'liv-',
+            'maintain-', 'mak-', 'mean-', 'meet-', 'morn-', 'negotiat-', 'organiz-', 'prevail-', 'proceed-', 'propos-',
+            'provid-', 'question-', 'reach-', 'reconven-', 'regard-', 'report-', 'return-', 'secur-', 'seek-', 'start-',
+            'stress-', 'strik-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'warn-', 'will-', 'work-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
               'bargaining', 'belonging', 'binding', 'boiling', 'bombing', 'bowling', 'carrying', 'choosing',
-              'commanding', 'concerning', 'contemplating', 'continuing', 'declining', 'demanding', 'developing',
-              'during', 'emanating', 'emerging', 'establishing', 'evening', 'expressing', 'following', 'grouping',
-              'growing', 'hearing', 'imprisoning', 'improving', 'including', 'increasing', 'injecting', 'interesting',
-              'issuing', 'living', 'maintaining', 'making', 'meaning', 'meeting', 'morning', 'negotiating',
-              'prevailing', 'proposing', 'providing', 'questioning', 'reaching', 'reconvening', 'reporting', 'securing',
-              'seeking', 'starting', 'stressing', 'supporting', 'taking', 'training', 'understanding', 'visiting',
-              'willing', 'working', 'fighting', 'covering', 'organizing', 'warning', 'proceeding', 'existing',
-              'returning', 'compromising', 'excluding', 'striking', 'regarding', }
+              'commanding', 'compromising', 'concerning', 'contemplating', 'continuing', 'covering', 'declining',
+              'demanding', 'developing', 'during', 'emanating', 'emerging', 'establishing', 'evening', 'excluding',
+              'existing', 'expressing', 'fighting', 'following', 'grouping', 'growing', 'hearing', 'imprisoning',
+              'improving', 'including', 'increasing', 'injecting', 'interesting', 'issuing', 'living', 'maintaining',
+              'making', 'meaning', 'meeting', 'morning', 'negotiating', 'organizing', 'prevailing', 'proceeding',
+              'proposing', 'providing', 'questioning', 'reaching', 'reconvening', 'regarding', 'reporting', 'returning',
+              'securing', 'seeking', 'starting', 'stressing', 'striking', 'supporting', 'taking', 'training',
+              'understanding', 'visiting', 'warning', 'willing', 'working', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
