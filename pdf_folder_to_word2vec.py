@@ -76,7 +76,7 @@ if __name__ == '__main__':
             capitalization = set(lowercase_data['data'])
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
     # todo factor these out as data
-    proper = {'RUSK', 'GENERAL', 'INDOCHINA', 'SECRETARY', 'SAIGON', 'DEFENSE', 'ARMY', 'FORCES', 'VIETNAM', 'FRENCH',
+    proper = {'ARMY', 'DEFENSE', 'FORCES', 'FRENCH', 'GENERAL', 'INDOCHINA', 'RUSK', 'SAIGON', 'SECRETARY', 'VIETNAM',
               'VIETNAMESE', }
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
     # todo factor these out as data
@@ -94,7 +94,8 @@ if __name__ == '__main__':
             'inject-', 'interest-', 'issu-', 'liv-', 'maintain-', 'mak-', 'mean-', 'meet-', 'morn-', 'negotiat-',
             'prevail-', 'propos-', 'provid-', 'question-', 'reach-', 'reconven-', 'report-', 'secur-', 'seek-',
             'start-', 'stress-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'will-', 'work-',
-            'fight-', 'cover-', 'organiz-', 'warn-', 'proceed-', 'exist-', 'return-', }
+            'fight-', 'cover-', 'organiz-', 'warn-', 'proceed-', 'exist-', 'return-', 'compromis-', 'exclud-',
+            'strik-', 'regard-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -106,7 +107,7 @@ if __name__ == '__main__':
               'prevailing', 'proposing', 'providing', 'questioning', 'reaching', 'reconvening', 'reporting', 'securing',
               'seeking', 'starting', 'stressing', 'supporting', 'taking', 'training', 'understanding', 'visiting',
               'willing', 'working', 'fighting', 'covering', 'organizing', 'warning', 'proceeding', 'existing',
-              'returning', }
+              'returning', 'compromising', 'excluding', 'striking', 'regarding', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
