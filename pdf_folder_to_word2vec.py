@@ -61,7 +61,6 @@ if __name__ == '__main__':
     else:
         logger.warning('output file is missing from the settings. Quitting.')
         quit(code=2)
-
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
     for input_file in input_files:
@@ -71,7 +70,6 @@ if __name__ == '__main__':
             logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
-
     if lowercase_fixes:
         with open(lowercase_fixes, 'r') as lowercase_fp:
             lowercase_data = json_load(lowercase_fp)
