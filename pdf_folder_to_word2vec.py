@@ -81,9 +81,11 @@ if __name__ == '__main__':
             lowercase_data = json_load(lowercase_fp)
             capitalization = set(lowercase_data['data'])
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-    # todo factor these out as data
-    proper = {'ARMY', 'DEFENSE', 'FORCES', 'FRENCH', 'GENERAL', 'INDOCHINA', 'RUSK', 'SAIGON', 'SECRETARY', 'VIETNAM',
-              'VIETNAMESE', }
+
+    if proper_name_fixes:
+        with open(proper_name_fixes, 'r') as proper_fp:
+            proper_name_data = json_load(proper_fp)
+            proper = set(proper_name_data['data'])
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
     # todo factor these out as data
     split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
