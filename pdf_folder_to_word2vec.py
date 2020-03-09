@@ -61,6 +61,12 @@ if __name__ == '__main__':
     else:
         logger.warning('output file is missing from the settings. Quitting.')
         quit(code=2)
+    proper_name_fixes = settings['proper_name_fixes'] if 'proper_name_fixes' in settings.keys() else None
+    if proper_name_fixes:
+        logger.info('proper name fix file: {}'.format(proper_name_fixes))
+    else:
+        logger.warning('proper name fix file is missing.')
+
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
     for input_file in input_files:
