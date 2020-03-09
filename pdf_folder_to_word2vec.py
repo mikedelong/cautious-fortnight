@@ -54,7 +54,7 @@ if __name__ == '__main__':
     if lowercase_fixes:
         logger.info('lowercase fix file: {}'.format(lowercase_fixes))
     else:
-        logger.warning('input folder is missing.')
+        logger.warning('lower case fix file is missing.')
     output_file = settings['output_file'] if 'output_file' in settings.keys() else None
     if output_file:
         logger.info('output file: {}'.format(output_file))
