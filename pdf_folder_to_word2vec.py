@@ -105,7 +105,8 @@ if __name__ == '__main__':
             'stress-', 'strik-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'warn-', 'will-', 'work-',
             'lead-', 'demonstrat-', 'bring-', 'involv-', 'operat-', 'encourag-', 'help-', 'resist-', 'expand-',
             'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
-            'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', }
+            'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', 'consider-', 'surround-', 'present-', 'weaken-',
+            'mount-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -120,7 +121,8 @@ if __name__ == '__main__':
               'understanding', 'visiting', 'warning', 'willing', 'working', 'leading', 'demonstrating', 'involving',
               'operating', 'encouraging', 'helping', 'resisting', 'expanding', 'regrouping', 'achieving', 'bringing',
               'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', 'Following', 'sending', 'urging',
-              'Briefing', 'limiting', 'mobilizing', }
+              'Briefing', 'limiting', 'mobilizing', 'considering', 'surrounding', 'presenting', 'weakening',
+              'mounting', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
