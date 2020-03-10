@@ -106,7 +106,7 @@ if __name__ == '__main__':
             'lead-', 'demonstrat-', 'bring-', 'involv-', 'operat-', 'encourag-', 'help-', 'resist-', 'expand-',
             'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
             'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', 'consider-', 'surround-', 'present-', 'weaken-',
-            'mount-', }
+            'mount-', 'effec-', 'alterna-', 'objec-', 'representa-', 'collec-', 'Sensi', 'initia-', 'administra-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -122,7 +122,8 @@ if __name__ == '__main__':
               'operating', 'encouraging', 'helping', 'resisting', 'expanding', 'regrouping', 'achieving', 'bringing',
               'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', 'Following', 'sending', 'urging',
               'Briefing', 'limiting', 'mobilizing', 'considering', 'surrounding', 'presenting', 'weakening',
-              'mounting', }
+              'mounting', 'effective', 'alternative', 'objective', 'representative', 'collective', 'Sensitive',
+              'initiative', 'administrative', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
