@@ -93,7 +93,7 @@ if __name__ == '__main__':
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
-             'Viet-Nam': ['Vietnam'], }
+             'Viet-Nam': ['Vietnam'], 'Vietnem': ['Vietnam']}
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
             'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'compromis-',
@@ -106,7 +106,8 @@ if __name__ == '__main__':
             'lead-', 'demonstrat-', 'bring-', 'involv-', 'operat-', 'encourag-', 'help-', 'resist-', 'expand-',
             'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
             'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', 'consider-', 'surround-', 'present-', 'weaken-',
-            'mount-', 'effec-', 'alterna-', 'objec-', 'representa-', 'collec-', 'Sensi', 'initia-', 'administra-', }
+            'mount-', 'effec-', 'alterna-', 'objec-', 'representa-', 'collec-', 'Sensi', 'sensi-', 'initia-',
+            'administra-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -123,7 +124,7 @@ if __name__ == '__main__':
               'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', 'Following', 'sending', 'urging',
               'Briefing', 'limiting', 'mobilizing', 'considering', 'surrounding', 'presenting', 'weakening',
               'mounting', 'effective', 'alternative', 'objective', 'representative', 'collective', 'Sensitive',
-              'initiative', 'administrative', }
+              'initiative', 'administrative', 'sensitive', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
