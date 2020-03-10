@@ -147,19 +147,19 @@ if __name__ == '__main__':
                       enumerate(pieces)]
             clean = list()
             for index, piece in enumerate(pieces):
-                if piece in {'ing', '-ing'}:
+                if piece in {'ing', 'tive'}:
                     if pieces[index - 1] not in joined:
                         clean.append(piece)
                 else:
                     clean.append(piece)
             pieces = clean
             for index, piece in enumerate(pieces):
-                if piece in {'ing', '-ing'}:
+                if piece in {'ing', 'tive'}:
                     logger.warning('word split: {} {}'.format(pieces[index - 1], piece))
                     ing_counts.update({pieces[index - 1]: 1})
             text.append(' '.join(pieces))
 
-    logger.info(ing_counts.most_common(n=10))
+    logger.info(ing_counts.most_common(n=20))
     corpus = [item.split() for item in text]
     min_count = 175
     size_word2vec = 1000
