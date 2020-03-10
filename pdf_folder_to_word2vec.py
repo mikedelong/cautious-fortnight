@@ -104,7 +104,8 @@ if __name__ == '__main__':
             'provid-', 'question-', 'reach-', 'reconven-', 'regard-', 'report-', 'return-', 'secur-', 'seek-', 'start-',
             'stress-', 'strik-', 'support-', 'tak-', 'train-', 'understand-', 'visit-', 'warn-', 'will-', 'work-',
             'lead-', 'demonstrat-', 'bring-', 'involv-', 'operat-', 'encourag-', 'help-', 'resist-', 'expand-',
-            'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', }
+            'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
+            'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -118,7 +119,8 @@ if __name__ == '__main__':
               'securing', 'seeking', 'starting', 'stressing', 'striking', 'supporting', 'taking', 'training',
               'understanding', 'visiting', 'warning', 'willing', 'working', 'leading', 'demonstrating', 'involving',
               'operating', 'encouraging', 'helping', 'resisting', 'expanding', 'regrouping', 'achieving', 'bringing',
-              'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', }
+              'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', 'Following', 'sending', 'urging',
+              'Briefing', 'limiting', 'mobilizing', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
