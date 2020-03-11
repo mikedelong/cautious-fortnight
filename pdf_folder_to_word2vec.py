@@ -73,7 +73,7 @@ if __name__ == '__main__':
         parse_result = parser.from_file(input_file)
         if parse_result['content']:
             items.append(unidecode(parse_result['content']))
-            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file))
+            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file.replace('\\', '/')))
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
     if lowercase_fixes:
@@ -107,7 +107,7 @@ if __name__ == '__main__':
             'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
             'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', 'consider-', 'surround-', 'present-', 'weaken-',
             'mount-', 'effec-', 'alterna-', 'objec-', 'representa-', 'collec-', 'Sensi', 'sensi-', 'initia-',
-            'administra-', }
+            'administra-', 'nega-', 'posi-', 'ineffec-', 'construc-', 'coopera-', 'direc-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -124,7 +124,8 @@ if __name__ == '__main__':
               'unyielding', 'opening', 'trying', 'forwarding', 'speaking', 'showing', 'Following', 'sending', 'urging',
               'Briefing', 'limiting', 'mobilizing', 'considering', 'surrounding', 'presenting', 'weakening',
               'mounting', 'effective', 'alternative', 'objective', 'representative', 'collective', 'Sensitive',
-              'initiative', 'administrative', 'sensitive', }
+              'initiative', 'administrative', 'sensitive', 'negative', 'positive', 'ineffective', 'constructive',
+              'cooperative', 'directive', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
@@ -164,7 +165,8 @@ if __name__ == '__main__':
     logger.info(ing_counts.most_common(n=20))
     corpus = [item.split() for item in text]
     min_count = 175
-    size_word2vec = 1000
+    # size_word2vec = 1000
+    size_word2vec = 100
     iter_word2vec = 2
     random_state = 1
     model = Word2Vec(corpus,
@@ -177,17 +179,31 @@ if __name__ == '__main__':
                      )
 
     labels = [word for word in model.wv.vocab]
+    logger.info('words with lowercase cognates: {}'.format(
+        [item for item in labels if item != item.lower() and item.lower() in labels]))
     tokens = [model.wv[word] for word in model.wv.vocab]
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    tsne_model = TSNE(angle=0.5, early_exaggeration=12.0, init='pca', learning_rate=200.0,
+    # learning_rate = 200.0
+    # learning_rate = 40.0
+    learning_rate = 1000.0
+    # min_grad_norm = 1e-7
+    min_grad_norm = 1e-7
+    # perplexity = 40.0
+    # perplexity = 9.0
+    perplexity = 10.0
+    n_iter = 35000
+    tsne_init = 'random'  # 'pca'
+    tsne_model = TSNE(angle=0.5, early_exaggeration=12.0,
+                      init=tsne_init, learning_rate=learning_rate,
                       method='barnes_hut',
                       # method='exact',
-                      metric='euclidean', min_grad_norm=1e-07, n_components=2, n_iter=10000,
+                      metric='euclidean', min_grad_norm=min_grad_norm, n_components=2, n_iter=n_iter,
                       n_iter_without_progress=300,
-                      perplexity=40.0, random_state=random_state, verbose=1, )
+                      perplexity=perplexity, random_state=random_state, verbose=1, )
     tsne_values = tsne_model.fit_transform(tokens)
+    logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, n_iter))
 
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
@@ -224,4 +240,18 @@ if __name__ == '__main__':
              link_text='', output_type='file', show_link=False, validate=True, )
     else:
         raise ValueError('plotting approach is {}. Quitting.'.format(plot_approach))
+
+    # calculate some similarities
+    top_n = 10
+    for word in sorted(['draft', 'Draft', 'secret', 'Secretary', 'one', 'two', 'three', 'four', 'five', 'six',
+                        'Dept', 'Department', 'USSR', 'Admiral', 'Armed', 'November', 'April', 'June', 'July',
+                        'May', 'Vietnam', ]):
+        logger.info('most similar to {}: {}'.format(word, model.wv.most_similar(word, topn=top_n)))
+    logger.info('China/Peking similarity: {}'.format(model.wv.similarity('China', 'Peking')))
+    logger.info('Dept/Department similarity: {}'.format(model.wv.similarity('Dept', 'Department')))
+    logger.info('draft/Draft similarity: {}'.format(model.wv.similarity('draft', 'Draft')))
+    logger.info('Eisenhower/Kennedy similarity: {}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
+    logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
+    logger.info('one/One similarity: {}'.format(model.wv.similarity('one', 'One')))
+    logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
