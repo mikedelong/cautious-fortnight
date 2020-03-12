@@ -249,12 +249,9 @@ if __name__ == '__main__':
         logger.info('most similar to {}: {}'.format(word, model.wv.most_similar(word, topn=top_n)))
     logger.info('China/Peking similarity: {}'.format(model.wv.similarity('China', 'Peking')))
     logger.info('Dept/Department similarity: {}'.format(model.wv.similarity('Dept', 'Department')))
-    logger.info('draft/Draft similarity: {}'.format(model.wv.similarity('draft', 'Draft')))
     logger.info('Eisenhower/Kennedy similarity: {}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
     logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
-    logger.info('one/One similarity: {}'.format(model.wv.similarity('one', 'One')))
     logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
-    logger.info('south/South similarity: {}'.format(model.wv.similarity('south', 'South')))
 
     for word in [item for item in labels if item != item.lower() and item.lower() in labels]:
         logger.info('{}/{} similarity: {}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
