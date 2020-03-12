@@ -93,7 +93,8 @@ if __name__ == '__main__':
              'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
              'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'], 'budgetconsultation':
                  ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'], 'Diem\'s': ['Diem'],
-             'Viet-Nam': ['Vietnam'], 'Vietnem': ['Vietnam'], 'deg': ['degree'], }
+             'Viet-Nam': ['Vietnam'], 'Vietnem': ['Vietnam'], 'deg': ['degree'], 'memo': ['memorandum'],
+             'Memo': ['memorandum'], 'nam': ['Nam'], }
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
             'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'compromis-',
