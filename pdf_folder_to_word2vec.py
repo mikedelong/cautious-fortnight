@@ -253,6 +253,6 @@ if __name__ == '__main__':
     logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
     logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
 
-    for word in [item for item in labels if item != item.lower() and item.lower() in labels]:
+    for word in sorted([item for item in labels if item != item.lower() and item.lower() in labels]):
         logger.info('{}/{} similarity: {}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
