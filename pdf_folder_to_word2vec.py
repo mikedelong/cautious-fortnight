@@ -107,7 +107,8 @@ if __name__ == '__main__':
             'regroup-', 'achiev-', 'unyield-', 'open-', 'try-', 'forward-', 'speak-', 'show-', 'Follow-',
             'send-', 'urg-', 'Brief-', 'limit-', 'mobiliz-', 'consider-', 'surround-', 'present-', 'weaken-',
             'mount-', 'effec-', 'alterna-', 'objec-', 'representa-', 'collec-', 'Sensi', 'sensi-', 'initia-',
-            'administra-', 'nega-', 'posi-', 'ineffec-', 'construc-', 'coopera-', 'direc-', }
+            'administra-', 'nega-', 'posi-', 'ineffec-', 'construc-', 'coopera-', 'direc-',
+            'Representa-', 'execu-', 'impera-', 'selec-', 'prepar-', }
     logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'accepting', 'according', 'acting', 'arming', 'attaching', 'attacking', 'backing',
@@ -125,7 +126,7 @@ if __name__ == '__main__':
               'Briefing', 'limiting', 'mobilizing', 'considering', 'surrounding', 'presenting', 'weakening',
               'mounting', 'effective', 'alternative', 'objective', 'representative', 'collective', 'Sensitive',
               'initiative', 'administrative', 'sensitive', 'negative', 'positive', 'ineffective', 'constructive',
-              'cooperative', 'directive', }
+              'cooperative', 'directive', 'Representative', 'executive', 'imperative', 'selective', 'preparing', }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
