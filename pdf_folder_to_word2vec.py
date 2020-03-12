@@ -194,7 +194,7 @@ if __name__ == '__main__':
     # perplexity = 9.0
     perplexity = 10.0
     n_iter = 35000
-    tsne_init = 'random'  # 'pca'
+    tsne_init = 'pca'  # 'pca'
     tsne_model = TSNE(angle=0.5, early_exaggeration=12.0,
                       init=tsne_init, learning_rate=learning_rate,
                       method='barnes_hut',
@@ -254,4 +254,8 @@ if __name__ == '__main__':
     logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
     logger.info('one/One similarity: {}'.format(model.wv.similarity('one', 'One')))
     logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
+    logger.info('south/South similarity: {}'.format(model.wv.similarity('south', 'South')))
+
+    for word in [item for item in labels if item != item.lower() and item.lower() in labels]:
+        logger.info('{}/{} similarity: {}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
