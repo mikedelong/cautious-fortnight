@@ -1,0 +1,8 @@
+{
+  "input_folder_orig": "../../data/pentagon-papers/",
+  "input_folder": "../../data/pentagon-papers/ocr/",
+  "lowercase_fixes": "./pentagon_papers_lowercase.json",
+  "output_file": "./pentagon-papers.html",
+  "proper_name_fixes": "./proper_name_fixes.json",
+  "split_fixes": "./split_fixes.json"
+}
