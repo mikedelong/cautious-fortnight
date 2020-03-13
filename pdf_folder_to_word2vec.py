@@ -96,7 +96,7 @@ if __name__ == '__main__':
         with open(split_fixes, 'r') as split_fixes_fp:
             split_fix_data = json_load(split_fixes_fp)
             split = split_fix_data['data']
-    logger.info('split fixes: {}'.format(sorted(list(split))))
+    logger.info('split fixes: {}'.format(split))
 
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
