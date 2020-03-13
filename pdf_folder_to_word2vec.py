@@ -95,7 +95,7 @@ if __name__ == '__main__':
     if split_fixes:
         with open(split_fixes, 'r') as split_fixes_fp:
             split_fix_data = json_load(split_fixes_fp)
-            split = set(split_fix_data['data'])
+            split = split_fix_data['data']
     logger.info('split fixes: {}'.format(sorted(list(split))))
 
     # todo factor these out as data
