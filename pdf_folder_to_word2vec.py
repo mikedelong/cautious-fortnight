@@ -72,21 +72,12 @@ if __name__ == '__main__':
     else:
         logger.warning('split fix file is missing.')
 
-    input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
-    items = list()
-    for input_file in input_files:
-        parse_result = parser.from_file(input_file)
-        if parse_result['content']:
-            items.append(unidecode(parse_result['content']))
-            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file.replace('\\', '/')))
-        else:
-            logger.warning('length: 0 name: {}'.format(input_file))
+    # get the data for the various lexical fixes
     if lowercase_fixes:
         with open(lowercase_fixes, 'r') as lowercase_fp:
             lowercase_data = json_load(lowercase_fp)
             capitalization = set(lowercase_data['data'])
     logger.info('capitalization tokens: {}'.format(sorted(list(capitalization))))
-
     if proper_name_fixes:
         with open(proper_name_fixes, 'r') as proper_fp:
             proper_name_data = json_load(proper_fp)
@@ -97,6 +88,17 @@ if __name__ == '__main__':
             split_fix_data = json_load(split_fixes_fp)
             split = split_fix_data['data']
     logger.info('split fixes: {}'.format(split))
+
+    # read and process the input PDF files
+    input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
+    items = list()
+    for input_file in input_files:
+        parse_result = parser.from_file(input_file)
+        if parse_result['content']:
+            items.append(unidecode(parse_result['content']))
+            logger.info('length: {} name: {}'.format(len(parse_result['content']), input_file.replace('\\', '/')))
+        else:
+            logger.warning('length: 0 name: {}'.format(input_file))
 
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'Brief-', 'Follow-', 'Representa-', 'Sensi', 'accept-', 'accord-', 'achiev-', 'act-',
