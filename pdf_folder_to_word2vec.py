@@ -66,6 +66,11 @@ if __name__ == '__main__':
         logger.info('proper name fix file: {}'.format(proper_name_fixes))
     else:
         logger.warning('proper name fix file is missing.')
+    split_fixes = settings['split_fixes'] if 'split_fixes' in settings.keys() else None
+    if split_fixes:
+        logger.info('split fix file: {}'.format(split_fixes))
+    else:
+        logger.warning('split fix file is missing.')
 
     input_files = [input_file for input_file in glob(input_folder + '*.pdf')]
     items = list()
@@ -87,14 +92,12 @@ if __name__ == '__main__':
             proper_name_data = json_load(proper_fp)
             proper = set(proper_name_data['data'])
     logger.info('proper noun fixes: {}'.format(sorted(list(proper))))
-    # todo factor these out as data
-    split = {'U.S.': ['US'], 'U.S': ['US'], 'Minh\'s': ['Minh'], 'President\'s': ['President'], 'Ho\'s': ['Ho'],
-             'Amembassy': ['American', 'Embassy'], 'Apr': ['April'], 'Jan': ['January'], 'Feb': ['February'],
-             'Mar': ['March'], 'Jun': ['June'], 'Jul': ['July'], 'Aug': ['August'], 'Sep': ['September'],
-             'Oct': ['October'], 'Nov': ['November'], 'Dec': ['December'],
-             'budgetconsultation': ['budget', 'consultation'], 'Msg': ['message'], 'msg': ['message'],
-             'Diem\'s': ['Diem'], 'Viet-Nam': ['Vietnam'], 'Vietnem': ['Vietnam'], 'deg': ['degree'],
-             'memo': ['memorandum'], 'Memo': ['memorandum'], 'nam': ['Nam'], }
+    if split_fixes:
+        with open(split_fixes, 'r') as split_fixes_fp:
+            split_fix_data = json_load(split_fixes_fp)
+            split = set(split_fix_data['data'])
+    logger.info('split fixes: {}'.format(sorted(list(split))))
+
     # todo factor these out as data
     join = {'Accord-', 'Act-', 'accept-', 'accord-', 'act-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-',
             'belong-', 'bind-', 'boil-', 'bomb', 'bomb-', 'bowl', 'carry-', 'choos-', 'command-', 'compromis-',
