@@ -129,7 +129,8 @@ if __name__ == '__main__':
               'resisting', 'resulting', 'returning', 'securing', 'seeking', 'selective', 'sending', 'sensitive',
               'showing', 'speaking', 'starting', 'stressing', 'striking', 'supporting', 'surrounding', 'taking',
               'training', 'trying', 'understanding', 'unyielding', 'urging', 'visiting', 'warning', 'weakening',
-              'willing', 'working', "attractive", "respective", "restrictive", "thinking", }
+              'willing', 'working', "attractive", "respective", "restrictive", "thinking", "briefing", "building",
+              "clearing", "coming", "assisting", }
     logger.info('joined data: {}'.format(sorted(list(joined))))
 
     ing_counts = Counter()
