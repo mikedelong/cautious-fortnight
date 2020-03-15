@@ -50,6 +50,11 @@ if __name__ == '__main__':
     else:
         logger.warning('input folder is None. Quitting.')
         quit(code=1)
+    join_targets = settings['join_target'] if 'join_target' in settings.keys() else None
+    if join_targets:
+        logger.info('join target file file: {}'.format(join_targets))
+    else:
+        logger.warning('split fix file is missing.')
     lowercase_fixes = settings['lowercase_fixes'] if 'lowercase_fixes' in settings.keys() else None
     if lowercase_fixes:
         logger.info('lowercase fix file: {}'.format(lowercase_fixes))
@@ -73,6 +78,12 @@ if __name__ == '__main__':
         logger.warning('split fix file is missing.')
 
     # get the data for the various lexical fixes
+    if join_targets:
+        with open(join_targets, 'r') as join_fp:
+            join_data = json_load(join_fp)
+            join = set(join_data['data'])
+    logger.info('join data: {}'.format(sorted(list(join))))
+
     if lowercase_fixes:
         with open(lowercase_fixes, 'r') as lowercase_fp:
             lowercase_data = json_load(lowercase_fp)
@@ -100,23 +111,6 @@ if __name__ == '__main__':
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
 
-    # todo factor these out as data
-    join = {'Accord-', 'Act-', 'Brief-', 'Follow-', 'Representa-', 'Sensi', 'accept-', 'accord-', 'achiev-', 'act-',
-            'administra-', 'alterna-', 'arm-', 'attach-', 'attack-', 'back-', 'bargain-', 'belong-', 'bind-', 'boil-',
-            'bomb', 'bomb-', 'bowl', 'bring-', 'carry-', 'caus-', 'choos-', 'collec-', 'command-', 'compromis-',
-            'concern-', 'consider-', 'construc-', 'contemplat-', 'continu-', 'coopera-', 'cover-', 'declin-', 'demand-',
-            'demonstrat-', 'develop-', 'direc-', 'direct-', 'dur-', 'effec-', 'emanat-', 'emerg-', 'encourag-',
-            'establish-', 'even-', 'exclud-', 'execu-', 'exist-', 'expand-', 'express-', 'fight-', 'follow-',
-            'formulat-', 'forward-', 'group-', 'grow-', 'hav-', 'hear-', 'help-', 'impera-', 'imprison-', 'improv-',
-            'includ-', 'increas-', 'ineffec-', 'inform-', 'initia-', 'inject-', 'interest-', 'involv-', 'issu-',
-            'keep-', 'lead-', 'limit-', 'liv-', 'maintain-', 'mak-', 'mean-', 'meet-', 'mobiliz-', 'morn-', 'mount-',
-            'nega-', 'negotiat-', 'objec-', 'open-', 'operat-', 'organiz-', 'point-', 'posi-', 'prepar-', 'present-',
-            'prevail-', 'proceed-', 'promis-', 'propos-', 'prospec-', 'provid-', 'question-', 'reach-', 'reconven-',
-            'regard-', 'regroup-', 'report-', 'representa-', 'resist-', 'result-', 'return-', 'secur-', 'seek-',
-            'selec-', 'send-', 'sensi-', 'show-', 'speak-', 'start-', 'stress-', 'strik-', 'support-', 'surround-',
-            'tak-', 'train-', 'try-', 'understand-', 'unyield-', 'urg-', 'visit-', 'warn-', 'weaken-', 'will-',
-            'work-', }
-    logger.info('join data: {}'.format(sorted(list(join))))
     # todo factor these out as data
     joined = {'According', 'Acting', 'Briefing', 'Following', 'Representative', 'Sensitive', 'accepting', 'according',
               'achieving', 'acting', 'administrative', 'alternative', 'arming', 'attaching', 'attacking', 'backing',
