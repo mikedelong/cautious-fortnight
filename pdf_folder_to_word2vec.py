@@ -54,7 +54,7 @@ if __name__ == '__main__':
     if join_targets:
         logger.info('join target file file: {}'.format(join_targets))
     else:
-        logger.warning('split fix file is missing.')
+        logger.warning('join target file is missing.')
     lowercase_fixes = settings['lowercase_fixes'] if 'lowercase_fixes' in settings.keys() else None
     if lowercase_fixes:
         logger.info('lowercase fix file: {}'.format(lowercase_fixes))
