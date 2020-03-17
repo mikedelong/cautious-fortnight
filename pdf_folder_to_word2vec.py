@@ -84,6 +84,11 @@ if __name__ == '__main__':
         logger.warning('split fix file is missing.')
 
     # get the data for the various lexical fixes
+    if join_fixes:
+        with open(join_fixes, 'r') as join_fix_fp:
+            join_fix_data = json_load(join_fix_fp)
+            joined = set(join_fix_data['data'])
+    logger.info('join fix data: {}'.format(sorted(list(joined))))
     if join_targets:
         with open(join_targets, 'r') as join_fp:
             join_data = json_load(join_fp)
