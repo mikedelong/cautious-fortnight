@@ -122,28 +122,6 @@ if __name__ == '__main__':
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
 
-    # todo factor these out as data
-    joined = {'According', 'Acting', 'Briefing', 'Following', 'Representative', 'Sensitive', 'accepting', 'according',
-              'achieving', 'acting', 'administrative', 'alternative', 'arming', 'attaching', 'attacking', 'backing',
-              'bargaining', 'belonging', 'binding', 'boiling', 'bombing', 'bowling', 'bringing', 'carrying', 'causing',
-              'choosing', 'collective', 'commanding', 'compromising', 'concerning', 'considering', 'constructive',
-              'contemplating', 'continuing', 'cooperative', 'covering', 'declining', 'demanding', 'demonstrating',
-              'developing', 'directing', 'directive', 'during', 'effective', 'emanating', 'emerging', 'encouraging',
-              'establishing', 'evening', 'excluding', 'executive', 'existing', 'expanding', 'expressing', 'fighting',
-              'following', 'formulating', 'forwarding', 'grouping', 'growing', 'having', 'hearing', 'helping',
-              'imperative', 'imprisoning', 'improving', 'including', 'increasing', 'ineffective', 'informing',
-              'initiative', 'injecting', 'interesting', 'involving', 'issuing', 'keeping', 'leading', 'limiting',
-              'living', 'maintaining', 'making', 'meaning', 'meeting', 'mobilizing', 'morning', 'mounting', 'negative',
-              'negotiating', 'objective', 'opening', 'operating', 'organizing', 'pointing', 'positive', 'preparing',
-              'presenting', 'prevailing', 'proceeding', 'promising', 'proposing', 'prospective', 'providing',
-              'questioning', 'reaching', 'reconvening', 'regarding', 'regrouping', 'reporting', 'representative',
-              'resisting', 'resulting', 'returning', 'securing', 'seeking', 'selective', 'sending', 'sensitive',
-              'showing', 'speaking', 'starting', 'stressing', 'striking', 'supporting', 'surrounding', 'taking',
-              'training', 'trying', 'understanding', 'unyielding', 'urging', 'visiting', 'warning', 'weakening',
-              'willing', 'working', "attractive", "respective", "restrictive", "thinking", "briefing", "building",
-              "clearing", "coming", "assisting", }
-    logger.info('joined data: {}'.format(sorted(list(joined))))
-
     ing_counts = Counter()
     text = list()
     for item_index, item in enumerate(items):
