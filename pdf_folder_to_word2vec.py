@@ -190,7 +190,8 @@ if __name__ == '__main__':
     n_iter = 35000
 
     tsne_init = ['pca', 'random'][0]  # 'pca'
-    tsne_model = TSNE(angle=0.5, early_exaggeration=12.0,
+    tsne_early_exaggeration = 12.0
+    tsne_model = TSNE(angle=0.5, early_exaggeration=tsne_early_exaggeration,
                       init=tsne_init, learning_rate=learning_rate,
                       method='barnes_hut',
                       # method='exact',
