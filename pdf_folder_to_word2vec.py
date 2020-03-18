@@ -189,10 +189,11 @@ if __name__ == '__main__':
     perplexity = 10.0
     n_iter = 35000
 
-    tsne_init = ['pca', 'random'][0]  # 'pca'
+    tsne_angle = 0.5
     tsne_early_exaggeration = 12.0
-    tsne_model = TSNE(angle=0.5, early_exaggeration=tsne_early_exaggeration,
-                      init=tsne_init, learning_rate=learning_rate,
+    tsne_init = ['pca', 'random'][0]
+    tsne_model = TSNE(angle=tsne_angle, early_exaggeration=tsne_early_exaggeration, init=tsne_init,
+                      learning_rate=learning_rate,
                       method='barnes_hut',
                       # method='exact',
                       metric='euclidean', min_grad_norm=min_grad_norm, n_components=2, n_iter=n_iter,
