@@ -179,9 +179,6 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    # learning_rate = 200.0
-    # learning_rate = 40.0
-    learning_rate = 1000.0
     # min_grad_norm = 1e-7
     min_grad_norm = 1e-7
     # perplexity = 40.0
@@ -192,8 +189,9 @@ if __name__ == '__main__':
     tsne_angle = 0.5
     tsne_early_exaggeration = 12.0
     tsne_init = ['pca', 'random'][0]
+    tsne_learning_rate = 1000.0
     tsne_model = TSNE(angle=tsne_angle, early_exaggeration=tsne_early_exaggeration, init=tsne_init,
-                      learning_rate=learning_rate,
+                      learning_rate=tsne_learning_rate,
                       method='barnes_hut',
                       # method='exact',
                       metric='euclidean', min_grad_norm=min_grad_norm, n_components=2, n_iter=n_iter,
