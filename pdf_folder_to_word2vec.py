@@ -190,10 +190,9 @@ if __name__ == '__main__':
     tsne_early_exaggeration = 12.0
     tsne_init = ['pca', 'random'][0]
     tsne_learning_rate = 1000.0
+    tsne_method = ['barnes_hut', 'exact'][0]
     tsne_model = TSNE(angle=tsne_angle, early_exaggeration=tsne_early_exaggeration, init=tsne_init,
-                      learning_rate=tsne_learning_rate,
-                      method='barnes_hut',
-                      # method='exact',
+                      learning_rate=tsne_learning_rate, method=tsne_method,
                       metric='euclidean', min_grad_norm=min_grad_norm, n_components=2, n_iter=n_iter,
                       n_iter_without_progress=300,
                       perplexity=perplexity, random_state=random_state, verbose=1, )
