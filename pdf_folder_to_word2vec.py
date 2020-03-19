@@ -183,13 +183,16 @@ if __name__ == '__main__':
     tsne_method = ['barnes_hut', 'exact'][0]
     tsne_metric = ['cosine', 'euclidean'][0]
     tsne_min_grad_norm = [1e-7][0]
+    tsne_n_components = 2
     tsne_n_iter = 35000
+    tsne_n_iter_without_process = 300
     tsne_perplexity = [9.0, 10.0, 40.0][1]
     tsne_verbosity = 1
     tsne_model = TSNE(angle=tsne_angle, early_exaggeration=tsne_early_exaggeration, init=tsne_init,
                       learning_rate=tsne_learning_rate, method=tsne_method, metric=tsne_metric,
-                      min_grad_norm=tsne_min_grad_norm, n_components=2, n_iter=tsne_n_iter, n_iter_without_progress=300,
-                      perplexity=tsne_perplexity, random_state=random_state, verbose=tsne_verbosity, )
+                      min_grad_norm=tsne_min_grad_norm, n_components=tsne_n_components, n_iter=tsne_n_iter,
+                      n_iter_without_progress=tsne_n_iter_without_process, perplexity=tsne_perplexity,
+                      random_state=random_state, verbose=tsne_verbosity, )
     tsne_values = tsne_model.fit_transform(tokens)
     logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, tsne_n_iter))
 
