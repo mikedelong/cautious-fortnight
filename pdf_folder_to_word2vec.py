@@ -158,9 +158,8 @@ if __name__ == '__main__':
 
     logger.info(ing_counts.most_common(n=20))
     corpus = [item.split() for item in text]
-    min_count = 175
-    # size_word2vec = 1000
-    size_word2vec = 100
+    min_count = [100, 175][1]
+    size_word2vec = [50, 100, 200, 300][2]
     iter_word2vec = 2
     random_state = 1
     model = Word2Vec(corpus,
