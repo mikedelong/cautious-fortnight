@@ -158,13 +158,16 @@ if __name__ == '__main__':
 
     logger.info(ing_counts.most_common(n=20))
     corpus = [item.split() for item in text]
+    random_state = 1
+    word2vec_batch_words = False
     word2vec_count = [100, 175][1]
     word2vec_size = [50, 100, 200, 300][2]
     word2vec_iterations = 2
     word2vec_window_size = 40
-    random_state = 1
-    model = Word2Vec(corpus, batch_words=False, iter=word2vec_iterations, min_count=word2vec_count, seed=random_state,
-                     size=word2vec_size, window=word2vec_window_size, workers=4, )
+    word2vec_worker_count = 4
+    model = Word2Vec(corpus, batch_words=word2vec_batch_words, iter=word2vec_iterations, min_count=word2vec_count,
+                     seed=random_state, size=word2vec_size, window=word2vec_window_size,
+                     workers=word2vec_worker_count, )
 
     labels = [word for word in model.wv.vocab]
     logger.info('words with lowercase cognates: {}'.format(
