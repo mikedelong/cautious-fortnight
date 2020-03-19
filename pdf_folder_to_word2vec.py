@@ -176,22 +176,22 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    min_grad_norm = [1e-7][0]
-    perplexity = [9.0, 10.0, 40.0][1]
-    n_iter = 35000
-
     tsne_angle = 0.5
     tsne_early_exaggeration = 12.0
     tsne_init = ['pca', 'random'][0]
     tsne_learning_rate = 1000.0
     tsne_method = ['barnes_hut', 'exact'][0]
     tsne_metric = ['cosine', 'euclidean'][0]
+    tsne_min_grad_norm = [1e-7][0]
+    tsne_n_iter = 35000
+    tsne_perplexity = [9.0, 10.0, 40.0][1]
+    tsne_verbosity = 1
     tsne_model = TSNE(angle=tsne_angle, early_exaggeration=tsne_early_exaggeration, init=tsne_init,
                       learning_rate=tsne_learning_rate, method=tsne_method, metric=tsne_metric,
-                      min_grad_norm=min_grad_norm, n_components=2, n_iter=n_iter, n_iter_without_progress=300,
-                      perplexity=perplexity, random_state=random_state, verbose=1, )
+                      min_grad_norm=tsne_min_grad_norm, n_components=2, n_iter=tsne_n_iter, n_iter_without_progress=300,
+                      perplexity=tsne_perplexity, random_state=random_state, verbose=tsne_verbosity, )
     tsne_values = tsne_model.fit_transform(tokens)
-    logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, n_iter))
+    logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, tsne_n_iter))
 
     xs = [value[0] for value in tsne_values]
     ys = [value[1] for value in tsne_values]
