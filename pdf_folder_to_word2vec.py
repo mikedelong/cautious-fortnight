@@ -163,7 +163,7 @@ if __name__ == '__main__':
     iter_word2vec = 2
     random_state = 1
     model = Word2Vec(corpus,
-                     # batch_words=20,
+                     batch_words=False,
                      iter=iter_word2vec,
                      min_count=min_count,
                      seed=random_state,
