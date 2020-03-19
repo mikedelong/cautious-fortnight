@@ -176,11 +176,8 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    # min_grad_norm = 1e-7
-    min_grad_norm = 1e-7
-    # perplexity = 40.0
-    # perplexity = 9.0
-    perplexity = 10.0
+    min_grad_norm = [1e-7][0]
+    perplexity = [9.0, 10.0, 40.0][1]
     n_iter = 35000
 
     tsne_angle = 0.5
