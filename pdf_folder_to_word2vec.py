@@ -14,6 +14,7 @@ from plotly.graph_objects import Figure
 from plotly.graph_objects import Layout
 from plotly.graph_objects import Scatter
 from plotly.offline import plot
+from sklearn.decomposition import PCA
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.manifold import TSNE
 from tika import parser
@@ -198,6 +199,8 @@ if __name__ == '__main__':
         values = tsne_model.fit_transform(tokens)
         logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, tsne_n_iter))
     else:
+        pca_model = PCA(n_components=2, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto',
+                        random_state=random_state)
         raise NotImplementedError()
 
     xs = [value[0] for value in values]
