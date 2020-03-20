@@ -198,10 +198,12 @@ if __name__ == '__main__':
                           random_state=random_state, verbose=tsne_verbosity, )
         values = tsne_model.fit_transform(tokens)
         logger.info('TSNE completes after {} iterations of {} allowed'.format(tsne_model.n_iter_, tsne_n_iter))
-    else:
+    elif visualization == 'pca':
         pca_model = PCA(n_components=2, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto',
                         random_state=random_state)
         values = pca_model.fit_transform(tokens)
+    else:
+        raise NotImplementedError('visualization must be t-SNE or PCA.')
 
     xs = [value[0] for value in values]
     ys = [value[1] for value in values]
