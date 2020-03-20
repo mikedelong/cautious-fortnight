@@ -177,7 +177,7 @@ if __name__ == '__main__':
     logger.info('tokens with capitals: {}'.format(sorted([item for item in labels if str(item) != str(item).lower()])))
     logger.info('tokens all capitals: {}'.format(sorted([item for item in labels if str(item).isupper()])))
 
-    visualization = 'tsne'
+    visualization = 'pca'
     if visualization == 'tsne':
         tsne_angle = 0.5
         tsne_early_exaggeration = 12.0
@@ -252,6 +252,7 @@ if __name__ == '__main__':
     logger.info('Eisenhower/Kennedy similarity: {}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
     logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
     logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
+    logger.info('tho/though similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
 
     for word in sorted([item for item in labels if item != item.lower() and item.lower() in labels]):
         logger.info('{}/{} similarity: {}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
