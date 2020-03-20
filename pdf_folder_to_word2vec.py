@@ -201,7 +201,7 @@ if __name__ == '__main__':
     else:
         pca_model = PCA(n_components=2, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto',
                         random_state=random_state)
-        raise NotImplementedError()
+        values = pca_model.fit_transform(tokens)
 
     xs = [value[0] for value in values]
     ys = [value[1] for value in values]
