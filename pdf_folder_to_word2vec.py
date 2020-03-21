@@ -35,6 +35,10 @@ def ispunct(arg):
     return True
 
 
+def shorten_similarity(arg):
+    return [(item[0], round(item[1], 3)) for item in arg]
+
+
 if __name__ == '__main__':
     time_start = time()
     logger = getLogger(__name__)
@@ -246,7 +250,7 @@ if __name__ == '__main__':
     for word in sorted(['draft', 'Draft', 'secret', 'Secretary', 'one', 'two', 'three', 'four', 'five', 'six',
                         'Dept', 'Department', 'USSR', 'Admiral', 'Armed', 'November', 'April', 'June', 'July',
                         'May', 'Vietnam', ]):
-        logger.info('most similar to {}: {}'.format(word, model.wv.most_similar(word, topn=top_n)))
+        logger.info('most similar to {}: {}'.format(word, shorten_similarity(model.wv.most_similar(word, topn=top_n))))
     logger.info('China/Peking similarity: {}'.format(model.wv.similarity('China', 'Peking')))
     logger.info('Dept/Department similarity: {}'.format(model.wv.similarity('Dept', 'Department')))
     logger.info('Eisenhower/Kennedy similarity: {}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
