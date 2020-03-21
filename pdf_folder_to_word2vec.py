@@ -251,13 +251,13 @@ if __name__ == '__main__':
                         'Dept', 'Department', 'USSR', 'Admiral', 'Armed', 'November', 'April', 'June', 'July',
                         'May', 'Vietnam', ]):
         logger.info('most similar to {}: {}'.format(word, shorten_similarity(model.wv.most_similar(word, topn=top_n))))
-    logger.info('China/Peking similarity: {}'.format(model.wv.similarity('China', 'Peking')))
-    logger.info('Dept/Department similarity: {}'.format(model.wv.similarity('Dept', 'Department')))
-    logger.info('Eisenhower/Kennedy similarity: {}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
-    logger.info('June/July similarity: {}'.format(model.wv.similarity('June', 'July')))
-    logger.info('secret/Secretary similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
-    logger.info('tho/though similarity: {}'.format(model.wv.similarity('secret', 'Secretary')))
+    logger.info('China/Peking similarity: {:5.3f}'.format(model.wv.similarity('China', 'Peking')))
+    logger.info('Dept/Department similarity: {:5.3f}'.format(model.wv.similarity('Dept', 'Department')))
+    logger.info('Eisenhower/Kennedy similarity: {:5.3f}'.format(model.wv.similarity('Eisenhower', 'Kennedy')))
+    logger.info('June/July similarity: {:5.3f}'.format(model.wv.similarity('June', 'July')))
+    logger.info('secret/Secretary similarity: {:5.3f}'.format(model.wv.similarity('secret', 'Secretary')))
+    logger.info('tho/though similarity: {:5.3f}'.format(model.wv.similarity('secret', 'Secretary')))
 
     for word in sorted([item for item in labels if item != item.lower() and item.lower() in labels]):
-        logger.info('{}/{} similarity: {}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
+        logger.info('{}/{} similarity: {:5.3f}'.format(word.lower(), word, model.wv.similarity(word.lower(), word)))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
