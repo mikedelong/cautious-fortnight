@@ -161,9 +161,10 @@ if __name__ == '__main__':
                     ing_counts.update({pieces[index - 1]: 1})
             text.append(' '.join(pieces))
 
-    logger.info(ing_counts.most_common(n=20))
+    logger.info(
+        [item for item in list(ing_counts.most_common(n=25)) if not item[0] in {'of', 'to', 'the', 'and', 'is'}])
     corpus = [item.split() for item in text]
-    random_state = 2
+    random_state = 3
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
     word2vec_size = [50, 100, 200, 300][2]
