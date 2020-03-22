@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
     logger.info(ing_counts.most_common(n=20))
     corpus = [item.split() for item in text]
-    random_state = 1
+    random_state = 2
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
     word2vec_size = [50, 100, 200, 300][2]
