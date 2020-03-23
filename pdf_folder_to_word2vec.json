@@ -6,5 +6,6 @@
   "lowercase_fixes": "./pentagon_papers_lowercase.json",
   "output_file": "./pentagon-papers.html",
   "proper_name_fixes": "./proper_name_fixes.json",
+  "random_state": 3,
   "split_fixes": "./split_fixes.json"
 }
