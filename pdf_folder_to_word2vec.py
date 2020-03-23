@@ -82,6 +82,11 @@ if __name__ == '__main__':
         logger.info('proper name fix file: {}'.format(proper_name_fixes))
     else:
         logger.warning('proper name fix file is missing.')
+    random_state = settings['random_state'] if 'random_state' in settings.keys() else 1
+    if 'random_state' in settings.keys():
+        logger.info('random state: {}'.format(random_state))
+    else:
+        logger.warning('using default value for random state: {}'.format(random_state))
     split_fixes = settings['split_fixes'] if 'split_fixes' in settings.keys() else None
     if split_fixes:
         logger.info('split fix file: {}'.format(split_fixes))
@@ -164,7 +169,6 @@ if __name__ == '__main__':
     logger.info(
         [item for item in list(ing_counts.most_common(n=25)) if not item[0] in {'of', 'to', 'the', 'and', 'is'}])
     corpus = [item.split() for item in text]
-    random_state = 3
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
     word2vec_size = [50, 100, 200, 300][2]
