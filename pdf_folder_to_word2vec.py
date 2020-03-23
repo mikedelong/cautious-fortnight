@@ -134,6 +134,7 @@ if __name__ == '__main__':
 
     trailing = {item for item in PUNCTUATION if item != '-'}
     ing_counts = Counter()
+    count = 0
     text = list()
     for item_index, item in enumerate(items):
         if item is not None:
@@ -161,7 +162,17 @@ if __name__ == '__main__':
                 else:
                     clean.append(piece)
             pieces = clean
-            count = 0
+            clean = list()
+            for index, piece in enumerate(pieces):
+                if piece == 'tion':
+                    if pieces[index - 1] == 'position':
+                        pass
+                    else:
+                        clean.append(piece)
+                else:
+                    clean.append(piece)
+            pieces = clean
+
             for index, piece in enumerate(pieces):
                 if piece in {'ing', 'tion', 'tive'}:
                     count += 1
