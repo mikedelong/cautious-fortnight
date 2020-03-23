@@ -132,6 +132,7 @@ if __name__ == '__main__':
         else:
             logger.warning('length: 0 name: {}'.format(input_file))
 
+    trailing = {item for item in PUNCTUATION if item != '-'}
     ing_counts = Counter()
     text = list()
     for item_index, item in enumerate(items):
@@ -141,9 +142,9 @@ if __name__ == '__main__':
             pieces = [item for piece in pieces for item in piece]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
-            for punctuation in ['\'', '\"', '[', ]:
+            for punctuation in PUNCTUATION:
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
-            for punctuation in [':', ';', '.', ',', '?', '\'', '\"', ']', '|', '/']:
+            for punctuation in trailing:
                 pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
@@ -160,9 +161,11 @@ if __name__ == '__main__':
                 else:
                     clean.append(piece)
             pieces = clean
+            count = 0
             for index, piece in enumerate(pieces):
                 if piece in {'ing', 'tion', 'tive'}:
-                    logger.warning('word split: {} {}'.format(pieces[index - 1], piece))
+                    count += 1
+                    logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
                     ing_counts.update({pieces[index - 1]: 1})
             text.append(' '.join(pieces))
 
