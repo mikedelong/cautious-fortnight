@@ -101,8 +101,7 @@ if __name__ == '__main__':
     logger.info('join fix data: {}'.format(sorted(list(joined))))
     if join_targets:
         with open(join_targets, 'r') as join_fp:
-            join_data = json_load(join_fp)
-            join = set(join_data['data'])
+            join = set(json_load(join_fp))
     logger.info('join target data: {}'.format(sorted(list(join))))
 
     if lowercase_fixes:
