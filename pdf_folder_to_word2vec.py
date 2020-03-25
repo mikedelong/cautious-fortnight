@@ -154,7 +154,7 @@ if __name__ == '__main__':
                       enumerate(pieces)]
             clean = list()
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'tion', 'tive'}:
+                if piece in {'ing', 'tion', 'tions', 'tive'}:
                     if pieces[index - 1] not in joined:
                         clean.append(piece)
                 else:
@@ -163,7 +163,13 @@ if __name__ == '__main__':
             clean = list()
             for index, piece in enumerate(pieces):
                 if piece == 'tion':
-                    if pieces[index - 1] in {'administration', 'cooperation', 'position'}:
+                    if pieces[index - 1] in {'administration', 'cooperation', 'position', }:
+                        pass
+                    else:
+                        clean.append(piece)
+                elif piece == 'tions':
+                    if pieces[index - 1] in {'communications', 'conditions', 'considerations', 'operations',
+                                             'positions', 'questions', 'recommendations', }:
                         pass
                     else:
                         clean.append(piece)
@@ -172,7 +178,7 @@ if __name__ == '__main__':
             pieces = clean
 
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'tion', 'tive'}:
+                if piece in {'ing', 'tion', 'tions', 'tive'}:
                     count += 1
                     logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
                     ing_counts.update({pieces[index - 1]: 1})
