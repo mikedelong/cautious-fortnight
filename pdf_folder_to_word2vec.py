@@ -163,7 +163,7 @@ if __name__ == '__main__':
             clean = list()
             for index, piece in enumerate(pieces):
                 if piece == 'tion':
-                    if pieces[index - 1] == 'position':
+                    if pieces[index - 1] in {'cooperation', 'position'}:
                         pass
                     else:
                         clean.append(piece)
