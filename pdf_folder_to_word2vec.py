@@ -185,7 +185,8 @@ if __name__ == '__main__':
             text.append(' '.join(pieces))
 
     logger.info(
-        [item for item in list(ing_counts.most_common(n=25)) if not item[0] in {'of', 'to', 'the', 'and', 'is'}])
+        [item for item in list(ing_counts.most_common(n=25)) if
+         not item[0] in {'and', 'is', 'in', 'of', 'to', 'the', }])
     corpus = [item.split() for item in text]
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
