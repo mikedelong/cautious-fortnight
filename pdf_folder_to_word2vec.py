@@ -186,8 +186,7 @@ if __name__ == '__main__':
 
     join_ignore_token = {'and', 'is', 'in', 'of', 'to', 'the', }
     logger.info(
-        [item for item in list(ing_counts.most_common(n=25)) if
-         not item[0] in join_ignore_token])
+        [item for item in list(ing_counts.most_common(n=25)) if not item[0] in join_ignore_token])
     corpus = [item.split() for item in text]
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
