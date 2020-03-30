@@ -154,7 +154,7 @@ if __name__ == '__main__':
                       enumerate(pieces)]
             clean = list()
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'ity', 'tion', 'tions', 'tive', }:
+                if piece in {'ing', 'ity', 'less', 'ous', 'tion', 'tions', 'tive', }:
                     if pieces[index - 1] not in joined:
                         clean.append(piece)
                 else:
@@ -163,7 +163,7 @@ if __name__ == '__main__':
             clean = list()
             for index, piece in enumerate(pieces):
                 if piece == 'tion':
-                    if pieces[index - 1] in {'administration', 'cooperation', 'position', }:
+                    if pieces[index - 1] in {'action', 'administration', 'cooperation', 'position', }:
                         pass
                     else:
                         clean.append(piece)
@@ -178,13 +178,14 @@ if __name__ == '__main__':
             pieces = clean
 
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'ity', 'tion', 'tions', 'tive', }:
+                if piece in {'ing', 'ity', 'less', 'ous', 'tion', 'tions', 'tive', } \
+                        and pieces[index - 1].endswith('-'):
                     count += 1
                     logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
                     ing_counts.update({pieces[index - 1]: 1})
             text.append(' '.join(pieces))
 
-    join_ignore_token = {'am', 'and', 'is', 'in', 'of', 'to', 'the', }
+    join_ignore_token = {'am', 'and', 'is', 'in', 'mi', 'of', 'to', 'the', }
     logger.info(
         [item for item in list(ing_counts.most_common(n=25)) if not item[0] in join_ignore_token])
     corpus = [item.split() for item in text]
