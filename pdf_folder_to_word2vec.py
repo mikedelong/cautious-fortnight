@@ -134,8 +134,8 @@ if __name__ == '__main__':
     counts = Counter()
     count = 0
     text = list()
-    suffix = {'able', 'ably', 'ed', 'fold', 'ing', 'ity', 'less', 'log', 'ly', 'ment', 'ness', 'ous', 'tion', 'tions',
-              'tive', }
+    suffix = {'able', 'ably', 'age', 'al', 'ance', 'ant', 'cy', 'ed', 'ence', 'ent', 'er', 'ery', 'fold', 'ing', 'ism',
+              'ity', 'less', 'log', 'ly', 'ment', 'ness', 'ous', 'ship', 'sion', 'ry', 'tion', 'tions', 'tive', }
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
