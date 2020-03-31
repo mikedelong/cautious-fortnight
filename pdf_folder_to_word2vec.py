@@ -131,7 +131,7 @@ if __name__ == '__main__':
             logger.warning('length: 0 name: {}'.format(input_file))
 
     trailing = {item for item in PUNCTUATION if item != '-'}
-    ing_counts = Counter()
+    counts = Counter()
     count = 0
     text = list()
     suffix = {'ing', 'ity', 'less', 'ly', 'ous', 'tion', 'tions', 'tive', }
@@ -182,12 +182,12 @@ if __name__ == '__main__':
                 if piece in suffix and pieces[index - 1].endswith('-'):
                     count += 1
                     logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
-                    ing_counts.update({pieces[index - 1]: 1})
+                    counts.update({(pieces[index - 1], pieces[index]): 1})
             text.append(' '.join(pieces))
 
     join_ignore_token = {'am', 'and', 'is', 'in', 'mi', 'of', 'to', 'the', }
     logger.info(
-        [item for item in list(ing_counts.most_common(n=25)) if not item[0] in join_ignore_token])
+        [item for item in list(counts.most_common(n=25)) if not item[0] in join_ignore_token])
     corpus = [item.split() for item in text]
     word2vec_batch_words = False
     word2vec_count = [100, 175][1]
