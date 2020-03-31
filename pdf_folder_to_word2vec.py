@@ -134,6 +134,7 @@ if __name__ == '__main__':
     ing_counts = Counter()
     count = 0
     text = list()
+    suffix = {'ing', 'ity', 'less', 'ly', 'ous', 'tion', 'tions', 'tive', }
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -154,7 +155,7 @@ if __name__ == '__main__':
                       enumerate(pieces)]
             clean = list()
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'ity', 'less', 'ous', 'tion', 'tions', 'tive', }:
+                if piece in suffix:
                     if pieces[index - 1] not in joined:
                         clean.append(piece)
                 else:
@@ -178,8 +179,7 @@ if __name__ == '__main__':
             pieces = clean
 
             for index, piece in enumerate(pieces):
-                if piece in {'ing', 'ity', 'less', 'ous', 'tion', 'tions', 'tive', } \
-                        and pieces[index - 1].endswith('-'):
+                if piece in suffix and pieces[index - 1].endswith('-'):
                     count += 1
                     logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
                     ing_counts.update({pieces[index - 1]: 1})
