@@ -134,6 +134,7 @@ if __name__ == '__main__':
     counts = Counter()
     count = 0
     text = list()
+    # todo move this to data
     suffix = {'able', 'ably', 'age', 'ages', 'al', 'ance', 'ances', 'ant', 'ants', 'ation', 'ative', 'cy', 'ed', 'eds',
               'eous', 'en', 'ence', 'ences', 'ent', 'ents', 'er', 'ers', 'ery', 'est', 'fold', 'ful', 'fully', 'ic',
               'ial', 'ible', 'ion', 'ious', 'ing', 'ism', 'isms', 'ition', 'itive', 'ive', 'ives', 'ity', 'ities',
