@@ -135,11 +135,13 @@ if __name__ == '__main__':
     count = 0
     text = list()
     # todo move this to data
-    suffix = {'able', 'ably', 'age', 'ages', 'al', 'ance', 'ances', 'ant', 'ants', 'ation', 'ative', 'cy', 'ed', 'eds',
-              'eous', 'en', 'ence', 'ences', 'ent', 'ents', 'er', 'ers', 'ery', 'est', 'fold', 'ful', 'fully', 'ic',
-              'ial', 'ible', 'ion', 'ious', 'ing', 'ism', 'isms', 'ition', 'itive', 'ive', 'ives', 'ity', 'ities',
-              'less', 'log', 'ly', 'ment', 'ments', 'ness', 'ous', 's', 'ship', 'sion', 'ry', 'tion', 'tions', 'tive',
-              'tives', 'ty', 'y'}
+    suffix = {'able', 'ably', 'age', 'ages', 'al', 'ance', 'ances', 'ant', 'ants', 'ation', 'ative', 'china', 'cy',
+              'ed', 'eds', 'eous', 'en', 'ence', 'ences', 'ent', 'ents', 'er', 'ers', 'ery', 'est', 'fold', 'ful',
+              'fully', 'ic', 'ial', 'ible', 'ion', 'ious', 'ing', 'ism', 'isms', 'ition', 'itive', 'ive', 'ives', 'ity',
+              'ities', 'less', 'log', 'ly', 'munist', 'ment', 'ments', 'Nam', 'namese', 'ness', 'ous', 's', 'ship',
+              'sion', 'ry', 'tary', 'tion', 'tions', 'tive', 'tives', 'ty', 'y',
+              'dent', 'east', 'national', 'port', 'tinue', 'tary', 'communist', 'pared', 'posed', 'mendations',
+              'drawal', 'pendence', }
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -189,7 +191,8 @@ if __name__ == '__main__':
                     pieces[index - 1].endswith('-'),
                 ]):
                     count += 1
-                    logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
+                    logger.warning('word split {} : {} {} {} '.format(count, pieces[index - 1], piece,
+                                                                      pieces[index - 1][:-1] + piece))
                     counts.update({(pieces[index - 1], pieces[index]): 1})
             text.append(' '.join(pieces))
 
