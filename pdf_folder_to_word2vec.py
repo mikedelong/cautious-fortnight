@@ -184,7 +184,10 @@ if __name__ == '__main__':
             pieces = clean
 
             for index, piece in enumerate(pieces):
-                if piece in suffix and pieces[index - 1].endswith('-'):
+                if all([
+                    # piece in suffix,
+                    pieces[index - 1].endswith('-'),
+                ]):
                     count += 1
                     logger.warning('word split {} : {} {}'.format(count, pieces[index - 1], piece))
                     counts.update({(pieces[index - 1], pieces[index]): 1})
