@@ -1,5 +1,6 @@
 from collections import Counter
 from glob import glob
+from json import dump as json_dump
 from json import load as json_load
 from logging import INFO
 from logging import basicConfig
@@ -204,6 +205,9 @@ if __name__ == '__main__':
             text.append(' '.join(pieces))
 
     logger.info('triple count: {}'.format(len(triples)))
+    with open('./triple.json', 'w') as triple_fp:
+        json_dump(obj=sorted(list(triples)), fp=triple_fp)
+
     join_ignore_token = {'am', 'and', 'is', 'in', 'mi', 'of', 'to', 'the', }
     logger.info(
         [item for item in list(counts.most_common(n=25)) if not item[0] in join_ignore_token])
