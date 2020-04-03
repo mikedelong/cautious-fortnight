@@ -154,6 +154,8 @@ if __name__ == '__main__':
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
             for index, piece in enumerate(pieces):
                 if piece.endswith('-') and index < len(pieces) - 1:
+                    if piece not in triples.keys():
+                        triples[piece] = {}
                     triples[piece][pieces[index + 1]] = piece[:-1] + pieces[index + 1]
 
             for punctuation in PUNCTUATION:
