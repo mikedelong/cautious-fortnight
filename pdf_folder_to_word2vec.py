@@ -144,7 +144,7 @@ if __name__ == '__main__':
               'dent', 'east', 'national', 'port', 'tinue', 'tary', 'communist', 'pared', 'posed', 'mendations',
               'drawal', 'pendence', 'cussions', 'tration', 'ever', 'insurgency'
               }
-    triples = set()
+    triples = {}
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -154,8 +154,7 @@ if __name__ == '__main__':
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
             for index, piece in enumerate(pieces):
                 if piece.endswith('-') and index < len(pieces) - 1:
-                    triple = (piece, pieces[index + 1], piece[:-1] + pieces[index + 1])
-                    triples.add(triple)
+                    triples[piece][pieces[index + 1]] = piece[:-1] + pieces[index + 1]
 
             for punctuation in PUNCTUATION:
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
@@ -206,7 +205,7 @@ if __name__ == '__main__':
 
     logger.info('triple count: {}'.format(len(triples)))
     with open('./triple.json', 'w') as triple_fp:
-        json_dump(obj=sorted(list(triples)), fp=triple_fp)
+        json_dump(obj=triples, fp=triple_fp, sort_keys=True)
 
     join_ignore_token = {'am', 'and', 'is', 'in', 'mi', 'of', 'to', 'the', }
     logger.info(
