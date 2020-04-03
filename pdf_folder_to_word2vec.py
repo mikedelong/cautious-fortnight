@@ -141,7 +141,9 @@ if __name__ == '__main__':
               'ities', 'less', 'log', 'ly', 'munist', 'ment', 'ments', 'Nam', 'namese', 'ness', 'ous', 's', 'ship',
               'sion', 'ry', 'tary', 'tion', 'tions', 'tive', 'tives', 'ty', 'y',
               'dent', 'east', 'national', 'port', 'tinue', 'tary', 'communist', 'pared', 'posed', 'mendations',
-              'drawal', 'pendence', }
+              'drawal', 'pendence', 'cussions', 'tration', 'ever', 'insurgency'
+              }
+    triples = set()
     for item_index, item in enumerate(items):
         if item is not None:
             pieces = [piece.strip() for piece in item.split()]
@@ -149,6 +151,11 @@ if __name__ == '__main__':
             pieces = [item for piece in pieces for item in piece]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
+            for index, piece in enumerate(pieces):
+                if piece.endswith('-') and index < len(pieces) - 1:
+                    triple = (piece, pieces[index + 1], piece[:-1] + pieces[index + 1])
+                    triples.add(triple)
+
             for punctuation in PUNCTUATION:
                 pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
             for punctuation in trailing:
@@ -196,6 +203,7 @@ if __name__ == '__main__':
                     counts.update({(pieces[index - 1], pieces[index]): 1})
             text.append(' '.join(pieces))
 
+    logger.info('triple count: {}'.format(len(triples)))
     join_ignore_token = {'am', 'and', 'is', 'in', 'mi', 'of', 'to', 'the', }
     logger.info(
         [item for item in list(counts.most_common(n=25)) if not item[0] in join_ignore_token])
