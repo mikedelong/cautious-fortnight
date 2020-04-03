@@ -152,16 +152,16 @@ if __name__ == '__main__':
             pieces = [item for piece in pieces for item in piece]
             pieces = [piece[1:] if piece.startswith('(') and ')(' not in piece else piece for piece in pieces]
             pieces = [piece[:-1] if piece.endswith(')') and ')(' not in piece else piece for piece in pieces]
+            for punctuation in PUNCTUATION:
+                pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
+            for punctuation in trailing:
+                pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             for index, piece in enumerate(pieces):
                 if piece.endswith('-') and index < len(pieces) - 1:
                     if piece not in triples.keys():
                         triples[piece] = {}
                     triples[piece][pieces[index + 1]] = piece[:-1] + pieces[index + 1]
 
-            for punctuation in PUNCTUATION:
-                pieces = [piece if not piece.startswith(punctuation) else piece[1:] for piece in pieces]
-            for punctuation in trailing:
-                pieces = [piece if not piece.endswith(punctuation) else piece[:-1] for piece in pieces]
             pieces = [piece for piece in pieces if len(piece) > 1]
             pieces = [piece for piece in pieces if not piece.isdigit()]
             pieces = [piece if piece not in capitalization else piece.lower() for piece in pieces]
