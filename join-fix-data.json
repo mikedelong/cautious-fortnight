@@ -2,18 +2,11 @@
   "AC-": {
     "TIONS": "ACTIONS"
   },
-  "AD-": {
-    "aircraft": "ADaircraft",
-    "type": "ADtype"
-  },
   "ADDI-": {
     "TIONAL": "ADDITIONAL"
   },
   "ADMIN-": {
     "ISTRATIVE": "ADMINISTRATIVE"
-  },
-  "ADVANC-": {
-    "FIRST": "ADVANCFIRST"
   },
   "AGREE-": {
     "MENT": "AGREEMENT",
@@ -28,62 +21,37 @@
   "ANNOUNCE-": {
     "MENT": "ANNOUNCEMENT"
   },
-  "AP-": {
-    "May": "APMay"
-  },
   "ARRANGE-": {
     "MENTS": "ARRANGEMENTS"
   },
   "ASSO-": {
-    "CIATED": "ASSOCIATED",
-    "NDOCHINS": "ASSONDOCHINS"
-  },
-  "ASSOC=-": {
-    "IATED": "ASSOC=IATED"
+    "CIATED": "ASSOCIATED"
   },
   "Ac-": {
-    "NOs": "AcNOs",
-    "corcingly": "Accorcingly",
+    "corcingly": "Accordingly",
     "cords": "Accords"
   },
   "Accel-": {
     "erated": "Accelerated"
   },
   "Accord-": {
-    "CR": "AccordCR",
     "ing": "According",
     "ingly": "Accordingly"
   },
   "Acheson-": {
-    "Matthews": "AchesonMatthews"
-  },
-  "Act-": {
-    "i": "Acti"
+    "Matthews": "Acheson-Matthews"
   },
   "Action--": {
     "political": "Action-political"
   },
-  "Action.......sse.+eesee-": {
-    "12": "Action.......sse.+eesee12"
-  },
-  "Activity,-": {
-    "Bloc": "Activity,Bloc"
-  },
-  "Actual-": {
-    "11/ia/es": "Actual11/ia/es"
-  },
   "Ad-": {
-    "he": "Adhe",
     "ministration": "Administration",
-    "ministration's": "Administration's",
-    "mir": "Admir",
-    "t": "Adt"
+    "ministration's": "Administration's"
   },
   "Addi-": {
-    "Total": "AddiTotal",
     "tional": "Additional",
     "tionally": "Additionally",
-    "tionel": "Additionel"
+    "tionel": "Additional"
   },
   "Addition-": {
     "ally": "Additionally"
@@ -102,10 +70,10 @@
     "tration": "Administration",
     "tration's": "Administration's",
     "trator": "Administrator",
-    "tretion": "Administretion"
+    "tretion": "Administration"
   },
   "Adminis--": {
-    "tration": "Adminis-tration"
+    "tration": "Administration"
   },
   "Administra-": {
     "tion": "Administration",
@@ -115,18 +83,15 @@
   "Admit-": {
     "ting": "Admitting"
   },
-  "Af-": {
-    "faine": "Affaine"
-  },
   "Afghanis-": {
     "": "Afghanis"
   },
   "Afro-": {
-    "Afro-Asian": "AfroAfro-Asian",
-    "Asian": "AfroAsian"
+    "Afro-Asian": "Afro-Asian",
+    "Asian": "Afro-Asian"
   },
   "Agrec-": {
-    "ments": "Agrecments"
+    "ments": "Agreements"
   },
   "Agree-": {
     "": "Agree",
