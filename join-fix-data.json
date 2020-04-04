@@ -102,15 +102,14 @@
     "culture": "Agriculture"
   },
   "Agro-": {
-    "Hamlets": "AgroHamlets",
-    "hamlet": "Agrohamlet"
+    "Hamlets": "Agro Hamlets",
+    "hamlet": "Agro Hamlet"
   },
   "Aide-": {
-    "Memoire": "AideMemoire",
-    "i": "Aidei"
+    "Memoire": "Aide-Memoire"
   },
   "Aides-": {
-    "Memoire": "AidesMemoire"
+    "Memoire": "Aides-Memoire"
   },
   "Air-": {
     "borne": "Airborne",
@@ -120,13 +119,10 @@
     "bile": "Airmobile"
   },
   "Al-": {
-    "": "Al",
-    "gard": "Algard",
-    "im": "Alim",
     "though": "Although"
   },
   "Align-": {
-    "ments..": "Alignments.."
+    "ments..": "Alignments"
   },
   "Alli-": {
     "ance": "Alliance"
@@ -139,60 +135,54 @@
     "tively": "Alternatively"
   },
   "Alternatives--": {
-    "The": "Alternatives-The"
+    "The": "Alternatives. The"
   },
   "Alto-": {
     "gether": "Altogether"
   },
   "Am-": {
-    "For": "AmFor",
     "bassador": "Ambassador",
     "bassador's": "Ambassador's",
     "bassadors": "Ambassadors",
-    "bassedor": "Ambassedor",
-    "bessador": "Ambessador",
-    "passador": "Ampassador",
-    "passador,": "Ampassador,"
+    "bassedor": "Ambassador",
+    "bessador": "Ambassador",
+    "passador": "Ambassador",
+    "passador,": "Ambassador"
   },
   "Ambas-": {
-    "": "Ambas",
-    "and": "Ambasand",
     "sador": "Ambassador",
-    "sedors": "Ambassedors"
+    "sedors": "Ambassadors"
   },
   "Ambassa-": {
-    "": "Ambassa",
     "dor": "Ambassador",
     "dor's": "Ambassador's",
     "dors": "Ambassadors"
   },
   "Ambassador-": {
-    "Premier": "AmbassadorPremier",
-    "designate": "Ambassadordesignate"
+    "Premier": "Ambassador-Premier",
+    "designate": "Ambassador-designate"
   },
   "Ambassador-at-": {
-    "Large": "Ambassador-atLarge"
+    "Large": "Ambassador-at-Large"
   },
   "Ambasse-": {
-    "dor": "Ambassedor"
+    "dor": "Ambassador"
   },
   "Ambessa-": {
-    "dor": "Ambessador"
+    "dor": "Ambassador"
   },
   "Amer-": {
     "ican": "American"
   },
   "Ameri-": {
-    "Can": "AmeriCan",
-    "L": "AmeriL",
+    "Can": "American",
     "can": "American",
     "cans": "Americans",
-    "ean": "Ameriean",
-    "eans": "Amerieans",
-    "s": "Ameris"
+    "ean": "American",
+    "eans": "Americans"
   },
   "American-": {
-    "equipped": "Americanequipped"
+    "equipped": "Americane-equipped"
   },
   "Americaniza-": {
     "tion": "Americanization"
@@ -200,20 +190,16 @@
   "An-": {
     "namite": "Annamite"
   },
-  "Aner-": {
-    "": "Aner"
-  },
   "Annam-": {
     "ites": "Annamites"
   },
   "Announced.....++see--": {
-    "Pree": "Announced.....++see-Pree"
+    "Pree": "Announced"
   },
   "Anti-": {
-    "1": "Anti1",
-    "Conmunist": "AntiConmunist",
-    "Fascist": "AntiFascist",
-    "Infiltration": "AntiInfiltration"
+    "Conmunist": "Anti-Communist",
+    "Fascist": "Anti-Fascist",
+    "Infiltration": "Anti-Infiltration"
   },
   "Any-": {
     "one": "Anyone"
@@ -222,7 +208,7 @@
     "proves": "Approves"
   },
   "ApDRESS--": {
-    "September": "ApDRESS-September"
+    "September": "Address-September"
   },
   "Appar-": {
     "ation": "Apparation"
@@ -238,15 +224,12 @@
     "ations": "Appropriations"
   },
   "Appropria-": {
-    "now": "Approprianow",
+    "now": "Appropriation",
     "tions": "Appropriations"
   },
   "Approxi-": {
     "mately": "Approximately",
-    "nately": "Approxinately"
-  },
-  "Apro-": {
-    "namese": "Apronamese"
+    "nately": "Approximately"
   },
   "Archi-": {
     "pelago": "Archipelago"
@@ -255,42 +238,30 @@
     "ing": "Arguing"
   },
   "Armis-": {
-    "SEC": "ArmisSEC",
     "tice": "Armistice"
   },
   "Arrange-": {
-    "for": "Arrangefor"
+    "for": "Arranged for"
   },
   "Art-": {
     "icles": "Articles"
   },
   "Arti-": {
-    "5": "Arti5",
     "cle": "Article"
   },
   "As-": {
-    "": "As",
     "sembly": "Assembly"
   },
   "Ash-": {
-    "Mir": "AshMir",
-    "j": "Ashj",
     "more": "Ashmore",
     "more's": "Ashmore's",
-    "more-Baggs": "Ashmore-Baggs",
-    "our": "Ashour",
-    "to": "Ashto"
+    "more-Baggs": "Ashmore-Baggs"
   },
   "Assem-": {
-    "": "Assem",
-    "bly": "Assembly",
-    "id": "Assemid"
+    "bly": "Assembly"
   },
   "Assemblyal-": {
-    "": "Assemblyal"
-  },
-  "Assemblyt6--": {
-    "ofconserip": "Assemblyt6-ofconserip"
+    "": "Assembly"
   },
   "Assert-": {
     "ing": "Asserting"
@@ -307,13 +278,13 @@
     "ant": "Assistant"
   },
   "Asso-": {
-    "chated": "Assochated",
+    "chated": "Associated",
     "ciated": "Associated"
   },
   "Associ-": {
     "ated": "Associated",
     "ation": "Association",
-    "ie": "Associie"
+    "ie": "Associate"
   },
   "Associa-": {
     "ted": "Associated"
@@ -329,41 +300,20 @@
     "lian": "Australian"
   },
   "B-": {
-    "": "B",
-    "52": "B52",
-    "Declassified": "BDeclassified",
-    "II": "BII",
-    "TOP": "BTOP"
-  },
-  "B--": {
-    "The": "B-The"
-  },
-  "B.3-": {
-    "Book": "B.3Book"
-  },
-  "BE-": {
-    "WASTED": "BEWASTED"
-  },
-  "BM-4'703-": {
-    "ISA/ARPA": "BM-4'703ISA/ARPA"
-  },
-  "BYSOME-": {
-    "": "BYSOME"
-  },
-  "Bac-": {
-    "Bo": "BacBo"
+    "52": "B-52",
+    "Declassified": "Declassified"
   },
   "Bao-": {
-    "Dai": "BaoDai"
+    "Dai": "Bao-Dai"
   },
   "Batta-": {
     "lions": "Battalions"
   },
   "Battal-": {
-    "ion--the": "Battalion--the"
+    "ion--the": "Battalion - the"
   },
   "Battalion-": {
-    "sized": "Battalionsized"
+    "sized": "Battalion-sized"
   },
   "Be-": {
     "cause": "Because"
@@ -375,7 +325,6 @@
     "print": "Blueprint"
   },
   "Bon-": {
-    "DLLZECpWEeC": "BonDLLZECpWEeC",
     "bright": "Bonbright"
   },
   "Brief-": {
