@@ -597,61 +597,45 @@
   "Competi-": {
     "tion": "Competition"
   },
-  "Comrnu-": {
-    "o": "Comrnuo"
-  },
   "Comu-": {
-    "nists": "Comunists"
+    "nists": "Communists"
   },
   "Com~-": {
-    "munist": "Com~munist"
+    "munist": "Communist"
   },
   "Con-": {
-    "arrangement": "Conarrangement",
-    "based": "Conbased",
     "ceivably": "Conceivably",
     "comitantly": "Concomitantly",
     "currently": "Concurrently",
     "ditions": "Conditions",
-    "egress": "Conegress",
+    "egress": "Congress",
     "ference": "Conference",
     "ference)": "Conference)",
-    "ference..": "Conference..",
-    "ferenco": "Conferenco",
+    "ference..": "Conference.",
+    "ferenco": "Conference",
     "gress": "Congress",
     "gressional": "Congressional",
-    "inVietnam": "ConinVietnam",
-    "mand": "Conmand",
+    "inVietnam": "Conin Vietnam",
+    "mand": "Command",
     "sensus": "Consensus",
     "sequently": "Consequently",
     "stituent": "Constituent",
     "struction": "Construction",
     "structive": "Constructive",
-    "such": "Consuch",
     "tained": "Contained",
     "tinuance": "Continuance",
     "tinuation": "Continuation",
     "tinued": "Continued",
     "trol": "Control"
   },
-  "Conau-": {
-    "nists": "Conaunists"
-  },
   "Concur-": {
     "rently": "Concurrently"
-  },
-  "Conein-": {
-    "Don": "ConeinDon"
   },
   "Confer-": {
     "ence": "Conference"
   },
   "Cong-": {
-    "r": "Congr",
     "ress": "Congress"
-  },
-  "Cong.......ss++sssee-": {
-    "Neves": "Cong.......ss++ssseeNeves"
   },
   "Congres-": {
     "sional": "Congressional"
@@ -661,14 +645,14 @@
     "man": "Congressman"
   },
   "Congress--": {
-    "Teeends": "Congress-Teeends"
+    "Teeends": "Congress"
   },
   "Conmmist-": {
-    "": "Conmmist"
+    "": "Communist"
   },
   "Considera-": {
     "tion": "Consideration",
-    "you": "Considerayou"
+    "you": "Consideration"
   },
   "Consti-": {
     "tution": "Constitution"
@@ -709,79 +693,61 @@
   "Coordinat-": {
     "ing": "Coordinating"
   },
-  "Cornmu-": {
-    "dences": "Cornmudences"
-  },
   "Corps-": {
-    "Buddhist": "CorpsBuddhist"
+    "Buddhist": "Corps-Buddhist"
   },
   "Corrup-": {
     "tion": "Corruption"
   },
   "Coste-": {
-    "Floret": "CosteFloret"
+    "Floret": "Coste-Floret"
   },
   "Coste-Floret-": {
-    "EBTEL": "Coste-FloretEBTEL"
+    "EBTEL": "Coste-Floret-EBTEL"
   },
   "Cou-": {
-    "munists": "Coumunists"
+    "munists": "Communists"
   },
   "Coun-": {
-    "ceil": "Counceil",
-    "cil": "Council",
-    "divisions": "Coundivisions"
+    "ceil": "Council",
+    "cil": "Council"
   },
   "Counter-": {
-    "": "Counter",
-    "IMSUPZENCY": "CounterIMSUPZENCY",
-    "Insurgency": "CounterInsurgency",
-    "insurgency": "Counterinsurgency"
+    "IMSUPZENCY": "Counter-Insurgency",
+    "Insurgency": "Counter-Insurgency",
+    "insurgency": "Counter-insurgency"
   },
   "Counter-Insur-": {
     "gency": "Counter-Insurgency",
-    "geney": "Counter-Insurgeney"
-  },
-  "Covein-": {
-    "ment": "Coveinment"
+    "geney": "Counter-Insurgency"
   },
   "Criti-": {
     "cism": "Criticism"
   },
   "Cross-": {
-    "Border": "CrossBorder"
+    "Border": "Cross-Border"
   },
   "Cur-": {
     "rent": "Current"
   },
-  "Cxossed-": {
-    "exons": "Cxossedexons"
-  },
   "Czecho-": {
-    "Slovakia": "CzechoSlovakia"
+    "Slovakia": "Czecho-Slovakia"
   },
   "D'Orlandi-Su.-": {
     "": "D'Orlandi-Su."
   },
   "D-": {
-    "Recent": "DRecent",
-    "TOP": "DTOP",
-    "port": "Dport"
+    "Recent": "Recent",
+    "port": "Deport"
   },
   "D-130-": {
-    "Declassified": "D-130Declassified"
-  },
-  "D-7).........-.-": {
-    "aisle": "D-7).........-.aisle"
-  },
-  "D.-": {
-    "In": "D.In"
+    "Declassified": "D-130-Declassified"
   },
   "DANANG-": {
-    "APRIL": "DANANGAPRIL"
+    "APRIL": "Da Nang April"
   },
   "DD-": {
-    "56": "DD56"
+    "56": "DD-56"
   },
   "DE-": {
     "STROY": "DESTROY"
@@ -790,7 +756,7 @@
     "GATIONS": "DELEGATIONS"
   },
   "DELIVERIES-": {
-    "CER": "DELIVERIESCER"
+    "CER": "DELIVERIES"
   },
   "DEMON-": {
     "STRATION": "DEMONSTRATION"
@@ -811,35 +777,34 @@
     "SION": "DISSENSION"
   },
   "DRV-": {
-    "CHICOMreattion": "DRVCHICOMreattion",
-    "DEAN": "DRVDEAN",
-    "Implicit": "DRVImplicit",
-    "Laos": "DRVLaos",
-    "TOP": "DRVTOP"
+    "DEAN": "DRV-DEAN",
+    "Implicit": "DRV-Implicit",
+    "Laos": "DRV-Laos",
+    "TOP": "DRV-TOP"
   },
   "DRVN-": {
-    "controlled": "DRVNcontrolled"
+    "controlled": "DRVN-controlled"
   },
   "DYo-": {
-    "military": "DYomilitary"
+    "military": "military"
   },
   "De-": {
     "": "De",
-    "COMET": "DeCOMET",
-    "Cember": "DeCember",
-    "Declassified": "DeDeclassified",
-    "eisions": "Deeisions",
-    "jyartment": "Dejyartment",
-    "lpartment": "Delpartment",
+    "COMET": "De-COMET",
+    "Cember": "December",
+    "Declassified": "Declassified",
+    "eisions": "Decisions",
+    "jyartment": "Department",
+    "lpartment": "Department",
     "militarized": "Demilitarized",
     "partment": "Department",
-    "partments\"--one": "Departments\"--one",
+    "partments\"--one": "Departments",
     "sertion": "Desertion",
     "spite": "Despite"
   },
   "Decem-": {
     "ber": "December",
-    "per": "Decemper"
+    "per": "December"
   },
   "Declar-": {
     "ation": "Declaration"
@@ -855,7 +820,7 @@
     "tion": "Delegation"
   },
   "Dem-": {
-    "oeratic": "Demoeratic"
+    "oeratic": "Democratic"
   },
   "Demo-": {
     "c": "Democ",
