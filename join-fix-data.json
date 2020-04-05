@@ -420,36 +420,20 @@
   "Cam--": {
     "bodia": "Cambodia"
   },
-  "Can-": {
-    "mission": "Canmission"
-  },
-  "Capa-": {
-    "As": "CapaAs"
-  },
   "Cate-": {
     "gory": "Category"
   },
   "Catholics--": {
-    "six": "Catholics-six"
+    "six": "Catholics six"
   },
   "Caus-": {
     "ing": "Causing"
   },
   "Cease-": {
-    "Fire": "CeaseFire"
-  },
-  "Cem-": {
-    "": "Cem"
+    "Fire": "Ceasefire"
   },
   "Cem~-": {
-    "mission": "Cem~mission"
-  },
-  "Cen-": {
-    "": "Cen",
-    "wr": "Cenwr"
-  },
-  "Censral-": {
-    "ae": "Censralae"
+    "mission": "Commission"
   },
   "Cer-": {
     "tainly": "Certainly"
@@ -457,41 +441,36 @@
   "Chair-": {
     "man": "Chairman"
   },
-  "Chan-": {
-    "chiang": "Chanchiang"
-  },
   "Char-": {
     "ter": "Charter"
   },
   "Chi-": {
-    "community": "Chicommunity",
     "nese": "Chinese"
   },
   "Chin-": {
     "ese": "Chinese"
   },
   "China.-": {
-    "The": "China.The"
+    "The": "China. The"
   },
   "Chinese-": {
-    "Acurson": "ChineseAcurson",
-    "dominated": "Chinesedominated",
-    "sponsored": "Chinesesponsored"
+    "dominated": "Chinese-dominated",
+    "sponsored": "Chinese-sponsored"
   },
   "Christ-": {
     "mas": "Christmas"
   },
   "Christmas-": {
-    "Tet": "ChristmasTet"
+    "Tet": "Christmas-Tet"
   },
   "Chung-": {
-    "king": "Chungking"
+    "king": "Chung-king"
   },
   "Circu-": {
     "lates": "Circulates"
   },
   "Cirector-": {
-    "ship": "Cirectorship"
+    "ship": "Directorship"
   },
   "Civil-": {
     "ian": "Civilian"
@@ -500,29 +479,27 @@
     "tion": "Clarification"
   },
   "Co-": {
-    "Chairman": "CoChairman",
-    "Chairmanship": "CoChairmanship",
-    "Chairmen": "CoChairmen",
-    "chairman": "Cochairman",
-    "chinehi": "Cochinehi",
+    "Chairman": "Co-Chairman",
+    "Chairmanship": "Co-Chairmanship",
+    "Chairmen": "Co-Chairmen",
+    "chairman": "Co-chairman",
     "existence": "Coexistence",
     "ordinating": "Coordinating",
     "ordinator": "Coordinator"
   },
   "Cochin-": {
-    "China": "CochinChina",
-    "Government": "CochinGovernment",
+    "China": "Cochin-China",
+    "Government": "Cochin Government",
     "affairs": "Cochinaffairs",
-    "china": "Cochinchina",
-    "china's": "Cochinchina's",
-    "chinese": "Cochinchinese",
-    "ep": "Cochinep"
+    "china": "Cochin-china",
+    "china's": "Cochin-china's",
+    "chinese": "Cochinchinese"
   },
   "Cochinchinese-": {
-    "Tonkinese": "CochinchineseTonkinese"
+    "Tonkinese": "Cochinchinese-Tonkinese"
   },
   "Coehin-": {
-    "Chinese": "CoehinChinese"
+    "Chinese": "Cochin-Chinese"
   },
   "Coexist-": {
     "ence": "Coexistence"
@@ -531,57 +508,43 @@
     "tive": "Collective"
   },
   "College-": {
-    "War": "CollegeWar"
+    "War": "College-War"
   },
   "Com-": {
-    "": "Com",
-    "1": "Com1",
-    "AUAtSes": "ComAUAtSes",
-    "De": "ComDe",
-    "Mmunists": "ComMmunists",
-    "SECRET": "ComSECRET",
-    "Telegran": "ComTelegran",
-    "as": "Comas",
+    "Mmunists": "Communists",
+    "SECRET": "Com-SECRET",
+    "Telegran": "Com-Telegram",
     "bat": "Combat",
     "bined": "Combined",
-    "f": "Comf",
     "intern": "Comintern",
-    "j": "Comj",
-    "mamist": "Commamist",
+    "mamist": "Communist",
     "mand": "Command",
     "mander": "Commander",
     "mander's": "Commander's",
     "manding": "Commanding",
-    "mandof": "Commandof",
-    "mandsinceit": "Commandsinceit",
-    "maunist": "Commaunist",
+    "mandof": "Command of",
+    "mandsinceit": "Command since it",
+    "maunist": "Communist",
     "mend": "Commend",
     "merce": "Commerce",
-    "minist": "Comminist",
+    "minist": "Communist",
     "mission": "Commission",
     "missioner": "Commissioner",
     "mittee": "Committee",
-    "mmnist": "Commmnist",
+    "mmnist": "Communist",
     "munism": "Communism",
-    "munisn": "Communisn",
+    "munisn": "Communism",
     "munist": "Communist",
     "munist-dominated": "Communist-dominated",
     "munists": "Communists",
-    "oN": "ComoN",
-    "r": "Comr",
-    "raitt": "Comraitt",
-    "s": "Coms",
-    "sunist": "Comsunist",
-    "t": "Comt",
-    "the": "Comthe",
-    "vr": "Comvr"
+    "sunist": "Communist"
   },
   "Com---": {
-    "munist": "Com--munist"
+    "munist": "Communist"
   },
   "Comman-": {
     "der's": "Commander's",
-    "der.in": "Commander.in"
+    "der.in": "Commander"
   },
   "Commis-": {
     "sion": "Commission",
@@ -591,53 +554,45 @@
     "tee": "Committee"
   },
   "Commn-": {
-    "ist": "Commnist"
+    "ist": "Communist"
   },
   "Common-": {
     "wealth": "Commonwealth"
   },
   "Commu-": {
-    "": "Commu",
     "nist": "Communist",
     "nist-controlled": "Communist-controlled",
-    "nists": "Communists",
-    "ression": "Commuression",
-    "tiess": "Commutiess"
+    "nists": "Communists"
   },
   "Commun-": {
     "ist": "Communist",
     "ist-dominated": "Communist-dominated",
     "ists": "Communists"
   },
-  "Communi-": {
-    "eiding": "Communieiding"
-  },
   "Communica-": {
-    "Special": "CommunicaSpecial",
     "tions": "Communications"
   },
   "Communist-": {
-    "bloe": "Communistbloe",
-    "held-offshore": "Communistheld-offshore",
-    "impressed": "Communistimpressed"
+    "held-offshore": "Communist-held-offshore",
+    "impressed": "Communist-impressed"
   },
   "Communist--": {
-    "ne": "Communist-ne"
+    "ne": "Communist"
   },
   "Communist-con-": {
-    "": "Communist-con"
+    "": "Communist"
   },
   "Communistassist-": {
-    "ance": "Communistassistance"
+    "ance": "Communist assistance"
   },
   "Communistpolit-": {
-    "ical": "Communistpolitical"
+    "ical": "Communist political"
   },
   "Communists--": {
-    "and": "Communists-and"
+    "and": "Communists and"
   },
   "Comnunist--": {
-    "China": "Comnunist-China"
+    "China": "Communist China"
   },
   "Competi-": {
     "tion": "Competition"
