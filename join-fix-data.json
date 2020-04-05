@@ -823,45 +823,38 @@
     "oeratic": "Democratic"
   },
   "Demo-": {
-    "c": "Democ",
+    "c": "Democratic",
     "cratic": "Democratic",
-    "eratic": "Demoeratic"
+    "eratic": "Democratic"
   },
   "Demon-": {
     "strations": "Demonstrations"
   },
   "Denart-": {
-    "ment": "Denartment"
+    "ment": "Department"
   },
   "Denunci-": {
     "ation": "Denunciation"
   },
   "Depart-": {
-    "": "Depart",
-    "2approve": "Depart2approve",
-    "Ment": "DepartMent",
-    "ReErpy": "DepartReErpy",
-    "jnent": "Departjnent",
+    "Ment": "Department",
+    "jnent": "Department",
     "ment": "Department",
-    "ment''s": "Department''s",
-    "ment,Indochinais": "Department,Indochinais",
+    "ment''s": "Department's",
+    "ment,Indochinais": "Department, Indochina is",
     "ments": "Departments",
-    "of": "Departof",
     "s": "Departs"
   },
   "Department--": {
-    "of": "Department-of"
+    "of": "Department of"
   },
   "Depaxt--": {
-    "ment": "Depaxt-ment"
+    "ment": "Department"
   },
   "Deploy-": {
-    "Joint": "DeployJoint",
+    "Joint": "Deploy-Joint",
     "ment": "Deployment",
     "ments": "Deployments"
-  },
-  "Deposits-+-+-": {
-    "167.1": "Deposits-+-+167.1"
   },
   "Des-": {
     "pite": "Despite",
@@ -881,32 +874,28 @@
     "vision": "Division"
   },
   "Diem-": {
-    "Taylor": "DiemTaylor"
+    "Taylor": "Diem-Taylor"
   },
   "Diem-is~the-only-available-": {
-    "leader": "Diem-is~the-only-availableleader"
+    "leader": "Diem is the only available leader"
   },
   "Diem.\"-": {
-    "Saigon": "Diem.\"Saigon"
+    "Saigon": "Diem. Saigon"
   },
   "Dien-": {
-    "Bien-Phu": "DienBien-Phu"
+    "Bien-Phu": "Dien-Bien-Phu"
   },
   "Dien-Bien-": {
-    "Phu": "Dien-BienPhu"
+    "Phu": "Dien-Bien-Phu"
   },
   "Dienbienphus--": {
-    "indefensible": "Dienbienphus-indefensible"
-  },
-  "Dip-": {
-    "State": "DipState"
+    "indefensible": "Dien bien phus-indefensible"
   },
   "Diplo-": {
     "matic": "Diplomatic"
   },
   "Dir-": {
-    "ector": "Director",
-    "gen": "Dirgen"
+    "ector": "Director"
   },
   "Direc-": {
     "torate": "Directorate"
@@ -916,78 +905,65 @@
     "trict": "District"
   },
   "Disappointment--": {
-    "But": "Disappointment-But"
+    "But": "Disappointment But"
   },
   "Discus-": {
     "sions": "Discussions"
   },
   "Discus~-": {
-    "sions": "Discus~sions"
+    "sions": "Discussions"
   },
   "DistRIBUTION-": {
-    "SQESIRED-": "DistRIBUTIONSQESIRED-"
+    "SQESIRED-": "Distribution"
   },
   "Disturb-": {
     "ances": "Disturbances"
   },
   "Div(-": {
-    "could": "Div(could"
+    "could": "could"
   },
   "Divi-": {
     "sion": "Division",
     "sions": "Divisions"
   },
   "Dong-": {
-    "Hanoi": "DongHanoi"
+    "Hanoi": "Dong-Hanoi"
   },
   "Draw-": {
     "ing": "Drawing"
   },
   "Dulles-": {
-    "Parodi": "DullesParodi"
+    "Parodi": "Dulles-Parodi"
   },
   "E.g-": {
-    "George": "E.gGeorge",
-    "a": "E.ga"
-  },
-  "E2008sdh-": {
-    "TIOZ\"12GAN*4@\"OTEE9CNN:Joquiny199f01g(NN": "E2008sdhTIOZ\"12GAN*4@\"OTEE9CNN:Joquiny199f01g(NN"
-  },
-  "EDC.............++-": {
-    "D-7": "EDC.............++D-7"
+    "George": "E.g George"
   },
   "ELSE-": {
-    "WHERE": "ELSEWHERE"
+    "WHERE": "elsewhere"
   },
   "EN-": {
-    "JOY": "ENJOY"
+    "JOY": "enjoy"
   },
   "EUR-": {
-    "Treaty": "EURTreaty"
+    "Treaty": "EUR-Treaty"
   },
   "EUR.--": {
-    "Difficulties": "EUR.-Difficulties"
+    "Difficulties": "EUR. Difficulties"
   },
   "EX-": {
-    "TEND": "EXTEND"
+    "TEND": "extend"
   },
   "EXIS?-": {
-    "SUCH": "EXIS?SUCH"
-  },
-  "EXTEN-": {
-    "Zee": "EXTENZee"
+    "SUCH": "exist such"
   },
   "EXTRE-": {
     "MELY": "EXTREMELY"
   },
   "Ed@i-": {
-    "tors": "Ed@itors"
-  },
-  "Ef-": {
-    "e": "Efe"
+    "tors": "Editors"
   },
   "Ei-": {
-    "fective": "Eifective"
+    "fective": "Effective"
   },
   "Eim-": {
     "sult": "Eimsult"
