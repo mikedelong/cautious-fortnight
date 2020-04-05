@@ -333,28 +333,14 @@
   "Brit-": {
     "ish": "British"
   },
-  "Bud-": {
-    "y": "Budy"
-  },
   "Bulle-": {
     "tin": "Bulletin"
   },
   "Bundy-Rostow-": {
-    "McNaughton": "Bundy-RostowMcNaughton"
+    "McNaughton": "Bundy-Rostow-McNaughton"
   },
   "Bur-": {
-    "acts": "Buracts",
-    "j<<we": "Burj<<we",
     "mese": "Burmese"
-  },
-  "Buraae.-": {
-    "ee": "Buraae.ee"
-  },
-  "C--": {
-    "The": "C-The"
-  },
-  "C.+-": {
-    "": "C.+"
   },
   "C/-": {
     "Implement": "C/Implement"
@@ -368,30 +354,21 @@
   "C/resi-": {
     "dent": "C/resident"
   },
-  "C2u4/17/SCS355/R2-": {
-    "EHXS4": "C2u4/17/SCS355/R2EHXS4"
-  },
   "C=0=P=Y=-": {
-    "DEPARTMENT": "C=0=P=Y=DEPARTMENT"
+    "DEPARTMENT": "COPY DEPARTMENT"
   },
   "CHAIR-": {
     "MAN": "CHAIRMAN"
   },
   "CHICOM-": {
-    "Viet": "CHICOMViet"
-  },
-  "CHRONOLOGY...-+-+-20+-": {
-    "SAS": "CHRONOLOGY...-+-+-20+SAS"
+    "Viet": "CHICOM-Viet"
   },
   "CIA-": {
-    "directed": "CIAdirected",
-    "funded": "CIAfunded"
-  },
-  "CIP)........-+-": {
-    "Seas": "CIP)........-+Seas"
+    "directed": "CIA-directed",
+    "funded": "CIA-funded"
   },
   "CO-": {
-    "operate": "COoperate"
+    "operate": "Cooperate"
   },
   "COMMIE-": {
     "Viet": "COMMIEViet"
@@ -401,16 +378,13 @@
   },
   "COMUS-": {
     "MACV": "COMUSMACV",
-    "MACY": "COMUSMACY"
+    "MACY": "COMUSMACV"
   },
   "CON-": {
     "JUNCTION": "CONJUNCTION"
   },
   "CONCLUSION.-": {
-    "For": "CONCLUSION.For"
-  },
-  "CONSICER-": {
-    "TION": "CONSICERTION"
+    "For": "CONCLUSION. For"
   },
   "CONSTITU-": {
     "TION": "CONSTITUTION"
@@ -419,7 +393,7 @@
     "BUTE": "CONTRIBUTE"
   },
   "CONUS-": {
-    "based": "CONUSbased"
+    "based": "CONUS-based"
   },
   "COUN-": {
     "TRIES": "COUNTRIES"
@@ -427,34 +401,24 @@
   "COUNTER-": {
     "BALANCED": "COUNTERBALANCED"
   },
-  "COpY--": {
-    "--------=": "COpY---------="
-  },
-  "COrpSence-": {
-    "4": "COrpSence4"
-  },
   "CSA-": {
-    "CNO-9": "CSACNO-9"
-  },
-  "CVN.-": {
-    "TOP": "CVN.TOP"
+    "CNO-9": "CSA-CNO-9"
   },
   "CZECH-": {
-    "INDIAN": "CZECHINDIAN"
+    "INDIAN": "CZECH-INDIAN"
   },
   "Cam-": {
-    "": "Cam",
     "bodia": "Cambodia",
     "bodia's": "Cambodia's",
     "bodian": "Cambodian",
-    "ions": "Camions",
-    "mittee": "Cammittee",
+    "ions": "Cambodions",
+    "mittee": "Committee",
     "paign": "Campaign",
-    "podia": "Campodia",
-    "podians": "Campodians"
+    "podia": "Cambodia",
+    "podians": "Cambodians"
   },
   "Cam--": {
-    "bodia": "Cam-bodia"
+    "bodia": "Cambodia"
   },
   "Can-": {
     "mission": "Canmission"
