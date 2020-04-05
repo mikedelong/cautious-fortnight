@@ -965,37 +965,32 @@
   "Ei-": {
     "fective": "Effective"
   },
-  "Eim-": {
-    "sult": "Eimsult"
-  },
   "Elections.........ss.see0-": {
-    "": "Elections.........ss.see0"
+    "": "Elections"
   },
   "Em-": {
     "bassy": "Embassy"
   },
   "Emb-": {
-    "Tel": "EmbTel"
+    "Tel": "Emb-Tel"
   },
   "Eme--": {
-    "peror": "Eme-peror"
+    "peror": "Emperor"
   },
   "En-": {
-    "": "En",
-    "In": "EnIn",
-    "bassy": "Enbassy"
+    "bassy": "Embassy"
   },
   "End-": {
-    "February": "EndFebruary"
+    "February": "End-February"
   },
   "Endo-": {
-    "China": "EndoChina"
+    "China": "Indochina"
   },
   "Eng-": {
     "lish": "English"
   },
   "English-": {
-    "language": "Englishlanguage"
+    "language": "English-language"
   },
   "Equip-": {
     "ment": "Equipment"
