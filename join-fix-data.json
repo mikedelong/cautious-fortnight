@@ -1017,21 +1017,18 @@
     "tion": "Evaluation"
   },
   "Ex-": {
-    "Foreign": "ExForeign",
+    "Foreign": "Ex-Foreign",
     "peditionary": "Expeditionary",
     "tensive": "Extensive"
   },
   "Execu-": {
     "tive": "Executive"
   },
-  "Expansion..<<.-": {
-    "243": "Expansion..<<.243"
-  },
   "Expecta-": {
     "tions": "Expectations"
   },
   "Expected..........--..-": {
-    "D-12": "Expected..........--..D-12"
+    "D-12": "Expected"
   },
   "Expedi-": {
     "tionary": "Expeditionary"
@@ -1046,48 +1043,39 @@
     "ence": "Experience"
   },
   "Export-": {
-    "Import": "ExportImport"
-  },
-  "F--------": {
-    "u": "F-------u"
-  },
-  "FE-": {
-    "Mr": "FEMr"
-  },
-  "FO-": {
-    "0Ste": "FO0Ste"
+    "Import": "Export-Import"
   },
   "FOLLOW-": {
-    "ING": "FOLLOWING"
+    "ING": "following"
   },
   "FPresi-": {
-    "dent": "FPresident"
+    "dent": "President"
   },
   "FRANCO-": {
-    "UsSe": "FRANCOUsSe"
+    "UsSe": "Franco-US"
   },
   "Fail-": {
-    "should": "Failshould"
+    "should": "Fail should"
   },
   "Fan-": {
     "fani's": "Fanfani's"
   },
   "Feb-": {
     "ruary": "February",
-    "sary": "Febsary"
+    "sary": "Febuary"
   },
   "Febru-": {
     "ary": "February"
   },
   "February-": {
-    "10": "February10",
-    "March": "FebruaryMarch"
+    "10": "February",
+    "March": "February-March"
   },
   "Fed-": {
-    "of": "Fedof"
+    "of": "Federation of"
   },
   "Federa-": {
-    "of": "Federaof"
+    "of": "Federation of"
   },
   "Fedor-": {
     "enko": "Fedorenko"
@@ -1099,10 +1087,10 @@
     "teenth": "Fifteenth"
   },
   "Fifteen-": {
-    "hundred": "Fifteenhundred"
+    "hundred": "Fifteen-hundred"
   },
   "Fn-": {
-    "Declassified": "FnDeclassified"
+    "Declassified": "Declassified"
   },
   "Fol-": {
     "lowing": "Following"
@@ -1111,55 +1099,55 @@
     "ing": "Following"
   },
   "Fontaine--": {
-    "bleau": "Fontaine-bleau"
+    "bleau": "Fontainebleau"
   },
   "For-": {
     "eign": "Foreign",
     "tunately": "Fortunately"
   },
   "Force-": {
-    "two": "Forcetwo"
+    "two": "Force-two"
   },
   "Force--": {
-    "he": "Force-he"
+    "he": "Force"
   },
   "Fran-": {
-    "gaise\"": "Frangaise\""
+    "gaise\"": "Francaise"
   },
   "France-": {
     "": "France",
-    "Presse": "FrancePresse",
-    "United": "FranceUnited"
+    "Presse": "France-Presse",
+    "United": "France-United"
   },
   "Franco-": {
     "": "Franco",
-    "American": "FrancoAmerican",
-    "Bao": "FrancoBao",
-    "Chinese": "FrancoChinese",
-    "Laotian": "FrancoLaotian",
-    "Viet": "FrancoViet",
-    "Vietnamese": "FrancoVietnamese",
+    "American": "Franco-American",
+    "Bao": "Franco-Bao",
+    "Chinese": "Franco-Chinese",
+    "Laotian": "Franco-Laotian",
+    "Viet": "Franco-Viet",
+    "Vietnamese": "Franco-Vietnamese",
     "phobia": "Francophobia"
   },
   "Franco---": {
-    "American": "Franco--American"
+    "American": "Franco-American"
   },
   "French,-": {
-    "being": "French,being"
+    "being": "French being"
   },
   "French-": {
-    "American": "FrenchAmerican",
-    "US": "FrenchUS",
-    "Viet": "FrenchViet",
-    "Vietminh": "FrenchVietminh",
-    "Vietnam": "FrenchVietnam",
-    "Vietnamese": "FrenchVietnamese",
-    "Vietnemese-United": "FrenchVietnemese-United",
-    "awned": "Frenchawned",
-    "controlled": "Frenchcontrolled",
+    "American": "French-American",
+    "US": "French-US",
+    "Viet": "French-Viet",
+    "Vietminh": "French-Vietminh",
+    "Vietnam": "French-Vietnam",
+    "Vietnamese": "French-Vietnamese",
+    "Vietnemese-United": "French-Vietnemese-United",
+    "awned": "French-owned",
+    "controlled": "French-controlled",
     "man": "Frenchman",
-    "protected": "Frenchprotected",
-    "supported": "Frenchsupported"
+    "protected": "French-protected",
+    "supported": "French-supported"
   },
   "French--": {
     "supported": "French-supported"
